@@ -24,7 +24,7 @@ get_header();
             <div class="is-content-justification-center is-layout-flex wp-container-1 wp-block-buttons">
                 <div class="wp-block-button has-custom-font-size has-medium-font-size"><a
                         class="wp-block-button__link has-secondary-background-color has-background wp-element-button"
-                        href="https://fiddes.co.uk/product-catalogue/" style="border-radius:0px">Shop now</a></div>
+                        href="" style="border-radius:0px; color: #fff;">Shop now</a></div>
             </div>
         </div>
         <div class="mouse-icon-wrap">
@@ -85,7 +85,7 @@ get_header();
 
 
                             <p class="has-text-align-center underline"><a
-                                    href="https://fiddes.co.uk/restores-revives-protects/" data-type="page"
+                                    href="" data-type="page"
                                     data-id="1509"><span style="text-decoration: underline;">DISCOVER MORE</span></a>
                             </p>
                         </div>
@@ -125,7 +125,7 @@ get_header();
                         <div
                             class="is-content-justification-center is-nowrap is-layout-flex wp-container-5 wp-block-group">
                             <figure class="wp-block-image aligncenter size-full is-resized my-0"><a
-                                    href="https://fiddes.co.uk/product/full-stop-stain-block/"><img decoding="async"
+                                    href=""><img decoding="async"
                                         loading="lazy"
                                         src="https://fiddes.celfapps.com/app/uploads/2024/12/full-stop-red-png.png"
                                         alt="" class="wp-image-32061" width="549" height="626"></a></figure>
@@ -133,7 +133,7 @@ get_header();
 
 
                             <figure class="wp-block-image aligncenter size-full is-resized my-0"><a
-                                    href="https://fiddes.co.uk/product/fiddes-full-stop-h20-stain-block/"><img
+                                    href=""><img
                                         decoding="async" loading="lazy"
                                         src="https://fiddes.celfapps.com/app/uploads/2024/12/full-stop-h20.png" alt=""
                                         class="wp-image-32059" width="732" height="835"></a></figure>
@@ -142,7 +142,7 @@ get_header();
 
 
                         <p class="has-text-align-center underline pe-5 mt-n3 mt-md-4"><a
-                                href="https://fiddes.co.uk/product-category/stain-block/"><span
+                                href=""><span
                                     style="text-decoration: underline;">DISCOVER MORE</span></a></p>
                     </div>
 
@@ -189,7 +189,7 @@ get_header();
 
 
                     <figure class="wp-block-image aligncenter size-full is-resized mb-5"><a
-                            href="https://fiddes.co.uk/product/hard-wax-oil/#fiddes-ultra-raw-hard-wax-oil"><img
+                            href="#"><img
                                 decoding="async" loading="lazy"
                                 src="https://fiddes.co.uk/app/uploads/2024/01/new-fiddes-ultra-raw.svg" alt=""
                                 class="wp-image-30800" width="395" height="395"></a></figure>
@@ -197,7 +197,7 @@ get_header();
 
 
                     <p class="has-text-align-center underline"><span style="text-decoration: underline;"><a
-                                href="https://fiddes.co.uk/product/hard-wax-oil/#fiddes-ultra-raw-hard-wax-oil">DISCOVER
+                                href="#">DISCOVER
                                 MORE</a></span></p>
                 </div>
 
@@ -205,7 +205,7 @@ get_header();
 
                 <div class="is-layout-flow wp-block-column is-vertically-aligned-center" style="flex-basis:50%">
                     <figure class="wp-block-image aligncenter size-full is-resized mb-0 mt-n4"><a
-                            href="https://fiddes.co.uk/product/hard-wax-oil/#fiddes-ultra-raw-hard-wax-oil"><img
+                            href="#"><img
                                 decoding="async" loading="lazy"
                                 src="https://fiddes.co.uk/app/uploads/2024/01/Fiddes-HWO-2.5lt-3D_Ultra-Raw.png" alt=""
                                 class="wp-image-30802" width="502" height="469"
@@ -243,7 +243,7 @@ get_header();
 
 
                         <h3 class="has-text-align-center underline h1"><span style="text-decoration: underline;"><a
-                                    href="https://fiddes.co.uk/product-category/floor-worktop-finishes/">FIDDES FLOOR
+                                    href="#">FIDDES FLOOR
                                     &amp; WORKTOP WOOD FINISHES</a></span></h3>
 
 
@@ -255,43 +255,43 @@ get_header();
 
 
                         <p class="has-text-align-center mb-1 mt-2 has-medium-font-size" style="line-height:1.5"><a
-                                href="https://fiddes.co.uk/product/hard-wax-oil/" data-type="product"
+                                href="#" data-type="product"
                                 data-id="1045">HARD WAX OIL</a></p>
 
 
 
                         <p class="has-text-align-center mb-1 mt-2 has-medium-font-size" style="line-height:1.5"><a
-                                href="https://fiddes.co.uk/product/floor-reviving-kit/" data-type="product"
+                                href="#" data-type="product"
                                 data-id="1047">FLOOR REVIVING KIT</a></p>
 
 
 
                         <p class="has-text-align-center mb-1 mt-2 has-medium-font-size" style="line-height:1.5"><a
-                                href="https://fiddes.co.uk/product/liquid-floor-wax/" data-type="product"
+                                href="#" data-type="product"
                                 data-id="1090">FLOOR WAX</a></p>
 
 
 
                         <p class="has-text-align-center mb-1 mt-2 has-medium-font-size" style="line-height:1.5"><a
-                                href="https://fiddes.co.uk/product/floor-surface-cleaner/" data-type="product"
+                                href="#" data-type="product"
                                 data-id="1048">FLOOR CLEANER</a></p>
 
 
 
                         <p class="has-text-align-center mb-1 mt-2 has-medium-font-size" style="line-height:1.5"><a
-                                href="https://fiddes.co.uk/product/wood-surface-cleaner/" data-type="product"
+                                href="#" data-type="product"
                                 data-id="1049">WOOD SURFACE CLEANER</a></p>
 
 
 
                         <p class="has-text-align-center mb-1 mt-2 has-medium-font-size" style="line-height:1.5"><a
-                                href="https://fiddes.co.uk/product/barrier-seal/" data-type="product"
+                                href="#" data-type="product"
                                 data-id="1046">BARRIER SEAL</a></p>
 
 
 
                         <p class="has-text-align-center mb-1 mt-2 has-medium-font-size" style="line-height:1.5"><a
-                                href="https://fiddes.co.uk/product/clear-glaze/" data-type="product"
+                                href="#" data-type="product"
                                 data-id="1075">CLEAR GLAZE</a></p>
                     </div>
                 </div>
@@ -317,7 +317,7 @@ get_header();
 
                         <h3 class="has-text-align-center underline h1"><span
                                 style="text-decoration: underline;">FIDDES<a
-                                    href="https://fiddes.co.uk/product-category/wood-finishes/"> </a>INTERIOR WOOD
+                                    href="#"> </a>INTERIOR WOOD
                                 FINISHES</span></h3>
 
 
@@ -328,44 +328,44 @@ get_header();
 
 
                         <p class="has-text-align-center mb-1 mt-2 has-medium-font-size"><a
-                                href="https://fiddes.co.uk/product-category/wood-finishes/oils/">OILS</a></p>
+                                href="#">OILS</a></p>
 
 
 
                         <p class="has-text-align-center mb-1 mt-2 has-medium-font-size"><a
-                                href="https://fiddes.co.uk/product-category/wood-finishes/shellac-polish/">SHELLAC</a>
+                                href="#">SHELLAC</a>
                         </p>
 
 
 
                         <p class="has-text-align-center mb-1 mt-2 has-medium-font-size"><a
-                                href="https://fiddes.co.uk/product-category/wood-finishes/wax/">WAX</a></p>
+                                href="#">WAX</a></p>
 
 
 
                         <p class="has-text-align-center mb-1 mt-2 has-medium-font-size"><a
-                                href="https://fiddes.co.uk/product-category/wood-finishes/stains/">STAINS</a></p>
+                                href="#">STAINS</a></p>
 
 
 
                         <p class="has-text-align-center mb-1 mt-2 has-medium-font-size"><a
-                                href="https://fiddes.co.uk/product-category/wood-finishes/thinners/">THINNERS</a></p>
+                                href="#">THINNERS</a></p>
 
 
 
                         <p class="has-text-align-center mb-1 mt-2 has-medium-font-size"><a
-                                href="https://fiddes.co.uk/product-category/wood-finishes/concentrates/">CONCENTRATES</a>
+                                href="#">CONCENTRATES</a>
                         </p>
 
 
 
                         <p class="has-text-align-center mb-1 mt-2 has-medium-font-size"><a
-                                href="https://fiddes.co.uk/product/spirit-oil-soluble-base-tints/">BASE TINTS</a></p>
+                                href="#">BASE TINTS</a></p>
 
 
 
                         <p class="has-text-align-center mb-1 mt-2 has-medium-font-size"><a
-                                href="https://fiddes.co.uk/product/spirit-soluble-dry-pigment-powders/">PIGMENT
+                                href="#">PIGMENT
                                 POWDER</a></p>
                     </div>
 
@@ -409,7 +409,7 @@ get_header();
 
 
                         <h3 class="has-text-align-center underline h1"><span style="text-decoration: underline;"><a
-                                    href="https://fiddes.co.uk/product-category/exterior-finishes/">FIDDES EXTERIOR WOOD
+                                    href="#">FIDDES EXTERIOR WOOD
                                     FINISHES</a></span></h3>
 
 
@@ -422,31 +422,31 @@ get_header();
 
 
                         <p class="has-text-align-center mb-1 mt-2 has-medium-font-size"><a
-                                href="https://fiddes.co.uk/product/decking-oil/" data-type="product"
+                                href="#" data-type="product"
                                 data-id="1274">FIDDES UNIVERSAL DECKING OIL</a></p>
 
 
 
                         <p class="has-text-align-center mb-1 mt-2 has-medium-font-size"><a
-                                href="https://fiddes.co.uk/product/fiddes-deck-cleaner/" data-type="product"
+                                href="#" data-type="product"
                                 data-id="29873">FIDDES DECK CLEANER</a></p>
 
 
 
                         <p class="has-text-align-center mb-1 mt-2 text-uppercase has-medium-font-size"><a
-                                href="https://fiddes.co.uk/product/exterior-high-build-wood-oil/" data-type="product"
+                                href="#" data-type="product"
                                 data-id="1035">FIDDES Exterior High Build Wood Oil</a></p>
 
 
 
                         <p class="has-text-align-center mb-1 mt-2 text-uppercase has-medium-font-size"><a
-                                href="https://fiddes.co.uk/product/exterior-wood-protector/" data-type="product"
+                                href="#" data-type="product"
                                 data-id="1273">FIDDES EXTERIOR WOOD PROTECTOR</a></p>
 
 
 
                         <p class="has-text-align-center mb-1 mt-2 text-uppercase has-medium-font-size"><a
-                                href="https://fiddes.co.uk/product/wood-reviver-gel/" data-type="product"
+                                href="#" data-type="product"
                                 data-id="1281">FIDDES WOOD REVIVER GEL</a></p>
 
 
