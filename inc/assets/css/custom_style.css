@@ -206,3 +206,10 @@ body.hide_scroll {
 .wp-block-columns.wp-container-4, .wp-block-columns.wp-container-8, .wp-block-columns.wp-container-12, .wp-block-columns.wp-container-15, .wp-block-columns.wp-container-19, .wp-block-columns.wp-container-23, .wp-block-columns.wp-container-27, .wp-block-columns.wp-container-34 {
   flex-wrap: nowrap;
 }
+
+.banner--top,
+.banner--logo-menu,
+.banner--menu-row.account-nav,
+.banner--menu-row {
+  transition: all 0.4s ease-in-out;
+}

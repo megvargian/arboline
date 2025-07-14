@@ -588,10 +588,6 @@
                     // $('.main-logo-section').addClass("active");
                     // $('.first-header').addClass("active");
                     // $('.second-header').addClass("active");
-                    $('.banner--top').css({
-                        'opacity': '0',
-                        'height': '0px'
-                    });
                     $('.banner--menu-row').css({
                         'border-top-width': '0px',
                         'border-color': 'rgb(204, 204, 204)',
@@ -603,6 +599,10 @@
                     $('.banner--menu-row.account-nav').css({
                         'opacity': '1',
                     });
+                    $('.banner--top').animate({
+                        opacity: 0,
+                        height: '0px'
+                    }, 400); // 400ms duration
                 }
                 if (currentScreenPosition < 125) {
                     $("header").removeClass("active");
@@ -614,6 +614,10 @@
                         'opacity': '1',
                         'height': '78px',
                     });
+                    $('.banner--top').animate({
+                        opacity: 1,
+                        height: '78px'
+                    }, 400); // 400ms duration
                     $('.banner--menu-row').css({
                         'border-top': '1px solid #dee2e6',
                         'border-top-color': 'rgb(222, 226, 230) rgb(0, 0, 0) rgb(0, 0, 0)',
