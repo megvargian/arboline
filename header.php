@@ -615,7 +615,7 @@
                         'height': '78px',
                     });
                     $('.banner--menu-row').css({
-                        'border-top-style': 'solid',
+                        'border-top': '1px solid #dee2e6',
                         'border-top-color': 'rgb(222, 226, 230) rgb(0, 0, 0) rgb(0, 0, 0)',
                     });
                     $('.banner--logo-menu').css({
