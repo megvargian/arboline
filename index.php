@@ -10,6 +10,29 @@ get_header();
 	// endwhile;
 ?>
 <section>
+    <div class="wp-block-cover alignfull is-light intro position-relative" style="min-height:93vh"><span
+            aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim"
+            style="background-color:#57420e"></span><video class="wp-block-cover__video-background intrinsic-ignore"
+            autoplay="" muted="" loop="" playsinline=""
+            src="https://fiddes.co.uk/app/uploads/2023/02/home-application-vid.mp4" data-object-fit="cover"></video>
+        <div class="wp-block-cover__inner-container" style="margin-top: 0%;">
+            <h2 class="d-inline-block intro-text has-white-color has-text-color has-background"
+                style="background-color:#00000000">Wood. Finished.</h2>
+
+
+
+            <div class="is-content-justification-center is-layout-flex wp-container-1 wp-block-buttons">
+                <div class="wp-block-button has-custom-font-size has-medium-font-size"><a
+                        class="wp-block-button__link has-secondary-background-color has-background wp-element-button"
+                        href="https://fiddes.co.uk/product-catalogue/" style="border-radius:0px">Shop now</a></div>
+            </div>
+        </div>
+        <div class="mouse-icon-wrap">
+            <div class="mouse-icon">
+                <div class="mouse-wheel"></div>
+            </div>
+        </div>
+    </div>
     <div class="wp-block-cover alignfull is-light mt-0" style="min-height:60vh">
         <span aria-hidden="true"
             class="wp-block-cover__background has-white-background-color has-background-dim-90 has-background-dim">
