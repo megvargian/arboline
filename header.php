@@ -599,7 +599,9 @@
                     $('.banner--logo-menu').css({
                         'opacity': '1',
                     });
-
+                    $('.banner--menu-row.account-nav').css({
+                        'opacity': '1',
+                    });
                 }
                 if (currentScreenPosition < 125) {
                     $("header").removeClass("active");
@@ -616,6 +618,9 @@
                         'border-top-color': 'rgb(222, 226, 230) rgb(0, 0, 0) rgb(0, 0, 0)',
                     });
                     $('.banner--logo-menu').css({
+                        'opacity': '0',
+                    });
+                     $('.banner--menu-row.account-nav').css({
                         'opacity': '0',
                     });
                 }
