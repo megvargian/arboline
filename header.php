@@ -9,29 +9,6 @@
  *
  * @package WP_Bootstrap_Starter
  */
-if(is_product()){
-    $is_product_from_mystiquerose = has_term(17, 'product_cat', get_the_ID()) ||
-                                    has_term(23, 'product_cat', get_the_ID()) ||
-                                    has_term(18, 'product_cat', get_the_ID()) ||
-                                    has_term(25, 'product_cat', get_the_ID()) ||
-                                    has_term(20, 'product_cat', get_the_ID()) ? 1 : 0;
-}
-$all_generalFields = get_fields('options');
-$top_header_fields = $all_generalFields['top_header_fields'];
-$left_side_top_header_fields = $top_header_fields['left_side_top_header'];
-$right_side_top_header_fields = $top_header_fields['right_side_top_header'];
-$main_logo_image = $all_generalFields['main_logo'];
-$main_logo_link = $all_generalFields['main_logo_link'];
-$main_logo_mystiquerose = $all_generalFields['main_logo_mystiquerose'];
-$main_logo_link_mystiquerose = $all_generalFields['main_logo_mystiquerose_link'];
-$is_MystiqueRose = is_page(460) || is_product_category(17) || is_product_category(23) || is_product_category(18) || is_product_category(25) || is_product_category(20) || !empty($is_product_from_mystiquerose);
-$header_menu = $is_MystiqueRose ? $all_generalFields['header_menu_mystique_rose'] : $all_generalFields['header_menu'];
-$current_url = home_url(add_query_arg(array(), $wp->request));
-$get_size_guide_fields = $all_generalFields;
-if($_SERVER['REQUEST_URI'] == '/shop/'){
-    header("Location: https://maisonlesley.com/");
-    exit();
-}
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -41,27 +18,7 @@ if($_SERVER['REQUEST_URI'] == '/shop/'){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <?php wp_head(); ?>
-    <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
-        (window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '592188410290511'); // Replace YOUR_PIXEL_ID with your actual Facebook Pixel ID
-        fbq('track', 'PageView');
-    </script>
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VZYBKLLT4J"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-VZYBKLLT4J');
-</script>
 <body <?php body_class(); ?>>
     <div id="page" class="site main_page_wrapper">
         <div class="modal fade" id="search" tabindex="-1" aria-labelledby="searchLabel" aria-hidden="true">
@@ -135,36 +92,12 @@ if($_SERVER['REQUEST_URI'] == '/shop/'){
                         <div class="row justify-content-between">
                             <div class="col px-0">
                                 <div class="d-flex float-left hover-js-drop-down custom-first-header-padding">
-                                    <a href="<?php echo $left_side_top_header_fields['main_link']; ?>"
+                                    <a href="#"
                                         class="default-button">
-                                        <?php echo $left_side_top_header_fields['main_text']; ?>
+
                                     </a>
-                                    <!-- <div class="drop-down-customer-service">
-                                        <div class="headeing text-center">
-                                            <h6><?php // echo $left_side_top_header_fields['sub_main_label']; ?></h6>
-                                        </div>
-                                        <ul class="d-flex justify-content-between align-items-center">
-                                            <li>
-                                                <a href="<?php // echo $left_side_top_header_fields['first_sub_text_link']; ?>" class="icon-mail">
-                                                    <span><?php //echo $left_side_top_header_fields['first_sub_text']; ?></span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php //echo $left_side_top_header_fields['second_sub_text_link']; ?>">
-                                                    <span><?php //echo $left_side_top_header_fields['second_sub_text']; ?></span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div> -->
                                 </div>
                             </div>
-                            <!-- <div class="col px-0">
-                                <div class="icon-pin d-flex float-right custom-first-header-padding">
-                                    <a class="default-button" href="<?php //echo $right_side_top_header_fields['main_link'] ?>">
-                                        <?php //echo $right_side_top_header_fields['mian_text'] ?>
-                                    </a>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                 </section>
@@ -172,40 +105,13 @@ if($_SERVER['REQUEST_URI'] == '/shop/'){
                     <div class="container h-100 px-0">
                         <div class="row h-100">
                             <div class="col-md-4 col-12 h-100">
-                                <div class="row h-100">
-                                    <div class="col-4 h-100">
-                                        <a class="second-header-main-pages <?= empty($is_MystiqueRose) ? 'active' : ''; ?>"
-                                            href="<?php echo get_home_url(); ?>">
-                                            <img style="height: 40px; width: 90px;"
-                                                src="<?php echo $main_logo_image; ?>" alt="Maison Lesley">
-                                        </a>
-                                    </div>
-                                    <div class="col-1 px-0 d-flex justify-content-center"
-                                        style="background-color: #d5d1d1; width: 1px; margin: 5px 0; height:30px"></div>
-                                    <div class="col-7 h-100">
-                                        <a class="second-header-main-pages <?= $is_MystiqueRose ? 'active' : ''; ?>"
-                                            href="<?php echo $main_logo_link_mystiquerose; ?>">
-                                            <img style="height: 40px; width: 170px;"
-                                                src="<?php echo $main_logo_mystiquerose; ?>" alt="Mystique Rose">
-                                        </a>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
                 <section class="bg-white main-logo-section">
                     <div class="container">
-                        <div class="row justify-content-center"
-                            style="<?php echo $is_MystiqueRose ? 'padding-top: 128px;' : 'padding-top: 70px;'; ?>">
-                            <a class="d-flex justify-content-center" style="width:fit-content;"
-                                href="<?php echo $is_MystiqueRose ? $main_logo_link_mystiquerose : $main_logo_link;?>">
-                                <?php if($is_MystiqueRose){ ?>
-                                <img class="main-logo" src="<?php echo $main_logo_mystiquerose; ?>" alt="Mystique Rose">
-                                <?php } else { ?>
-                                <img class="main-logo" src="<?php echo $main_logo_image; ?>" alt="Maison Lesley">
-                                <?php } ?>
-                            </a>
+                        <div class="row justify-content-center">
                         </div>
                     </div>
                 </section>
@@ -213,49 +119,33 @@ if($_SERVER['REQUEST_URI'] == '/shop/'){
                     <div class="container px-0">
                         <nav class="text-left main-nav d-flex justify-content-between">
                             <ul class="d-flex justify-content-start main-menu-list">
-                                <?php foreach($header_menu as $single_menu){ ?>
-                                <li class="main-menu-link <?php echo $single_menu['has_sub_menu'] ? 'sub-menu': ''; ?>">
-                                    <a class="link" href="<?php echo $single_menu['url']; ?>">
-                                        <?php echo $single_menu['text']; ?>
+                                <?php //foreach($header_menu as $single_menu){ ?>
+                                <li class="main-menu-link <?php //echo $single_menu['has_sub_menu'] ? 'sub-menu': ''; ?>">
+                                    <a class="link" href="<?php //echo $single_menu['url']; ?>">
+                                        <?php //echo $single_menu['text']; ?>
                                     </a>
-                                    <?php if($single_menu['has_sub_menu']){?>
+                                    <?php //if($single_menu['has_sub_menu']){?>
                                     <div class="sub-full-menu">
                                         <div class="container">
                                             <div class="row">
-                                                <!-- <div class="col-3">
-                                                            <div class="sub-div">
-                                                                <div class="sub-label mb-3">
-                                                                    <h5><?php // echo $single_menu['sub_menu_section']['left_side_menu_label'] ?></h5>
-                                                                </div>
-                                                                <ul class="sub-menu-list">
-                                                                    <?php //foreach($single_menu['sub_menu_section']['left_side_sub_menu_list'] as $single_sub_menu){ ?>
-                                                                        <li class="sub-menu-link">
-                                                                            <a href="<?php //echo $single_sub_menu['url'] ?>">
-                                                                                <?php //echo $single_sub_menu['text']; ?>
-                                                                            </a>
-                                                                        </li>
-                                                                    <?php //} ?>
-                                                                </ul>
-                                                            </div>
-                                                        </div> -->
-                                                <?php foreach($single_menu['sub_menu_section']['right_side_images'] as $single_image_section){ ?>
+                                                <?php //foreach($single_menu['sub_menu_section']['right_side_images'] as $single_image_section){ ?>
                                                 <div class="col-3">
                                                     <a class="sub-menu-image-link"
-                                                        href="<?php echo $single_image_section['url']; ?>">
+                                                        href="<?php //echo $single_image_section['url']; ?>">
                                                         <img class="w-100 px-0"
-                                                            src="<?php echo $single_image_section['image']; ?>"
-                                                            alt="<?php echo $single_image_section['text']; ?>">
+                                                            src="<?php //echo $single_image_section['image']; ?>"
+                                                            alt="<?php //echo $single_image_section['text']; ?>">
                                                         <p class="sub-menu-image-text">
-                                                            <?php echo $single_image_section['text']; ?></p>
+                                                            <?php //echo $single_image_section['text']; ?></p>
                                                     </a>
                                                 </div>
-                                                <?php } ?>
+                                                <?php //} ?>
                                             </div>
                                         </div>
                                     </div>
-                                    <?php } ?>
+                                    <?php //} ?>
                                 </li>
-                                <?php } ?>
+                                <?php //} ?>
                             </ul>
                             <div class="right-side">
                                <ul class="d-flex">

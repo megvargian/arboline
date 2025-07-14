@@ -135,8 +135,11 @@ function wp_bootstrap_starter_scripts()
     if (is_front_page()) {
         // wp_enqueue_style( 'maze-animate_headlines', get_template_directory_uri() . '/inc/assets/css/animate_headlines.css' );
     }
-    wp_enqueue_style('maze-custom_style', get_template_directory_uri() . '/inc/assets/css/custom_style.css', array(), '1.40');
-    wp_enqueue_style('maze-responsive_style', get_template_directory_uri() . '/inc/assets/css/responsive.css', array(), '1.40');
+    wp_enqueue_style('custom_style', get_template_directory_uri() . '/inc/assets/css/custom_style.css', array(), '1.40');
+    wp_enqueue_style('custom_style', get_template_directory_uri() . '/inc/assets/css/style-example.min.css', array(), '1.40');
+    wp_enqueue_style('custom_style', get_template_directory_uri() . '/inc/assets/css/dashicons-example-3.min.css', array(), '1.40');
+    wp_enqueue_style('custom_style', get_template_directory_uri() . '/inc/assets/css/style-example-2.min.css', array(), '1.40');
+    wp_enqueue_style('responsive_style', get_template_directory_uri() . '/inc/assets/css/responsive.css', array(), '1.40');
 
     wp_enqueue_script('jquery');
 
