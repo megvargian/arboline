@@ -584,10 +584,6 @@
                 var currentScreenPosition = $(document).scrollTop();
                 if (currentScreenPosition > 250) {
                     $("header").addClass("active");
-                    // $('.main-nav-section').addClass("active");
-                    // $('.main-logo-section').addClass("active");
-                    // $('.first-header').addClass("active");
-                    // $('.second-header').addClass("active");
                     $('.banner--menu-row').css({
                         'border-top-width': '0px',
                         'border-color': 'rgb(204, 204, 204)',
@@ -599,21 +595,17 @@
                     $('.banner--menu-row.account-nav').css({
                         'opacity': '1',
                     });
-                    $('.banner--top').animate({
+                    $('.banner--top').css({
                         opacity: 0,
                         height: '0px'
-                    }, 400); // 400ms duration
+                    });
                 }
                 if (currentScreenPosition < 125) {
                     $("header").removeClass("active");
-                    // $('.main-nav-section').removeClass("active");
-                    // $('.main-logo-section').removeClass("active");
-                    // $('.first-header').removeClass("active");
-                    // $('.second-header').removeClass("active");
-                    $('.banner--top').animate({
+                    $('.banner--top').css({
                         opacity: 1,
                         height: '78px'
-                    }, 400); // 400ms duration
+                    });
                     $('.banner--menu-row').css({
                         'border-top': '1px solid #dee2e6',
                         'border-top-color': 'rgb(222, 226, 230) rgb(0, 0, 0) rgb(0, 0, 0)',
@@ -626,7 +618,6 @@
                     });
                     $('.banner--menu-row').removeClass("hide-bg");
                 }
-                console.log(currentScreenPosition);
                  $('.wp-block-cover__inner-container').css({
                     'margin-top': '0px',
                 });
