@@ -588,7 +588,7 @@
                     // $('.main-logo-section').addClass("active");
                     // $('.first-header').addClass("active");
                     // $('.second-header').addClass("active");
-                    $('.banner--top position-relative').css({
+                    $('.banner--top').css({
                         'opacity': '0',
                         'height': '0px'
                     });
@@ -610,7 +610,7 @@
                     // $('.main-logo-section').removeClass("active");
                     // $('.first-header').removeClass("active");
                     // $('.second-header').removeClass("active");
-                    $('.banner--top position-relative').css({
+                    $('.banner--top').css({
                         'opacity': '1',
                         'height': '78px',
                     });
