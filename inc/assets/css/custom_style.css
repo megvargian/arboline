@@ -189,6 +189,10 @@ body.hide_scroll {
   background-color: #fff !important;
 }
 
+.page-template-template-featured .account-nav__link {
+  color: #fff !important;
+}
+
 .wp-block-buttons.wp-container-1 {
   justify-content: center;
 }
