@@ -610,10 +610,6 @@
                     // $('.main-logo-section').removeClass("active");
                     // $('.first-header').removeClass("active");
                     // $('.second-header').removeClass("active");
-                    $('.banner--top').css({
-                        'opacity': '1',
-                        'height': '78px',
-                    });
                     $('.banner--top').animate({
                         opacity: 1,
                         height: '78px'
