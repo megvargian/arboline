@@ -28,21 +28,21 @@
                     <div class="col-3">
                         <ul id="secondaryNav" class="nav">
                             <li class="menu-item   ">
-                                <a href="https://fiddes.co.uk/distributors/" class="text-uppercase">
+                                <a href="#" class="text-uppercase">
                                     FIND A STORE
                                 </a>
                                 <span class="menu-border"></span>
                             </li>
                             <li class="menu-item   ">
-                                <a href="https://fiddes.co.uk/product-catalogue/" class="text-uppercase">
+                                <a href="#" class="text-uppercase">
                                     BUY ONLINE
                                 </a>
                                 <span class="menu-border"></span>
                             </li>
                         </ul>
                     </div>
-                    <a class="brand my-4 p-lg-0 mx-auto d-block text-center col-6" href="https://fiddes.co.uk/">
-                        <!--?xml version="1.0" encoding="UTF-8"?--><svg aria-label="Logo"
+                    <a class="brand my-4 p-lg-0 mx-auto d-block text-center col-6" href="#">
+                        <svg aria-label="Logo"
                             class="mx-auto img-fluid banner--logo-top dark" id="Layer_1"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 371.37 79.11">
                             <g>
@@ -74,7 +74,7 @@
                                 </path>
                             </g>
                         </svg>
-                        <!--?xml version="1.0" encoding="UTF-8"?--><svg aria-label="Logo"
+                        <svg aria-label="Logo"
                             class="mx-auto img-fluid banner--logo-top light" id="Layer_1"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 371.37 79.11">
                             <defs>
