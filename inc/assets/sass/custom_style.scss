@@ -139,6 +139,10 @@ $grid-breakpoints: (
 		overflow: hidden;
 	}
 }
+// header styles
+#primaryNav li.menu-item a{
+	color: #fff;
+}
 
 // for a specific section
 .wp-block-buttons.wp-container-1 {

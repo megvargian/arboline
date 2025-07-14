@@ -181,6 +181,10 @@ body.hide_scroll {
   overflow: hidden;
 }
 
+#primaryNav li.menu-item a {
+  color: #fff;
+}
+
 .wp-block-buttons.wp-container-1 {
   justify-content: center;
 }
