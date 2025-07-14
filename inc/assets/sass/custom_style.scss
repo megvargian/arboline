@@ -143,7 +143,9 @@ $grid-breakpoints: (
 #primaryNav li.menu-item a{
 	color: #fff;
 }
-
+#primaryNav li.menu-item a:after{
+	background-color: #fff;
+}
 // for a specific section
 .wp-block-buttons.wp-container-1 {
 	justify-content: center;

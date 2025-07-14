@@ -185,6 +185,10 @@ body.hide_scroll {
   color: #fff;
 }
 
+#primaryNav li.menu-item a:after {
+  background-color: #fff;
+}
+
 .wp-block-buttons.wp-container-1 {
   justify-content: center;
 }

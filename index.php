@@ -786,8 +786,8 @@ get_header();
             </div>
         </div>
     </div>
-    <div class="container is-layout-flow wp-block-group alignfull bg-primary has-primary-background-color has-background">
-        <div class="is-layout-flex wp-container-34 wp-block-columns are-vertically-aligned-center mb-0 py-3 py-lg-5"
+    <div class="is-layout-flow wp-block-group alignfull bg-primary has-primary-background-color has-background">
+        <div class="container is-layout-flex wp-container-34 wp-block-columns are-vertically-aligned-center mb-0 py-3 py-lg-5"
             style="padding-top:4em;padding-bottom:3em">
             <div class="is-layout-flow wp-block-column is-vertically-aligned-center px-5 px-lg-2"
                 style="flex-basis:40%">
