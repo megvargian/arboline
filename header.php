@@ -596,6 +596,7 @@
                         'border-top-width': '0px',
                         'border-color': 'rgb(204, 204, 204)',
                     });
+                    $('.banner--menu-row').addClass("hide-bg");
                     $('.banner--logo-menu').css({
                         'opacity': '1',
                     });
@@ -623,6 +624,7 @@
                      $('.banner--menu-row.account-nav').css({
                         'opacity': '0',
                     });
+                    $('.banner--menu-row').removeClass("hide-bg");
                 }
                 console.log(currentScreenPosition);
                  $('.wp-block-cover__inner-container').css({
