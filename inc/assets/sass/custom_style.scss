@@ -146,8 +146,13 @@ $grid-breakpoints: (
 #primaryNav li.menu-item a:after{
 	background-color: #fff !important;
 }
-.page-template-template-featured .account-nav__link{
+.account-nav__link{
 	color: #fff !important;
+}
+.manufacturing-info-header {
+	p small{
+		color: #fff !important;
+	}
 }
 // for a specific section
 .wp-block-buttons.wp-container-1 {

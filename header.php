@@ -621,7 +621,7 @@
                 </button>
             </div>
         </header>
-        <div class="offcanvas offcanvas-start show" tabindex="-1" id="mobMenu" aria-labelledby="mobMenuLabel"
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="mobMenu" aria-labelledby="mobMenuLabel"
             aria-modal="true" role="dialog">
             <div class="offcanvas-header">
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
