@@ -139,3 +139,18 @@ $grid-breakpoints: (
 		overflow: hidden;
 	}
 }
+
+// for a specific section
+.wp-block-buttons.wp-container-1 {
+	justify-content: center;
+}
+
+.wp-block-group.wp-container-5 {
+	flex-wrap: nowrap;
+	gap: 0;
+	justify-content: center;
+}
+
+.wp-block-columns.wp-container-4,.wp-block-columns.wp-container-8,.wp-block-columns.wp-container-12,.wp-block-columns.wp-container-15,.wp-block-columns.wp-container-19,.wp-block-columns.wp-container-23,.wp-block-columns.wp-container-27,.wp-block-columns.wp-container-34 {
+	flex-wrap: nowrap;
+}
