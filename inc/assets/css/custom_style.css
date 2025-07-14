@@ -78,7 +78,7 @@ p {
 
 body {
   color: #000;
-  font-family: "Rutan-Regular";
+  font-family: "gillsansnova_book";
   background-color: #fff;
   overflow-x: hidden !important;
 }
@@ -175,7 +175,7 @@ body.hide_scroll {
 
 h1 {
   font-size: 1.3rem;
-  font-family: "Rutan-Light";
+  font-family: "gillsansnova_cnmedium";
   font-weight: 600;
   text-align: left;
 }
@@ -183,7 +183,7 @@ h1 {
 h2 {
   font-size: 1.7rem;
   font-weight: 500;
-  font-family: "Rutan-Light";
+  font-family: "gillsansnova_cnmedium";
   color: #000;
   margin-top: 10px !important;
   margin-bottom: 10px;
@@ -192,21 +192,21 @@ h2 {
 h3 {
   font-size: 1.4rem;
   font-weight: 500;
-  font-family: "Rutan-Light";
+  font-family: "gillsansnova_cnmedium";
   color: #000;
 }
 
 h4 {
   font-size: 1rem;
   font-weight: 500;
-  font-family: "Rutan-Light";
+  font-family: "gillsansnova_cnmedium";
   color: #000;
 }
 
 h5 {
   font-size: 0.85rem;
   font-weight: 500;
-  font-family: "Rutan-Regular";
+  font-family: "gillsansnova_book";
   color: #000;
   text-transform: uppercase;
 }
@@ -215,14 +215,14 @@ p {
   margin-top: 15px;
   font-size: 0.9rem;
   font-weight: 500;
-  font-family: "Rutan-Light";
+  font-family: "gillsansnova_cnmedium";
   color: #000;
 }
 
 .main-link {
   margin-top: 1.2rem;
   font-size: 16px;
-  font-family: "Rutan-Regular";
+  font-family: "gillsansnova_book";
   color: #000;
   -webkit-border-radius: 15px;
   border-radius: 15px;
@@ -286,7 +286,7 @@ p {
   transform: translate(100%, -50%);
   padding-left: 5px;
   font-size: 1rem;
-  font-family: "mm-icons";
+  font-family: "";
   font-style: normal;
   -webkit-font-feature-settings: normal;
   font-feature-settings: normal;
@@ -317,7 +317,7 @@ p {
   background-color: transparent;
   color: #fff !important;
   outline: none;
-  font-family: "Rutan-Regular";
+  font-family: "gillsansnova_book";
   font-size: 12px;
   font-weight: 400;
   margin: auto 0;
@@ -330,14 +330,14 @@ p {
 
 .float-left .default-button::before {
   content: "\e01a";
-  font-family: "mm-icons";
+  font-family: "";
   height: 20px;
   margin-right: 10px;
 }
 
 .float-right .default-button::before {
   content: "\e02a";
-  font-family: "mm-icons";
+  font-family: "";
   height: 20px;
   margin-right: 10px;
 }
@@ -379,7 +379,7 @@ p {
   font-size: 0.8rem;
   margin-bottom: 13px;
   padding: 0;
-  font-family: "Rutan-Light";
+  font-family: "gillsansnova_cnmedium";
   font-weight: 300;
 }
 .main-nav .main-menu-list .main-menu-link .sub-full-menu .sub-div .sub-menu-list .sub-menu-link a {
@@ -562,7 +562,7 @@ header.active {
   font-size: 0.8rem;
   margin-bottom: 13px;
   padding: 0;
-  font-family: "Rutan-Light";
+  font-family: "sans_medium";
   font-weight: 300;
 }
 
@@ -612,7 +612,7 @@ header.active {
   font-size: 1.4em;
   color: #595959;
   content: "\e01d";
-  font-family: "mm-icons";
+  font-family: "";
 }
 
 .first-header {
@@ -669,7 +669,7 @@ header.active {
   -webkit-transition: all 0.25s linear;
   -o-transition: all 0.25s linear;
   transition: all 0.25s linear;
-  font-family: "mm-icons";
+  font-family: "";
   outline: none;
   border: none;
   text-decoration: none;
@@ -721,12 +721,12 @@ header.active {
   height: 50px;
   color: #595959;
   font-size: 1.3rem;
-  font-family: "Rutan-Regular", sans-serif !important;
+  font-family: "gillsansnova_book", sans-serif !important;
   line-height: 30px;
   -webkit-border-radius: 0;
   border-radius: 0;
   -webkit-appearance: none !important;
-  font-family: "mm-icons";
+  font-family: "";
 }
 
 .subscription-button {
@@ -737,7 +737,7 @@ header.active {
   background-color: rgba(0, 0, 0, 0);
   border: 0;
   outline: none;
-  font-family: "mm-icons";
+  font-family: "";
   cursor: pointer;
 }
 .subscription-button .submit-txt {
@@ -761,7 +761,7 @@ header.active {
 }
 
 .check-policy {
-  font-family: "Rutan-Light", sans-serif;
+  font-family: "gillsansnova_cnmedium", sans-serif;
   font-size: 0.6rem;
 }
 .check-policy .input-checkbox {
@@ -789,7 +789,7 @@ header.active {
 
 .swiper-button-prev::after {
   display: inline-block;
-  font-family: "mm-icons";
+  font-family: "";
   font-style: normal;
   -webkit-font-feature-settings: normal;
   font-feature-settings: normal;
@@ -810,7 +810,7 @@ header.active {
 
 .swiper-button-next::after {
   display: inline-block;
-  font-family: "mm-icons";
+  font-family: "";
   font-style: normal;
   -webkit-font-feature-settings: normal;
   font-feature-settings: normal;
@@ -828,7 +828,7 @@ header.active {
 
 .footer-after p {
   color: #fff;
-  font-family: "Rutan-Regular";
+  font-family: "gillsansnova_book";
   font-size: 0.8rem;
   padding: 10px 0;
   margin: 0;
@@ -837,7 +837,7 @@ header.active {
 .sub-menus-footer li {
   font-size: 0.75rem;
   font-weight: 500;
-  font-family: "Rutan-Light";
+  font-family: "gillsansnova_cnmedium";
   color: #000;
   margin-bottom: 10px;
 }
@@ -864,7 +864,7 @@ header.active {
   font-size: 1.3rem;
   color: #7f7f7f;
   content: "\e034";
-  font-family: "mm-icons";
+  font-family: "";
   display: inline-block;
   font-style: normal;
   -webkit-font-feature-settings: normal;
@@ -966,7 +966,7 @@ header.active {
   font-size: 20px;
   margin-right: 20px;
   content: "\e00e";
-  font-family: "mm-icons";
+  font-family: "";
 }
 
 .icon-chat::before {
@@ -975,7 +975,7 @@ header.active {
   font-size: 20px;
   margin-right: 20px;
   content: "\e00b";
-  font-family: "mm-icons";
+  font-family: "";
 }
 
 .contact-form-box {
@@ -991,7 +991,7 @@ header.active {
   font-size: 20px;
   margin-right: 20px;
   content: "\e01d";
-  font-family: "mm-icons";
+  font-family: "";
 }
 
 .main-label {
@@ -1007,7 +1007,7 @@ header.active {
   color: #595959;
   padding: 10px 15px;
   font-size: 1rem;
-  font-family: "Rutan-Light";
+  font-family: "gillsansnova_cnmedium";
   line-height: 30px;
   -webkit-border-radius: 0 !important;
   border-radius: 0 !important;
@@ -1041,7 +1041,7 @@ header.active {
   text-transform: uppercase;
   font-size: 0.8rem;
   text-align: center;
-  font-family: "Rutan-Light";
+  font-family: "gillsansnova_cnmedium";
   font-weight: 300;
   border: none;
   margin-top: 20px;
@@ -1053,7 +1053,7 @@ header.active {
 
 .checkbox-label, .wpcf7-list-item-label {
   font-size: 0.6rem;
-  font-family: "Rutan-Light";
+  font-family: "gillsansnova_cnmedium";
   color: #000;
   margin-right: 5px;
 }
@@ -1068,7 +1068,7 @@ header.active {
 }
 .info_content .accordion-button, .size-guide-modal .accordion-button {
   border-radius: 0 !important;
-  font-family: "Rutan-Light";
+  font-family: "gillsansnova_cnmedium";
   font-weight: 600;
   padding-left: 0 !important;
   padding-right: 0 !important;
@@ -1092,7 +1092,7 @@ header.active {
 .wpcf7 form.invalid .wpcf7-response-output {
   border: none !important;
   font-size: 0.8rem;
-  font-family: "Rutan-Light";
+  font-family: "gillsansnova_cnmedium";
   font-weight: 600;
   color: #dc3232;
 }
@@ -1100,69 +1100,9 @@ header.active {
 .wpcf7 form.sent .wpcf7-response-output {
   border: none !important;
   font-size: 0.8rem;
-  font-family: "Rutan-Light";
+  font-family: "gillsansnova_cnmedium";
   font-weight: 600;
   color: #46b450 !important;
-}
-
-.mystique-rose-page h2 {
-  font-size: 6rem;
-}
-.mystique-rose-page h3 {
-  font-size: 2rem;
-  font-weight: bold;
-}
-.mystique-rose-page h6 {
-  font-family: "calibre-bold";
-}
-.mystique-rose-page p {
-  font-family: "calibre-light";
-}
-.mystique-rose-page p a {
-  font-family: "calibre-light";
-  text-decoration: underline;
-  display: inline-block;
-}
-.mystique-rose-page a {
-  font-family: "calibre-bold";
-  text-align: center;
-  display: flex;
-  margin: 0 auto;
-  justify-content: center;
-  width: fit-content;
-}
-.mystique-rose-page .swiperProduct a {
-  display: block !important;
-}
-.mystique-rose-page .background-img-section, .mystique-rose-page .background-img-section-second {
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 900px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.mystique-rose-page .background-img-section h5, .mystique-rose-page .background-img-section-second h5 {
-  color: #fff;
-}
-.mystique-rose-page .background-img-section h3, .mystique-rose-page .background-img-section-second h3 {
-  color: #fff;
-}
-.mystique-rose-page .background-img-section p, .mystique-rose-page .background-img-section-second p {
-  color: #fff;
-}
-.mystique-rose-page .background-img-section p a, .mystique-rose-page .background-img-section-second p a {
-  color: #fff;
-}
-.mystique-rose-page .background-img-section a, .mystique-rose-page .background-img-section-second a {
-  color: #fff;
-}
-.mystique-rose-page .background-img-section-second {
-  height: 510px !important;
-}
-.mystique-rose-page .mystiquerose_third_block a {
-  display: block;
 }
 
 .content-area {
@@ -1181,7 +1121,7 @@ header.active {
 .custom-product-filter .icon-arrow {
   font-size: 12px;
   line-height: 12px;
-  font-family: "mm-icons";
+  font-family: "";
   position: absolute;
   top: 0;
   right: 0;
@@ -1268,7 +1208,7 @@ header.active {
   font-size: 1.2rem;
 }
 #product-list .price {
-  font-family: "Rutan-Light";
+  font-family: "gillsansnova_cnmedium";
   font-weight: 500;
 }
 
@@ -1323,7 +1263,7 @@ header.active {
   color: #000;
   text-decoration: underline;
   font-size: 0.8rem;
-  font-family: "Rutan-Light";
+  font-family: "gillsansnova_cnmedium";
   font-weight: bold;
   border: none;
   outline: none;
@@ -1351,7 +1291,7 @@ header.active {
   min-width: 115px;
 }
 .sizeguide-table .size-table-title-element {
-  font-family: "Rutan-Light";
+  font-family: "gillsansnova_cnmedium";
   font-weight: 500;
   font-size: 0.8rem;
   border-top: 0;
@@ -1421,7 +1361,7 @@ header.active {
   color: #595959;
   padding: 10px 15px;
   font-size: 1rem;
-  font-family: "Rutan-Light";
+  font-family: "gillsansnova_cnmedium";
   line-height: 30px;
   -webkit-border-radius: 0 !important;
   border-radius: 0 !important;
@@ -1453,7 +1393,7 @@ header.active {
   text-transform: uppercase !important;
   font-size: 0.8rem !important;
   text-align: center !important;
-  font-family: "Rutan-Light" !important;
+  font-family: "gillsansnova_cnmedium" !important;
   font-weight: 300 !important;
   border: none !important;
   margin-top: 20px !important;
@@ -1483,7 +1423,7 @@ header.active {
 
 .accordion-button {
   border-radius: 0 !important;
-  font-family: "Rutan-Light" !important;
+  font-family: "gillsansnova_cnmedium" !important;
   font-weight: 600;
   padding-left: 0 !important;
   padding-right: 0 !important;

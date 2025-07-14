@@ -98,7 +98,7 @@
 		overflow: auto;
 		padding: 0px 30px;
 		.page_font{
-			font-family: $Rutan-Regular;
+			font-family: $sans_book;
 			font-size: 22px;
 			margin-bottom: 10px;
 		}
@@ -108,7 +108,7 @@
 			margin-top: 10px;
 		}
 		.social_media{
-			font-family: $Rutan-Regular;
+			font-family: $sans_book;
 			font-size: 18px;
 			margin-bottom: 10px;
 			display: inline-block;
@@ -155,7 +155,7 @@
 					border-bottom: 2px solid black;
 				}
 				.page_font{
-					font-family: $Rutan-Regular;
+					font-family: $sans_book;
 					font-size: 18px;
 					color: #000;
 				}
@@ -201,7 +201,7 @@
 					.title{
 						font-size: 10px;
 						line-height: 12px;
-						font-family: $Rutan-Regular;
+						font-family: $sans_book;
 						color: #000;
 						text-align: center
 					}
@@ -269,11 +269,11 @@
 			justify-content: start;
 			align-items: center;
 			font-size: 14px;
-			font-family: $Rutan-Light;
+			font-family: $sans_medium;
 			color: #000 !important;
 		}
 		.default-button::before{
-			font-family: $mm-icons;
+			font-family: '';
 			margin-right: 20px;
 			font-size: 25px;
 			color: #000 !important;

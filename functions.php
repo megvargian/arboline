@@ -222,138 +222,17 @@ function my_acf_init_block_types()
     if (function_exists('acf_register_block_type')) {
         // register a testimonial block.
         // the first one is a demo
-        acf_register_block_type(
-            array(
-                'name'              => 'Block1',
-                'title'             => __('Block1'),
-                'description'       => __('This is the first Block of Homepage'),
-                'render_template'   => 'blocks/test.php',
-                'category'          => 'formatting',
-                'icon'              => 'admin-comments',
-                'keywords'          => array('testimonial', 'quote'),
-            )
-        );
-        acf_register_block_type(
-            array(
-                'name'              => 'Homepage First Block',
-                'title'             => __('Homepage First Block'),
-                'description'       => __('This is the first Block of Homepage'),
-                'render_template'   => 'blocks/HomePage/First_Block.php',
-                'category'          => 'formatting',
-                'icon'              => 'admin-comments',
-                'keywords'          => array('testimonial', 'quote'),
-            )
-        );
-        acf_register_block_type(
-            array(
-                'name'              => 'Homepage Second Block',
-                'title'             => __('Homepage Second Block'),
-                'description'       => __('This is the second Block of Homepage'),
-                'render_template'   => 'blocks/HomePage/Second_Block.php',
-                'category'          => 'formatting',
-                'icon'              => 'admin-comments',
-                'keywords'          => array('testimonial', 'quote'),
-            )
-        );
-        acf_register_block_type(
-            array(
-                'name'              => 'Homepage Third Block',
-                'title'             => __('Homepage Third Block'),
-                'description'       => __('This is the Third Block of Homepage'),
-                'render_template'   => 'blocks/HomePage/Third_Block.php',
-                'category'          => 'formatting',
-                'icon'              => 'admin-comments',
-                'keywords'          => array('testimonial', 'quote'),
-            )
-        );
-        acf_register_block_type(
-            array(
-                'name'              => 'Block Info Content',
-                'title'             => __('Block Info Content'),
-                'description'       => __('this is the info Content Accordion'),
-                'render_template'   => 'blocks/info-content.php',
-                'category'          => 'formatting',
-                'icon'              => 'admin-comments',
-                'keywords'          => array('testimonial', 'quote'),
-            )
-        );
-        acf_register_block_type(
-            array(
-                'name'              => 'MystiqueRose First Block',
-                'title'             => __('MystiqueRose First Block'),
-                'description'       => __('This is the first Block of MystiqueRose'),
-                'render_template'   => 'blocks/MystiqueRosePage/First_Block.php',
-                'category'          => 'formatting',
-                'icon'              => 'admin-comments',
-                'keywords'          => array('testimonial', 'quote'),
-            )
-        );
-        acf_register_block_type(
-            array(
-                'name'              => 'MystiqueRose Second Block',
-                'title'             => __('MystiqueRose Second Block'),
-                'description'       => __('This is the Second Block of MystiqueRose'),
-                'render_template'   => 'blocks/MystiqueRosePage/Second_Block.php',
-                'category'          => 'formatting',
-                'icon'              => 'admin-comments',
-                'keywords'          => array('testimonial', 'quote'),
-            )
-        );
-        acf_register_block_type(
-            array(
-                'name'              => 'MystiqueRose Third Block',
-                'title'             => __('MystiqueRose Third Block'),
-                'description'       => __('This is the Third Block of MystiqueRose'),
-                'render_template'   => 'blocks/MystiqueRosePage/Third_Block.php',
-                'category'          => 'formatting',
-                'icon'              => 'admin-comments',
-                'keywords'          => array('testimonial', 'quote'),
-            )
-        );
-        acf_register_block_type(
-            array(
-                'name'              => 'MystiqueRose Fourth Block',
-                'title'             => __('MystiqueRose Fourth Block'),
-                'description'       => __('This is the Fourth Block of MystiqueRose'),
-                'render_template'   => 'blocks/MystiqueRosePage/Fourth_Block.php',
-                'category'          => 'formatting',
-                'icon'              => 'admin-comments',
-                'keywords'          => array('testimonial', 'quote'),
-            )
-        );
-        acf_register_block_type(
-            array(
-                'name'              => 'MystiqueRose Fifth Block',
-                'title'             => __('MystiqueRose Fifth Block'),
-                'description'       => __('This is the Fifth Block of MystiqueRose'),
-                'render_template'   => 'blocks/MystiqueRosePage/Fifth_Block.php',
-                'category'          => 'formatting',
-                'icon'              => 'admin-comments',
-                'keywords'          => array('testimonial', 'quote'),
-            )
-        );
-        acf_register_block_type(
-            array(
-                'name'              => 'MystiqueRose Sixth Block',
-                'title'             => __('MystiqueRose Sixth Block'),
-                'description'       => __('This is the Sixth Block of MystiqueRose'),
-                'render_template'   => 'blocks/MystiqueRosePage/Sixth_Block.php',
-                'category'          => 'formatting',
-                'icon'              => 'admin-comments',
-                'keywords'          => array('testimonial', 'quote'),
-            )
-        );
-        acf_register_block_type(
-            array(
-                'name'              => 'Block Size guide',
-                'title'             => __('Block Size guide'),
-                'description'       => __('this is the Size guide Accordion'),
-                'render_template'   => 'blocks/size-guide.php',
-                'category'          => 'formatting',
-                'icon'              => 'admin-comments',
-                'keywords'          => array('testimonial', 'quote'),
-            )
-        );
+        // acf_register_block_type(
+        //     array(
+        //         'name'              => 'Block1',
+        //         'title'             => __('Block1'),
+        //         'description'       => __('This is the first Block of Homepage'),
+        //         'render_template'   => 'blocks/test.php',
+        //         'category'          => 'formatting',
+        //         'icon'              => 'admin-comments',
+        //         'keywords'          => array('testimonial', 'quote'),
+        //     )
+        // );
     }
 }
 

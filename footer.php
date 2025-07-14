@@ -8,10 +8,6 @@
  *
  * @package WP_Bootstrap_Starter
  */
-$getGeneralFields = get_fields('options');
-$main_footer_fields = $getGeneralFields['footer_sub_menu'];
-$social_media_links = $getGeneralFields['social_links'];
-$last_part_footer_feild = $getGeneralFields['last_part_footer_feild'];
 ?>
     </div><!-- #content -->
     <footer>
@@ -27,7 +23,7 @@ $last_part_footer_feild = $getGeneralFields['last_part_footer_feild'];
                                 </div>
                             </div>
                             <div class="col-md-5 col-12 pb-md-0 pb-3">
-                                <!-- <form class="w-100" action="/" method="post">
+                                <form class="w-100" action="/" method="post">
                                     <div class="position-relative">
                                         <input class="input-newsletter w-100" placeholder="Email" type="email" requierd>
                                         <button class="subscription-button">
@@ -40,8 +36,8 @@ $last_part_footer_feild = $getGeneralFields['last_part_footer_feild'];
                                             I have read the <a href="#">Privacy Policy</a>
                                         </label>
                                     </div>
-                                </form> -->
-                                <?php echo do_shortcode('[contact-form-7 id="df6722b" title="Subscribe"]'); ?>
+                                </form>
+                                <?php  ?>
                             </div>
                         </div>
                     </div>
@@ -67,70 +63,24 @@ $last_part_footer_feild = $getGeneralFields['last_part_footer_feild'];
         <section class="bg-white py-5 w-100 pt-md-5 pt-0">
             <div class="container d-md-block d-none">
                 <div class="row">
-                    <?php foreach($main_footer_fields as $single_footer_feilds){?>
                         <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
                             <div class="first-col">
                                 <div>
-                                    <h5 class="mb-3"><?php echo $single_footer_feilds['main_label']; ?></h5>
+                                    <h5 class="mb-3">test</h5>
                                     <ul class="sub-menus-footer">
-                                        <?php foreach($single_footer_feilds['sub_menu_button'] as $single_button){ ?>
                                             <li>
-                                                <a href="<?php echo $single_button['sub_menu_button_link']; ?>">
-                                                    <?php echo $single_button['sub_menu_button_text']; ?>
+                                                <a href="<?php echo 'test'; ?>">
+                                                    <?php echo 'test'; ?>
                                                 </a>
                                             </li>
-                                        <?php } ?>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                    <?php } ?>
                     <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 third-col social-links">
                         <div class="row">
                             <ul>
-                                <?php if($social_media_links['instagram']){?>
-                                    <li>
-                                        <a href="<?php echo $social_media_links['instagram']; ?>" target="_blank">
-                                            <i class="icon-social-instagram"></i>
-                                        </a>
-                                    </li>
-                                <?php } ?>
-                                <?php if($social_media_links['facebook']){?>
-                                    <li>
-                                        <a href="<?php echo $social_media_links['facebook']; ?>" target="_blank">
-                                            <i class="icon-social-facebook"></i>
-                                        </a>
-                                    </li>
-                                <?php } ?>
-                                <?php if($social_media_links['twitter_x']){?>
-                                    <li>
-                                        <a href="<?php echo $social_media_links['twitter_x']; ?>" target="_blank">
-                                            <i class="icon-social-twitter_x"></i>
-                                        </a>
-                                    </li>
-                                <?php } ?>
-                                <?php if($social_media_links['youtube']){?>
-                                    <li>
-                                        <a href="<?php echo $social_media_links['youtube']; ?>" target="_blank">
-                                            <i class="icon-social-youtube"></i>
-                                        </a>
-                                    </li>
-                                <?php } ?>
-                                <?php if($social_media_links['tiktok']){?>
-                                    <li>
-                                        <a href="<?php echo $social_media_links['tiktok']; ?>" target="_blank">
-                                            <i class="icon-social-tiktok"></i>
-                                        </a>
-                                    </li>
-                                <?php } ?>
-                                <?php if($social_media_links['pinterest']){?>
-                                    <li>
-                                        <a href="<?php echo $social_media_links['pinterest']; ?>" target="_blank">
-                                            <i class="icon-social-pinterest"></i>
-                                        </a>
-                                    </li>
-                                <?php } ?>
-                                <!-- <li>
+                                <li>
                                     <a href="#">
                                         <i class="icon-social-instagram"></i>
                                     </a>
@@ -144,14 +94,7 @@ $last_part_footer_feild = $getGeneralFields['last_part_footer_feild'];
                                     <a href="#">
                                         <i class="icon-social-instagram"></i>
                                     </a>
-                                </li> -->
-                                <?php if($social_media_links['linkedin']){?>
-                                    <li>
-                                        <a href="<?php echo $social_media_links['linkedin']; ?>" target="_blank">
-                                            <i class="icon-social-linkedin"></i>
-                                        </a>
-                                    </li>
-                                <?php } ?>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -160,74 +103,28 @@ $last_part_footer_feild = $getGeneralFields['last_part_footer_feild'];
             </div>
             <section class="mobile-footer d-block d-md-none">
                 <div class="accordion w-100" id="accordionExample-footer">
-                    <?php foreach($main_footer_fields as $single_footer_feilds){ $count++?>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header mt-0" id="headingOne-footer-<?php echo $count;?>">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne-footer-<?php echo $count; ?>" aria-expanded="true" aria-controls="collapseOne-footer-<?php echo $count; ?>">
-                                    <?php echo $single_footer_feilds['main_label']; ?>
-                                </button>
-                            </h2>
-                            <div id="collapseOne-footer-<?php echo $count; ?>" class="accordion-collapse collapse" aria-labelledby="headingOne-footer-<?php echo $count;?>" data-bs-parent="#accordionExample-footer">
-                                <div class="accordion-body">
-                                    <ul class="sub-menus-footer">
-                                        <?php foreach($single_footer_feilds['sub_menu_button'] as $single_button){ ?>
-                                            <li>
-                                                <a href="<?php echo $single_button['sub_menu_button_link']; ?>">
-                                                    <?php echo $single_button['sub_menu_button_text']; ?>
-                                                </a>
-                                            </li>
-                                        <?php } ?>
-                                    </ul>
-                                </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header mt-0" id="headingOne-footer-<?php echo '0';?>">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne-footer-<?php echo '0'; ?>" aria-expanded="true" aria-controls="collapseOne-footer-<?php echo '0'; ?>">
+                                <?php echo 'test'; ?>
+                            </button>
+                        </h2>
+                        <div id="collapseOne-footer-<?php echo '0'; ?>" class="accordion-collapse collapse" aria-labelledby="headingOne-footer-<?php echo '0';?>" data-bs-parent="#accordionExample-footer">
+                            <div class="accordion-body">
+                                <ul class="sub-menus-footer">
+                                    <li>
+                                        <a href="<?php echo 'test'; ?>">
+                                            <?php echo 'test'; ?>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                    <?php } ?>
+                    </div>
                 </div>
                 <div class="border-bottom third-col social-links py-3">
                     <ul class="d-flex justify-content-center align-items-center">
-                        <?php if($social_media_links['instagram']){?>
-                            <li>
-                                <a href="<?php echo $social_media_links['instagram']; ?>" target="_blank">
-                                    <i class="icon-social-instagram"></i>
-                                </a>
-                            </li>
-                        <?php } ?>
-                        <?php if($social_media_links['facebook']){?>
-                            <li>
-                                <a href="<?php echo $social_media_links['facebook']; ?>" target="_blank">
-                                    <i class="icon-social-facebook"></i>
-                                </a>
-                            </li>
-                        <?php } ?>
-                        <?php if($social_media_links['twitter_x']){?>
-                            <li>
-                                <a href="<?php echo $social_media_links['twitter_x']; ?>" target="_blank">
-                                    <i class="icon-social-twitter_x"></i>
-                                </a>
-                            </li>
-                        <?php } ?>
-                        <?php if($social_media_links['youtube']){?>
-                            <li>
-                                <a href="<?php echo $social_media_links['youtube']; ?>" target="_blank">
-                                    <i class="icon-social-youtube"></i>
-                                </a>
-                            </li>
-                        <?php } ?>
-                        <?php if($social_media_links['tiktok']){?>
-                            <li>
-                                <a href="<?php echo $social_media_links['tiktok']; ?>" target="_blank">
-                                    <i class="icon-social-tiktok"></i>
-                                </a>
-                            </li>
-                        <?php } ?>
-                        <?php if($social_media_links['pinterest']){?>
-                            <li>
-                                <a href="<?php echo $social_media_links['pinterest']; ?>" target="_blank">
-                                    <i class="icon-social-pinterest"></i>
-                                </a>
-                            </li>
-                        <?php } ?>
-                        <!-- <li>
+                        <li>
                             <a href="#">
                                 <i class="icon-social-instagram"></i>
                             </a>
@@ -241,14 +138,7 @@ $last_part_footer_feild = $getGeneralFields['last_part_footer_feild'];
                             <a href="#">
                                 <i class="icon-social-instagram"></i>
                             </a>
-                        </li> -->
-                        <?php if($social_media_links['linkedin']){?>
-                            <li>
-                                <a href="<?php echo $social_media_links['linkedin']; ?>" target="_blank">
-                                    <i class="icon-social-linkedin"></i>
-                                </a>
-                            </li>
-                        <?php } ?>
+                        </li>
                     </ul>
                 </div>
             </section>
@@ -258,7 +148,7 @@ $last_part_footer_feild = $getGeneralFields['last_part_footer_feild'];
                 <div class="row justify-content-center">
                     <div class="col-sm-8 col-12 text-center">
                         <p>
-                            <?php echo $last_part_footer_feild; ?>
+
                         </p>
                     </div>
                 </div>

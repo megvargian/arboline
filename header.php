@@ -41,19 +41,19 @@
             <div class="modal-dialog modal-dialog-centered modal-lg size-guide-modal" role="document">
                 <div class="modal-content">
                     <div class="modal-header d-flex justify-content-between border-0">
-                        <h2><?php echo $get_size_guide_fields['title'];?></h2>
+                        <h2><?php // echo $get_size_guide_fields['title'];?></h2>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p><?php echo $get_size_guide_fields['sub_title']; ?></p>
+                        <p><?php // echo $get_size_guide_fields['sub_title']; ?></p>
                         <div class="accordion" id="accordionExample">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingOne">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        <?php echo $get_size_guide_fields['size_guide_label'];?>
+                                        <?php // echo $get_size_guide_fields['size_guide_label'];?>
                                     </button>
                                 </h2>
                                 <div id="collapseOne" class="accordion-collapse collapse show"
@@ -61,20 +61,20 @@
                                     <div class="accordion-body">
                                         <div class="sizeguide-table">
                                             <div class="size-table-title-container">
-                                                <?php foreach ($get_size_guide_fields['size_guide_table']['labels'] as $label) {?>
+                                                <?php //foreach ($get_size_guide_fields['size_guide_table']['labels'] as $label) {?>
                                                     <div class="size-table-title-element">
-                                                        <?php echo $label['label']; ?>
+                                                        <?php // echo $label['label']; ?>
                                                     </div>
-                                                <?php } ?>
+                                                <?php //} ?>
                                             </div>
                                             <div class="size-table-size-row-container">
-                                                <?php foreach ($get_size_guide_fields['size_guide_table']['rows'] as $rows) {?>
+                                                <?php //foreach ($get_size_guide_fields['size_guide_table']['rows'] as $rows) {?>
                                                     <div class="size-table-size-row">
-                                                        <?php foreach ($rows['row'] as $main_text) { ?>
-                                                            <div class="size-table-size-element"><?php echo $main_text['main_text']; ?></div>
-                                                        <?php } ?>
+                                                        <?php //foreach ($rows['row'] as $main_text) { ?>
+                                                            <div class="size-table-size-element"><?php // echo $main_text['main_text']; ?></div>
+                                                        <?php //} ?>
                                                     </div>
-                                                <?php } ?>
+                                                <?php //} ?>
                                             </div>
                                         </div>
                                     </div>
@@ -120,9 +120,9 @@
                         <nav class="text-left main-nav d-flex justify-content-between">
                             <ul class="d-flex justify-content-start main-menu-list">
                                 <?php //foreach($header_menu as $single_menu){ ?>
-                                <li class="main-menu-link <?php //echo $single_menu['has_sub_menu'] ? 'sub-menu': ''; ?>">
-                                    <a class="link" href="<?php //echo $single_menu['url']; ?>">
-                                        <?php //echo $single_menu['text']; ?>
+                                <li class="main-menu-link <?php //// echo $single_menu['has_sub_menu'] ? 'sub-menu': ''; ?>">
+                                    <a class="link" href="<?php //// echo $single_menu['url']; ?>">
+                                        <?php //// echo $single_menu['text']; ?>
                                     </a>
                                     <?php //if($single_menu['has_sub_menu']){?>
                                     <div class="sub-full-menu">
@@ -131,12 +131,12 @@
                                                 <?php //foreach($single_menu['sub_menu_section']['right_side_images'] as $single_image_section){ ?>
                                                 <div class="col-3">
                                                     <a class="sub-menu-image-link"
-                                                        href="<?php //echo $single_image_section['url']; ?>">
+                                                        href="<?php //// echo $single_image_section['url']; ?>">
                                                         <img class="w-100 px-0"
-                                                            src="<?php //echo $single_image_section['image']; ?>"
-                                                            alt="<?php //echo $single_image_section['text']; ?>">
+                                                            src="<?php //// echo $single_image_section['image']; ?>"
+                                                            alt="<?php //// echo $single_image_section['text']; ?>">
                                                         <p class="sub-menu-image-text">
-                                                            <?php //echo $single_image_section['text']; ?></p>
+                                                            <?php //// echo $single_image_section['text']; ?></p>
                                                     </a>
                                                 </div>
                                                 <?php //} ?>
@@ -175,23 +175,23 @@
                         <div class="row justify-content-between">
                             <div class="col">
                                 <div class="d-flex float-left hover-js-drop-down custom-first-header-padding">
-                                    <a href="<?php echo $left_side_top_header_fields['main_link']; ?>"
+                                    <a href="<?php // echo $left_side_top_header_fields['main_link']; ?>"
                                         class="default-button">
-                                        <?php echo $left_side_top_header_fields['main_text']; ?>
+                                        <?php // echo $left_side_top_header_fields['main_text']; ?>
                                     </a>
                                     <!-- <div class="drop-down-customer-service">
                                         <div class="headeing text-center">
-                                            <h6><?php //echo $left_side_top_header_fields['sub_main_label']; ?></h6>
+                                            <h6><?php //// echo $left_side_top_header_fields['sub_main_label']; ?></h6>
                                         </div>
                                         <ul class="d-flex justify-content-between align-items-center">
                                             <li>
-                                                <a class="icon-mail" href="<?php //echo $left_side_top_header_fields['first_sub_text_link']; ?>">
-                                                    <span><?php //echo $left_side_top_header_fields['first_sub_text']; ?></span>
+                                                <a class="icon-mail" href="<?php //// echo $left_side_top_header_fields['first_sub_text_link']; ?>">
+                                                    <span><?php //// echo $left_side_top_header_fields['first_sub_text']; ?></span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="<?php //echo $left_side_top_header_fields['second_sub_text_link']; ?>">
-                                                    <span><?php //echo $left_side_top_header_fields['second_sub_text']; ?></span>
+                                                <a href="<?php //// echo $left_side_top_header_fields['second_sub_text_link']; ?>">
+                                                    <span><?php //// echo $left_side_top_header_fields['second_sub_text']; ?></span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -200,8 +200,8 @@
                             </div>
                             <!-- <div class="col">
                                 <div class="icon-pin d-flex float-right custom-first-header-padding">
-                                    <a href="<?php //echo $right_side_top_header_fields['main_link'] ?>" class="default-button">
-                                        <?php //echo $right_side_top_header_fields['mian_text'] ?>
+                                    <a href="<?php //// echo $right_side_top_header_fields['main_link'] ?>" class="default-button">
+                                        <?php //// echo $right_side_top_header_fields['mian_text'] ?>
                                     </a>
                                 </div>
                             </div> -->
@@ -211,14 +211,14 @@
                 <section class="second-header-tablet">
                     <div class="container px-0">
                         <nav class="d-flex justify-content-around align-items-center">
-                            <a class="second-header-main-pages <?= empty($is_MystiqueRose) ? 'active' : ''; ?>"
-                                href="<?php echo get_home_url(); ?>">
-                                <img style="height: 40px; width: 90px;" src="<?php echo $main_logo_image; ?>"
+                            <a class="second-header-main-pages <?= //empty($is_MystiqueRose) ? 'active' : ''; ?>"
+                                href="<?php // echo get_home_url(); ?>">
+                                <img style="height: 40px; width: 90px;" src="<?php // echo $main_logo_image; ?>"
                                     alt="Maison Lesley">
                             </a>
-                            <a class="second-header-main-pages <?= $is_MystiqueRose ? 'active' : ''; ?>"
-                                href="<?php echo $main_logo_link_mystiquerose; ?>">
-                                <img style="height: 40px; width: 170px;" src="<?php echo $main_logo_mystiquerose; ?>"
+                            <a class="second-header-main-pages <?= //$is_MystiqueRose ? 'active' : ''; ?>"
+                                href="<?php // echo $main_logo_link_mystiquerose; ?>">
+                                <img style="height: 40px; width: 170px;" src="<?php // echo $main_logo_mystiquerose; ?>"
                                     alt="Mystique Rose">
                             </a>
                         </nav>
@@ -241,17 +241,17 @@
                                     </button>
                                 </li>
                                 <li class="d-none d-sm-flex">
-                                    <?php if($is_MystiqueRose){ ?>
-                                    <a href="<?php echo $main_logo_link_mystiquerose; ?>">
-                                        <img class="main-logo-tablet ml-5" src="<?php echo $main_logo_mystiquerose; ?>"
+                                    <?php //if($is_MystiqueRose){ ?>
+                                    <a href="<?php // echo $main_logo_link_mystiquerose; ?>">
+                                        <img class="main-logo-tablet ml-5" src="<?php // echo $main_logo_mystiquerose; ?>"
                                             alt="Mystique Rose">
                                     </a>
-                                    <?php } else {?>
-                                    <a href="<?php echo $main_logo_link;?>">
-                                        <img class="main-logo-tablet ml-5" src="<?php echo $main_logo_image; ?>"
+                                    <?php //} else {?>
+                                    <a href="<?php // echo $main_logo_link;?>">
+                                        <img class="main-logo-tablet ml-5" src="<?php // echo $main_logo_image; ?>"
                                             alt="Maison Lesley">
                                     </a>
-                                    <?php } ?>
+                                    <?php // } ?>
                                 </li>
                             </ul>
                             <div class="right-side">
@@ -278,36 +278,36 @@
                                         <div>
                                             <ul>
                                                 <?php
-                                                $count = 0;
-                                                foreach($header_menu as $single_menu) {
-                                                    if($single_menu['has_sub_menu']){
-                                                        $count++;
+                                                // $count = 0;
+                                                // foreach($header_menu as $single_menu) {
+                                                //     if($single_menu['has_sub_menu']){
+                                                //         $count++;
                                                 ?>
                                                 <li>
                                                     <div class="accordion" id="accordionExample-header">
                                                         <div class="accordion-item" style="border: none;">
                                                             <h2 class="accordion-header mt-0"
-                                                                id="headingOne-header-<?php echo $count;?>">
+                                                                id="headingOne-header-<?php // echo $count;?>">
                                                                 <button
                                                                     class="accordion-button d-block mb-3 page_font animated_menu_el collapsed"
                                                                     type="button" data-bs-toggle="collapse"
-                                                                    data-bs-target="#collapseOne-header-<?php echo $count; ?>"
+                                                                    data-bs-target="#collapseOne-header-<?php // echo $count; ?>"
                                                                     aria-expanded="true"
-                                                                    aria-controls="collapseOne-header-<?php echo $count; ?>">
-                                                                    <?php echo $single_menu['text']; ?>
+                                                                    aria-controls="collapseOne-header-<?php // echo $count; ?>">
+                                                                    <?php // echo $single_menu['text']; ?>
                                                                 </button>
                                                             </h2>
-                                                            <div id="collapseOne-header-<?php echo $count; ?>"
+                                                            <div id="collapseOne-header-<?php // echo $count; ?>"
                                                                 class="accordion-collapse collapse"
-                                                                aria-labelledby="headingOne-header-<?php echo $count;?>"
+                                                                aria-labelledby="headingOne-header-<?php // echo $count;?>"
                                                                 data-bs-parent="#accordionExample-header">
                                                                 <div class="accordion-body">
                                                                     <ul class="sub-menus-header">
                                                                         <?php foreach($single_menu['sub_menu_section']['right_side_images'] as $single_sub_menu){ ?>
                                                                         <li class="mb-3">
                                                                             <a
-                                                                                href="<?php echo $single_sub_menu['url'] ?>">
-                                                                                <?php echo $single_sub_menu['text']; ?>
+                                                                                href="<?php // echo $single_sub_menu['url'] ?>">
+                                                                                <?php // echo $single_sub_menu['text']; ?>
                                                                             </a>
                                                                         </li>
                                                                         <?php } ?>
@@ -317,16 +317,16 @@
                                                         </div>
                                                     </div>
                                                 </li>
-                                                <?php } else { ?>
+                                                <?php // } else { ?>
                                                 <li>
                                                     <a class="d-block mb-3 page_font animated_menu_el"
-                                                        href="<?php echo $single_menu['url']; ?>">
+                                                        href="<?php // echo $single_menu['url']; ?>">
                                                         <div class="menu_item active_page line_animation">
-                                                            <?php echo $single_menu['text']; ?>
+                                                            <?php // echo $single_menu['text']; ?>
                                                         </div>
                                                     </a>
                                                 </li>
-                                                <?php }}?>
+                                                <?php //}}?>
                                             </ul>
                                         </div>
                                     </div>
