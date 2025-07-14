@@ -186,7 +186,7 @@ body.hide_scroll {
 }
 
 #primaryNav li.menu-item a:after {
-  background-color: #fff;
+  background-color: #fff !important;
 }
 
 .wp-block-buttons.wp-container-1 {
