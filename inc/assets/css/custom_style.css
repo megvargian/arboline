@@ -81,6 +81,7 @@ body {
   font-family: "gillsansnova_book";
   background-color: #fff;
   overflow-x: hidden !important;
+  padding-top: 0 !important;
 }
 
 body.hide_scroll {

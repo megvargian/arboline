@@ -69,6 +69,7 @@ body{
 	font-family: $sans_book;
 	background-color: $text_white;
 	overflow-x: hidden !important;
+	padding-top: 0 !important;
 }
 body.hide_scroll{
 	padding-right: 17px;

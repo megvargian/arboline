@@ -786,18 +786,17 @@ get_header();
             </div>
         </div>
     </div>
-    <div class="is-layout-flow wp-block-group alignfull bg-primary has-primary-background-color has-background">
+    <div class="container is-layout-flow wp-block-group alignfull bg-primary has-primary-background-color has-background">
         <div class="is-layout-flex wp-container-34 wp-block-columns are-vertically-aligned-center mb-0 py-3 py-lg-5"
             style="padding-top:4em;padding-bottom:3em">
             <div class="is-layout-flow wp-block-column is-vertically-aligned-center px-5 px-lg-2"
                 style="flex-basis:40%">
-                <figure class="wp-block-image aligncenter size-full is-resized"><img decoding="async" loading="lazy"
+                <figure class="wp-block-image aligncenter size-full is-resized">
+					<img decoding="async" loading="lazy"
                         src="https://fiddes.co.uk/app/uploads/2022/12/White-circular-logo-for-green-background.svg"
-                        alt="" class="wp-image-3285" width="425" height="425"></figure>
+                        alt="" class="wp-image-3285" width="425" height="425">
+				</figure>
             </div>
-
-
-
             <div class="is-layout-flow wp-block-column is-vertically-aligned-center px-4" style="flex-basis:60%">
                 <h2 class="has-text-align-center underline h1 underline--white has-white-color has-text-color"><span
                         style="text-decoration: underline;">ESTABLISHED 1896</span></h2>
@@ -813,17 +812,12 @@ get_header();
                 <p class="has-text-align-center has-text-color has-medium-font-size" style="color:#fefefe">Originally
                     developing wood finishing products for the professional woodworking trade, FIDDES has also built a
                     reputation as being the natural choice for interior wood and outdoor DIY enthusiasts.</p>
-
-
-
                 <div style="height:10px" aria-hidden="true" class="wp-block-spacer"></div>
-
-
-
                 <div class="is-layout-flex wp-block-buttons">
-                    <div class="wp-block-button aligncenter"><a
+                    <div class="wp-block-button aligncenter">
+						<a
                             class="wp-block-button__link has-secondary-background-color has-background wp-element-button"
-                            href="https://fiddes.co.uk/product-catalogue/" style="border-radius:0px">Shop now</a></div>
+                            href="https://fiddes.co.uk/product-catalogue/" style="border-radius:0px; color: #fff; width: fit-content;">Shop now</a></div>
                 </div>
             </div>
         </div>
