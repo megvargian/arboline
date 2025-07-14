@@ -628,6 +628,9 @@
                         'border-top-width': '0px',
                         'border-color': 'rgb(204, 204, 204)',
                     });
+                    $('.banner--logo-menu').css({
+                        'opacity': '1',
+                    });
 
                 }
                 if (currentScreenPosition < 125) {
@@ -643,6 +646,9 @@
                     $('.banner--menu-row').css({
                         'border-top-style': 'solid',
                         'border-top-color': 'rgb(222, 226, 230) rgb(0, 0, 0) rgb(0, 0, 0)',
+                    });
+                    $('.banner--logo-menu').css({
+                        'opacity': '0',
                     });
                 }
                 console.log(currentScreenPosition);
