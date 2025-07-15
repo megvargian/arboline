@@ -538,11 +538,11 @@ get_header();
                     <form class="af-form acf-form" method="POST" action="/" id="form_where_to_buy"
                         data-key="form_where_to_buy">
                         <div class="af-fields acf-fields acf-form-fields -top">
-                            <div class="col-8 af-field af-field-type-text af-field-postcode acf-field acf-field-text acf-field-63121ae1a7242"
+                            <div class="col-8 af-field pt-0 af-field-type-text af-field-postcode acf-field acf-field-text acf-field-63121ae1a7242"
                                 data-name="postcode" data-key="field_63121ae1a7242" data-type="text">
                                 <div class="af-label acf-label"><label for="acf-field_63121ae1a7242">Postcode</label>
                                 </div>
-                                <div class="af-input acf-input w-100 pt-0">
+                                <div class="af-input acf-input w-100">
                                     <div class="acf-input-wrap">
                                         <input type="text" class="w-100" id="acf-field_63121ae1a7242"
                                             name="acf[field_63121ae1a7242]" placeholder="Enter postcode"></div>
