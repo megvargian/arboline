@@ -535,35 +535,16 @@ get_header();
                         nearest stockist below.</p>
 
 
-                    <form class="af-form acf-form" method="POST" action="https://fiddes.co.uk/" id="form_where_to_buy"
+                    <form class="af-form acf-form" method="POST" action="/" id="form_where_to_buy"
                         data-key="form_where_to_buy">
                         <div class="af-fields acf-fields acf-form-fields -top">
-                            <div id="acf-form-data" class="acf-hidden">
-                                <input type="hidden" id="_acf_screen" name="_acf_screen" value="acf_form"><input
-                                    type="hidden" id="_acf_post_id" name="_acf_post_id" value="0"><input type="hidden"
-                                    id="_acf_validation" name="_acf_validation" value="1"><input type="hidden"
-                                    id="_acf_form" name="_acf_form" value="0"><input type="hidden" id="_acf_nonce"
-                                    name="_acf_nonce" value="c8f2faeab5"><input type="hidden" id="_acf_changed"
-                                    name="_acf_changed" value="0">
-                            </div>
-                            <div class="acf-hidden"><input type="hidden" name="_acfnonce" value="5620ef7902"><input
-                                    type="hidden" name="nonce" value="5620ef7902"><input type="hidden" name="af_form"
-                                    value="form_where_to_buy"><input type="hidden" name="af_form_args"
-                                    value="eyJhamF4IjpmYWxzZSwiZGlzcGxheV90aXRsZSI6ZmFsc2UsImRpc3BsYXlfZGVzY3JpcHRpb24iOmZhbHNlLCJpZCI6ImZvcm1fd2hlcmVfdG9fYnV5IiwidmFsdWVzIjpbXSwic3VibWl0X3RleHQiOiJTdWJtaXQiLCJyZWRpcmVjdCI6bnVsbCwidGFyZ2V0IjoiaHR0cHM6XC9cL2ZpZGRlcy5jby51a1wvIiwiZWNobyI6dHJ1ZSwiZXhjbHVkZV9maWVsZHMiOltdLCJ1cGxvYWRlciI6IndwIiwiZmlsdGVyX21vZGUiOmZhbHNlLCJsYWJlbF9wbGFjZW1lbnQiOiJ0b3AiLCJpbnN0cnVjdGlvbl9wbGFjZW1lbnQiOiJsYWJlbCIsImhvbmV5cG90Ijp0cnVlfQ=="><input
-                                    type="hidden" name="_acf_form"
-                                    value="eyJhamF4IjpmYWxzZSwiZGlzcGxheV90aXRsZSI6ZmFsc2UsImRpc3BsYXlfZGVzY3JpcHRpb24iOmZhbHNlLCJpZCI6ImZvcm1fd2hlcmVfdG9fYnV5IiwidmFsdWVzIjpbXSwic3VibWl0X3RleHQiOiJTdWJtaXQiLCJyZWRpcmVjdCI6bnVsbCwidGFyZ2V0IjoiaHR0cHM6XC9cL2ZpZGRlcy5jby51a1wvIiwiZWNobyI6dHJ1ZSwiZXhjbHVkZV9maWVsZHMiOltdLCJ1cGxvYWRlciI6IndwIiwiZmlsdGVyX21vZGUiOmZhbHNlLCJsYWJlbF9wbGFjZW1lbnQiOiJ0b3AiLCJpbnN0cnVjdGlvbl9wbGFjZW1lbnQiOiJsYWJlbCIsImhvbmV5cG90Ijp0cnVlfQ=="><input
-                                    type="hidden" name="af_form_nonce" value="ffa073dff6"><label
-                                    for="af_email_for_non_humans_form_where_to_buy" aria-hidden="true">Email for
-                                    non-humans</label><input type="text" name="email_for_non_humans"
-                                    id="af_email_for_non_humans_form_where_to_buy" tabindex="-1"
-                                    autocomplete="off"><input type="hidden" name="af_origin_url"
-                                    value="https://fiddes.co.uk/"></div>
                             <div class="col-8 af-field af-field-type-text af-field-postcode acf-field acf-field-text acf-field-63121ae1a7242"
                                 data-name="postcode" data-key="field_63121ae1a7242" data-type="text">
                                 <div class="af-label acf-label"><label for="acf-field_63121ae1a7242">Postcode</label>
                                 </div>
-                                <div class="af-input acf-input">
-                                    <div class="acf-input-wrap"><input type="text" id="acf-field_63121ae1a7242"
+                                <div class="af-input acf-input w-100 pt-0">
+                                    <div class="acf-input-wrap">
+                                        <input type="text" class="w-100" id="acf-field_63121ae1a7242"
                                             name="acf[field_63121ae1a7242]" placeholder="Enter postcode"></div>
                                 </div>
                             </div>
@@ -572,10 +553,11 @@ get_header();
                                     class="acf-spinner af-spinner"></span></div>
                         </div>
                     </form>
-
-
-                    <div class="supplier-slider slick-initialized slick-slider"><a type="button"
-                            class="slick-prev slick-arrow" style=""><i class="bi bi-chevron-compact-left"></i></a>
+                    <div class="supplier-slider slick-initialized slick-slider">
+                        <a type="button"
+                            class="slick-prev slick-arrow" style="">
+                            <i class="bi bi-chevron-compact-left"></i>
+                        </a>
                         <div class="slick-list draggable">
                             <div class="slick-track"
                                 style="opacity: 1; width: 6138px; transform: translate3d(-2511px, 0px, 0px); transition: transform 500ms;">
@@ -779,8 +761,11 @@ get_header();
                                         </a></div>
                                 </div>
                             </div>
-                        </div><a type="button" class="slick-next slick-arrow" style=""><i
-                                class="bi bi-chevron-compact-right"></i></a>
+                        </div>
+                        <a type="button" class="slick-next slick-arrow" style="">
+                            <i
+                                class="bi bi-chevron-compact-right"></i>
+                        </a>
                     </div>
                 </div>
             </div>
