@@ -554,7 +554,7 @@ get_header();
                                     class="acf-spinner af-spinner"></span></div>
                         </div>
                     </form>
-                    <div class="supplier-slider slick-initialized slick-slider">
+                    <!-- <div class="supplier-slider slick-initialized slick-slider">
                         <a type="button" class="slick-prev slick-arrow" style="">
                             <i class="bi bi-chevron-compact-left"></i>
                         </a>
@@ -765,6 +765,206 @@ get_header();
                         <a type="button" class="slick-next slick-arrow" style="">
                             <i class="bi bi-chevron-compact-right"></i>
                         </a>
+                    </div> -->
+                    <div class="supplier-slider slick-initialized slick-slider"><a type="button"
+                            class="slick-prev slick-arrow" style=""><i class="bi bi-chevron-compact-left"></i></a>
+                        <div class="slick-list draggable">
+                            <div class="slick-track"
+                                style="opacity: 1; width: 4872px; transform: translate3d(-696px, 0px, 0px);">
+                                <div class="slick-slide slick-cloned" data-slick-index="-3" id="" aria-hidden="true"
+                                    style="width: 232px;" tabindex="-1">
+                                    <div><a class="d-block" target="_blank" href="https://nextdaypaint.co.uk/"
+                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <img decoding="async"
+                                                src="https://fiddes.co.uk/app/uploads/2025/04/next-day-paint-logo.png"
+                                                class="img-fluid" alt="Next Day Paint">
+                                        </a></div>
+                                </div>
+                                <div class="slick-slide slick-cloned" data-slick-index="-2" id="" aria-hidden="true"
+                                    style="width: 232px;" tabindex="-1">
+                                    <div><a class="d-block" target="_blank" href="https://restorate.co.uk/"
+                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <img decoding="async"
+                                                src="https://fiddes.co.uk/app/uploads/2025/04/restorate-logo.png"
+                                                class="img-fluid" alt="Restorate">
+                                        </a></div>
+                                </div>
+                                <div class="slick-slide slick-cloned" data-slick-index="-1" id="" aria-hidden="true"
+                                    style="width: 232px;" tabindex="-1">
+                                    <div><a class="d-block" target="_blank" href="https://www.wood-finishes-direct.com/"
+                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <img decoding="async"
+                                                src="https://fiddes.co.uk/app/uploads/2025/04/wood-finishes-direct-logo.png"
+                                                class="img-fluid" alt="Wood Finishes Direct">
+                                        </a></div>
+                                </div>
+                                <div class="slick-slide slick-current slick-active" data-slick-index="0"
+                                    aria-hidden="false" style="width: 232px;">
+                                    <div><a class="d-block" target="_blank" href="https://www.brewers.co.uk/"
+                                            rel="noopener" tabindex="0" style="width: 100%; display: inline-block;">
+                                            <img decoding="async"
+                                                src="https://fiddes.co.uk/app/uploads/2025/04/brewers-logo.jpg"
+                                                class="img-fluid" alt="Brewers Decorator Centres">
+                                        </a></div>
+                                </div>
+                                <div class="slick-slide slick-active" data-slick-index="1" aria-hidden="false"
+                                    style="width: 232px;">
+                                    <div><a class="d-block" target="_blank"
+                                            href="https://www.crowndecoratingcentres.co.uk/" rel="noopener" tabindex="0"
+                                            style="width: 100%; display: inline-block;">
+                                            <img decoding="async"
+                                                src="https://fiddes.co.uk/app/uploads/2023/01/CrownDecoratingCentres_logo.png"
+                                                class="img-fluid" alt="Crown Decorating Centres">
+                                        </a></div>
+                                </div>
+                                <div class="slick-slide slick-active" data-slick-index="2" aria-hidden="false"
+                                    style="width: 232px;">
+                                    <div><a class="d-block" target="_blank" href="https://www.thepaintshed.com/"
+                                            rel="noopener" tabindex="0" style="width: 100%; display: inline-block;">
+                                            <img decoding="async"
+                                                src="https://fiddes.co.uk/app/uploads/2023/01/The-Paint-Shed.svg"
+                                                class="img-fluid" alt="The Paint Shed">
+                                        </a></div>
+                                </div>
+                                <div class="slick-slide" data-slick-index="3" aria-hidden="true" style="width: 232px;"
+                                    tabindex="-1">
+                                    <div><a class="d-block" target="_blank" href="https://www.robbins.co.uk/"
+                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <img decoding="async"
+                                                src="https://fiddes.co.uk/app/uploads/2023/01/Robbins-logo-hi-res-002.png"
+                                                class="img-fluid" alt="Robbins Timber">
+                                        </a></div>
+                                </div>
+                                <div class="slick-slide" data-slick-index="4" aria-hidden="true" style="width: 232px;"
+                                    tabindex="-1">
+                                    <div><a class="d-block" target="_blank" href="https://rabart.co.uk/" rel="noopener"
+                                            tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <img decoding="async"
+                                                src="https://fiddes.co.uk/app/uploads/2023/01/rabart-logonew2017.png"
+                                                class="img-fluid" alt="Rabart">
+                                        </a></div>
+                                </div>
+                                <div class="slick-slide" data-slick-index="5" aria-hidden="true" style="width: 232px;"
+                                    tabindex="-1">
+                                    <div><a class="d-block" target="_blank" href="https://www.paintstop.uk/"
+                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <img decoding="async"
+                                                src="https://fiddes.co.uk/app/uploads/2023/01/paint-stop-new.png"
+                                                class="img-fluid" alt="Paint Stop">
+                                        </a></div>
+                                </div>
+                                <div class="slick-slide" data-slick-index="6" aria-hidden="true" style="width: 232px;"
+                                    tabindex="-1">
+                                    <div><a class="d-block" target="_blank" href="https://nextdaypaint.co.uk/"
+                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <img decoding="async"
+                                                src="https://fiddes.co.uk/app/uploads/2025/04/next-day-paint-logo.png"
+                                                class="img-fluid" alt="Next Day Paint">
+                                        </a></div>
+                                </div>
+                                <div class="slick-slide" data-slick-index="7" aria-hidden="true" style="width: 232px;"
+                                    tabindex="-1">
+                                    <div><a class="d-block" target="_blank" href="https://restorate.co.uk/"
+                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <img decoding="async"
+                                                src="https://fiddes.co.uk/app/uploads/2025/04/restorate-logo.png"
+                                                class="img-fluid" alt="Restorate">
+                                        </a></div>
+                                </div>
+                                <div class="slick-slide" data-slick-index="8" aria-hidden="true" style="width: 232px;"
+                                    tabindex="-1">
+                                    <div><a class="d-block" target="_blank" href="https://www.wood-finishes-direct.com/"
+                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <img decoding="async"
+                                                src="https://fiddes.co.uk/app/uploads/2025/04/wood-finishes-direct-logo.png"
+                                                class="img-fluid" alt="Wood Finishes Direct">
+                                        </a></div>
+                                </div>
+                                <div class="slick-slide slick-cloned" data-slick-index="9" id="" aria-hidden="true"
+                                    style="width: 232px;" tabindex="-1">
+                                    <div><a class="d-block" target="_blank" href="https://www.brewers.co.uk/"
+                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <img decoding="async"
+                                                src="https://fiddes.co.uk/app/uploads/2025/04/brewers-logo.jpg"
+                                                class="img-fluid" alt="Brewers Decorator Centres">
+                                        </a></div>
+                                </div>
+                                <div class="slick-slide slick-cloned" data-slick-index="10" id="" aria-hidden="true"
+                                    style="width: 232px;" tabindex="-1">
+                                    <div><a class="d-block" target="_blank"
+                                            href="https://www.crowndecoratingcentres.co.uk/" rel="noopener"
+                                            tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <img decoding="async"
+                                                src="https://fiddes.co.uk/app/uploads/2023/01/CrownDecoratingCentres_logo.png"
+                                                class="img-fluid" alt="Crown Decorating Centres">
+                                        </a></div>
+                                </div>
+                                <div class="slick-slide slick-cloned" data-slick-index="11" id="" aria-hidden="true"
+                                    style="width: 232px;" tabindex="-1">
+                                    <div><a class="d-block" target="_blank" href="https://www.thepaintshed.com/"
+                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <img decoding="async"
+                                                src="https://fiddes.co.uk/app/uploads/2023/01/The-Paint-Shed.svg"
+                                                class="img-fluid" alt="The Paint Shed">
+                                        </a></div>
+                                </div>
+                                <div class="slick-slide slick-cloned" data-slick-index="12" id="" aria-hidden="true"
+                                    style="width: 232px;" tabindex="-1">
+                                    <div><a class="d-block" target="_blank" href="https://www.robbins.co.uk/"
+                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <img decoding="async"
+                                                src="https://fiddes.co.uk/app/uploads/2023/01/Robbins-logo-hi-res-002.png"
+                                                class="img-fluid" alt="Robbins Timber">
+                                        </a></div>
+                                </div>
+                                <div class="slick-slide slick-cloned" data-slick-index="13" id="" aria-hidden="true"
+                                    style="width: 232px;" tabindex="-1">
+                                    <div><a class="d-block" target="_blank" href="https://rabart.co.uk/" rel="noopener"
+                                            tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <img decoding="async"
+                                                src="https://fiddes.co.uk/app/uploads/2023/01/rabart-logonew2017.png"
+                                                class="img-fluid" alt="Rabart">
+                                        </a></div>
+                                </div>
+                                <div class="slick-slide slick-cloned" data-slick-index="14" id="" aria-hidden="true"
+                                    style="width: 232px;" tabindex="-1">
+                                    <div><a class="d-block" target="_blank" href="https://www.paintstop.uk/"
+                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <img decoding="async"
+                                                src="https://fiddes.co.uk/app/uploads/2023/01/paint-stop-new.png"
+                                                class="img-fluid" alt="Paint Stop">
+                                        </a></div>
+                                </div>
+                                <div class="slick-slide slick-cloned" data-slick-index="15" id="" aria-hidden="true"
+                                    style="width: 232px;" tabindex="-1">
+                                    <div><a class="d-block" target="_blank" href="https://nextdaypaint.co.uk/"
+                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <img decoding="async"
+                                                src="https://fiddes.co.uk/app/uploads/2025/04/next-day-paint-logo.png"
+                                                class="img-fluid" alt="Next Day Paint">
+                                        </a></div>
+                                </div>
+                                <div class="slick-slide slick-cloned" data-slick-index="16" id="" aria-hidden="true"
+                                    style="width: 232px;" tabindex="-1">
+                                    <div><a class="d-block" target="_blank" href="https://restorate.co.uk/"
+                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <img decoding="async"
+                                                src="https://fiddes.co.uk/app/uploads/2025/04/restorate-logo.png"
+                                                class="img-fluid" alt="Restorate">
+                                        </a></div>
+                                </div>
+                                <div class="slick-slide slick-cloned" data-slick-index="17" id="" aria-hidden="true"
+                                    style="width: 232px;" tabindex="-1">
+                                    <div><a class="d-block" target="_blank" href="https://www.wood-finishes-direct.com/"
+                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                            <img decoding="async"
+                                                src="https://fiddes.co.uk/app/uploads/2025/04/wood-finishes-direct-logo.png"
+                                                class="img-fluid" alt="Wood Finishes Direct">
+                                        </a></div>
+                                </div>
+                            </div>
+                        </div><a type="button" class="slick-next slick-arrow" style=""><i
+                                class="bi bi-chevron-compact-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -810,41 +1010,41 @@ get_header();
 </section>
 <script>
 jQuery(document).ready(function($) {
-    var swiper = new Swiper(".whereToBuySwiper", {
-        slidesPerView: 4,
-        spaceBetween: 10,
-        grabCursor: true,
-        loop: true,
-        autoplay: {
-            delay: 3000, // 3 seconds
-            disableOnInteraction: true, // Keeps autoplay after user swipes
-        },
-        navigation: {
-            nextEl: ".slick-next",
-            prevEl: ".slick-prev",
-        },
-        breakpoints: {
-            // when window width is >= 320px
-            320: {
-                slidesPerView: 1.5,
-                spaceBetween: 10,
-            },
-            // when window width is >= 480px
-            480: {
-                slidesPerView: 1.5,
-                spaceBetween: 10,
-            },
-            // when window width is >= 640px
-            640: {
-                slidesPerView: 2,
-                spaceBetween: 10,
-            },
-            991: {
-                slidesPerView: 4,
-                spaceBetween: 10,
-            }
-        }
-    });
+    // var swiper = new Swiper(".whereToBuySwiper", {
+    //     slidesPerView: 4,
+    //     spaceBetween: 20,
+    //     grabCursor: true,
+    //     loop: true,
+    //     autoplay: {
+    //         delay: 3000, // 3 seconds
+    //         disableOnInteraction: true, // Keeps autoplay after user swipes
+    //     },
+    //     navigation: {
+    //         nextEl: ".slick-next",
+    //         prevEl: ".slick-prev",
+    //     },
+    //     breakpoints: {
+    //         // when window width is >= 320px
+    //         320: {
+    //             slidesPerView: 1.5,
+    //             spaceBetween: 20,
+    //         },
+    //         // when window width is >= 480px
+    //         480: {
+    //             slidesPerView: 1.5,
+    //             spaceBetween: 20,
+    //         },
+    //         // when window width is >= 640px
+    //         640: {
+    //             slidesPerView: 2,
+    //             spaceBetween: 20,
+    //         },
+    //         991: {
+    //             slidesPerView: 4,
+    //             spaceBetween: 20,
+    //         }
+    //     }
+    // });
 })
 </script>
 <?php
