@@ -554,13 +554,13 @@ get_header();
                                     class="acf-spinner af-spinner"></span></div>
                         </div>
                     </form>
-                    <div class="supplier-slider slick-initialized slick-slide swiper-slider">
+                    <div class="">
                         <a type="button" class="slick-prev slick-arrow" style="">
                             <i class="bi bi-chevron-compact-left"></i>
                         </a>
-                        <div class="swiper whereToBuySwiper slick-list draggable">
+                        <div class="swiper whereToBuySwiper">
                             <div class="swiper-wrapper slick-track">
-                                <div class="slick-slide swiper-slide slick-cloned" data-slick-index="-4" id=""
+                                <div class="swiper-slide" data-slick-index="-4" id=""
                                     aria-hidden="true" style="width: 279px;" tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://www.paintstop.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
@@ -569,7 +569,7 @@ get_header();
                                                 class="img-fluid" alt="Paint Stop">
                                         </a></div>
                                 </div>
-                                <div class="slick-slide swiper-slide slick-cloned" data-slick-index="-3" id=""
+                                <div class="swiper-slide" data-slick-index="-3" id=""
                                     aria-hidden="true" style="width: 279px;" tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://nextdaypaint.co.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
@@ -578,7 +578,7 @@ get_header();
                                                 class="img-fluid" alt="Next Day Paint">
                                         </a></div>
                                 </div>
-                                <div class="slick-slide swiper-slide slick-cloned" data-slick-index="-2" id=""
+                                <div class="swiper-slide" data-slick-index="-2" id=""
                                     aria-hidden="true" style="width: 279px;" tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://restorate.co.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
@@ -587,7 +587,7 @@ get_header();
                                                 class="img-fluid" alt="Restorate">
                                         </a></div>
                                 </div>
-                                <div class="slick-slide swiper-slide slick-cloned" data-slick-index="-1" id=""
+                                <div class="swiper-slide" data-slick-index="-1" id=""
                                     aria-hidden="true" style="width: 279px;" tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://www.wood-finishes-direct.com/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
@@ -596,7 +596,7 @@ get_header();
                                                 class="img-fluid" alt="Wood Finishes Direct">
                                         </a></div>
                                 </div>
-                                <div class="slick-slide swiper-slide" data-slick-index="0" aria-hidden="true"
+                                <div class="swiper-slide" data-slick-index="0" aria-hidden="true"
                                     style="width: 279px;" tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://www.brewers.co.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
@@ -605,7 +605,7 @@ get_header();
                                                 class="img-fluid" alt="Brewers Decorator Centres">
                                         </a></div>
                                 </div>
-                                <div class="slick-slide swiper-slide" data-slick-index="1" aria-hidden="true"
+                                <div class="swiper-slide" data-slick-index="1" aria-hidden="true"
                                     style="width: 279px;" tabindex="-1">
                                     <div><a class="d-block" target="_blank"
                                             href="https://www.crowndecoratingcentres.co.uk/" rel="noopener"
@@ -615,7 +615,7 @@ get_header();
                                                 class="img-fluid" alt="Crown Decorating Centres">
                                         </a></div>
                                 </div>
-                                <div class="slick-slide swiper-slide" data-slick-index="2" aria-hidden="true"
+                                <div class="swiper-slide" data-slick-index="2" aria-hidden="true"
                                     style="width: 279px;" tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://www.thepaintshed.com/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
@@ -624,7 +624,7 @@ get_header();
                                                 class="img-fluid" alt="The Paint Shed">
                                         </a></div>
                                 </div>
-                                <div class="slick-slide swiper-slide" data-slick-index="3" aria-hidden="true"
+                                <div class="swiper-slide" data-slick-index="3" aria-hidden="true"
                                     style="width: 279px;" tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://www.robbins.co.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
@@ -633,7 +633,7 @@ get_header();
                                                 class="img-fluid" alt="Robbins Timber">
                                         </a></div>
                                 </div>
-                                <div class="slick-slide swiper-slide" data-slick-index="4" aria-hidden="true"
+                                <div class="swiper-slide" data-slick-index="4" aria-hidden="true"
                                     style="width: 279px;">
                                     <div><a class="d-block" target="_blank" href="https://rabart.co.uk/" rel="noopener"
                                             style="width: 100%; display: inline-block;" tabindex="0">
@@ -642,7 +642,7 @@ get_header();
                                                 class="img-fluid" alt="Rabart">
                                         </a></div>
                                 </div>
-                                <div class="slick-slide swiper-slide slick-current slick-active" data-slick-index="5"
+                                <div class="swiper-slide slick-current slick-active" data-slick-index="5"
                                     aria-hidden="false" style="width: 279px;">
                                     <div><a class="d-block" target="_blank" href="https://www.paintstop.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="0">
@@ -651,7 +651,7 @@ get_header();
                                                 class="img-fluid" alt="Paint Stop">
                                         </a></div>
                                 </div>
-                                <div class="slick-slide swiper-slide slick-active" data-slick-index="6"
+                                <div class="swiper-slide slick-active" data-slick-index="6"
                                     aria-hidden="false" style="width: 279px;">
                                     <div><a class="d-block" target="_blank" href="https://nextdaypaint.co.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="0">
@@ -660,7 +660,7 @@ get_header();
                                                 class="img-fluid" alt="Next Day Paint">
                                         </a></div>
                                 </div>
-                                <div class="slick-slide swiper-slide slick-active" data-slick-index="7"
+                                <div class="swiper-slide slick-active" data-slick-index="7"
                                     aria-hidden="false" style="width: 279px;">
                                     <div><a class="d-block" target="_blank" href="https://restorate.co.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="0">
@@ -669,7 +669,7 @@ get_header();
                                                 class="img-fluid" alt="Restorate">
                                         </a></div>
                                 </div>
-                                <div class="slick-slide swiper-slide slick-active" data-slick-index="8"
+                                <div class="swiper-slide slick-active" data-slick-index="8"
                                     aria-hidden="false" style="width: 279px;" tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://www.wood-finishes-direct.com/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
@@ -678,7 +678,7 @@ get_header();
                                                 class="img-fluid" alt="Wood Finishes Direct">
                                         </a></div>
                                 </div>
-                                <div class="slick-slide swiper-slide slick-cloned" data-slick-index="9" id=""
+                                <div class="swiper-slide" data-slick-index="9" id=""
                                     aria-hidden="true" style="width: 279px;" tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://www.brewers.co.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
@@ -687,7 +687,7 @@ get_header();
                                                 class="img-fluid" alt="Brewers Decorator Centres">
                                         </a></div>
                                 </div>
-                                <div class="slick-slide swiper-slide slick-cloned" data-slick-index="10" id=""
+                                <div class="swiper-slide" data-slick-index="10" id=""
                                     aria-hidden="true" style="width: 279px;" tabindex="-1">
                                     <div><a class="d-block" target="_blank"
                                             href="https://www.crowndecoratingcentres.co.uk/" rel="noopener"
@@ -697,7 +697,7 @@ get_header();
                                                 class="img-fluid" alt="Crown Decorating Centres">
                                         </a></div>
                                 </div>
-                                <div class="slick-slide swiper-slide slick-cloned" data-slick-index="11" id=""
+                                <div class="swiper-slide" data-slick-index="11" id=""
                                     aria-hidden="true" style="width: 279px;" tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://www.thepaintshed.com/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
@@ -706,7 +706,7 @@ get_header();
                                                 class="img-fluid" alt="The Paint Shed">
                                         </a></div>
                                 </div>
-                                <div class="slick-slide swiper-slide slick-cloned" data-slick-index="12" id=""
+                                <div class="swiper-slide" data-slick-index="12" id=""
                                     aria-hidden="true" style="width: 279px;" tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://www.robbins.co.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
@@ -715,7 +715,7 @@ get_header();
                                                 class="img-fluid" alt="Robbins Timber">
                                         </a></div>
                                 </div>
-                                <div class="slick-slide swiper-slide slick-cloned" data-slick-index="13" id=""
+                                <div class="swiper-slide" data-slick-index="13" id=""
                                     aria-hidden="true" style="width: 279px;" tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://rabart.co.uk/" rel="noopener"
                                             style="width: 100%; display: inline-block;" tabindex="-1">
@@ -724,7 +724,7 @@ get_header();
                                                 class="img-fluid" alt="Rabart">
                                         </a></div>
                                 </div>
-                                <div class="slick-slide swiper-slide slick-cloned" data-slick-index="14" id=""
+                                <div class="swiper-slide" data-slick-index="14" id=""
                                     aria-hidden="true" style="width: 279px;" tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://www.paintstop.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
@@ -733,7 +733,7 @@ get_header();
                                                 class="img-fluid" alt="Paint Stop">
                                         </a></div>
                                 </div>
-                                <div class="slick-slide swiper-slide slick-cloned" data-slick-index="15" id=""
+                                <div class="swiper-slide" data-slick-index="15" id=""
                                     aria-hidden="true" style="width: 279px;" tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://nextdaypaint.co.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
@@ -742,7 +742,7 @@ get_header();
                                                 class="img-fluid" alt="Next Day Paint">
                                         </a></div>
                                 </div>
-                                <div class="slick-slide swiper-slide slick-cloned" data-slick-index="16" id=""
+                                <div class="swiper-slide" data-slick-index="16" id=""
                                     aria-hidden="true" style="width: 279px;" tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://restorate.co.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
@@ -751,7 +751,7 @@ get_header();
                                                 class="img-fluid" alt="Restorate">
                                         </a></div>
                                 </div>
-                                <div class="slick-slide swiper-slide slick-cloned" data-slick-index="17" id=""
+                                <div class="swiper-slide" data-slick-index="17" id=""
                                     aria-hidden="true" style="width: 279px;" tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://www.wood-finishes-direct.com/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
