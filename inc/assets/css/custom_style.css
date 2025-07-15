@@ -222,7 +222,7 @@ body.hide_scroll {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 300px; /* Fixed width */
+  width: 300px !important; /* Fixed width */
 }
 .whereToBuySwiper .swiper-slide img {
   width: 100%;

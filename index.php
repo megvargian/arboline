@@ -1013,7 +1013,7 @@ jQuery(document).ready(function($) {
     var swiper = new Swiper(".whereToBuySwiper", {
         slidesPerView: 4,
         spaceBetween: 20,
-        grabCursor: true,
+        centeredSlides: true,      // Center active slide
         loop: true,
         autoplay: {
             delay: 3000, // 3 seconds
