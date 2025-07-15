@@ -559,9 +559,9 @@ get_header();
                             <i class="bi bi-chevron-compact-left"></i>
                         </a>
                         <div class="swiper whereToBuySwiper">
-                            <div class="swiper-wrapper slick-track">
+                            <div class="swiper-wrapper">
                                 <div class="swiper-slide" data-slick-index="-4" id=""
-                                    aria-hidden="true" style="width: 279px;" tabindex="-1">
+                                    aria-hidden="true"  tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://www.paintstop.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
                                             <img decoding="async"
@@ -570,7 +570,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="swiper-slide" data-slick-index="-3" id=""
-                                    aria-hidden="true" style="width: 279px;" tabindex="-1">
+                                    aria-hidden="true"  tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://nextdaypaint.co.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
                                             <img decoding="async"
@@ -579,7 +579,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="swiper-slide" data-slick-index="-2" id=""
-                                    aria-hidden="true" style="width: 279px;" tabindex="-1">
+                                    aria-hidden="true"  tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://restorate.co.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
                                             <img decoding="async"
@@ -588,7 +588,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="swiper-slide" data-slick-index="-1" id=""
-                                    aria-hidden="true" style="width: 279px;" tabindex="-1">
+                                    aria-hidden="true"  tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://www.wood-finishes-direct.com/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
                                             <img decoding="async"
@@ -597,7 +597,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="swiper-slide" data-slick-index="0" aria-hidden="true"
-                                    style="width: 279px;" tabindex="-1">
+                                     tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://www.brewers.co.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
                                             <img decoding="async"
@@ -606,7 +606,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="swiper-slide" data-slick-index="1" aria-hidden="true"
-                                    style="width: 279px;" tabindex="-1">
+                                     tabindex="-1">
                                     <div><a class="d-block" target="_blank"
                                             href="https://www.crowndecoratingcentres.co.uk/" rel="noopener"
                                             style="width: 100%; display: inline-block;" tabindex="-1">
@@ -616,7 +616,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="swiper-slide" data-slick-index="2" aria-hidden="true"
-                                    style="width: 279px;" tabindex="-1">
+                                     tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://www.thepaintshed.com/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
                                             <img decoding="async"
@@ -625,7 +625,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="swiper-slide" data-slick-index="3" aria-hidden="true"
-                                    style="width: 279px;" tabindex="-1">
+                                     tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://www.robbins.co.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
                                             <img decoding="async"
@@ -634,7 +634,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="swiper-slide" data-slick-index="4" aria-hidden="true"
-                                    style="width: 279px;">
+                                    >
                                     <div><a class="d-block" target="_blank" href="https://rabart.co.uk/" rel="noopener"
                                             style="width: 100%; display: inline-block;" tabindex="0">
                                             <img decoding="async"
@@ -643,7 +643,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="swiper-slide slick-current slick-active" data-slick-index="5"
-                                    aria-hidden="false" style="width: 279px;">
+                                    aria-hidden="false" >
                                     <div><a class="d-block" target="_blank" href="https://www.paintstop.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="0">
                                             <img decoding="async"
@@ -652,7 +652,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="swiper-slide slick-active" data-slick-index="6"
-                                    aria-hidden="false" style="width: 279px;">
+                                    aria-hidden="false" >
                                     <div><a class="d-block" target="_blank" href="https://nextdaypaint.co.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="0">
                                             <img decoding="async"
@@ -661,7 +661,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="swiper-slide slick-active" data-slick-index="7"
-                                    aria-hidden="false" style="width: 279px;">
+                                    aria-hidden="false" >
                                     <div><a class="d-block" target="_blank" href="https://restorate.co.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="0">
                                             <img decoding="async"
@@ -670,7 +670,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="swiper-slide slick-active" data-slick-index="8"
-                                    aria-hidden="false" style="width: 279px;" tabindex="-1">
+                                    aria-hidden="false"  tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://www.wood-finishes-direct.com/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
                                             <img decoding="async"
@@ -679,7 +679,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="swiper-slide" data-slick-index="9" id=""
-                                    aria-hidden="true" style="width: 279px;" tabindex="-1">
+                                    aria-hidden="true"  tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://www.brewers.co.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
                                             <img decoding="async"
@@ -688,7 +688,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="swiper-slide" data-slick-index="10" id=""
-                                    aria-hidden="true" style="width: 279px;" tabindex="-1">
+                                    aria-hidden="true"  tabindex="-1">
                                     <div><a class="d-block" target="_blank"
                                             href="https://www.crowndecoratingcentres.co.uk/" rel="noopener"
                                             style="width: 100%; display: inline-block;" tabindex="-1">
@@ -698,7 +698,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="swiper-slide" data-slick-index="11" id=""
-                                    aria-hidden="true" style="width: 279px;" tabindex="-1">
+                                    aria-hidden="true"  tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://www.thepaintshed.com/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
                                             <img decoding="async"
@@ -707,7 +707,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="swiper-slide" data-slick-index="12" id=""
-                                    aria-hidden="true" style="width: 279px;" tabindex="-1">
+                                    aria-hidden="true"  tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://www.robbins.co.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
                                             <img decoding="async"
@@ -716,7 +716,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="swiper-slide" data-slick-index="13" id=""
-                                    aria-hidden="true" style="width: 279px;" tabindex="-1">
+                                    aria-hidden="true"  tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://rabart.co.uk/" rel="noopener"
                                             style="width: 100%; display: inline-block;" tabindex="-1">
                                             <img decoding="async"
@@ -725,7 +725,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="swiper-slide" data-slick-index="14" id=""
-                                    aria-hidden="true" style="width: 279px;" tabindex="-1">
+                                    aria-hidden="true"  tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://www.paintstop.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
                                             <img decoding="async"
@@ -734,7 +734,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="swiper-slide" data-slick-index="15" id=""
-                                    aria-hidden="true" style="width: 279px;" tabindex="-1">
+                                    aria-hidden="true"  tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://nextdaypaint.co.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
                                             <img decoding="async"
@@ -743,7 +743,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="swiper-slide" data-slick-index="16" id=""
-                                    aria-hidden="true" style="width: 279px;" tabindex="-1">
+                                    aria-hidden="true"  tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://restorate.co.uk/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
                                             <img decoding="async"
@@ -752,7 +752,7 @@ get_header();
                                         </a></div>
                                 </div>
                                 <div class="swiper-slide" data-slick-index="17" id=""
-                                    aria-hidden="true" style="width: 279px;" tabindex="-1">
+                                    aria-hidden="true"  tabindex="-1">
                                     <div><a class="d-block" target="_blank" href="https://www.wood-finishes-direct.com/"
                                             rel="noopener" style="width: 100%; display: inline-block;" tabindex="-1">
                                             <img decoding="async"
