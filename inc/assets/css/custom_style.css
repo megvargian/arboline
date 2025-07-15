@@ -217,3 +217,15 @@ body.hide_scroll {
 .banner--menu-row {
   transition: all 0.4s ease-in-out;
 }
+
+.whereToBuySwiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px; /* Fixed width */
+}
+.whereToBuySwiper .swiper-slide img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
