@@ -816,7 +816,7 @@
                         </p>
                     </div>
                     <div class="copyright-info col-lg-6 col-12 text-lg-end">
-                        <img src="https://arboline.com/app/themes/fiddes-uk/public/images/9001-accred.789311.png"
+                        <img src="https://fiddes.co.uk/app/themes/fiddes-uk/public/images/9001-accred.789311.png"
                             class="img-fluid accred-logo mb-2" alt="FIDDES 9001 Accred">
                         <p class="text-lg-end mb-n2">
                             <small>
