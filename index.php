@@ -444,6 +444,76 @@ get_header();
                     <div class="content-slider slick-initialized slick-slider">
                         <div class="slick-list draggable">
                             <div class="slick-track"
+                                style="opacity: 1; width: 1084px; transform: translate3d(0px, 0px, 0px);">
+                                <div class="slick-slide slick-current slick-active" data-slick-index="0"
+                                    aria-hidden="false" style="width: 1084px;">
+                                    <div>
+                                        <div class="slide px-2 px-lg-5" style="width: 100%; display: inline-block;">
+                                            <!-- wp:columns {"className":"mb-0"} -->
+                                            <div class="wp-block-columns mb-0">
+                                                <!-- wp:column {"verticalAlignment":"center"} -->
+                                                <div class="wp-block-column is-vertically-aligned-center">
+                                                    <!-- wp:image {"id":2322,"sizeSlug":"large","linkDestination":"none"} -->
+                                                    <figure class="wp-block-image size-large"><img decoding="async"
+                                                            loading="lazy" width="1024" height="732"
+                                                            src="https://fiddes.co.uk/app/uploads/2022/09/bee-2-1-1024x732.png"
+                                                            alt="" class="wp-image-2322"
+                                                            srcset="https://fiddes.co.uk/app/uploads/2022/09/bee-2-1-1024x732.png 1024w, https://fiddes.co.uk/app/uploads/2022/09/bee-2-1-600x429.png 600w, https://fiddes.co.uk/app/uploads/2022/09/bee-2-1-300x214.png 300w, https://fiddes.co.uk/app/uploads/2022/09/bee-2-1-768x549.png 768w, https://fiddes.co.uk/app/uploads/2022/09/bee-2-1-1536x1097.png 1536w, https://fiddes.co.uk/app/uploads/2022/09/bee-2-1-1320x943.png 1320w, https://fiddes.co.uk/app/uploads/2022/09/bee-2-1.png 1576w"
+                                                            sizes="(max-width: 1024px) 100vw, 1024px"></figure>
+                                                    <!-- /wp:image -->
+                                                </div>
+                                                <!-- /wp:column -->
+
+                                                <!-- wp:column {"verticalAlignment":"center","className":" px-4"} -->
+                                                <div class="wp-block-column is-vertically-aligned-center px-4">
+                                                    <!-- wp:heading {"textAlign":"center","level":3,"textColor":"black","className":"underline"} -->
+                                                    <h3
+                                                        class="has-text-align-center underline has-black-color has-text-color">
+                                                        <span style="text-decoration: underline;">SUSTAINABILITY</span>
+                                                    </h3>
+                                                    <!-- /wp:heading -->
+
+                                                    <!-- wp:paragraph {"align":"center","textColor":"black","className":"mb-0 px-4","fontSize":"medium"} -->
+                                                    <p
+                                                        class="has-text-align-center mb-0 px-4 has-black-color has-text-color has-medium-font-size">
+                                                        Accredited to ISO 9001 Standards, Fiddes has maintained a
+                                                        progressive outlook to develop and produce a wide selection of
+                                                        quality wood finishes using the finest, natural and sustainably
+                                                        sourced raw materials.</p>
+                                                    <!-- /wp:paragraph -->
+
+                                                    <!-- wp:spacer {"height":"50px"} -->
+                                                    <div style="height:50px" aria-hidden="true" class="wp-block-spacer">
+                                                    </div>
+                                                    <!-- /wp:spacer -->
+                                                </div>
+                                                <!-- /wp:column -->
+                                            </div>
+                                            <!-- /wp:columns -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wp-block-cover alignfull is-light my-0 py-3 py-lg-5"><span aria-hidden="true"
+            class="wp-block-cover__background has-white-background-color has-background-dim-90 has-background-dim"></span><img
+            decoding="async" loading="lazy" width="2560" height="551"
+            class="wp-block-cover__image-background wp-image-2244" alt=""
+            src="https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-scaled.jpg"
+            style="object-position:12% 50%" data-object-fit="cover" data-object-position="12% 50%"
+            srcset="https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-scaled.jpg 2560w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-scaled-600x129.jpg 600w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-300x65.jpg 300w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-1024x220.jpg 1024w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-768x165.jpg 768w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-1536x330.jpg 1536w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-2048x440.jpg 2048w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-1320x284.jpg 1320w"
+            sizes="(max-width: 2560px) 100vw, 2560px">
+        <div class="wp-block-cover__inner-container">
+            <div class="is-layout-flow wp-block-group alignfull mb-0 has-background" style="background-color:#ffffff00">
+                <div class="wp-block-slider">
+                    <div class="content-slider slick-initialized slick-slider">
+                        <div class="slick-list draggable">
+                            <div class="slick-track"
                                 style="opacity: 1; width: 484px; transform: translate3d(0px, 0px, 0px);">
                                 <div class="slick-slide slick-current slick-active" data-slick-index="0"
                                     aria-hidden="false" style="width: 484px;">
@@ -773,8 +843,9 @@ get_header();
                                 style="opacity: 1; width: 4872px; transform: translate3d(-696px, 0px, 0px);">
                                 <div class="swiper-slide slick-cloned" data-slick-index="-3" id="" aria-hidden="true"
                                     style="width: 232px;" tabindex="-1">
-                                    <div class="w-100" ><a class="w-100 d-block" target="_blank" href="https://nextdaypaint.co.uk/"
-                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                    <div class="w-100"><a class="w-100 d-block" target="_blank"
+                                            href="https://nextdaypaint.co.uk/" rel="noopener" tabindex="-1"
+                                            style="width: 100%; display: inline-block;">
                                             <img decoding="async"
                                                 src="https://fiddes.co.uk/app/uploads/2025/04/next-day-paint-logo.png"
                                                 class="img-fluid" alt="Next Day Paint">
@@ -782,8 +853,9 @@ get_header();
                                 </div>
                                 <div class="swiper-slide slick-cloned" data-slick-index="-2" id="" aria-hidden="true"
                                     style="width: 232px;" tabindex="-1">
-                                    <div class="w-100" ><a class="w-100 d-block" target="_blank" href="https://restorate.co.uk/"
-                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                    <div class="w-100"><a class="w-100 d-block" target="_blank"
+                                            href="https://restorate.co.uk/" rel="noopener" tabindex="-1"
+                                            style="width: 100%; display: inline-block;">
                                             <img decoding="async"
                                                 src="https://fiddes.co.uk/app/uploads/2025/04/restorate-logo.png"
                                                 class="img-fluid" alt="Restorate">
@@ -791,8 +863,9 @@ get_header();
                                 </div>
                                 <div class="swiper-slide slick-cloned" data-slick-index="-1" id="" aria-hidden="true"
                                     style="width: 232px;" tabindex="-1">
-                                    <div class="w-100" ><a class="w-100 d-block" target="_blank" href="https://www.wood-finishes-direct.com/"
-                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                    <div class="w-100"><a class="w-100 d-block" target="_blank"
+                                            href="https://www.wood-finishes-direct.com/" rel="noopener" tabindex="-1"
+                                            style="width: 100%; display: inline-block;">
                                             <img decoding="async"
                                                 src="https://fiddes.co.uk/app/uploads/2025/04/wood-finishes-direct-logo.png"
                                                 class="img-fluid" alt="Wood Finishes Direct">
@@ -800,8 +873,9 @@ get_header();
                                 </div>
                                 <div class="swiper-slide slick-current slick-active" data-slick-index="0"
                                     aria-hidden="false" style="width: 232px;">
-                                    <div class="w-100" ><a class="w-100 d-block" target="_blank" href="https://www.brewers.co.uk/"
-                                            rel="noopener" tabindex="0" style="width: 100%; display: inline-block;">
+                                    <div class="w-100"><a class="w-100 d-block" target="_blank"
+                                            href="https://www.brewers.co.uk/" rel="noopener" tabindex="0"
+                                            style="width: 100%; display: inline-block;">
                                             <img decoding="async"
                                                 src="https://fiddes.co.uk/app/uploads/2025/04/brewers-logo.jpg"
                                                 class="img-fluid" alt="Brewers Decorator Centres">
@@ -809,7 +883,7 @@ get_header();
                                 </div>
                                 <div class="swiper-slide slick-active" data-slick-index="1" aria-hidden="false"
                                     style="width: 232px;">
-                                    <div class="w-100" ><a class="w-100 d-block" target="_blank"
+                                    <div class="w-100"><a class="w-100 d-block" target="_blank"
                                             href="https://www.crowndecoratingcentres.co.uk/" rel="noopener" tabindex="0"
                                             style="width: 100%; display: inline-block;">
                                             <img decoding="async"
@@ -819,8 +893,9 @@ get_header();
                                 </div>
                                 <div class="swiper-slide slick-active" data-slick-index="2" aria-hidden="false"
                                     style="width: 232px;">
-                                    <div class="w-100" ><a class="w-100 d-block" target="_blank" href="https://www.thepaintshed.com/"
-                                            rel="noopener" tabindex="0" style="width: 100%; display: inline-block;">
+                                    <div class="w-100"><a class="w-100 d-block" target="_blank"
+                                            href="https://www.thepaintshed.com/" rel="noopener" tabindex="0"
+                                            style="width: 100%; display: inline-block;">
                                             <img decoding="async"
                                                 src="https://fiddes.co.uk/app/uploads/2023/01/The-Paint-Shed.svg"
                                                 class="img-fluid" alt="The Paint Shed">
@@ -828,8 +903,9 @@ get_header();
                                 </div>
                                 <div class="swiper-slide" data-slick-index="3" aria-hidden="true" style="width: 232px;"
                                     tabindex="-1">
-                                    <div class="w-100" ><a class="w-100 d-block" target="_blank" href="https://www.robbins.co.uk/"
-                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                    <div class="w-100"><a class="w-100 d-block" target="_blank"
+                                            href="https://www.robbins.co.uk/" rel="noopener" tabindex="-1"
+                                            style="width: 100%; display: inline-block;">
                                             <img decoding="async"
                                                 src="https://fiddes.co.uk/app/uploads/2023/01/Robbins-logo-hi-res-002.png"
                                                 class="img-fluid" alt="Robbins Timber">
@@ -837,8 +913,9 @@ get_header();
                                 </div>
                                 <div class="swiper-slide" data-slick-index="4" aria-hidden="true" style="width: 232px;"
                                     tabindex="-1">
-                                    <div class="w-100" ><a class="w-100 d-block" target="_blank" href="https://rabart.co.uk/" rel="noopener"
-                                            tabindex="-1" style="width: 100%; display: inline-block;">
+                                    <div class="w-100"><a class="w-100 d-block" target="_blank"
+                                            href="https://rabart.co.uk/" rel="noopener" tabindex="-1"
+                                            style="width: 100%; display: inline-block;">
                                             <img decoding="async"
                                                 src="https://fiddes.co.uk/app/uploads/2023/01/rabart-logonew2017.png"
                                                 class="img-fluid" alt="Rabart">
@@ -846,8 +923,9 @@ get_header();
                                 </div>
                                 <div class="swiper-slide" data-slick-index="5" aria-hidden="true" style="width: 232px;"
                                     tabindex="-1">
-                                    <div class="w-100" ><a class="w-100 d-block" target="_blank" href="https://www.paintstop.uk/"
-                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                    <div class="w-100"><a class="w-100 d-block" target="_blank"
+                                            href="https://www.paintstop.uk/" rel="noopener" tabindex="-1"
+                                            style="width: 100%; display: inline-block;">
                                             <img decoding="async"
                                                 src="https://fiddes.co.uk/app/uploads/2023/01/paint-stop-new.png"
                                                 class="img-fluid" alt="Paint Stop">
@@ -855,8 +933,9 @@ get_header();
                                 </div>
                                 <div class="swiper-slide" data-slick-index="6" aria-hidden="true" style="width: 232px;"
                                     tabindex="-1">
-                                    <div class="w-100" ><a class="w-100 d-block" target="_blank" href="https://nextdaypaint.co.uk/"
-                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                    <div class="w-100"><a class="w-100 d-block" target="_blank"
+                                            href="https://nextdaypaint.co.uk/" rel="noopener" tabindex="-1"
+                                            style="width: 100%; display: inline-block;">
                                             <img decoding="async"
                                                 src="https://fiddes.co.uk/app/uploads/2025/04/next-day-paint-logo.png"
                                                 class="img-fluid" alt="Next Day Paint">
@@ -864,8 +943,9 @@ get_header();
                                 </div>
                                 <div class="swiper-slide" data-slick-index="7" aria-hidden="true" style="width: 232px;"
                                     tabindex="-1">
-                                    <div class="w-100" ><a class="w-100 d-block" target="_blank" href="https://restorate.co.uk/"
-                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                    <div class="w-100"><a class="w-100 d-block" target="_blank"
+                                            href="https://restorate.co.uk/" rel="noopener" tabindex="-1"
+                                            style="width: 100%; display: inline-block;">
                                             <img decoding="async"
                                                 src="https://fiddes.co.uk/app/uploads/2025/04/restorate-logo.png"
                                                 class="img-fluid" alt="Restorate">
@@ -873,8 +953,9 @@ get_header();
                                 </div>
                                 <div class="swiper-slide" data-slick-index="8" aria-hidden="true" style="width: 232px;"
                                     tabindex="-1">
-                                    <div class="w-100" ><a class="w-100 d-block" target="_blank" href="https://www.wood-finishes-direct.com/"
-                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                    <div class="w-100"><a class="w-100 d-block" target="_blank"
+                                            href="https://www.wood-finishes-direct.com/" rel="noopener" tabindex="-1"
+                                            style="width: 100%; display: inline-block;">
                                             <img decoding="async"
                                                 src="https://fiddes.co.uk/app/uploads/2025/04/wood-finishes-direct-logo.png"
                                                 class="img-fluid" alt="Wood Finishes Direct">
@@ -882,8 +963,9 @@ get_header();
                                 </div>
                                 <div class="swiper-slide slick-cloned" data-slick-index="9" id="" aria-hidden="true"
                                     style="width: 232px;" tabindex="-1">
-                                    <div class="w-100" ><a class="w-100 d-block" target="_blank" href="https://www.brewers.co.uk/"
-                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                    <div class="w-100"><a class="w-100 d-block" target="_blank"
+                                            href="https://www.brewers.co.uk/" rel="noopener" tabindex="-1"
+                                            style="width: 100%; display: inline-block;">
                                             <img decoding="async"
                                                 src="https://fiddes.co.uk/app/uploads/2025/04/brewers-logo.jpg"
                                                 class="img-fluid" alt="Brewers Decorator Centres">
@@ -891,7 +973,7 @@ get_header();
                                 </div>
                                 <div class="swiper-slide slick-cloned" data-slick-index="10" id="" aria-hidden="true"
                                     style="width: 232px;" tabindex="-1">
-                                    <div class="w-100" ><a class="w-100 d-block" target="_blank"
+                                    <div class="w-100"><a class="w-100 d-block" target="_blank"
                                             href="https://www.crowndecoratingcentres.co.uk/" rel="noopener"
                                             tabindex="-1" style="width: 100%; display: inline-block;">
                                             <img decoding="async"
@@ -901,8 +983,9 @@ get_header();
                                 </div>
                                 <div class="swiper-slide slick-cloned" data-slick-index="11" id="" aria-hidden="true"
                                     style="width: 232px;" tabindex="-1">
-                                    <div class="w-100" ><a class="w-100 d-block" target="_blank" href="https://www.thepaintshed.com/"
-                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                    <div class="w-100"><a class="w-100 d-block" target="_blank"
+                                            href="https://www.thepaintshed.com/" rel="noopener" tabindex="-1"
+                                            style="width: 100%; display: inline-block;">
                                             <img decoding="async"
                                                 src="https://fiddes.co.uk/app/uploads/2023/01/The-Paint-Shed.svg"
                                                 class="img-fluid" alt="The Paint Shed">
@@ -910,8 +993,9 @@ get_header();
                                 </div>
                                 <div class="swiper-slide slick-cloned" data-slick-index="12" id="" aria-hidden="true"
                                     style="width: 232px;" tabindex="-1">
-                                    <div class="w-100" ><a class="w-100 d-block" target="_blank" href="https://www.robbins.co.uk/"
-                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                    <div class="w-100"><a class="w-100 d-block" target="_blank"
+                                            href="https://www.robbins.co.uk/" rel="noopener" tabindex="-1"
+                                            style="width: 100%; display: inline-block;">
                                             <img decoding="async"
                                                 src="https://fiddes.co.uk/app/uploads/2023/01/Robbins-logo-hi-res-002.png"
                                                 class="img-fluid" alt="Robbins Timber">
@@ -919,8 +1003,9 @@ get_header();
                                 </div>
                                 <div class="swiper-slide slick-cloned" data-slick-index="13" id="" aria-hidden="true"
                                     style="width: 232px;" tabindex="-1">
-                                    <div class="w-100" ><a class="w-100 d-block" target="_blank" href="https://rabart.co.uk/" rel="noopener"
-                                            tabindex="-1" style="width: 100%; display: inline-block;">
+                                    <div class="w-100"><a class="w-100 d-block" target="_blank"
+                                            href="https://rabart.co.uk/" rel="noopener" tabindex="-1"
+                                            style="width: 100%; display: inline-block;">
                                             <img decoding="async"
                                                 src="https://fiddes.co.uk/app/uploads/2023/01/rabart-logonew2017.png"
                                                 class="img-fluid" alt="Rabart">
@@ -928,8 +1013,9 @@ get_header();
                                 </div>
                                 <div class="swiper-slide slick-cloned" data-slick-index="14" id="" aria-hidden="true"
                                     style="width: 232px;" tabindex="-1">
-                                    <div class="w-100" ><a class="w-100 d-block" target="_blank" href="https://www.paintstop.uk/"
-                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                    <div class="w-100"><a class="w-100 d-block" target="_blank"
+                                            href="https://www.paintstop.uk/" rel="noopener" tabindex="-1"
+                                            style="width: 100%; display: inline-block;">
                                             <img decoding="async"
                                                 src="https://fiddes.co.uk/app/uploads/2023/01/paint-stop-new.png"
                                                 class="img-fluid" alt="Paint Stop">
@@ -937,8 +1023,9 @@ get_header();
                                 </div>
                                 <div class="swiper-slide slick-cloned" data-slick-index="15" id="" aria-hidden="true"
                                     style="width: 232px;" tabindex="-1">
-                                    <div class="w-100" ><a class="w-100 d-block" target="_blank" href="https://nextdaypaint.co.uk/"
-                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                    <div class="w-100"><a class="w-100 d-block" target="_blank"
+                                            href="https://nextdaypaint.co.uk/" rel="noopener" tabindex="-1"
+                                            style="width: 100%; display: inline-block;">
                                             <img decoding="async"
                                                 src="https://fiddes.co.uk/app/uploads/2025/04/next-day-paint-logo.png"
                                                 class="img-fluid" alt="Next Day Paint">
@@ -946,8 +1033,9 @@ get_header();
                                 </div>
                                 <div class="swiper-slide slick-cloned" data-slick-index="16" id="" aria-hidden="true"
                                     style="width: 232px;" tabindex="-1">
-                                    <div class="w-100" ><a class="w-100 d-block" target="_blank" href="https://restorate.co.uk/"
-                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                    <div class="w-100"><a class="w-100 d-block" target="_blank"
+                                            href="https://restorate.co.uk/" rel="noopener" tabindex="-1"
+                                            style="width: 100%; display: inline-block;">
                                             <img decoding="async"
                                                 src="https://fiddes.co.uk/app/uploads/2025/04/restorate-logo.png"
                                                 class="img-fluid" alt="Restorate">
@@ -955,8 +1043,9 @@ get_header();
                                 </div>
                                 <div class="swiper-slide slick-cloned" data-slick-index="17" id="" aria-hidden="true"
                                     style="width: 232px;" tabindex="-1">
-                                    <div class="w-100" ><a class="w-100 d-block" target="_blank" href="https://www.wood-finishes-direct.com/"
-                                            rel="noopener" tabindex="-1" style="width: 100%; display: inline-block;">
+                                    <div class="w-100"><a class="w-100 d-block" target="_blank"
+                                            href="https://www.wood-finishes-direct.com/" rel="noopener" tabindex="-1"
+                                            style="width: 100%; display: inline-block;">
                                             <img decoding="async"
                                                 src="https://fiddes.co.uk/app/uploads/2025/04/wood-finishes-direct-logo.png"
                                                 class="img-fluid" alt="Wood Finishes Direct">
@@ -1013,7 +1102,7 @@ jQuery(document).ready(function($) {
     var swiper = new Swiper(".whereToBuySwiper", {
         slidesPerView: 4,
         spaceBetween: 20,
-        centeredSlides: true,      // Center active slide
+        centeredSlides: true, // Center active slide
         loop: true,
         autoplay: {
             delay: 3000, // 3 seconds
