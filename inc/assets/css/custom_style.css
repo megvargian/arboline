@@ -229,3 +229,7 @@ body.hide_scroll {
   height: auto;
   object-fit: cover;
 }
+
+.supplier-slider .slick-arrow {
+  top: 15% !important;
+}
