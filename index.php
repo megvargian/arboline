@@ -554,7 +554,7 @@ get_header();
                                     class="acf-spinner af-spinner"></span></div>
                         </div>
                     </form>
-                    <div class="">
+                    <div class="supplier-slider slick-initialized slick-slider">
                         <a type="button" class="slick-prev slick-arrow" style="">
                             <i class="bi bi-chevron-compact-left"></i>
                         </a>
