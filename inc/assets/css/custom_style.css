@@ -245,4 +245,5 @@ body.hide_scroll {
   margin: 0;
   padding: 16px;
   position: relative;
+  padding-top: 0;
 }
