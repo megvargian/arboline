@@ -199,10 +199,7 @@ $grid-breakpoints: (
 }
 
 #form_contact{
-	input, textarea{
+	input, textarea, select{
 		width: 100% !important;
-	}
-	.acf-form .af-fields .acf-label, .acf-form .af-fields label, .af-form .af-fields .acf-label, .af-form .af-fields label{
-		display: inline-block !important;
 	}
 }

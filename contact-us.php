@@ -68,7 +68,7 @@ get_header();
                     data-width="50" style="width: 50%; min-height: 549px;" data-name="personal_details"
                     data-key="field_632c4ccb6830f" data-type="group">
                     <div class="af-label acf-label">
-						<label for="acf-field_632c4ccb6830f">PERSONAL DETAILS</label>
+						<label for="acf-field_632c4ccb6830f" class="d-block mb-3">PERSONAL DETAILS</label>
 					</div>
                     <div class="af-input acf-input">
                         <div class="acf-fields -top -border">
@@ -173,7 +173,7 @@ get_header();
                                 style="width: 100%; min-height: 107px;" data-name="company_details" data-type="group"
                                 data-key="field_632c5c702d866" data-width="100">
                                 <div class="acf-label">
-                                    <label for="acf-field_632c4db7e5f94-field_632c5c702d866">COMPANY DETAILS</label>
+                                    <label for="acf-field_632c4db7e5f94-field_632c5c702d866" class="d-block mb-3">COMPANY DETAILS</label>
                                 </div>
                                 <div class="acf-input">
                                     <div class="acf-fields -top -border">
@@ -212,7 +212,7 @@ get_header();
                                 style="width: 100%; min-height: 410px;" data-name="message" data-type="group"
                                 data-key="field_632c4df1626c7" data-width="100">
                                 <div class="acf-label">
-                                    <label for="acf-field_632c4db7e5f94-field_632c4df1626c7">MESSAGE</label>
+                                    <label for="acf-field_632c4db7e5f94-field_632c4df1626c7" class="d-block mb-3">MESSAGE</label>
                                 </div>
                                 <div class="acf-input">
                                     <div class="acf-fields -top -border">
