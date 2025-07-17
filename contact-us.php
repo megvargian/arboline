@@ -72,7 +72,7 @@ get_header();
 					</div>
                     <div class="af-input acf-input">
                         <div class="acf-fields -top -border">
-                            <div class="acf-field acf-field-text acf-field-632c4cf268310 is-required col-6"
+                            <div class="acf-field acf-field-text acf-field-632c4cf268310 is-required col-lg-6 col-12"
                                 data-name="name" data-type="text" data-key="field_632c4cf268310" data-required="1">
                                 <div class="acf-label">
                                     <label for="acf-field_632c4ccb6830f-field_632c4cf268310">Name <span
@@ -85,7 +85,7 @@ get_header();
                                             required="required"></div>
                                 </div>
                             </div>
-                            <div class="acf-field acf-field-email acf-field-632c4d0868311 is-required col-6"
+                            <div class="acf-field acf-field-email acf-field-632c4d0868311 is-required col-lg-6 col-12"
                                 data-name="email" data-type="email" data-key="field_632c4d0868311" data-required="1">
                                 <div class="acf-label">
                                     <label for="acf-field_632c4ccb6830f-field_632c4d0868311">Email <span
@@ -177,7 +177,7 @@ get_header();
                                 </div>
                                 <div class="acf-input">
                                     <div class="acf-fields -top -border">
-                                        <div class="acf-field acf-field-text acf-field-632c5c852d867 col-6"
+                                        <div class="acf-field acf-field-text acf-field-632c5c852d867 col-lg-6 col-12"
                                             data-name="job_title" data-type="text" data-key="field_632c5c852d867">
                                             <div class="acf-label">
                                                 <label
@@ -191,7 +191,7 @@ get_header();
                                                         placeholder="Job Title"></div>
                                             </div>
                                         </div>
-                                        <div class="acf-field acf-field-text acf-field-632c5c8c2d868 col-6"
+                                        <div class="acf-field acf-field-text acf-field-632c5c8c2d868 col-lg-6 col-12"
                                             data-name="company_name" data-type="text" data-key="field_632c5c8c2d868">
                                             <div class="acf-label">
                                                 <label
