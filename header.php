@@ -290,7 +290,7 @@
                                 <p class="h2 text-uppercase underline mb-5 text-center"><span
                                         class="w-100 d-block">Categories</span></p>
                                 <nav
-                                    class="navbar navbar-expand-lg navbar-light bg-light flex-column align-items-start">
+                                    class="navbar navbar-expand-lg navbar-light bg-light flex-column align-items-start" style="background-color: #efefef !important">
                                     <ul id="productMegaNav" class="mx-0 p-0 w-50">
                                         <li
                                             class="menu-item mb-3  menu-item-type-taxonomy menu-item-object-product_cat  has-children dropdown">
@@ -907,18 +907,18 @@
                         </a>
                     </li>
                     <li class="menu-item font-weight-bold d-block w-100   ">
-                        <a href="https://arboline.com/product-catalogue/" class="text-uppercase py-1 d-block w-100">
+                        <a href="https://arboline.com/" class="text-uppercase py-1 d-block w-100">
                             Product Catalogue
                         </a>
                     </li>
                     <li class="menu-item font-weight-bold d-block w-100   ">
-                        <a href="https://arboline.com/restores-revives-protects/"
+                        <a href="https://arboline.com/about/"
                             class="text-uppercase py-1 d-block w-100">
                             About
                         </a>
                     </li>
                     <li class="menu-item font-weight-bold d-block w-100   ">
-                        <a href="https://arboline.com/articles-guides/" class="text-uppercase py-1 d-block w-100">
+                        <a href="https://arboline.com/guides/" class="text-uppercase py-1 d-block w-100">
                             GUIDES
                         </a>
                     </li>

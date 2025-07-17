@@ -6,7 +6,7 @@ get_header();
 ?>
 <section class="guide py-5">
     <div class="container pt-5">
-        <div style="height:30px" aria-hidden="true" class="wp-block-spacer"></div>
+        <div style="height:40px" aria-hidden="true" class="wp-block-spacer"></div>
         <h1 class="has-text-align-center underline"><span style="text-decoration: underline;">FIDDES GUIDES</span></h1>
         <div class="wp-block-articles-guides">
             <div class="how-to-guides row gx-2 gy-2 pt-3">

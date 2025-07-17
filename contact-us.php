@@ -64,24 +64,6 @@ get_header();
         <form class="af-form acf-form" method="POST" action="/" id="form_contact"
             data-key="form_contact">
             <div class="af-fields acf-fields acf-form-fields-top">
-                <div id="acf-form-data" class="acf-hidden">
-                    <input type="hidden" id="_acf_screen" name="_acf_screen" value="acf_form"><input type="hidden"
-                        id="_acf_post_id" name="_acf_post_id" value="0"><input type="hidden" id="_acf_validation"
-                        name="_acf_validation" value="1"><input type="hidden" id="_acf_form" name="_acf_form"
-                        value="0"><input type="hidden" id="_acf_nonce" name="_acf_nonce" value="767d7378c0"><input
-                        type="hidden" id="_acf_changed" name="_acf_changed" value="0">
-                </div>
-                <div class="acf-hidden"><input type="hidden" name="_acfnonce" value="c025dfae62"><input type="hidden"
-                        name="nonce" value="c025dfae62"><input type="hidden" name="af_form" value="form_contact"><input
-                        type="hidden" name="af_form_args"
-                        value="eyJhamF4IjpmYWxzZSwiZGlzcGxheV90aXRsZSI6ZmFsc2UsImRpc3BsYXlfZGVzY3JpcHRpb24iOmZhbHNlLCJpZCI6ImZvcm1fY29udGFjdCIsInZhbHVlcyI6W10sInN1Ym1pdF90ZXh0IjoiU3VibWl0IiwicmVkaXJlY3QiOiJodHRwczpcL1wvZmlkZGVzLmNvLnVrXC90aGFuay15b3VcLyIsInRhcmdldCI6Imh0dHBzOlwvXC9maWRkZXMuY28udWtcL2NvbnRhY3RcLyIsImVjaG8iOnRydWUsImV4Y2x1ZGVfZmllbGRzIjpbXSwidXBsb2FkZXIiOiJ3cCIsImZpbHRlcl9tb2RlIjpmYWxzZSwibGFiZWxfcGxhY2VtZW50IjoidG9wIiwiaW5zdHJ1Y3Rpb25fcGxhY2VtZW50IjoibGFiZWwiLCJob25leXBvdCI6dHJ1ZX0="><input
-                        type="hidden" name="_acf_form"
-                        value="eyJhamF4IjpmYWxzZSwiZGlzcGxheV90aXRsZSI6ZmFsc2UsImRpc3BsYXlfZGVzY3JpcHRpb24iOmZhbHNlLCJpZCI6ImZvcm1fY29udGFjdCIsInZhbHVlcyI6W10sInN1Ym1pdF90ZXh0IjoiU3VibWl0IiwicmVkaXJlY3QiOiJodHRwczpcL1wvZmlkZGVzLmNvLnVrXC90aGFuay15b3VcLyIsInRhcmdldCI6Imh0dHBzOlwvXC9maWRkZXMuY28udWtcL2NvbnRhY3RcLyIsImVjaG8iOnRydWUsImV4Y2x1ZGVfZmllbGRzIjpbXSwidXBsb2FkZXIiOiJ3cCIsImZpbHRlcl9tb2RlIjpmYWxzZSwibGFiZWxfcGxhY2VtZW50IjoidG9wIiwiaW5zdHJ1Y3Rpb25fcGxhY2VtZW50IjoibGFiZWwiLCJob25leXBvdCI6dHJ1ZX0="><input
-                        type="hidden" name="af_form_nonce" value="54ee57939d"><label
-                        for="af_email_for_non_humans_form_contact" aria-hidden="true">Email for non-humans</label><input
-                        type="text" name="email_for_non_humans" id="af_email_for_non_humans_form_contact" tabindex="-1"
-                        autocomplete="off"><input type="hidden" name="af_origin_url"
-                        value="https://fiddes.co.uk/contact/"></div>
                 <div class="af-field af-field-type-group af-field-personal-details acf-field acf-field-group acf-field-632c4ccb6830f -r0"
                     data-width="50" style="width: 50%; min-height: 549px;" data-name="personal_details"
                     data-key="field_632c4ccb6830f" data-type="group">
