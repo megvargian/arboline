@@ -197,3 +197,9 @@ $grid-breakpoints: (
 .custom-container-padding{
 	padding-top: 150px;
 }
+
+#form_contact{
+	input, textarea{
+		width: 100% !important;
+	}
+}
