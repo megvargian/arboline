@@ -67,7 +67,9 @@ get_header();
                 <div class="af-field af-field-type-group af-field-personal-details acf-field acf-field-group acf-field-632c4ccb6830f -r0"
                     data-width="50" style="width: 50%; min-height: 549px;" data-name="personal_details"
                     data-key="field_632c4ccb6830f" data-type="group">
-                    <div class="af-label acf-label"><label for="acf-field_632c4ccb6830f">PERSONAL DETAILS</label></div>
+                    <div class="af-label acf-label">
+						<label for="acf-field_632c4ccb6830f">PERSONAL DETAILS</label>
+					</div>
                     <div class="af-input acf-input">
                         <div class="acf-fields -top -border">
                             <div class="acf-field acf-field-text acf-field-632c4cf268310 is-required col-6"
@@ -77,7 +79,7 @@ get_header();
                                             class="acf-required">*</span></label>
                                 </div>
                                 <div class="acf-input">
-                                    <div class="acf-input-wrap"><input type="text"
+                                    <div class="acf-input-wrap w-100"><input type="text"
                                             id="acf-field_632c4ccb6830f-field_632c4cf268310"
                                             name="acf[field_632c4ccb6830f][field_632c4cf268310]" placeholder="Name"
                                             required="required"></div>
@@ -90,7 +92,7 @@ get_header();
                                             class="acf-required">*</span></label>
                                 </div>
                                 <div class="acf-input">
-                                    <div class="acf-input-wrap"><input type="email"
+                                    <div class="acf-input-wrap w-100"><input type="email"
                                             id="acf-field_632c4ccb6830f-field_632c4d0868311"
                                             name="acf[field_632c4ccb6830f][field_632c4d0868311]" placeholder="Email"
                                             required="required"></div>
@@ -102,7 +104,7 @@ get_header();
                                     <label for="acf-field_632c4ccb6830f-field_632c4d1568312">Address</label>
                                 </div>
                                 <div class="acf-input">
-                                    <div class="acf-input-wrap"><input type="text"
+                                    <div class="acf-input-wrap w-100"><input type="text"
                                             id="acf-field_632c4ccb6830f-field_632c4d1568312"
                                             name="acf[field_632c4ccb6830f][field_632c4d1568312]"
                                             placeholder="Address Line 1"></div>
@@ -114,7 +116,7 @@ get_header();
                                     <label for="acf-field_632c4ccb6830f-field_632c4d3368313">Address 2</label>
                                 </div>
                                 <div class="acf-input">
-                                    <div class="acf-input-wrap"><input type="text"
+                                    <div class="acf-input-wrap w-100"><input type="text"
                                             id="acf-field_632c4ccb6830f-field_632c4d3368313"
                                             name="acf[field_632c4ccb6830f][field_632c4d3368313]"
                                             placeholder="Address Line 2"></div>
@@ -126,7 +128,7 @@ get_header();
                                     <label for="acf-field_632c4ccb6830f-field_632c4d4068314">Town / City</label>
                                 </div>
                                 <div class="acf-input">
-                                    <div class="acf-input-wrap"><input type="text"
+                                    <div class="acf-input-wrap w-100"><input type="text"
                                             id="acf-field_632c4ccb6830f-field_632c4d4068314"
                                             name="acf[field_632c4ccb6830f][field_632c4d4068314]"
                                             placeholder="Town / City"></div>
@@ -138,7 +140,7 @@ get_header();
                                     <label for="acf-field_632c4ccb6830f-field_632c4d6268315">Postcode</label>
                                 </div>
                                 <div class="acf-input">
-                                    <div class="acf-input-wrap"><input type="text"
+                                    <div class="acf-input-wrap w-100"><input type="text"
                                             id="acf-field_632c4ccb6830f-field_632c4d6268315"
                                             name="acf[field_632c4ccb6830f][field_632c4d6268315]" placeholder="Postcode">
                                     </div>
@@ -152,7 +154,7 @@ get_header();
                                             class="acf-required">*</span></label>
                                 </div>
                                 <div class="acf-input">
-                                    <div class="acf-input-wrap"><input type="text"
+                                    <div class="acf-input-wrap w-100"><input type="text"
                                             id="acf-field_632c4ccb6830f-field_632c4d6b68316"
                                             name="acf[field_632c4ccb6830f][field_632c4d6b68316]"
                                             placeholder="Contact Number" required="required"></div>
@@ -183,7 +185,7 @@ get_header();
                                                     Title</label>
                                             </div>
                                             <div class="acf-input">
-                                                <div class="acf-input-wrap"><input type="text"
+                                                <div class="acf-input-wrap w-100"><input type="text"
                                                         id="acf-field_632c4db7e5f94-field_632c5c702d866-field_632c5c852d867"
                                                         name="acf[field_632c4db7e5f94][field_632c5c702d866][field_632c5c852d867]"
                                                         placeholder="Job Title"></div>
@@ -197,7 +199,7 @@ get_header();
                                                     Name</label>
                                             </div>
                                             <div class="acf-input">
-                                                <div class="acf-input-wrap"><input type="text"
+                                                <div class="acf-input-wrap w-100"><input type="text"
                                                         id="acf-field_632c4db7e5f94-field_632c5c702d866-field_632c5c8c2d868"
                                                         name="acf[field_632c4db7e5f94][field_632c5c702d866][field_632c5c8c2d868]"
                                                         placeholder="Company Name"></div>
