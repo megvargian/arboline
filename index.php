@@ -503,41 +503,6 @@ get_header();
 </section>
 <script>
 jQuery(document).ready(function($) {
-    var swiper = new Swiper(".whereToBuySwiper", {
-        slidesPerView: 4,
-        spaceBetween: 20,
-        centeredSlides: true, // Center active slide
-        loop: true,
-        autoplay: {
-            delay: 3000, // 3 seconds
-            disableOnInteraction: true, // Keeps autoplay after user swipes
-        },
-        navigation: {
-            nextEl: ".slick-next",
-            prevEl: ".slick-prev",
-        },
-        breakpoints: {
-            // when window width is >= 320px
-            320: {
-                slidesPerView: 1.5,
-                spaceBetween: 20,
-            },
-            // when window width is >= 480px
-            480: {
-                slidesPerView: 1.5,
-                spaceBetween: 30,
-            },
-            // when window width is >= 640px
-            640: {
-                slidesPerView: 2,
-                spaceBetween: 40,
-            },
-            991: {
-                slidesPerView: 4,
-                spaceBetween: 50,
-            }
-        }
-    });
 })
 </script>
 <?php
