@@ -21,6 +21,9 @@
 	}
 }
 @media screen and (max-width: 991px) {
+	.custom-container-padding{
+		padding-top: 50px;
+	}
 	header.active{
 		transform: translateY(0%);
 	}

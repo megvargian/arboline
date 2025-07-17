@@ -4,7 +4,7 @@
  */
 get_header();
 ?>
-<div class="container">
+<div class="container custom-container-padding">
     <div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
     <h1 class="has-text-align-center underline"><span style="text-decoration: underline;">CONTACT</span></h1>
     <div class="wp-block-cover alignfull is-light intro d-none" style="min-height: 900px;"><span aria-hidden="true"
@@ -63,7 +63,7 @@ get_header();
     <div class="is-layout-flow wp-block-group p-4 mb-4 has-gray-100-background-color has-background">
         <form class="af-form acf-form" method="POST" action="/" id="form_contact"
             data-key="form_contact">
-            <div class="af-fields acf-fields acf-form-fields -top">
+            <div class="af-fields acf-fields acf-form-fields-top">
                 <div id="acf-form-data" class="acf-hidden">
                     <input type="hidden" id="_acf_screen" name="_acf_screen" value="acf_form"><input type="hidden"
                         id="_acf_post_id" name="_acf_post_id" value="0"><input type="hidden" id="_acf_validation"
