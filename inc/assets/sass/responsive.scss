@@ -312,6 +312,11 @@
 			display: block !important
 		}
 	}
+	#form_contact{
+		.dynamic-width{
+			width: 100%;
+		}
+	}
 }
 @media (max-width: 575px){
 	// general

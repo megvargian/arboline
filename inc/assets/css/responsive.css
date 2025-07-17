@@ -350,6 +350,9 @@
   .cat-single-product:hover .main-thumbnail-img-mobile {
     display: block !important;
   }
+  #form_contact .dynamic-width {
+    width: 100%;
+  }
 }
 @media (max-width: 575px) {
   h2 {

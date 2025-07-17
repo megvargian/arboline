@@ -63,9 +63,9 @@ get_header();
     <div class="is-layout-flow wp-block-group p-4 mb-4 has-gray-100-background-color has-background">
         <form class="af-form acf-form" method="POST" action="/" id="form_contact"
             data-key="form_contact">
-            <div class="af-fields acf-fields acf-form-fields-top">
-                <div class="af-field af-field-type-group af-field-personal-details acf-field acf-field-group acf-field-632c4ccb6830f -r0"
-                    data-width="50" style="width: 50%; min-height: 549px;" data-name="personal_details"
+            <div class="af-fields acf-fields acf-form-fields-top d-md-flex d-block">
+                <div class="af-field af-field-type-group af-field-personal-details acf-field acf-field-group acf-field-632c4ccb6830f -r0 dynamic-width"
+                    data-width="50" style="min-height: 549px;" data-name="personal_details"
                     data-key="field_632c4ccb6830f" data-type="group">
                     <div class="af-label acf-label">
 						<label for="acf-field_632c4ccb6830f" class="d-block mb-3">PERSONAL DETAILS</label>
@@ -163,8 +163,8 @@ get_header();
                         </div>
                     </div>
                 </div>
-                <div class="af-field af-field-type-group af-field-col2 acf-field acf-field-group acf-field-632c4db7e5f94 -r0"
-                    data-width="50" style="width: 50%; min-height: 549px;" data-name="col2"
+                <div class="af-field af-field-type-group af-field-col2 acf-field acf-field-group acf-field-632c4db7e5f94 -r0 dynamic-width"
+                    data-width="50" style="min-height: 549px;" data-name="col2"
                     data-key="field_632c4db7e5f94" data-type="group">
                     <div class="af-label acf-label"><label for="acf-field_632c4db7e5f94"></label></div>
                     <div class="af-input acf-input">

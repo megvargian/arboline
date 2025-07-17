@@ -247,3 +247,6 @@ body.hide_scroll {
   position: relative;
   padding-top: 0;
 }
+#form_contact .dynamic-width {
+  width: 50%;
+}
