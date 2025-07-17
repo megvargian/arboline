@@ -5,7 +5,7 @@
 get_header();
 ?>
 <section class="info_content py-5">
-    <div class="container">
+    <div class="container pt-5">
         <div class="wp-block-cover alignfull is-light pt-3 pt-lg-5"><span aria-hidden="true"
                 class="wp-block-cover__background has-white-background-color has-background-dim-90 has-background-dim"></span><img
                 decoding="async" width="2560" height="551" class="wp-block-cover__image-background wp-image-2244" alt=""
