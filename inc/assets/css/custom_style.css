@@ -241,3 +241,6 @@ body.hide_scroll {
 #form_contact input, #form_contact textarea {
   width: 100% !important;
 }
+#form_contact .acf-form .af-fields .acf-label, #form_contact .acf-form .af-fields label, #form_contact .af-form .af-fields .acf-label, #form_contact .af-form .af-fields label {
+  display: inline-block !important;
+}
