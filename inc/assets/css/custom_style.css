@@ -241,3 +241,8 @@ body.hide_scroll {
 #form_contact input, #form_contact textarea, #form_contact select {
   width: 100% !important;
 }
+#form_contact .acf-field {
+  margin: 0;
+  padding: 16px;
+  position: relative;
+}
