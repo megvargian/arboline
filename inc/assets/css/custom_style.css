@@ -263,3 +263,7 @@ body.hide_scroll {
   text-align: center;
   text-transform: uppercase;
 }
+
+.woocommerce-breadcrumb {
+  padding-top: 4rem;
+}
