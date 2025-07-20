@@ -76,43 +76,43 @@ global $wp_query;
 					<div class="mb-4">
 						<p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">
 							<a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1"
-								href="https://fiddes.co.uk/product/danish-oil/">
+								href="https://arboline.com/product/test/">
 								FIDDES Danish Oil <i class="bi bi-chevron-right"></i>
 							</a>
 						</p>
 						<p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">
 							<a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1"
-								href="https://fiddes.co.uk/product/raw-linseed-oil/">
+								href="https://arboline.com/product/test/">
 								FIDDES Raw Linseed Oil <i class="bi bi-chevron-right"></i>
 							</a>
 						</p>
 						<p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">
 							<a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1"
-								href="https://fiddes.co.uk/product/boiled-linseed-oil/">
+								href="https://arboline.com/product/test/">
 								FIDDES Boiled Linseed Oil <i class="bi bi-chevron-right"></i>
 							</a>
 						</p>
 						<p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">
 							<a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1"
-								href="https://fiddes.co.uk/product/teak-oil/">
+								href="https://arboline.com/product/test/">
 								FIDDES Teak Oil <i class="bi bi-chevron-right"></i>
 							</a>
 						</p>
 						<p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">
 							<a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1"
-								href="https://fiddes.co.uk/product/white-polishing-oil/">
+								href="https://arboline.com/product/test/">
 								FIDDES White Polishing Oil <i class="bi bi-chevron-right"></i>
 							</a>
 						</p>
 						<p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">
 							<a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1"
-								href="https://fiddes.co.uk/product/finishing-oil/">
+								href="https://arboline.com/product/test/">
 								FIDDES Finishing Oil <i class="bi bi-chevron-right"></i>
 							</a>
 						</p>
 						<p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">
 							<a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1"
-								href="https://fiddes.co.uk/product/pure-tung-oil/">
+								href="https://arboline.com/product/test/">
 								FIDDES Pure Tung Oil <i class="bi bi-chevron-right"></i>
 							</a>
 						</p>

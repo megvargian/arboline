@@ -990,7 +990,7 @@
         </div>
         <script>
         jQuery(document).ready(function($) {
-            <?php if(is_product_category()){ ?>
+            <?php if(is_product_category() || is_product()){ ?>
                 $("header").addClass("active");
                 $('.banner--menu-row').css({
                     'border-top-width': '0px',
