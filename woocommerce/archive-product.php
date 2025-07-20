@@ -22,7 +22,7 @@ global $counter_products;
 global $product;
 global $wp_query;
 ?>
-<div class="container pt-5 mt-5">
+<div class="container">
 	<div class="row">
 		<?php
 			/**
