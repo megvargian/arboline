@@ -4,78 +4,85 @@
 */
 
 get_header();
-$count = 0;
-$args = array(
-    'cat' => get_query_var('cat'),
-    'post_type'         =>  'product',
-    'posts_per_page'    =>    6,
-    'order'             =>  'DSC',
-    'orderby'           =>  'date',
-);
-$query = new WP_Query($args);
 ?>
-<pre><?php print_r($query); ?></pre>
 <section class="single_category">
-    <div class="container">
-        <div class="row text-center pb-5">
-            <h1><?php echo single_cat_title(); ?></h1>
+    <nav class="woocommerce-breadcrumb"><a href="https://fiddes.co.uk">Home</a>&nbsp;/&nbsp;<a
+            href="https://fiddes.co.uk/product-category/wood-finishes/">Interior Wood Finishes</a>&nbsp;/&nbsp;Oils
+    </nav>
+    <div class="row">
+        <div class="woocommerce-products-header col-12  col-md-6 ">
+            <img src="https://fiddes.co.uk/app/uploads/2022/12/Fiddes-Group-Tins_OILS.jpg" alt="Oils"
+                class="img-fluid w-100">
         </div>
-        <div id="post-container" class="row gx-md-5">
-            <?php
-                if ( $query -> have_posts() ) :
-                    while ( $query -> have_posts() ) :  $query -> the_post();
-                        $count++;
-            ?>
+        <div class="col-12  col-md-6 ">
+            <header class="d-flex justify-content-center mb-4 flex-column">
+                <h1 class="woocommerce-products-header__title page-title">Oils</h1>
+                <p></p>
+            </header>
+            <div class="woocommerce-notices-wrapper"></div>
+            <p class="woocommerce-result-count">
+                Showing all 7 results</p>
+            <form class="woocommerce-ordering" method="get">
+                <select name="orderby" class="orderby" aria-label="Shop order">
+                    <option value="menu_order" selected="selected">Default sorting</option>
+                    <option value="popularity">Sort by popularity</option>
+                    <option value="date">Sort by latest</option>
+                    <option value="price">Sort by price: low to high</option>
+                    <option value="price-desc">Sort by price: high to low</option>
+                </select>
+                <input type="hidden" name="paged" value="1">
+            </form>
+            <ul class="products columns-6">
 
-            <?php
-                   endwhile;
-                endif;
-            ?>
-        </div>
-        <div class="row text-center justify-content-center d-flex pt-5">
-            <button id="load-more-button">
-                <?php echo 'Read More'; ?>
-            </button>
+                <div class="mb-4">
+                    <p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">
+                        <a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1"
+                            href="https://fiddes.co.uk/product/danish-oil/">
+                            FIDDES Danish Oil <i class="bi bi-chevron-right"></i>
+                        </a>
+                    </p>
+                    <p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">
+                        <a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1"
+                            href="https://fiddes.co.uk/product/raw-linseed-oil/">
+                            FIDDES Raw Linseed Oil <i class="bi bi-chevron-right"></i>
+                        </a>
+                    </p>
+                    <p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">
+                        <a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1"
+                            href="https://fiddes.co.uk/product/boiled-linseed-oil/">
+                            FIDDES Boiled Linseed Oil <i class="bi bi-chevron-right"></i>
+                        </a>
+                    </p>
+                    <p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">
+                        <a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1"
+                            href="https://fiddes.co.uk/product/teak-oil/">
+                            FIDDES Teak Oil <i class="bi bi-chevron-right"></i>
+                        </a>
+                    </p>
+                    <p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">
+                        <a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1"
+                            href="https://fiddes.co.uk/product/white-polishing-oil/">
+                            FIDDES White Polishing Oil <i class="bi bi-chevron-right"></i>
+                        </a>
+                    </p>
+                    <p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">
+                        <a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1"
+                            href="https://fiddes.co.uk/product/finishing-oil/">
+                            FIDDES Finishing Oil <i class="bi bi-chevron-right"></i>
+                        </a>
+                    </p>
+                    <p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">
+                        <a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1"
+                            href="https://fiddes.co.uk/product/pure-tung-oil/">
+                            FIDDES Pure Tung Oil <i class="bi bi-chevron-right"></i>
+                        </a>
+                    </p>
+                </div>
+            </ul>
         </div>
     </div>
 </section>
 <script>
-jQuery(document).ready(function($) {
-    var page = 2; // Set the initial page number
-    var category_id = <?php echo get_query_var('cat'); ?>; // Get the current category ID
-
-    <?php if($count < 6 ){ ?>
-        $('#load-more-button').hide();
-    <?php } ?>
-
-    // Function to load more posts via AJAX
-    function loadMorePosts() {
-        $.ajax({
-            type: 'POST',
-            url: '<?php echo admin_url('admin-ajax.php'); ?>',
-            data: {
-                action: 'load_more_posts',
-                page: page,
-                category_id: category_id,
-            },
-            success: function(response) {
-                if (response === ''){
-                    $('#load-more-button').hide();
-                }
-                if (response) {
-                    $('#post-container').append(response);
-                    page++;
-                } else {
-                    // No more posts to load
-                    $('#load-more-button').hide();
-                }
-            },
-        });
-    }
-    // Trigger the AJAX call when the button is clicked
-    $('#load-more-button').click(function() {
-        loadMorePosts();
-    });
-});
+jQuery(document).ready(function($) {});
 </script>
 <?php get_footer(); ?>
