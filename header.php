@@ -990,7 +990,7 @@
         </div>
         <script>
         jQuery(document).ready(function($) {
-            <?php if(is_product_category()){
+            <?php if(is_product_category()){ ?>
                 $("header").addClass("active");
                 $('.banner--menu-row').css({
                     'border-top-width': '0px',
@@ -1007,7 +1007,6 @@
                     opacity: 0,
                     height: '0px'
                 });
-            ?>
             <?php } else { ?>
                 $(window).scroll(function() {
                     var currentScreenPosition = $(document).scrollTop();
@@ -1051,7 +1050,7 @@
                         'margin-top': '0px',
                     });
                 });
-            <?php  }?>
+            <?php } ?>
         });
         </script>
         <div id="content" class="site-content">
