@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
 
 global $product;
 ?>
-<div class="container">
+<div class="container py-5 mt-5">
     <div class="row">
         <?php
         /**
@@ -38,7 +38,7 @@ if ( post_password_required() ) {
 }
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?> class="px-0">
-    <div class="container py-5 mt-5">
+    <div class="container">
         <div class="row">
             <div class="col-md-5 col-12">
                 <div class="row px-0">
