@@ -570,7 +570,7 @@
                                 </p>
                                 <a class="text-uppercase" href="https://arboline.com/product-catalogue/">
                                     <img class="w-100 img-fluid" alt="FIDDES Product Catalogue"
-                                        src="https://fiddes.co.uk/app/uploads/2023/01/catalogue-image.png">
+                                        src="<?php echo get_template_directory_uri(); ?>/inc/assets/images/catalogue-image.png">
                                 </a>
                             </div>
                         </div>

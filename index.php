@@ -3,6 +3,7 @@
  * Template Name: Homepage
  */
 get_header();
+$dir_iamges = get_template_directory_uri() . 'inc/assets/images/';
 ?>
 <?php
 	// while ( have_posts() ) : the_post();
@@ -14,7 +15,7 @@ get_header();
             aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim"
             style="background-color:#57420e"></span><video class="wp-block-cover__video-background intrinsic-ignore"
             autoplay="" muted="" loop="" playsinline=""
-            src="https://fiddes.co.uk/app/uploads/2023/02/home-application-vid.mp4" data-object-fit="cover"></video>
+            src="<?php echo $dir_iamges; ?>home-application-vid.mp4" data-object-fit="cover"></video>
         <div class="wp-block-cover__inner-container" style="margin-top: 0%;">
             <h2 class="d-inline-block intro-text has-white-color has-text-color has-background"
                 style="background-color:#00000000">Wood. Finished.</h2>
@@ -38,18 +39,18 @@ get_header();
             class="wp-block-cover__background has-white-background-color has-background-dim-90 has-background-dim">
         </span>
         <img decoding="async" width="2560" height="551" class="wp-block-cover__image-background wp-image-2244" alt=""
-            src="https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-scaled.jpg"
+            src="<?php echo $dir_iamges; ?>wood-grain@2x-100-min-scaled.jpg"
             style="object-position:10% 54%" data-object-fit="cover" data-object-position="10% 54%"
-            srcset="https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-scaled.jpg 2560w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-scaled-600x129.jpg 600w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-300x65.jpg 300w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-1024x220.jpg 1024w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-768x165.jpg 768w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-1536x330.jpg 1536w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-2048x440.jpg 2048w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-1320x284.jpg 1320w"
+            srcset="<?php echo $dir_iamges; ?>wood-grain@2x-100-min-scaled.jpg 2560w, <?php echo $dir_iamges; ?>wood-grain@2x-100-min-scaled-600x129.jpg 600w, <?php echo $dir_iamges; ?>wood-grain@2x-100-min-300x65.jpg 300w, <?php echo $dir_iamges; ?>wood-grain@2x-100-min-1024x220.jpg 1024w, <?php echo $dir_iamges; ?>wood-grain@2x-100-min-768x165.jpg 768w, <?php echo $dir_iamges; ?>wood-grain@2x-100-min-1536x330.jpg 1536w, <?php echo $dir_iamges; ?>wood-grain@2x-100-min-2048x440.jpg 2048w, <?php echo $dir_iamges; ?>wood-grain@2x-100-min-1320x284.jpg 1320w"
             sizes="(max-width: 2560px) 100vw, 2560px">
         <div class="wp-block-cover__inner-container">
             <div class="wp-block-cover alignfull is-light contained-bg mb-0 pb-0"><span aria-hidden="true"
                     class="wp-block-cover__background has-secondary-background-color has-background-dim-0 has-background-dim"></span><img
                     decoding="async" loading="lazy" width="2560" height="1449"
                     class="wp-block-cover__image-background wp-image-2303" alt=""
-                    src="https://fiddes.co.uk/app/uploads/2022/11/1896-1.png" style="object-position:50% 48%"
+                    src="<?php echo $dir_iamges; ?>1896-1.png" style="object-position:50% 48%"
                     data-object-fit="cover" data-object-position="50% 48%"
-                    srcset="https://fiddes.co.uk/app/uploads/2022/11/1896-1.png 2560w, https://fiddes.co.uk/app/uploads/2022/11/1896-1-600x340.png 600w, https://fiddes.co.uk/app/uploads/2022/11/1896-1-300x170.png 300w, https://fiddes.co.uk/app/uploads/2022/11/1896-1-1024x580.png 1024w, https://fiddes.co.uk/app/uploads/2022/11/1896-1-768x435.png 768w, https://fiddes.co.uk/app/uploads/2022/11/1896-1-1536x869.png 1536w, https://fiddes.co.uk/app/uploads/2022/11/1896-1-2048x1159.png 2048w, https://fiddes.co.uk/app/uploads/2022/11/1896-1-1320x747.png 1320w"
+                    srcset="<?php echo $dir_iamges; ?>1896-1.png 2560w, <?php echo $dir_iamges; ?>1896-1-600x340.png 600w, <?php echo $dir_iamges; ?>1896-1-300x170.png 300w, <?php echo $dir_iamges; ?>1896-1-1024x580.png 1024w, <?php echo $dir_iamges; ?>1896-1-768x435.png 768w, <?php echo $dir_iamges; ?>1896-1-1536x869.png 1536w, <?php echo $dir_iamges; ?>1896-1-2048x1159.png 2048w, <?php echo $dir_iamges; ?>1896-1-1320x747.png 1320w"
                     sizes="(max-width: 2560px) 100vw, 2560px">
                 <div class="wp-block-cover__inner-container">
                     <div class="is-layout-flex wp-container-4 wp-block-columns are-vertically-aligned-center mb-0">
@@ -57,9 +58,9 @@ get_header();
                             <figure
                                 class="mx-auto justify-content-center d-flex align-items-center size-large is-resized mb-1">
                                 <img decoding="async" loading="lazy"
-                                    src="https://fiddes.co.uk/app/uploads/2022/11/uk-flag-1024x609.png" alt=""
+                                    src="<?php echo $dir_iamges; ?>uk-flag-1024x609.png" alt=""
                                     class="wp-image-2534" width="76" height="45"
-                                    srcset="https://fiddes.co.uk/app/uploads/2022/11/uk-flag-1024x609.png 1024w, https://fiddes.co.uk/app/uploads/2022/11/uk-flag-600x357.png 600w, https://fiddes.co.uk/app/uploads/2022/11/uk-flag-300x178.png 300w, https://fiddes.co.uk/app/uploads/2022/11/uk-flag-768x457.png 768w, https://fiddes.co.uk/app/uploads/2022/11/uk-flag.png 1116w"
+                                    srcset="<?php echo $dir_iamges; ?>uk-flag-1024x609.png 1024w, <?php echo $dir_iamges; ?>uk-flag-600x357.png 600w, <?php echo $dir_iamges; ?>uk-flag-300x178.png 300w, <?php echo $dir_iamges; ?>uk-flag-768x457.png 768w, <?php echo $dir_iamges; ?>uk-flag.png 1116w"
                                     sizes="(max-width: 76px) 100vw, 76px">
                             </figure>
 
@@ -90,7 +91,7 @@ get_header();
                         </div>
                         <div class="is-layout-flow wp-block-column is-vertically-aligned-center mb-0">
                             <figure class="wp-block-image size-full"><img decoding="async" loading="lazy" width="850"
-                                    height="844" src="https://fiddes.co.uk/app/uploads/2022/12/FIDDES-LID.png" alt=""
+                                    height="844" src="<?php echo $dir_iamges; ?>FIDDES-LID.png" alt=""
                                     class="wp-image-3288"
                                     srcset="https://fiddes.co.uk/app/uploads/2022/12/FIDDES-LID.png 850w, https://fiddes.co.uk/app/uploads/2022/12/FIDDES-LID-200x200.png 200w, https://fiddes.co.uk/app/uploads/2022/12/FIDDES-LID-600x596.png 600w, https://fiddes.co.uk/app/uploads/2022/12/FIDDES-LID-300x298.png 300w, https://fiddes.co.uk/app/uploads/2022/12/FIDDES-LID-150x150.png 150w, https://fiddes.co.uk/app/uploads/2022/12/FIDDES-LID-768x763.png 768w, https://fiddes.co.uk/app/uploads/2022/12/FIDDES-LID-32x32.png 32w"
                                     sizes="(max-width: 850px) 100vw, 850px"></figure>
@@ -173,7 +174,7 @@ get_header();
             class="wp-block-cover__background has-gray-100-background-color has-background-dim-0 has-background-dim"></span><img
             decoding="async" loading="lazy" width="2560" height="1128"
             class="wp-block-cover__image-background wp-image-30801" alt=""
-            src="https://fiddes.co.uk/app/uploads/2024/01/raw-ultra-bg-scaled-1.jpg" style="object-position:52% 100%"
+            src="<?php echo $dir_iamges; ?>raw-ultra-bg-scaled-1.jpg" style="object-position:52% 100%"
             data-object-fit="cover" data-object-position="52% 100%"
             srcset="https://fiddes.co.uk/app/uploads/2024/01/raw-ultra-bg-scaled-1.jpg 2560w, https://fiddes.co.uk/app/uploads/2024/01/raw-ultra-bg-scaled-1-300x132.jpg 300w, https://fiddes.co.uk/app/uploads/2024/01/raw-ultra-bg-scaled-1-1024x451.jpg 1024w, https://fiddes.co.uk/app/uploads/2024/01/raw-ultra-bg-scaled-1-768x338.jpg 768w, https://fiddes.co.uk/app/uploads/2024/01/raw-ultra-bg-scaled-1-1536x677.jpg 1536w, https://fiddes.co.uk/app/uploads/2024/01/raw-ultra-bg-scaled-1-2048x902.jpg 2048w, https://fiddes.co.uk/app/uploads/2024/01/raw-ultra-bg-scaled-1-600x264.jpg 600w"
             sizes="(max-width: 2560px) 100vw, 2560px">
@@ -186,7 +187,7 @@ get_header();
 
                     <figure class="wp-block-image aligncenter size-full is-resized mb-5"><a href="#"><img
                                 decoding="async" loading="lazy"
-                                src="https://fiddes.co.uk/app/uploads/2024/01/new-fiddes-ultra-raw.svg" alt=""
+                                src="<?php echo $dir_iamges; ?>new-fiddes-ultra-raw.svg" alt=""
                                 class="wp-image-30800" width="395" height="395"></a></figure>
 
 
@@ -201,7 +202,7 @@ get_header();
                 <div class="is-layout-flow wp-block-column is-vertically-aligned-center" style="flex-basis:50%">
                     <figure class="wp-block-image aligncenter size-full is-resized mb-0 mt-n4"><a href="#"><img
                                 decoding="async" loading="lazy"
-                                src="https://fiddes.co.uk/app/uploads/2024/01/Fiddes-HWO-2.5lt-3D_Ultra-Raw.png" alt=""
+                                src="<?php echo $dir_iamges; ?>Fiddes-HWO-2.5lt-3D_Ultra-Raw.png" alt=""
                                 class="wp-image-30802" width="502" height="469"
                                 srcset="https://fiddes.co.uk/app/uploads/2024/01/Fiddes-HWO-2.5lt-3D_Ultra-Raw.png 1000w, https://fiddes.co.uk/app/uploads/2024/01/Fiddes-HWO-2.5lt-3D_Ultra-Raw-300x280.png 300w, https://fiddes.co.uk/app/uploads/2024/01/Fiddes-HWO-2.5lt-3D_Ultra-Raw-768x717.png 768w, https://fiddes.co.uk/app/uploads/2024/01/Fiddes-HWO-2.5lt-3D_Ultra-Raw-600x560.png 600w"
                                 sizes="(max-width: 502px) 100vw, 502px"></a></figure>
@@ -213,7 +214,7 @@ get_header();
             class="wp-block-cover__background has-background-dim-10 has-background-dim"
             style="background-color:#717171"></span><img decoding="async" loading="lazy" width="2000" height="430"
             class="wp-block-cover__image-background wp-image-2499" alt=""
-            src="https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1.jpg" style="object-position:9% 35%"
+            src="<?php echo $dir_iamges; ?>wood-grain-1.jpg" style="object-position:9% 35%"
             data-object-fit="cover" data-object-position="9% 35%"
             srcset="https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1.jpg 2000w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1-600x129.jpg 600w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1-300x65.jpg 300w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1-1024x220.jpg 1024w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1-768x165.jpg 768w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1-1536x330.jpg 1536w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1-1320x284.jpg 1320w"
             sizes="(max-width: 2000px) 100vw, 2000px">
@@ -223,7 +224,7 @@ get_header();
                     class="is-layout-flex wp-container-15 wp-block-columns are-vertically-aligned-top mb-0 pt-0 pt-lg-5 pb-0 gap-2">
                     <div class="is-layout-flow wp-block-column is-vertically-aligned-top">
                         <figure class="wp-block-image size-full mb-0"><img decoding="async" loading="lazy" width="896"
-                                height="794" src="https://fiddes.co.uk/app/uploads/2022/12/hwo-image.png" alt=""
+                                height="794" src="<?php echo $dir_iamges; ?>hwo-image.png" alt=""
                                 class="wp-image-3252"
                                 srcset="https://fiddes.co.uk/app/uploads/2022/12/hwo-image.png 896w, https://fiddes.co.uk/app/uploads/2022/12/hwo-image-600x532.png 600w, https://fiddes.co.uk/app/uploads/2022/12/hwo-image-300x266.png 300w, https://fiddes.co.uk/app/uploads/2022/12/hwo-image-768x681.png 768w"
                                 sizes="(max-width: 896px) 100vw, 896px"></figure>
@@ -289,9 +290,9 @@ get_header();
             class="wp-block-cover__background has-white-background-color has-background-dim-90 has-background-dim"></span><img
             decoding="async" loading="lazy" width="2560" height="551"
             class="wp-block-cover__image-background wp-image-2244" alt=""
-            src="https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-scaled.jpg"
+            src="<?php echo $dir_iamges; ?>wood-grain@2x-100-min-scaled.jpg"
             style="object-position:12% 50%" data-object-fit="cover" data-object-position="12% 50%"
-            srcset="https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-scaled.jpg 2560w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-scaled-600x129.jpg 600w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-300x65.jpg 300w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-1024x220.jpg 1024w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-768x165.jpg 768w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-1536x330.jpg 1536w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-2048x440.jpg 2048w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-1320x284.jpg 1320w"
+            srcset="<?php echo $dir_iamges; ?>wood-grain@2x-100-min-scaled.jpg 2560w, <?php echo $dir_iamges; ?>wood-grain@2x-100-min-scaled-600x129.jpg 600w, <?php echo $dir_iamges; ?>wood-grain@2x-100-min-300x65.jpg 300w, <?php echo $dir_iamges; ?>wood-grain@2x-100-min-1024x220.jpg 1024w, <?php echo $dir_iamges; ?>wood-grain@2x-100-min-768x165.jpg 768w, <?php echo $dir_iamges; ?>wood-grain@2x-100-min-1536x330.jpg 1536w, <?php echo $dir_iamges; ?>wood-grain@2x-100-min-2048x440.jpg 2048w, <?php echo $dir_iamges; ?>wood-grain@2x-100-min-1320x284.jpg 1320w"
             sizes="(max-width: 2560px) 100vw, 2560px">
         <div class="wp-block-cover__inner-container">
             <div class="is-layout-flow wp-block-group alignfull mb-0 has-background" style="background-color:#ffffff00">
@@ -351,7 +352,7 @@ get_header();
 
                     <div class="is-layout-flow wp-block-column is-vertically-aligned-center">
                         <figure class="wp-block-image size-full mb-0"><img decoding="async" loading="lazy" width="896"
-                                height="794" src="https://fiddes.co.uk/app/uploads/2022/12/fiddes-wood-finishes-1.png"
+                                height="794" src="<?php echo $dir_iamges; ?>fiddes-wood-finishes-1.png"
                                 alt="" class="wp-image-3481"
                                 srcset="https://fiddes.co.uk/app/uploads/2022/12/fiddes-wood-finishes-1.png 896w, https://fiddes.co.uk/app/uploads/2022/12/fiddes-wood-finishes-1-600x532.png 600w, https://fiddes.co.uk/app/uploads/2022/12/fiddes-wood-finishes-1-300x266.png 300w, https://fiddes.co.uk/app/uploads/2022/12/fiddes-wood-finishes-1-768x681.png 768w"
                                 sizes="(max-width: 896px) 100vw, 896px"></figure>
@@ -364,7 +365,7 @@ get_header();
             class="wp-block-cover__background has-background-dim-10 has-background-dim"
             style="background-color:#717171"></span><img decoding="async" loading="lazy" width="2000" height="430"
             class="wp-block-cover__image-background wp-image-2499" alt=""
-            src="https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1.jpg" style="object-position:10% 33%"
+            src="<?php echo $dir_iamges; ?>wood-grain-1.jpg" style="object-position:10% 33%"
             data-object-fit="cover" data-object-position="10% 33%"
             srcset="https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1.jpg 2000w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1-600x129.jpg 600w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1-300x65.jpg 300w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1-1024x220.jpg 1024w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1-768x165.jpg 768w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1-1536x330.jpg 1536w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1-1320x284.jpg 1320w"
             sizes="(max-width: 2000px) 100vw, 2000px">
@@ -373,7 +374,7 @@ get_header();
                 <div class="is-layout-flex wp-container-23 wp-block-columns mb-0 pt-0 pt-lg-5 pb-0 gap-2">
                     <div class="is-layout-flow wp-block-column is-vertically-aligned-center">
                         <figure class="wp-block-image size-full mb-0"><img decoding="async" loading="lazy" width="896"
-                                height="794" src="https://fiddes.co.uk/app/uploads/2023/02/exterior-finishes-img.png"
+                                height="794" src="<?php echo $dir_iamges; ?>exterior-finishes-img.png"
                                 alt="" class="wp-image-3887"
                                 srcset="https://fiddes.co.uk/app/uploads/2023/02/exterior-finishes-img.png 896w, https://fiddes.co.uk/app/uploads/2023/02/exterior-finishes-img-600x532.png 600w, https://fiddes.co.uk/app/uploads/2023/02/exterior-finishes-img-300x266.png 300w, https://fiddes.co.uk/app/uploads/2023/02/exterior-finishes-img-768x681.png 768w"
                                 sizes="(max-width: 896px) 100vw, 896px"></figure>
@@ -434,9 +435,9 @@ get_header();
             class="wp-block-cover__background has-white-background-color has-background-dim-90 has-background-dim"></span><img
             decoding="async" loading="lazy" width="2560" height="551"
             class="wp-block-cover__image-background wp-image-2244" alt=""
-            src="https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-scaled.jpg"
+            src="<?php echo $dir_iamges; ?>wood-grain@2x-100-min-scaled.jpg"
             style="object-position:12% 50%" data-object-fit="cover" data-object-position="12% 50%"
-            srcset="https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-scaled.jpg 2560w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-scaled-600x129.jpg 600w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-300x65.jpg 300w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-1024x220.jpg 1024w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-768x165.jpg 768w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-1536x330.jpg 1536w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-2048x440.jpg 2048w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-1320x284.jpg 1320w"
+            srcset="<?php echo $dir_iamges; ?>wood-grain@2x-100-min-scaled.jpg 2560w, <?php echo $dir_iamges; ?>wood-grain@2x-100-min-scaled-600x129.jpg 600w, <?php echo $dir_iamges; ?>wood-grain@2x-100-min-300x65.jpg 300w, <?php echo $dir_iamges; ?>wood-grain@2x-100-min-1024x220.jpg 1024w, <?php echo $dir_iamges; ?>wood-grain@2x-100-min-768x165.jpg 768w, <?php echo $dir_iamges; ?>wood-grain@2x-100-min-1536x330.jpg 1536w, <?php echo $dir_iamges; ?>wood-grain@2x-100-min-2048x440.jpg 2048w, <?php echo $dir_iamges; ?>wood-grain@2x-100-min-1320x284.jpg 1320w"
             sizes="(max-width: 2560px) 100vw, 2560px">
         <div class="wp-block-cover__inner-container">
             <div class="is-layout-flow wp-block-group alignfull mb-0 has-background" style="background-color:#ffffff00">
@@ -456,7 +457,7 @@ get_header();
                                                     <!-- wp:image {"id":2322,"sizeSlug":"large","linkDestination":"none"} -->
                                                     <figure class="wp-block-image size-large"><img decoding="async"
                                                             loading="lazy" width="1024" height="732"
-                                                            src="https://fiddes.co.uk/app/uploads/2022/09/bee-2-1-1024x732.png"
+                                                            src="<?php echo $dir_iamges; ?>bee-2-1-1024x732.png"
                                                             alt="" class="wp-image-2322"
                                                             srcset="https://fiddes.co.uk/app/uploads/2022/09/bee-2-1-1024x732.png 1024w, https://fiddes.co.uk/app/uploads/2022/09/bee-2-1-600x429.png 600w, https://fiddes.co.uk/app/uploads/2022/09/bee-2-1-300x214.png 300w, https://fiddes.co.uk/app/uploads/2022/09/bee-2-1-768x549.png 768w, https://fiddes.co.uk/app/uploads/2022/09/bee-2-1-1536x1097.png 1536w, https://fiddes.co.uk/app/uploads/2022/09/bee-2-1-1320x943.png 1320w, https://fiddes.co.uk/app/uploads/2022/09/bee-2-1.png 1576w"
                                                             sizes="(max-width: 1024px) 100vw, 1024px"></figure>
