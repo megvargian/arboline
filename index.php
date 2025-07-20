@@ -3,7 +3,7 @@
  * Template Name: Homepage
  */
 get_header();
-$dir_iamges = get_template_directory_uri() . 'inc/assets/images/';
+$dir_iamges = get_template_directory_uri() . '/inc/assets/images/';
 ?>
 <?php
 	// while ( have_posts() ) : the_post();
