@@ -22,7 +22,7 @@ global $counter_products;
 global $product;
 global $wp_query;
 ?>
-<div class="container">
+<div class="container pt-5 mt-5">
 	<div class="row">
 		<?php
 			/**
@@ -46,8 +46,8 @@ global $wp_query;
 		?>
 	</div>
 </div>
-<div id="product-list" class="pt-5 mt-5">
-	<div class="container pt-5">
+<div id="product-list" class="pt-5">
+	<div class="container">
 		<div class="row">
 			<div class="woocommerce-products-header col-12  col-md-6 ">
 				<img src="https://fiddes.co.uk/app/uploads/2022/12/Fiddes-Group-Tins_OILS.jpg" alt="Oils"
