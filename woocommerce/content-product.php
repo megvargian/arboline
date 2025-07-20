@@ -108,9 +108,9 @@ if ( empty( $product ) || ! $product->is_visible() ) {
                 srcset="https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Polishing-Cloth-scaled-300x300.jpg 300w, https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Polishing-Cloth-scaled-200x200.jpg 200w, https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Polishing-Cloth-scaled-600x600.jpg 600w, https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Polishing-Cloth-scaled-150x150.jpg 150w, https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Polishing-Cloth-scaled-768x768.jpg 768w, https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Polishing-Cloth-scaled.jpg 850w"
                 sizes="(max-width: 300px) 100vw, 300px">
             <h2 class="woocommerce-loop-product__title">Mutton Cloth</h2>
-            <span class="price"><span class="woocommerce-Price-amount amount"><bdi><span
+            <!-- <span class="price"><span class="woocommerce-Price-amount amount"><bdi><span
                             class="woocommerce-Price-currencySymbol">£</span>10.60</bdi></span> <small
-                    class="woocommerce-price-suffix">INC. VAT</small></span>
+                    class="woocommerce-price-suffix">INC. VAT</small></span> -->
         </a><a href="https://arboline.com/product/test/" data-quantity="1"
             class="button wp-element-button product_type_simple" data-product_id="1027" data-product_sku=""
             aria-label="Read more about “Mutton Cloth”" rel="nofollow">Shop now</a>

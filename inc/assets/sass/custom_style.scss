@@ -212,3 +212,15 @@ $grid-breakpoints: (
 		width: 50%;
 	}
 }
+.woocommerce-loop-product__title{
+	align-items: flex-end;
+    display: flex;
+    font-family: $sans_book;
+    font-size: .9375rem;
+    font-weight: 500;
+    justify-content: center;
+    letter-spacing: .05em;
+    min-height: 50px;
+    text-align: center;
+    text-transform: uppercase;
+}

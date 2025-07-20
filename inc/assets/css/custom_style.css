@@ -250,3 +250,16 @@ body.hide_scroll {
 #form_contact .dynamic-width {
   width: 50%;
 }
+
+.woocommerce-loop-product__title {
+  align-items: flex-end;
+  display: flex;
+  font-family: "gillsansnova_book";
+  font-size: 0.9375rem;
+  font-weight: 500;
+  justify-content: center;
+  letter-spacing: 0.05em;
+  min-height: 50px;
+  text-align: center;
+  text-transform: uppercase;
+}
