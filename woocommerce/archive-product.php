@@ -41,16 +41,13 @@ global $wp_query;
 			 *
 			 * @hooked woocommerce_product_taxonomy_archive_header - 10
 			 */
-			do_action( 'woocommerce_shop_loop_header' );
+			// do_action( 'woocommerce_shop_loop_header' );
 			// custom_product_filter();
 		?>
 	</div>
 </div>
-<div id="product-list" class="pt-4">
+<div id="product-list" class="pt-5 mt-5">
 	<div class="container pt-5">
-		<nav class="woocommerce-breadcrumb"><a href="https://fiddes.co.uk">Home</a>&nbsp;/&nbsp;<a
-			href="https://fiddes.co.uk/product-category/wood-finishes/">Interior Wood Finishes</a>&nbsp;/&nbsp;Oils
-		</nav>
 		<div class="row">
 			<div class="woocommerce-products-header col-12  col-md-6 ">
 				<img src="https://fiddes.co.uk/app/uploads/2022/12/Fiddes-Group-Tins_OILS.jpg" alt="Oils"

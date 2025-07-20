@@ -1032,15 +1032,7 @@
                     'margin-top': '0px',
                 });
             });
-            // $('.main-menu-link.sub-menu').hover(function() {
-            //     $('.header-active-background-gray').toggleClass("active");
-            // })
-            // $('.menu_mobile_nav').click(function(event) {
-            //     $(this).toggleClass('active');
-            //     $('html, body').toggleClass('hide_scroll');
-            //     $('.menu_on_mobile').toggleClass('active');
-            //     $('.display_background_of_the_page').toggleClass('mobile_active');
-            // });
+
         });
         </script>
         <div id="content" class="site-content">
