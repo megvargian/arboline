@@ -265,5 +265,5 @@ body.hide_scroll {
 }
 
 .woocommerce-breadcrumb {
-  padding-top: 4rem;
+  padding-top: 4rem !important;
 }
