@@ -40,7 +40,7 @@ if ( post_password_required() ) {
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?> class="px-0">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-12">
+            <div class="col-md-5 col-12">
                 <div class="row px-0">
                     <?php
                     /**
@@ -54,7 +54,7 @@ if ( post_password_required() ) {
                 </div>
             </div>
 
-            <div class="col-md-4 col-12">
+            <div class="col-md-7 col-12">
                 <div class="summary entry-summary w-100">
                     <?php
                     /**

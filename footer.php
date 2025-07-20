@@ -9,7 +9,7 @@
  * @package WP_Bootstrap_Starter
  */
 ?>
-        <?php if(!is_product_category() || !is_product()){ ?>
+        <?php if(!is_product_category() && !is_product()){ ?>
             <div class="wp-block-cover alignfull is-light" style="min-height:60vh"><span aria-hidden="true"
                     class="wp-block-cover__background has-background-dim-10 has-background-dim"
                     style="background-color:#717171"></span><img decoding="async" loading="lazy" width="2000" height="430"
