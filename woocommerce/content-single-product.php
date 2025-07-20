@@ -94,7 +94,7 @@ if ( post_password_required() ) {
                                 </h2>
                                 <div id="collapse-description" class="accordion-collapse collapse" aria-labelledby="heading-description" data-bs-parent="#accordionExample-description">
                                     <div class="accordion-body">
-                                        <p><?php echo // $long_description; ?></p>
+                                        <p><?php // echo  $long_description; ?></p>
                                     </div>
                                 </div>
                             </div>
