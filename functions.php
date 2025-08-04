@@ -881,6 +881,23 @@ function save_product_data_sheet_meta_fields($post_id) {
 add_action('woocommerce_process_product_meta', 'save_product_data_sheet_meta_fields');
 
 /**
+ * Debug function to check product short description
+ */
+function debug_product_short_description() {
+    if (is_product()) {
+        global $product;
+        if ($product) {
+            $short_desc = $product->get_short_description();
+            if (current_user_can('manage_options')) { // Only show to admins
+                echo '<!-- DEBUG: Short Description Length: ' . strlen($short_desc) . ' -->';
+                echo '<!-- DEBUG: Short Description Content: ' . esc_html($short_desc) . ' -->';
+            }
+        }
+    }
+}
+add_action('wp_head', 'debug_product_short_description');
+
+/**
  * Ensure WooCommerce theme support and customizations
  */
 function arboline_woocommerce_support() {
@@ -1020,10 +1037,27 @@ function arboline_woocommerce_custom_styles() {
 
         /* Product description below image */
         .woocommerce-product-details__short-description {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #666;
-            padding: 15px 0;
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            color: #666 !important;
+            padding: 15px !important;
+            margin: 15px 0 !important;
+            display: block !important;
+            visibility: visible !important;
+            background: #f9f9f9 !important;
+            border: 1px solid #e0e0e0 !important;
+            border-radius: 5px !important;
+        }
+
+        .woocommerce-product-details__short-description p {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        /* Debug styling for no description */
+        .no-short-description {
+            display: block !important;
+            visibility: visible !important;
         }
 
         /* Product title and price styling */

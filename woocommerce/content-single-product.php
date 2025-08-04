@@ -59,9 +59,16 @@ if ( post_password_required() ) {
                 </div>
 
                 <!-- Product Description below image -->
-                <?php if ( $product->get_short_description() ) : ?>
-                <div class="woocommerce-product-details__short-description mt-3">
-                    <?php echo wp_kses_post( $product->get_short_description() ); ?>
+                <?php
+                $short_description = $product->get_short_description();
+                if ( $short_description ) : ?>
+                <div class="woocommerce-product-details__short-description mt-3" style="background: #f9f9f9; padding: 15px; border: 1px solid #e0e0e0; border-radius: 5px;">
+                    <?php echo wp_kses_post( $short_description ); ?>
+                </div>
+                <?php else : ?>
+                <!-- Debug: No short description found -->
+                <div class="no-short-description mt-3" style="background: #fff3cd; padding: 15px; border: 1px solid #ffc107; border-radius: 5px; color: #856404;">
+                    <p><em>No short description available for this product.</em></p>
                 </div>
                 <?php endif; ?>
             </div>
@@ -93,18 +100,16 @@ if ( post_password_required() ) {
             </div>
         </div>
 
-        <!-- Description Accordion Section -->
-        <?php
-        $long_description = $product->get_description();
-        if($long_description){
-        ?>
         <div class="row">
-            <div class="single-description-section">
-                <div class="accordion w-100" id="accordionExample-description">
-                    <div class="accordion-item" style="border-top: none !important; border-left: none !important; border-right: none !important;">
+            <div class="accordion mb-5" id="accordionProduct">
+                <?php
+                    $long_description = $product->get_description();
+                    if($long_description){
+                ?>
+                    <div class="accordion-item">
                         <h2 class="accordion-header mt-0" id="heading-description">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-description" aria-expanded="false" aria-controls="collapse-description">
-                                Description
+                                <?php echo esc_html( $product->get_name() ); ?>
                             </button>
                         </h2>
                         <div id="collapse-description" class="accordion-collapse collapse" aria-labelledby="heading-description" data-bs-parent="#accordionExample-description">
@@ -113,13 +118,7 @@ if ( post_password_required() ) {
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <?php } ?>
-
-        <div class="row">
-            <div class="accordion mb-5" id="accordionProduct">
+                <?php } ?>
                 <?php
                 $attributes = $product->get_attributes();
                 $has_weight = $product->has_weight();
