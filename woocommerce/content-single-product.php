@@ -93,10 +93,20 @@ if ( post_password_required() ) {
                                     ?>
                                 </select>
                             </div>
+
+                            <!-- Variable Price Display -->
+                            <div class="variable-price mb-3">
+                                <span id="selected-price" class="price-display"><?php echo $product->get_price_html(); ?></span>
+                            </div>
+                        <?php else : ?>
+                            <!-- Simple Product Price -->
+                            <div class="simple-price mb-3">
+                                <span class="price-display"><?php echo $product->get_price_html(); ?></span>
+                            </div>
                         <?php endif; ?>
 
                         <!-- Quantity and Add to Cart -->
-                        <div class="quantity-and-cart d-flex align-items-center gap-3">
+                        <div class="quantity-and-cart d-flex align-items-stretch">
                             <!-- Quantity Controls -->
                             <div class="quantity-controls d-flex align-items-center">
                                 <button type="button" class="quantity-btn minus-btn" data-action="minus">−</button>
@@ -121,47 +131,78 @@ if ( post_password_required() ) {
 
                     .size-dropdown {
                         width: 100%;
-                        padding: 12px 15px;
-                        border: 1px solid #ddd;
-                        border-radius: 4px;
+                        padding: 15px 20px;
+                        border: 1px solid #000;
+                        border-radius: 0;
                         background: white;
                         font-size: 16px;
-                        color: #666;
+                        color: #333;
+                        appearance: none;
+                        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+                        background-position: right 15px center;
+                        background-repeat: no-repeat;
+                        background-size: 16px;
+                        height: 50px;
+                    }
+
+                    .size-dropdown:focus {
+                        outline: none;
+                        border-color: #000;
+                    }
+
+                    .price-display {
+                        font-size: 18px;
+                        font-weight: 600;
+                        color: #000;
                     }
 
                     .quantity-and-cart {
-                        gap: 15px;
+                        gap: 0;
+                        height: 50px;
                     }
 
                     .quantity-controls {
-                        border: 1px solid #ddd;
-                        border-radius: 4px;
-                        overflow: hidden;
+                        border: 1px solid #000;
+                        border-radius: 0;
+                        display: flex;
+                        align-items: stretch;
+                        height: 50px;
                     }
 
                     .quantity-btn {
-                        background: #f8f9fa;
+                        background: white;
                         border: none;
-                        padding: 12px 15px;
+                        border-right: 1px solid #000;
+                        padding: 0;
                         font-size: 18px;
                         font-weight: bold;
                         cursor: pointer;
                         transition: background 0.3s;
-                        min-width: 45px;
-                        height: 45px;
+                        width: 50px;
+                        height: 50px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+                    .quantity-btn:last-child {
+                        border-right: none;
                     }
 
                     .quantity-btn:hover {
-                        background: #e9ecef;
+                        background: #f5f5f5;
                     }
 
                     .quantity-input {
                         border: none;
+                        border-right: 1px solid #000;
                         text-align: center;
-                        padding: 12px 10px;
-                        width: 60px;
+                        padding: 0;
+                        width: 80px;
                         font-size: 16px;
                         background: white;
+                        height: 50px;
+                        margin: 0;
                     }
 
                     .quantity-input:focus {
@@ -169,22 +210,23 @@ if ( post_password_required() ) {
                     }
 
                     .add-to-cart-btn {
-                        background: #28a745;
+                        background: #000;
                         color: white;
                         border: none;
-                        padding: 12px 30px;
+                        padding: 0 30px;
                         font-size: 16px;
                         font-weight: 600;
                         text-transform: uppercase;
-                        border-radius: 4px;
+                        border-radius: 0;
                         cursor: pointer;
                         transition: background 0.3s;
                         flex-grow: 1;
-                        min-height: 45px;
+                        height: 50px;
+                        margin-left: 15px;
                     }
 
                     .add-to-cart-btn:hover {
-                        background: #218838;
+                        background: #333;
                     }
 
                     .add-to-cart-btn:disabled {
@@ -203,10 +245,40 @@ if ( post_password_required() ) {
                     .cart-messages.error {
                         color: #dc3545;
                     }
+
+                    /* Remove default price styling from above */
+                    .summary .price {
+                        display: none;
+                    }
                     </style>
 
                     <script>
                     jQuery(document).ready(function($) {
+                        // Variable product price update
+                        <?php if ( $product->is_type( 'variable' ) ) : ?>
+                        var variations = <?php echo json_encode( $product->get_available_variations() ); ?>;
+
+                        $('#product-size').on('change', function() {
+                            var selectedSize = $(this).val();
+                            var $priceDisplay = $('#selected-price');
+
+                            if (selectedSize) {
+                                // Find matching variation
+                                var matchingVariation = variations.find(function(variation) {
+                                    return variation.attributes.attribute_pa_size === selectedSize;
+                                });
+
+                                if (matchingVariation) {
+                                    $priceDisplay.html(matchingVariation.price_html);
+                                } else {
+                                    $priceDisplay.html('<?php echo $product->get_price_html(); ?>');
+                                }
+                            } else {
+                                $priceDisplay.html('<?php echo $product->get_price_html(); ?>');
+                            }
+                        });
+                        <?php endif; ?>
+
                         // Quantity controls
                         $('.quantity-btn').on('click', function() {
                             var $input = $('#product-quantity');
@@ -295,12 +367,12 @@ if ( post_password_required() ) {
                 ?>
                     <div class="accordion-item">
                         <h2 class="accordion-header mt-0" id="heading-description">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-description" aria-expanded="false" aria-controls="collapse-description">
+                            <button class="accordion-button collapsed" style="box-shadow: none !important;" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-description" aria-expanded="false" aria-controls="collapse-description">
                                 <?php echo esc_html( $product->get_name() ); ?>
                             </button>
                         </h2>
                         <div id="collapse-description" class="accordion-collapse collapse" aria-labelledby="heading-description" data-bs-parent="#accordionExample-description">
-                            <div class="accordion-body">
+                            <div class="accordion-body px-0">
                                 <?php echo wp_kses_post( $long_description ); ?>
                             </div>
                         </div>
