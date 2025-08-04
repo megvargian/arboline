@@ -19,6 +19,10 @@ defined( 'ABSPATH' ) || exit;
 
 global $product;
 
+// Get the product attributes and available variations
+$attributes = $product->get_variation_attributes();
+$available_variations = $product->get_available_variations();
+
 $attribute_keys  = array_keys( $attributes );
 $variations_json = wp_json_encode( $available_variations );
 $variations_attr = function_exists( 'wc_esc_json' ) ? wc_esc_json( $variations_json ) : _wp_specialchars( $variations_json, ENT_QUOTES, 'UTF-8', true );

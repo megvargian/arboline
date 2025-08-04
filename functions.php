@@ -660,7 +660,8 @@ add_action( 'wp_ajax_nopriv_form_custom_add_to_cart', 'form_custom_add_to_cart' 
 add_action('woocommerce_single_product_summary', 'remove_product_category', 20);
 
 function remove_product_category() {
-    remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
+    // Comment out the meta removal since we use it in our custom template
+    // remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
 }
 
 // add for images in single prodcut page
@@ -673,11 +674,12 @@ function custom_enqueue_fancybox() {
 }
 add_action('wp_enqueue_scripts', 'custom_enqueue_fancybox');
 
-// Remove default actions
+// Remove default actions for custom product layout
 remove_action('woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10);
 remove_action('woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20);
 // add custom structure for related products in single product page woocommerce
 remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+// Note: We keep the excerpt removal here as it's handled in our custom template
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20);
 // Add custom action for product images with FancyBox
 add_action('woocommerce_before_single_product_summary', 'display_product_images_with_fancybox', 20);
@@ -893,11 +895,13 @@ add_action('after_setup_theme', 'arboline_woocommerce_support');
  * Customize WooCommerce single product page layout
  */
 function arboline_single_product_customizations() {
-    // Remove default WooCommerce hooks that we're replacing with custom layout
+    // Only remove hooks that we're completely replacing with custom layout
+    // Keep add_to_cart and meta hooks as they're used in our template
     remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', 5);
     remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10);
     remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 10);
     remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20);
+    // Keep add_to_cart and meta actions as we use them via do_action in our template
 }
 add_action('init', 'arboline_single_product_customizations');
 
@@ -911,6 +915,9 @@ function arboline_woocommerce_custom_styles() {
         /* Custom quantity input styling */
         .quantity-wrapper {
             margin: 15px 0;
+            display: flex !important;
+            align-items: center;
+            justify-content: flex-start;
         }
 
         .quantity-wrapper .btn {
@@ -922,6 +929,7 @@ function arboline_woocommerce_custom_styles() {
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
         }
 
         .quantity-wrapper .btn:hover {
@@ -940,17 +948,30 @@ function arboline_woocommerce_custom_styles() {
             border: 1px solid #ddd;
             margin: 0;
             padding: 0 5px;
+            border-radius: 4px;
+        }
+
+        /* Ensure variations form is visible */
+        .variations_form {
+            display: block !important;
+            width: 100%;
         }
 
         /* Size dropdown styling */
-        .variations select {
+        .variations {
             width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .variations select {
+            width: 100% !important;
             padding: 10px 15px;
             border: 1px solid #ddd;
             border-radius: 4px;
             background: white;
             font-size: 16px;
             margin-bottom: 15px;
+            display: block;
         }
 
         .variations th {
@@ -959,6 +980,19 @@ function arboline_woocommerce_custom_styles() {
 
         .variations td {
             padding: 0;
+            width: 100%;
+        }
+
+        /* Single variation wrapper */
+        .single_variation_wrap {
+            display: block !important;
+            width: 100%;
+        }
+
+        /* Variation add to cart wrapper */
+        .woocommerce-variation-add-to-cart {
+            display: block !important;
+            width: 100%;
         }
 
         /* Add to cart button styling */
@@ -1032,6 +1066,34 @@ function arboline_woocommerce_custom_styles() {
             text-decoration: underline;
         }
         </style>
+
+        <script>
+        jQuery(document).ready(function($) {
+            // Initialize WooCommerce variation form
+            if (typeof wc_add_to_cart_variation_params !== 'undefined') {
+                $('.variations_form').wc_variation_form();
+            }
+
+            // Ensure quantity buttons work
+            $(document).on('click', '.quantity-wrapper .plus', function() {
+                var input = $(this).siblings('.quantity').find('input');
+                var val = parseInt(input.val()) || 0;
+                var max = parseInt(input.attr('max')) || 999;
+                if (val < max) {
+                    input.val(val + 1).trigger('change');
+                }
+            });
+
+            $(document).on('click', '.quantity-wrapper .minus', function() {
+                var input = $(this).siblings('.quantity').find('input');
+                var val = parseInt(input.val()) || 0;
+                var min = parseInt(input.attr('min')) || 1;
+                if (val > min) {
+                    input.val(val - 1).trigger('change');
+                }
+            });
+        });
+        </script>
         <?php
     }
 }

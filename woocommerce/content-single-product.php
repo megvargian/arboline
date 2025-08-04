@@ -90,38 +90,34 @@ if ( post_password_required() ) {
                     do_action( 'woocommerce_template_single_meta' );
                     ?>
                 </div>
-                <div class="after-summary">
-                    <?php
-                    /**
-                     * Hook: woocommerce_after_single_product_summary.
-                     *
-                     * @hooked woocommerce_output_product_data_tabs - 10
-                     * @hooked woocommerce_upsell_display - 15
-                     */
-                    // Custom description section
-                    $long_description = $product->get_description();
-                    if($long_description){
-                    ?>
-                    <div class="single-description-section">
-                        <div class="accordion w-100" id="accordionExample-description">
-                            <div class="accordion-item" style="border-top: none !important; border-left: none !important; border-right: none !important;">
-                                <h2 class="accordion-header mt-0" id="heading-description">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-description" aria-expanded="true" aria-controls="collapse-description">
-                                        Description
-                                    </button>
-                                </h2>
-                                <div id="collapse-description" class="accordion-collapse collapse" aria-labelledby="heading-description" data-bs-parent="#accordionExample-description">
-                                    <div class="accordion-body">
-                                        <?php echo wp_kses_post( $long_description ); ?>
-                                    </div>
-                                </div>
+            </div>
+        </div>
+
+        <!-- Description Accordion Section -->
+        <?php
+        $long_description = $product->get_description();
+        if($long_description){
+        ?>
+        <div class="row">
+            <div class="single-description-section">
+                <div class="accordion w-100" id="accordionExample-description">
+                    <div class="accordion-item" style="border-top: none !important; border-left: none !important; border-right: none !important;">
+                        <h2 class="accordion-header mt-0" id="heading-description">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-description" aria-expanded="false" aria-controls="collapse-description">
+                                Description
+                            </button>
+                        </h2>
+                        <div id="collapse-description" class="accordion-collapse collapse" aria-labelledby="heading-description" data-bs-parent="#accordionExample-description">
+                            <div class="accordion-body">
+                                <?php echo wp_kses_post( $long_description ); ?>
                             </div>
                         </div>
                     </div>
-                    <?php } ?>
                 </div>
             </div>
         </div>
+        <?php } ?>
+
         <div class="row">
             <div class="accordion mb-5" id="accordionProduct">
                 <?php
