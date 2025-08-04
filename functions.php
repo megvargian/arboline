@@ -828,3 +828,75 @@ function set_products_per_page($query) {
     }
 }
 add_action('per_get_posts', 'set_products_per_page');
+
+/**
+ * Add custom meta fields for product data sheet
+ */
+function add_product_data_sheet_meta_fields() {
+    global $post;
+
+    echo '<div class="options_group">';
+
+    woocommerce_wp_text_input(
+        array(
+            'id' => '_product_data_sheet_url',
+            'label' => __('Data Sheet URL', 'woocommerce'),
+            'placeholder' => 'https://example.com/datasheet.pdf',
+            'desc_tip' => 'true',
+            'description' => __('Enter the URL to the product data sheet/PDF.', 'woocommerce'),
+        )
+    );
+
+    woocommerce_wp_text_input(
+        array(
+            'id' => '_product_data_sheet_name',
+            'label' => __('Data Sheet Name', 'woocommerce'),
+            'placeholder' => 'Product Data Sheet',
+            'desc_tip' => 'true',
+            'description' => __('Enter the display name for the data sheet link.', 'woocommerce'),
+        )
+    );
+
+    echo '</div>';
+}
+add_action('woocommerce_product_options_general_product_data', 'add_product_data_sheet_meta_fields');
+
+/**
+ * Save custom meta fields for product data sheet
+ */
+function save_product_data_sheet_meta_fields($post_id) {
+    $data_sheet_url = $_POST['_product_data_sheet_url'];
+    $data_sheet_name = $_POST['_product_data_sheet_name'];
+
+    if (!empty($data_sheet_url)) {
+        update_post_meta($post_id, '_product_data_sheet_url', esc_url($data_sheet_url));
+    }
+
+    if (!empty($data_sheet_name)) {
+        update_post_meta($post_id, '_product_data_sheet_name', sanitize_text_field($data_sheet_name));
+    }
+}
+add_action('woocommerce_process_product_meta', 'save_product_data_sheet_meta_fields');
+
+/**
+ * Ensure WooCommerce theme support and customizations
+ */
+function arboline_woocommerce_support() {
+    add_theme_support('woocommerce');
+    add_theme_support('wc-product-gallery-zoom');
+    add_theme_support('wc-product-gallery-lightbox');
+    add_theme_support('wc-product-gallery-slider');
+}
+add_action('after_setup_theme', 'arboline_woocommerce_support');
+
+/**
+ * Customize WooCommerce single product page layout
+ */
+function arboline_single_product_customizations() {
+    // Remove default WooCommerce hooks that we're replacing with custom layout
+    remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', 5);
+    remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10);
+    remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 10);
+    remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20);
+}
+add_action('init', 'arboline_single_product_customizations');
