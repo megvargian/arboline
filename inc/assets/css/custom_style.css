@@ -267,3 +267,7 @@ body.hide_scroll {
 .woocommerce-breadcrumb {
   padding-top: 4rem !important;
 }
+
+.single-product h1 {
+  font-weight: 400 !important;
+}

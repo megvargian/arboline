@@ -42,7 +42,7 @@ if ( post_password_required() ) {
 	return;
 }
 ?>
-<div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?> class="px-0">
+<div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?> class="px-0 single-product">
     <div class="container py-5 pt-3 mt-2">
         <div class="row">
             <div class="col-md-5 col-12">
@@ -58,35 +58,222 @@ if ( post_password_required() ) {
                     ?>
                 </div>
 
-                <!-- Product Description below image -->
-                <?php
-                $short_description = $product->get_short_description();
-                if ( $short_description ) : ?>
-                <div class="woocommerce-product-details__short-description mt-3" style="background: #f9f9f9; padding: 15px; border: 1px solid #e0e0e0; border-radius: 5px;">
-                    <?php echo wp_kses_post( $short_description ); ?>
-                </div>
-                <?php else : ?>
-                <!-- Debug: No short description found -->
-                <div class="no-short-description mt-3" style="background: #fff3cd; padding: 15px; border: 1px solid #ffc107; border-radius: 5px; color: #856404;">
-                    <p><em>No short description available for this product.</em></p>
-                </div>
-                <?php endif; ?>
+                <!-- Product Description will be moved to right column -->
             </div>
 
             <div class="col-md-7 col-12">
                 <div class="summary entry-summary w-100">
                     <h1 class="product_title entry-title"><?php echo esc_html( $product->get_name() ); ?></h1>
 
+                    <!-- Product Short Description below title -->
+                    <?php
+                    $short_description = $product->get_short_description();
+                    if ( $short_description ) : ?>
+                    <div class="woocommerce-product-details__short-description mt-3 mb-4">
+                        <?php echo wp_kses_post( $short_description ); ?>
+                    </div>
+                    <?php endif; ?>
+
                     <p class="price"><?php echo $product->get_price_html(); ?></p>
 
-                    <?php
-                    /**
-                     * Hook: woocommerce_template_single_add_to_cart.
-                     *
-                     * @hooked woocommerce_template_single_add_to_cart - 30
-                     */
-                    do_action( 'woocommerce_template_single_add_to_cart' );
-                    ?>
+                    <!-- Custom Add to Cart Form -->
+                    <div class="custom-add-to-cart-section">
+                        <?php if ( $product->is_type( 'variable' ) ) : ?>
+                            <!-- Size Dropdown for Variable Products -->
+                            <div class="size-selector mb-3">
+                                <select id="product-size" class="form-select size-dropdown" name="attribute_pa_size">
+                                    <option value="">Size</option>
+                                    <?php
+                                    $attributes = $product->get_variation_attributes();
+                                    if ( isset( $attributes['pa_size'] ) ) {
+                                        foreach ( $attributes['pa_size'] as $size ) {
+                                            echo '<option value="' . esc_attr( $size ) . '">' . esc_html( $size ) . '</option>';
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        <?php endif; ?>
+
+                        <!-- Quantity and Add to Cart -->
+                        <div class="quantity-and-cart d-flex align-items-center gap-3">
+                            <!-- Quantity Controls -->
+                            <div class="quantity-controls d-flex align-items-center">
+                                <button type="button" class="quantity-btn minus-btn" data-action="minus">−</button>
+                                <input type="number" id="product-quantity" class="quantity-input" value="1" min="1" max="999">
+                                <button type="button" class="quantity-btn plus-btn" data-action="plus">+</button>
+                            </div>
+
+                            <!-- Add to Cart Button -->
+                            <button type="button" id="custom-add-to-cart" class="add-to-cart-btn" data-product-id="<?php echo esc_attr( $product->get_id() ); ?>">
+                                ADD TO BASKET
+                            </button>
+                        </div>
+
+                        <!-- Loading and Messages -->
+                        <div id="cart-messages" class="cart-messages mt-2"></div>
+                    </div>
+
+                    <style>
+                    .custom-add-to-cart-section {
+                        margin: 20px 0;
+                    }
+
+                    .size-dropdown {
+                        width: 100%;
+                        padding: 12px 15px;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                        background: white;
+                        font-size: 16px;
+                        color: #666;
+                    }
+
+                    .quantity-and-cart {
+                        gap: 15px;
+                    }
+
+                    .quantity-controls {
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                        overflow: hidden;
+                    }
+
+                    .quantity-btn {
+                        background: #f8f9fa;
+                        border: none;
+                        padding: 12px 15px;
+                        font-size: 18px;
+                        font-weight: bold;
+                        cursor: pointer;
+                        transition: background 0.3s;
+                        min-width: 45px;
+                        height: 45px;
+                    }
+
+                    .quantity-btn:hover {
+                        background: #e9ecef;
+                    }
+
+                    .quantity-input {
+                        border: none;
+                        text-align: center;
+                        padding: 12px 10px;
+                        width: 60px;
+                        font-size: 16px;
+                        background: white;
+                    }
+
+                    .quantity-input:focus {
+                        outline: none;
+                    }
+
+                    .add-to-cart-btn {
+                        background: #28a745;
+                        color: white;
+                        border: none;
+                        padding: 12px 30px;
+                        font-size: 16px;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        transition: background 0.3s;
+                        flex-grow: 1;
+                        min-height: 45px;
+                    }
+
+                    .add-to-cart-btn:hover {
+                        background: #218838;
+                    }
+
+                    .add-to-cart-btn:disabled {
+                        background: #6c757d;
+                        cursor: not-allowed;
+                    }
+
+                    .cart-messages {
+                        font-size: 14px;
+                    }
+
+                    .cart-messages.success {
+                        color: #28a745;
+                    }
+
+                    .cart-messages.error {
+                        color: #dc3545;
+                    }
+                    </style>
+
+                    <script>
+                    jQuery(document).ready(function($) {
+                        // Quantity controls
+                        $('.quantity-btn').on('click', function() {
+                            var $input = $('#product-quantity');
+                            var currentVal = parseInt($input.val()) || 1;
+                            var action = $(this).data('action');
+
+                            if (action === 'plus') {
+                                $input.val(currentVal + 1);
+                            } else if (action === 'minus' && currentVal > 1) {
+                                $input.val(currentVal - 1);
+                            }
+                        });
+
+                        // Add to cart functionality
+                        $('#custom-add-to-cart').on('click', function() {
+                            var $button = $(this);
+                            var $messages = $('#cart-messages');
+                            var productId = $button.data('product-id');
+                            var quantity = $('#product-quantity').val();
+                            var size = $('#product-size').val();
+
+                            // Validate size selection for variable products
+                            if ($('#product-size').length && !size) {
+                                $messages.html('<span class="error">Please select a size</span>');
+                                return;
+                            }
+
+                            // Disable button and show loading
+                            $button.prop('disabled', true).text('ADDING...');
+                            $messages.html('');
+
+                            // Prepare data
+                            var data = {
+                                action: 'custom_add_to_cart',
+                                product_id: productId,
+                                quantity: quantity,
+                                security: '<?php echo wp_create_nonce("add_to_cart_nonce"); ?>'
+                            };
+
+                            if (size) {
+                                data.attribute_pa_size = size;
+                            }
+
+                            // AJAX call
+                            $.ajax({
+                                url: '<?php echo admin_url("admin-ajax.php"); ?>',
+                                type: 'POST',
+                                data: data,
+                                success: function(response) {
+                                    if (response.success) {
+                                        $messages.html('<span class="success">Product added to cart!</span>');
+                                        // Update cart count if you have one
+                                        $('.cart-count').text(response.data.cart_count);
+                                    } else {
+                                        $messages.html('<span class="error">' + response.data.message + '</span>');
+                                    }
+                                },
+                                error: function() {
+                                    $messages.html('<span class="error">Error adding product to cart</span>');
+                                },
+                                complete: function() {
+                                    $button.prop('disabled', false).text('ADD TO BASKET');
+                                }
+                            });
+                        });
+                    });
+                    </script>
 
                     <?php
                     /**
