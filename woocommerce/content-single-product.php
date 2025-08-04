@@ -272,9 +272,8 @@ if ( post_password_required() ) {
             <div class="container">
                 <div class="row">
                     <?php
-                    $column_class = 'col-md-' . (12 / min($related_products_args['columns'], count($related_products))) . ' col-12';
                     foreach ( $related_products as $related_product_id ) { ?>
-                    <div class="<?php echo esc_attr( $column_class ); ?>">
+                    <div class="col-md-3 col-12 mb-4">
                         <?php
                                             $post_object = get_post( $related_product_id );
                                             setup_postdata( $GLOBALS['post'] =& $post_object );
