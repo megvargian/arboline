@@ -57,31 +57,18 @@ if ( post_password_required() ) {
                     do_action( 'woocommerce_before_single_product_summary' );
                     ?>
                 </div>
+
+                <!-- Product Description below image -->
+                <?php if ( $product->get_short_description() ) : ?>
+                <div class="woocommerce-product-details__short-description mt-3">
+                    <?php echo wp_kses_post( $product->get_short_description() ); ?>
+                </div>
+                <?php endif; ?>
             </div>
 
             <div class="col-md-7 col-12">
                 <div class="summary entry-summary w-100">
-                    <?php
-                    /**
-                     * Hook: woocommerce_single_product_summary.
-                     *
-                     * @hooked woocommerce_template_single_title - 5
-                     * @hooked woocommerce_template_single_rating - 10
-                     * @hooked woocommerce_template_single_price - 10
-                     * @hooked woocommerce_template_single_excerpt - 20
-                     * @hooked woocommerce_template_single_add_to_cart - 30
-                     * @hooked woocommerce_template_single_meta - 40
-                     * @hooked woocommerce_template_single_sharing - 50
-                     * @hooked WC_Structured_Data::generate_product_data() - 60
-                     */
-                    ?>
                     <h1 class="product_title entry-title"><?php echo esc_html( $product->get_name() ); ?></h1>
-
-                    <?php if ( $product->get_short_description() ) : ?>
-                    <div class="woocommerce-product-details__short-description">
-                        <?php echo wp_kses_post( $product->get_short_description() ); ?>
-                    </div>
-                    <?php endif; ?>
 
                     <p class="price"><?php echo $product->get_price_html(); ?></p>
 
@@ -275,10 +262,10 @@ if ( post_password_required() ) {
                     foreach ( $related_products as $related_product_id ) { ?>
                     <div class="col-md-3 col-12 mb-4">
                         <?php
-                                            $post_object = get_post( $related_product_id );
-                                            setup_postdata( $GLOBALS['post'] =& $post_object );
-                                            wc_get_template_part( 'content', 'product' );
-                                        ?>
+                            $post_object = get_post( $related_product_id );
+                            setup_postdata( $GLOBALS['post'] =& $post_object );
+                            wc_get_template_part( 'content', 'product' );
+                        ?>
                     </div>
                     <?php } ?>
                 </div>

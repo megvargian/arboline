@@ -900,3 +900,139 @@ function arboline_single_product_customizations() {
     remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20);
 }
 add_action('init', 'arboline_single_product_customizations');
+
+/**
+ * Add custom CSS for WooCommerce single product page
+ */
+function arboline_woocommerce_custom_styles() {
+    if (is_product()) {
+        ?>
+        <style>
+        /* Custom quantity input styling */
+        .quantity-wrapper {
+            margin: 15px 0;
+        }
+
+        .quantity-wrapper .btn {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            background: #f8f9fa;
+            min-width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-wrapper .btn:hover {
+            background: #e9ecef;
+            border-color: #adb5bd;
+        }
+
+        .quantity-wrapper .quantity {
+            margin: 0 5px;
+        }
+
+        .quantity-wrapper .quantity input {
+            width: 60px;
+            height: 40px;
+            text-align: center;
+            border: 1px solid #ddd;
+            margin: 0;
+            padding: 0 5px;
+        }
+
+        /* Size dropdown styling */
+        .variations select {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: white;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .variations th {
+            display: none; /* Hide the label as it's shown in placeholder */
+        }
+
+        .variations td {
+            padding: 0;
+        }
+
+        /* Add to cart button styling */
+        .single_add_to_cart_button {
+            width: 100%;
+            padding: 12px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 15px;
+            text-transform: uppercase;
+        }
+
+        .single_add_to_cart_button:hover {
+            background: #218838;
+        }
+
+        .single_add_to_cart_button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+
+        /* Product description below image */
+        .woocommerce-product-details__short-description {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+            padding: 15px 0;
+        }
+
+        /* Product title and price styling */
+        .product_title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .price .woocommerce-Price-currencySymbol {
+            font-size: 1.2em;
+        }
+
+        /* Variation form styling */
+        .variations_form {
+            margin-top: 20px;
+        }
+
+        .single_variation_wrap {
+            margin-top: 20px;
+        }
+
+        /* Reset link styling */
+        .reset_variations {
+            font-size: 14px;
+            color: #666;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .reset_variations:hover {
+            color: #333;
+            text-decoration: underline;
+        }
+        </style>
+        <?php
+    }
+}
+add_action('wp_head', 'arboline_woocommerce_custom_styles');
