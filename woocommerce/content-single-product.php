@@ -84,27 +84,41 @@ if ( post_password_required() ) {
                         enctype="multipart/form-data" data-product_id="<?php echo esc_attr( $product->get_id() ); ?>"
                         data-product_variations="<?php echo htmlspecialchars( wp_json_encode( $product->get_available_variations() ) ); ?>">
 
-                        <table class="variations" cellspacing="0" role="presentation">
-                            <tbody>
-                                <?php foreach ( $product->get_variation_attributes() as $attribute_name => $options ) : ?>
-                                    <tr>
-                                        <th class="label"><label for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>"><?php echo wc_attribute_label( $attribute_name ); ?></label></th>
-                                        <td class="value">
-                                            <?php
-                                            wc_dropdown_variation_attribute_options(
-                                                array(
-                                                    'options'   => $options,
-                                                    'attribute' => $attribute_name,
-                                                    'product'   => $product,
-                                                )
-                                            );
-                                            ?>
-                                            <a class="reset_variations" href="#" style="visibility: hidden;">Clear</a>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                        <div class="custom-variation-selector">
+                            <select id="variation_selector" name="variation_selector" class="variation-dropdown">
+                                <option value="">Choose an option</option>
+                                <?php
+                                $available_variations = $product->get_available_variations();
+                                foreach ( $available_variations as $variation ) {
+                                    $variation_obj = wc_get_product( $variation['variation_id'] );
+                                    if ( $variation_obj && $variation_obj->is_in_stock() ) {
+                                        // Build option text from attributes
+                                        $option_text = '';
+                                        $attributes_data = array();
+
+                                        foreach ( $variation['attributes'] as $attr_name => $attr_value ) {
+                                            $attribute_label = wc_attribute_label( str_replace( 'attribute_', '', $attr_name ) );
+                                            $option_text .= $attribute_label . ': ' . $attr_value . ' ';
+                                            $attributes_data[$attr_name] = $attr_value;
+                                        }
+
+                                        // Add price to option text
+                                        $price = $variation_obj->get_price();
+                                        if ( $price ) {
+                                            $option_text .= '- ' . wc_price( $price );
+                                        }
+
+                                        echo '<option value="' . esc_attr( $variation['variation_id'] ) . '"
+                                                data-variation-id="' . esc_attr( $variation['variation_id'] ) . '"
+                                                data-attributes="' . esc_attr( wp_json_encode( $attributes_data ) ) . '"
+                                                data-price="' . esc_attr( $price ) . '">';
+                                        echo esc_html( trim( $option_text ) );
+                                        echo '</option>';
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
 
                         <div class="single_variation_wrap">
                             <div class="woocommerce-variation single_variation"></div>
@@ -127,6 +141,11 @@ if ( post_password_required() ) {
                                 <input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>">
                                 <input type="hidden" name="product_id" value="<?php echo esc_attr( $product->get_id() ); ?>">
                                 <input type="hidden" name="variation_id" class="variation_id" value="0">
+
+                                <!-- Hidden inputs for attributes -->
+                                <?php foreach ( $product->get_variation_attributes() as $attribute_name => $options ) : ?>
+                                    <input type="hidden" name="<?php echo esc_attr( $attribute_name ); ?>" class="variation_attribute" value="">
+                                <?php endforeach; ?>
                             </div>
                         </div>
 
@@ -181,27 +200,15 @@ if ( post_password_required() ) {
 
                 /* Hide default table styling and replace with custom dropdown */
                 .variations {
-                    border: none;
+                    display: none !important;
+                }
+
+                /* Custom single variation dropdown styling */
+                .custom-variation-selector {
                     margin-bottom: 20px;
                 }
 
-                .variations th,
-                .variations td {
-                    border: none;
-                    padding: 0;
-                    margin: 0;
-                }
-
-                .variations th {
-                    display: none;
-                    /* Hide the label */
-                }
-
-                .variations td {
-                    width: 100%;
-                }
-
-                .variations select {
+                .variation-dropdown {
                     width: 100%;
                     padding: 15px 20px;
                     border: 1px solid #000;
@@ -217,7 +224,7 @@ if ( post_password_required() ) {
                     height: 50px;
                 }
 
-                .variations select:focus {
+                .variation-dropdown:focus {
                     outline: none;
                     border-color: #000;
                 }
@@ -350,6 +357,11 @@ if ( post_password_required() ) {
 
                 <script>
                 jQuery(document).ready(function($) {
+                    // Helper function for price formatting
+                    function wc_price_format(price) {
+                        return '<?php echo get_woocommerce_currency_symbol(); ?>' + parseFloat(price).toFixed(2);
+                    }
+
                     // Remove any duplicate forms that might be generated by WooCommerce
                     $('.summary form.cart:not(.variations_form)').remove();
                     $('.summary .variations_form:not(.cart)').remove();
@@ -389,30 +401,45 @@ if ( post_password_required() ) {
                             $('.variations_form').not(':first').remove();
                         }
 
-                        // Initialize WooCommerce variations
-                        $('.variations_form').wc_variation_form();
-
-                        // Handle variation selection changes
-                        $('.variations_form').on('change', 'select[name^="attribute"]', function() {
+                        // Handle custom variation dropdown selection
+                        $(document).on('change', '#variation_selector', function() {
                             var $form = $('.variations_form');
                             var $button = $('.single_add_to_cart_button');
+                            var selectedOption = $(this).find('option:selected');
+                            var variation_id = selectedOption.val();
+                            var attributes = selectedOption.data('attributes');
+                            var price = selectedOption.data('price');
 
-                            // Check if all required variations are selected
-                            var allSelected = true;
-                            $form.find('select[name^="attribute"]').each(function() {
-                                if ($(this).val() === '') {
-                                    allSelected = false;
-                                    return false;
+                            if (variation_id && variation_id !== '') {
+                                // Set the variation ID
+                                $form.find('input[name="variation_id"]').val(variation_id);
+
+                                // Set the attribute values in hidden inputs
+                                if (attributes) {
+                                    for (var attr_name in attributes) {
+                                        $form.find('input[name="' + attr_name + '"]').val(attributes[attr_name]);
+                                    }
                                 }
-                            });
 
-                            if (allSelected) {
+                                // Update price display if exists
+                                if (price) {
+                                    $('.single_variation .price').remove();
+                                    $('.single_variation').html('<div class="price">' + wc_price_format(price) + '</div>');
+                                }
+
+                                // Enable the add to cart button
                                 $button.removeClass('disabled wc-variation-selection-needed')
                                     .prop('disabled', false);
                                 $('.woocommerce-variation-add-to-cart')
                                     .removeClass('woocommerce-variation-add-to-cart-disabled')
                                     .addClass('woocommerce-variation-add-to-cart-enabled');
                             } else {
+                                // Reset form when no variation selected
+                                $form.find('input[name="variation_id"]').val('0');
+                                $form.find('.variation_attribute').val('');
+                                $('.single_variation').html('');
+
+                                // Disable the add to cart button
                                 $button.addClass('disabled wc-variation-selection-needed')
                                     .prop('disabled', true);
                                 $('.woocommerce-variation-add-to-cart')
@@ -421,9 +448,8 @@ if ( post_password_required() ) {
                             }
                         });
 
-                        // Handle variation changes
+                        // Legacy WooCommerce variation events (kept for compatibility)
                         $('.variations_form').on('show_variation', function(event, variation) {
-                            // Update the add to cart button
                             var $button = $('.single_add_to_cart_button');
                             $button.removeClass('disabled wc-variation-selection-needed')
                                 .prop('disabled', false);
@@ -459,51 +485,26 @@ if ( post_password_required() ) {
                                 $form.find('input[name="quantity"]').val(1);
                             }
 
-                            // Check if variation is selected for variable products
-                            var variationSelected = true;
-                            var selectedVariation = {};
-
-                            $form.find('select[name^="attribute"]').each(function() {
-                                var attrName = $(this).attr('name');
-                                var attrValue = $(this).val();
-                                if (attrValue === '') {
-                                    variationSelected = false;
-                                    return false;
-                                }
-                                selectedVariation[attrName] = attrValue;
-                            });
-
-                            if (!variationSelected) {
-                                alert('Please select all product options before adding to cart.');
+                            // Check if variation is selected
+                            if (!variation_id || variation_id === '0') {
+                                alert('Please select a product option before adding to cart.');
                                 return false;
                             }
 
-                            // Check if variation_id is set properly
-                            if (!variation_id || variation_id === '0') {
-                                // Try to find variation_id from the variations data
-                                var variationsData = $form.data('product_variations');
-                                if (variationsData && Array.isArray(variationsData)) {
-                                    for (var i = 0; i < variationsData.length; i++) {
-                                        var variation = variationsData[i];
-                                        var match = true;
-
-                                        for (var attr in selectedVariation) {
-                                            if (variation.attributes[attr] !== selectedVariation[attr]) {
-                                                match = false;
-                                                break;
-                                            }
-                                        }
-
-                                        if (match) {
-                                            variation_id = variation.variation_id;
-                                            break;
-                                        }
-                                    }
+                            // Get selected variation attributes
+                            var selectedVariation = {};
+                            $form.find('.variation_attribute').each(function() {
+                                var attrName = $(this).attr('name');
+                                var attrValue = $(this).val();
+                                if (attrValue) {
+                                    selectedVariation[attrName] = attrValue;
                                 }
-                            }
+                            });
 
                             // Show loading state
-                            $button.prop('disabled', true).text('Adding...');                            // AJAX request
+                            $button.prop('disabled', true).text('Adding...');
+
+                            // AJAX request
                             $.ajax({
                                 type: 'POST',
                                 url: wc_add_to_cart_params ? wc_add_to_cart_params.ajax_url : '<?php echo admin_url('admin-ajax.php'); ?>',
