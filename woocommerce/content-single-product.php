@@ -73,7 +73,11 @@ if ( post_password_required() ) {
                         <?php echo wp_kses_post( $short_description ); ?>
                     </div>
                     <?php endif; ?>
-                    <p class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>24.24</bdi></span> – <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>73.30</bdi></span> <small class="woocommerce-price-suffix">INC. VAT</small></p>
+
+                    <!-- Dynamic Price Display -->
+                    <div class="product-price-display mb-3">
+                        <?php echo $product->get_price_html(); ?>
+                    </div>
                     <form class="variations_form cart" action="https://fiddes.co.uk/product/danish-oil/" method="post"
                         enctype="multipart/form-data" data-product_id="1037"
                         data-product_variations="[{&quot;attributes&quot;:{&quot;attribute_pa_size&quot;:&quot;5lt&quot;},&quot;availability_html&quot;:&quot;&quot;,&quot;backorders_allowed&quot;:false,&quot;dimensions&quot;:{&quot;length&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;dimensions_html&quot;:&quot;N\/A&quot;,&quot;display_price&quot;:73.3,&quot;display_regular_price&quot;:73.3,&quot;image&quot;:{&quot;title&quot;:&quot;danish-oil&quot;,&quot;caption&quot;:&quot;&quot;,&quot;url&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil.jpg&quot;,&quot;alt&quot;:&quot;danish-oil&quot;,&quot;src&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-600x600.jpg&quot;,&quot;srcset&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-600x600.jpg 600w, https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-300x300.jpg 300w, https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-200x200.jpg 200w, https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-150x150.jpg 150w, https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-32x32.jpg 32w, https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil.jpg 763w&quot;,&quot;sizes&quot;:&quot;(max-width: 600px) 100vw, 600px&quot;,&quot;full_src&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil.jpg&quot;,&quot;full_src_w&quot;:763,&quot;full_src_h&quot;:763,&quot;gallery_thumbnail_src&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-200x200.jpg&quot;,&quot;gallery_thumbnail_src_w&quot;:200,&quot;gallery_thumbnail_src_h&quot;:200,&quot;thumb_src&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-300x300.jpg&quot;,&quot;thumb_src_w&quot;:300,&quot;thumb_src_h&quot;:300,&quot;src_w&quot;:600,&quot;src_h&quot;:600},&quot;image_id&quot;:3301,&quot;is_downloadable&quot;:false,&quot;is_in_stock&quot;:true,&quot;is_purchasable&quot;:true,&quot;is_sold_individually&quot;:&quot;no&quot;,&quot;is_virtual&quot;:false,&quot;max_qty&quot;:&quot;&quot;,&quot;min_qty&quot;:1,&quot;price_html&quot;:&quot;&lt;span class=\&quot;price\&quot;&gt;&lt;span class=\&quot;woocommerce-Price-amount amount\&quot;&gt;&lt;bdi&gt;&lt;span class=\&quot;woocommerce-Price-currencySymbol\&quot;&gt;&amp;pound;&lt;\/span&gt;73.30&lt;\/bdi&gt;&lt;\/span&gt; &lt;small class=\&quot;woocommerce-price-suffix\&quot;&gt;INC. VAT&lt;\/small&gt;&lt;\/span&gt;&quot;,&quot;sku&quot;:&quot;&quot;,&quot;variation_description&quot;:&quot;&quot;,&quot;variation_id&quot;:1182,&quot;variation_is_active&quot;:true,&quot;variation_is_visible&quot;:true,&quot;weight&quot;:&quot;5&quot;,&quot;weight_html&quot;:&quot;5 kg&quot;,&quot;google_analytics_integration&quot;:{&quot;id&quot;:&quot;#1037&quot;,&quot;variant&quot;:&quot;Size: 5lt&quot;}},{&quot;attributes&quot;:{&quot;attribute_pa_size&quot;:&quot;1lt&quot;},&quot;availability_html&quot;:&quot;&quot;,&quot;backorders_allowed&quot;:false,&quot;dimensions&quot;:{&quot;length&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;dimensions_html&quot;:&quot;N\/A&quot;,&quot;display_price&quot;:24.24,&quot;display_regular_price&quot;:24.24,&quot;image&quot;:{&quot;title&quot;:&quot;danish-oil&quot;,&quot;caption&quot;:&quot;&quot;,&quot;url&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil.jpg&quot;,&quot;alt&quot;:&quot;danish-oil&quot;,&quot;src&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-600x600.jpg&quot;,&quot;srcset&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-600x600.jpg 600w, https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-300x300.jpg 300w, https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-200x200.jpg 200w, https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-150x150.jpg 150w, https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-32x32.jpg 32w, https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil.jpg 763w&quot;,&quot;sizes&quot;:&quot;(max-width: 600px) 100vw, 600px&quot;,&quot;full_src&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil.jpg&quot;,&quot;full_src_w&quot;:763,&quot;full_src_h&quot;:763,&quot;gallery_thumbnail_src&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-200x200.jpg&quot;,&quot;gallery_thumbnail_src_w&quot;:200,&quot;gallery_thumbnail_src_h&quot;:200,&quot;thumb_src&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-300x300.jpg&quot;,&quot;thumb_src_w&quot;:300,&quot;thumb_src_h&quot;:300,&quot;src_w&quot;:600,&quot;src_h&quot;:600},&quot;image_id&quot;:3301,&quot;is_downloadable&quot;:false,&quot;is_in_stock&quot;:true,&quot;is_purchasable&quot;:true,&quot;is_sold_individually&quot;:&quot;no&quot;,&quot;is_virtual&quot;:false,&quot;max_qty&quot;:&quot;&quot;,&quot;min_qty&quot;:1,&quot;price_html&quot;:&quot;&lt;span class=\&quot;price\&quot;&gt;&lt;span class=\&quot;woocommerce-Price-amount amount\&quot;&gt;&lt;bdi&gt;&lt;span class=\&quot;woocommerce-Price-currencySymbol\&quot;&gt;&amp;pound;&lt;\/span&gt;24.24&lt;\/bdi&gt;&lt;\/span&gt; &lt;small class=\&quot;woocommerce-price-suffix\&quot;&gt;INC. VAT&lt;\/small&gt;&lt;\/span&gt;&quot;,&quot;sku&quot;:&quot;&quot;,&quot;variation_description&quot;:&quot;&quot;,&quot;variation_id&quot;:1183,&quot;variation_is_active&quot;:true,&quot;variation_is_visible&quot;:true,&quot;weight&quot;:&quot;1&quot;,&quot;weight_html&quot;:&quot;1 kg&quot;,&quot;google_analytics_integration&quot;:{&quot;id&quot;:&quot;#1037&quot;,&quot;variant&quot;:&quot;Size: 1lt&quot;}}]"
@@ -103,9 +107,10 @@ if ( post_password_required() ) {
 
                                 <button type="button" class="minus btn"><i class="bi bi-dash-lg"></i></button>
                                 <div class="quantity">
-                                    <label class="screen-reader-text" for="quantity_6893d01eb31b5">FIDDES Danish Oil
-                                        quantity</label>
-                                    <input type="number" id="quantity_6893d01eb31b5" class="input-text qty text"
+                                    <label class="screen-reader-text" for="quantity_<?php echo uniqid(); ?>">
+                                        <?php echo esc_html( $product->get_name() ); ?> quantity
+                                    </label>
+                                    <input type="number" id="quantity_<?php echo uniqid(); ?>" class="input-text qty text"
                                         name="quantity" value="1" title="Qty" size="4" min="1" max="" step="1"
                                         placeholder="" inputmode="numeric" autocomplete="off">
                                 </div>
@@ -115,8 +120,8 @@ if ( post_password_required() ) {
                                     to basket</button>
 
 
-                                <input type="hidden" name="add-to-cart" value="1037">
-                                <input type="hidden" name="product_id" value="1037">
+                                <input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>">
+                                <input type="hidden" name="product_id" value="<?php echo esc_attr( $product->get_id() ); ?>">
                                 <input type="hidden" name="variation_id" class="variation_id" value="0">
                             </div>
                         </div>
@@ -206,13 +211,13 @@ if ( post_password_required() ) {
                 }
 
                 /* Quantity controls styling */
-                .quantity-controls-wrapper {
+                .woocommerce-variation-add-to-cart {
                     gap: 0;
                     margin-top: 15px;
                 }
 
-                .quantity-minus,
-                .quantity-plus {
+                .minus,
+                .plus {
                     background: white;
                     border: 1px solid #000;
                     border-radius: 0;
@@ -228,16 +233,16 @@ if ( post_password_required() ) {
                     justify-content: center;
                 }
 
-                .quantity-minus {
+                .minus {
                     border-right: none;
                 }
 
-                .quantity-plus {
+                .plus {
                     border-left: none;
                 }
 
-                .quantity-minus:hover,
-                .quantity-plus:hover {
+                .minus:hover,
+                .plus:hover {
                     background: #f5f5f5;
                 }
 
@@ -299,16 +304,21 @@ if ( post_password_required() ) {
                 }
 
                 /* Simple product price styling */
-                .price-display .price {
+                .product-price-display .price {
                     font-size: 18px;
                     font-weight: 600;
                     color: #000;
+                    margin-bottom: 15px;
+                }
+
+                .product-price-display .price .woocommerce-Price-amount {
+                    font-size: 18px;
+                    font-weight: 600;
                 }
 
                 /* Hide any WooCommerce generated duplicate forms or elements */
                 .single-product-summary .cart:not(.variations_form),
-                .woocommerce div.product form.cart:not(.variations_form),
-                .summary .price {
+                .woocommerce div.product form.cart:not(.variations_form) {
                     display: none !important;
                 }
                 </style>
@@ -320,7 +330,7 @@ if ( post_password_required() ) {
                     $('.summary .variations_form:not(.cart)').remove();
 
                     // Quantity controls for both variable and simple products
-                    $(document).on('click', '.quantity-minus', function(e) {
+                    $(document).on('click', '.minus', function(e) {
                         e.preventDefault();
                         var $input = $(this).siblings('.quantity').find('.qty');
                         var currentVal = parseInt($input.val()) || 1;
@@ -329,13 +339,21 @@ if ( post_password_required() ) {
                         }
                     });
 
-                    $(document).on('click', '.quantity-plus', function(e) {
+                    $(document).on('click', '.plus', function(e) {
                         e.preventDefault();
                         var $input = $(this).siblings('.quantity').find('.qty');
                         var currentVal = parseInt($input.val()) || 1;
                         var maxVal = parseInt($input.attr('max')) || 999;
                         if (currentVal < maxVal) {
                             $input.val(currentVal + 1).trigger('change');
+                        }
+                    });
+
+                    // Ensure quantity is never less than 1
+                    $(document).on('change input', '.qty', function() {
+                        var currentVal = parseInt($(this).val()) || 1;
+                        if (currentVal < 1) {
+                            $(this).val(1);
                         }
                     });
 
@@ -371,35 +389,114 @@ if ( post_password_required() ) {
                                 .addClass('woocommerce-variation-add-to-cart-disabled');
                         });
 
-                        // Handle form submission
+                        // Handle custom AJAX form submission
                         $('.variations_form').on('submit', function(e) {
+                            e.preventDefault();
+
                             var $form = $(this);
                             var $button = $('.single_add_to_cart_button');
+                            var product_id = $form.find('input[name="product_id"]').val();
+                            var variation_id = $form.find('input[name="variation_id"]').val();
+                            var quantity = parseInt($form.find('input[name="quantity"]').val()) || 1;
 
-                            // Check if variation is selected
+                            // Ensure quantity is at least 1
+                            if (quantity < 1) {
+                                quantity = 1;
+                                $form.find('input[name="quantity"]').val(1);
+                            }
+
+                            // Check if variation is selected for variable products
                             var variationSelected = true;
+                            var selectedVariation = {};
+
                             $form.find('select[name^="attribute"]').each(function() {
-                                if ($(this).val() === '') {
+                                var attrName = $(this).attr('name');
+                                var attrValue = $(this).val();
+                                if (attrValue === '') {
                                     variationSelected = false;
                                     return false;
                                 }
+                                selectedVariation[attrName] = attrValue;
                             });
 
                             if (!variationSelected) {
-                                e.preventDefault();
-                                alert('Please select product options before adding to cart.');
+                                alert('Please select all product options before adding to cart.');
                                 return false;
                             }
 
                             // Show loading state
                             $button.prop('disabled', true).text('Adding...');
+
+                            // AJAX request
+                            $.ajax({
+                                type: 'POST',
+                                url: wc_add_to_cart_params.ajax_url,
+                                data: {
+                                    action: 'custom_variable_add_to_cart',
+                                    product_id: product_id,
+                                    variation_id: variation_id,
+                                    quantity: quantity,
+                                    variation: selectedVariation,
+                                    security: '<?php echo wp_create_nonce("add_to_cart_nonce"); ?>'
+                                },
+                                success: function(response) {
+                                    if (response.success) {
+                                        // Redirect to cart page
+                                        window.location.href = wc_add_to_cart_params.cart_url;
+                                    } else {
+                                        alert(response.data.message || 'Failed to add product to cart');
+                                        $button.prop('disabled', false).text('Add to basket');
+                                    }
+                                },
+                                error: function() {
+                                    alert('An error occurred. Please try again.');
+                                    $button.prop('disabled', false).text('Add to basket');
+                                }
+                            });
                         });
                     }
 
                     // Simple product form submission
-                    $('.cart:not(.variations_form)').on('submit', function() {
+                    $('.cart:not(.variations_form)').on('submit', function(e) {
+                        e.preventDefault();
+
+                        var $form = $(this);
                         var $button = $('.single_add_to_cart_button');
+                        var product_id = $form.find('input[name="add-to-cart"], input[name="product_id"]').val();
+                        var quantity = parseInt($form.find('input[name="quantity"]').val()) || 1;
+
+                        // Ensure quantity is at least 1
+                        if (quantity < 1) {
+                            quantity = 1;
+                            $form.find('input[name="quantity"]').val(1);
+                        }
+
                         $button.prop('disabled', true).text('Adding...');
+
+                        // AJAX request for simple products
+                        $.ajax({
+                            type: 'POST',
+                            url: wc_add_to_cart_params.ajax_url,
+                            data: {
+                                action: 'custom_simple_add_to_cart',
+                                product_id: product_id,
+                                quantity: quantity,
+                                security: '<?php echo wp_create_nonce("add_to_cart_nonce"); ?>'
+                            },
+                            success: function(response) {
+                                if (response.success) {
+                                    // Redirect to cart page
+                                    window.location.href = wc_add_to_cart_params.cart_url;
+                                } else {
+                                    alert(response.data.message || 'Failed to add product to cart');
+                                    $button.prop('disabled', false).text('Add to basket');
+                                }
+                            },
+                            error: function() {
+                                alert('An error occurred. Please try again.');
+                                $button.prop('disabled', false).text('Add to basket');
+                            }
+                        });
                     });
                 });
                 </script>

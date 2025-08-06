@@ -495,6 +495,37 @@ add_action('after_setup_theme', 'custom_woocommerce_image_size');
 function custom_woocommerce_image_size() {
     add_image_size('custom-woocommerce-thumbnail', 1000, 1000); // 500px by 500px, hard crop
 }
+
+/**
+ * Enqueue WooCommerce cart parameters for AJAX
+ */
+function enqueue_woocommerce_cart_params() {
+    if (is_product()) {
+        wp_localize_script('jquery', 'wc_add_to_cart_params', array(
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'cart_url' => wc_get_cart_url(),
+            'wc_ajax_url' => WC_AJAX::get_endpoint("%%endpoint%%")
+        ));
+    }
+}
+add_action('wp_enqueue_scripts', 'enqueue_woocommerce_cart_params');
+
+/**
+ * Disable WooCommerce default add to cart redirect to ensure our custom functionality works
+ */
+function disable_woocommerce_add_to_cart_redirect() {
+    return false;
+}
+add_filter('woocommerce_add_to_cart_redirect', 'disable_woocommerce_add_to_cart_redirect');
+
+/**
+ * Ensure cart fragments work properly with our custom add to cart
+ */
+function custom_woocommerce_cart_fragments($fragments) {
+    $fragments['span.cart-count'] = '<span class="cart-count">' . WC()->cart->get_cart_contents_count() . '</span>';
+    return $fragments;
+}
+add_filter('woocommerce_add_to_cart_fragments', 'custom_woocommerce_cart_fragments');
 // remove add to cart
 function remove_default_add_to_cart_button() {
     remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
@@ -1136,6 +1167,131 @@ function arboline_woocommerce_custom_styles() {
     }
 }
 add_action('wp_head', 'arboline_woocommerce_custom_styles');
+
+/**
+ * Custom AJAX handler for variable products add to cart
+ */
+function custom_variable_add_to_cart_handler() {
+    // Verify nonce
+    if (!wp_verify_nonce($_POST['security'], 'add_to_cart_nonce')) {
+        wp_send_json_error(array('message' => 'Security check failed'));
+    }
+
+    $product_id = intval($_POST['product_id']);
+    $variation_id = intval($_POST['variation_id']);
+    $quantity = intval($_POST['quantity']);
+    $variation = array();
+
+    // Ensure quantity is at least 1
+    if ($quantity < 1) {
+        $quantity = 1;
+    }
+
+    // Handle variation attributes
+    if (isset($_POST['variation']) && is_array($_POST['variation'])) {
+        foreach ($_POST['variation'] as $key => $value) {
+            $variation[sanitize_key($key)] = sanitize_text_field($value);
+        }
+    }
+
+    // Validate product exists
+    $product = wc_get_product($product_id);
+    if (!$product) {
+        wp_send_json_error(array('message' => 'Product not found'));
+    }
+
+    // For variable products, validate variation
+    if ($product->is_type('variable')) {
+        if ($variation_id <= 0) {
+            wp_send_json_error(array('message' => 'Please select all product options'));
+        }
+
+        $variation_product = wc_get_product($variation_id);
+        if (!$variation_product || !$variation_product->exists()) {
+            wp_send_json_error(array('message' => 'Selected variation does not exist'));
+        }
+
+        if (!$variation_product->is_in_stock()) {
+            wp_send_json_error(array('message' => 'Selected variation is out of stock'));
+        }
+
+        // Validate that the variation belongs to the parent product
+        if ($variation_product->get_parent_id() !== $product_id) {
+            wp_send_json_error(array('message' => 'Invalid variation for this product'));
+        }
+    }
+
+    // Add to cart
+    try {
+        if ($variation_id > 0) {
+            $added = WC()->cart->add_to_cart($product_id, $quantity, $variation_id, $variation);
+        } else {
+            $added = WC()->cart->add_to_cart($product_id, $quantity);
+        }
+
+        if ($added) {
+            wp_send_json_success(array(
+                'message' => 'Product added to cart successfully!',
+                'cart_count' => WC()->cart->get_cart_contents_count(),
+                'cart_url' => wc_get_cart_url()
+            ));
+        } else {
+            wp_send_json_error(array('message' => 'Failed to add product to cart'));
+        }
+    } catch (Exception $e) {
+        wp_send_json_error(array('message' => 'Error: ' . $e->getMessage()));
+    }
+}
+add_action('wp_ajax_custom_variable_add_to_cart', 'custom_variable_add_to_cart_handler');
+add_action('wp_ajax_nopriv_custom_variable_add_to_cart', 'custom_variable_add_to_cart_handler');
+
+/**
+ * Custom AJAX handler for simple products add to cart
+ */
+function custom_simple_add_to_cart_handler() {
+    // Verify nonce
+    if (!wp_verify_nonce($_POST['security'], 'add_to_cart_nonce')) {
+        wp_send_json_error(array('message' => 'Security check failed'));
+    }
+
+    $product_id = intval($_POST['product_id']);
+    $quantity = intval($_POST['quantity']);
+
+    // Ensure quantity is at least 1
+    if ($quantity < 1) {
+        $quantity = 1;
+    }
+
+    // Validate product exists
+    $product = wc_get_product($product_id);
+    if (!$product) {
+        wp_send_json_error(array('message' => 'Product not found'));
+    }
+
+    // Check if product is in stock
+    if (!$product->is_in_stock()) {
+        wp_send_json_error(array('message' => 'Product is out of stock'));
+    }
+
+    // Add to cart
+    try {
+        $added = WC()->cart->add_to_cart($product_id, $quantity);
+
+        if ($added) {
+            wp_send_json_success(array(
+                'message' => 'Product added to cart successfully!',
+                'cart_count' => WC()->cart->get_cart_contents_count(),
+                'cart_url' => wc_get_cart_url()
+            ));
+        } else {
+            wp_send_json_error(array('message' => 'Failed to add product to cart'));
+        }
+    } catch (Exception $e) {
+        wp_send_json_error(array('message' => 'Error: ' . $e->getMessage()));
+    }
+}
+add_action('wp_ajax_custom_simple_add_to_cart', 'custom_simple_add_to_cart_handler');
+add_action('wp_ajax_nopriv_custom_simple_add_to_cart', 'custom_simple_add_to_cart_handler');
 
 /**
  * Custom AJAX handler for add to cart
