@@ -99,7 +99,7 @@ if ( post_password_required() ) {
                         <div class="single_variation_wrap">
                             <div class="woocommerce-variation single_variation"></div>
                             <div
-                                class="woocommerce-variation-add-to-cart variations_button woocommerce-variation-add-to-cart-disabled">
+                                class="woocommerce-variation-add-to-cart d-flex variations_button woocommerce-variation-add-to-cart-disabled">
 
                                 <button type="button" class="minus btn"><i class="bi bi-dash-lg"></i></button>
                                 <div class="quantity">
@@ -111,7 +111,7 @@ if ( post_password_required() ) {
                                 </div>
                                 <button type="button" class="plus btn"><i class="bi bi-plus-lg"></i></button>
                                 <button type="submit"
-                                    class="single_add_to_cart_button button alt wp-element-button disabled wc-variation-selection-needed">Add
+                                    class="single_add_to_cart_button d-flex justify-content-center button alt wp-element-button disabled wc-variation-selection-needed">Add
                                     to basket</button>
 
 
@@ -414,13 +414,13 @@ if ( post_password_required() ) {
                     if($long_description){
                 ?>
             <div class="accordion-item">
-                <h2 class="accordion-header mt-0" id="heading-description">
+                <p class="accordion-header mt-0" id="heading-description">
                     <button class="accordion-button" style="box-shadow: none !important;" type="button"
                         data-bs-toggle="collapse" data-bs-target="#collapse-description" aria-expanded="false"
                         aria-controls="collapse-description">
                         <?php echo esc_html( $product->get_name() ); ?>
                     </button>
-                </h2>
+                </p>
                 <div id="collapse-description" class="accordion-collapse collapse show"
                     aria-labelledby="heading-description" data-bs-parent="#accordionExample-description">
                     <div class="accordion-body px-0">
