@@ -498,6 +498,9 @@ function custom_woocommerce_image_size() {
 // remove add to cart
 function remove_default_add_to_cart_button() {
     remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
+    // Also remove other potential duplicate forms
+    remove_action( 'woocommerce_variable_add_to_cart', 'woocommerce_variable_add_to_cart', 30 );
+    remove_action( 'woocommerce_simple_add_to_cart', 'woocommerce_simple_add_to_cart', 30 );
 }
 add_action( 'init', 'remove_default_add_to_cart_button' );
 
@@ -601,7 +604,7 @@ function add_custom_add_to_cart_button() {
         </a>
     <?php }
 }
-add_action( 'woocommerce_single_product_summary', 'add_custom_add_to_cart_button', 30 );
+// add_action( 'woocommerce_single_product_summary', 'add_custom_add_to_cart_button', 30 );
 
 function custom_add_to_cart() {
     $product_id = intval( $_POST['product_id'] );
