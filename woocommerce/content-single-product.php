@@ -73,108 +73,55 @@ if ( post_password_required() ) {
                         <?php echo wp_kses_post( $short_description ); ?>
                     </div>
                     <?php endif; ?>
+                    <p class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>24.24</bdi></span> – <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>73.30</bdi></span> <small class="woocommerce-price-suffix">INC. VAT</small></p>
+                    <form class="variations_form cart" action="https://fiddes.co.uk/product/danish-oil/" method="post"
+                        enctype="multipart/form-data" data-product_id="1037"
+                        data-product_variations="[{&quot;attributes&quot;:{&quot;attribute_pa_size&quot;:&quot;5lt&quot;},&quot;availability_html&quot;:&quot;&quot;,&quot;backorders_allowed&quot;:false,&quot;dimensions&quot;:{&quot;length&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;dimensions_html&quot;:&quot;N\/A&quot;,&quot;display_price&quot;:73.3,&quot;display_regular_price&quot;:73.3,&quot;image&quot;:{&quot;title&quot;:&quot;danish-oil&quot;,&quot;caption&quot;:&quot;&quot;,&quot;url&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil.jpg&quot;,&quot;alt&quot;:&quot;danish-oil&quot;,&quot;src&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-600x600.jpg&quot;,&quot;srcset&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-600x600.jpg 600w, https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-300x300.jpg 300w, https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-200x200.jpg 200w, https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-150x150.jpg 150w, https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-32x32.jpg 32w, https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil.jpg 763w&quot;,&quot;sizes&quot;:&quot;(max-width: 600px) 100vw, 600px&quot;,&quot;full_src&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil.jpg&quot;,&quot;full_src_w&quot;:763,&quot;full_src_h&quot;:763,&quot;gallery_thumbnail_src&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-200x200.jpg&quot;,&quot;gallery_thumbnail_src_w&quot;:200,&quot;gallery_thumbnail_src_h&quot;:200,&quot;thumb_src&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-300x300.jpg&quot;,&quot;thumb_src_w&quot;:300,&quot;thumb_src_h&quot;:300,&quot;src_w&quot;:600,&quot;src_h&quot;:600},&quot;image_id&quot;:3301,&quot;is_downloadable&quot;:false,&quot;is_in_stock&quot;:true,&quot;is_purchasable&quot;:true,&quot;is_sold_individually&quot;:&quot;no&quot;,&quot;is_virtual&quot;:false,&quot;max_qty&quot;:&quot;&quot;,&quot;min_qty&quot;:1,&quot;price_html&quot;:&quot;&lt;span class=\&quot;price\&quot;&gt;&lt;span class=\&quot;woocommerce-Price-amount amount\&quot;&gt;&lt;bdi&gt;&lt;span class=\&quot;woocommerce-Price-currencySymbol\&quot;&gt;&amp;pound;&lt;\/span&gt;73.30&lt;\/bdi&gt;&lt;\/span&gt; &lt;small class=\&quot;woocommerce-price-suffix\&quot;&gt;INC. VAT&lt;\/small&gt;&lt;\/span&gt;&quot;,&quot;sku&quot;:&quot;&quot;,&quot;variation_description&quot;:&quot;&quot;,&quot;variation_id&quot;:1182,&quot;variation_is_active&quot;:true,&quot;variation_is_visible&quot;:true,&quot;weight&quot;:&quot;5&quot;,&quot;weight_html&quot;:&quot;5 kg&quot;,&quot;google_analytics_integration&quot;:{&quot;id&quot;:&quot;#1037&quot;,&quot;variant&quot;:&quot;Size: 5lt&quot;}},{&quot;attributes&quot;:{&quot;attribute_pa_size&quot;:&quot;1lt&quot;},&quot;availability_html&quot;:&quot;&quot;,&quot;backorders_allowed&quot;:false,&quot;dimensions&quot;:{&quot;length&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;dimensions_html&quot;:&quot;N\/A&quot;,&quot;display_price&quot;:24.24,&quot;display_regular_price&quot;:24.24,&quot;image&quot;:{&quot;title&quot;:&quot;danish-oil&quot;,&quot;caption&quot;:&quot;&quot;,&quot;url&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil.jpg&quot;,&quot;alt&quot;:&quot;danish-oil&quot;,&quot;src&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-600x600.jpg&quot;,&quot;srcset&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-600x600.jpg 600w, https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-300x300.jpg 300w, https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-200x200.jpg 200w, https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-150x150.jpg 150w, https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-32x32.jpg 32w, https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil.jpg 763w&quot;,&quot;sizes&quot;:&quot;(max-width: 600px) 100vw, 600px&quot;,&quot;full_src&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil.jpg&quot;,&quot;full_src_w&quot;:763,&quot;full_src_h&quot;:763,&quot;gallery_thumbnail_src&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-200x200.jpg&quot;,&quot;gallery_thumbnail_src_w&quot;:200,&quot;gallery_thumbnail_src_h&quot;:200,&quot;thumb_src&quot;:&quot;https:\/\/fiddes.co.uk\/app\/uploads\/2022\/09\/danish-oil-300x300.jpg&quot;,&quot;thumb_src_w&quot;:300,&quot;thumb_src_h&quot;:300,&quot;src_w&quot;:600,&quot;src_h&quot;:600},&quot;image_id&quot;:3301,&quot;is_downloadable&quot;:false,&quot;is_in_stock&quot;:true,&quot;is_purchasable&quot;:true,&quot;is_sold_individually&quot;:&quot;no&quot;,&quot;is_virtual&quot;:false,&quot;max_qty&quot;:&quot;&quot;,&quot;min_qty&quot;:1,&quot;price_html&quot;:&quot;&lt;span class=\&quot;price\&quot;&gt;&lt;span class=\&quot;woocommerce-Price-amount amount\&quot;&gt;&lt;bdi&gt;&lt;span class=\&quot;woocommerce-Price-currencySymbol\&quot;&gt;&amp;pound;&lt;\/span&gt;24.24&lt;\/bdi&gt;&lt;\/span&gt; &lt;small class=\&quot;woocommerce-price-suffix\&quot;&gt;INC. VAT&lt;\/small&gt;&lt;\/span&gt;&quot;,&quot;sku&quot;:&quot;&quot;,&quot;variation_description&quot;:&quot;&quot;,&quot;variation_id&quot;:1183,&quot;variation_is_active&quot;:true,&quot;variation_is_visible&quot;:true,&quot;weight&quot;:&quot;1&quot;,&quot;weight_html&quot;:&quot;1 kg&quot;,&quot;google_analytics_integration&quot;:{&quot;id&quot;:&quot;#1037&quot;,&quot;variant&quot;:&quot;Size: 1lt&quot;}}]"
+                        current-image="">
 
-                    <?php if ( $product->is_type( 'variable' ) ) : ?>
-                        <!-- Variable Product Form -->
-                        <form class="variations_form cart" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post"
-                        enctype="multipart/form-data" data-product_id="<?php echo absint( $product->get_id() ); ?>"
-                        data-product_variations="<?php echo htmlspecialchars( wp_json_encode( $product->get_available_variations() ) ); ?>">
+                        <table class="variations" cellspacing="0" role="presentation">
+                            <tbody>
+                                <tr>
+                                    <th class="label"><label for="pa_size">Size</label></th>
+                                    <td class="value">
+                                        <select id="pa_size" class="" name="attribute_pa_size"
+                                            data-attribute_name="attribute_pa_size" data-show_option_none="yes">
+                                            <option value=""> size</option>
+                                            <option value="1lt" class="attached enabled">1lt</option>
+                                            <option value="5lt" class="attached enabled">5lt</option>
+                                        </select><a class="reset_variations" href="#"
+                                            style="visibility: hidden;">Clear</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                            <?php if ( ! empty( $product->get_variation_attributes() ) ) : ?>
-                                <table class="variations" cellspacing="0" role="presentation">
-                                    <tbody>
-                                        <?php foreach ( $product->get_variation_attributes() as $attribute_name => $options ) : ?>
-                                            <tr>
-                                                <th class="label">
-                                                    <label for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>">
-                                                        <?php echo wc_attribute_label( $attribute_name ); ?>
-                                                    </label>
-                                                </th>
-                                                <td class="value">
-                                                    <?php
-                                                    wc_dropdown_variation_attribute_options(
-                                                        array(
-                                                            'options'   => $options,
-                                                            'attribute' => $attribute_name,
-                                                            'product'   => $product,
-                                                            'class'     => 'form-select',
-                                                        )
-                                                    );
-                                                    ?>
-                                                    <a class="reset_variations" href="#" style="visibility: hidden;"><?php esc_html_e( 'Clear', 'woocommerce' ); ?></a>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                            <?php endif; ?>
+                        <div class="single_variation_wrap">
+                            <div class="woocommerce-variation single_variation"></div>
+                            <div
+                                class="woocommerce-variation-add-to-cart variations_button woocommerce-variation-add-to-cart-disabled">
 
-                            <div class="single_variation_wrap">
-                                <div class="woocommerce-variation single_variation"></div>
-                                <div class="woocommerce-variation-add-to-cart variations_button woocommerce-variation-add-to-cart-disabled">
-
-                                    <!-- Quantity Controls -->
-                                    <div class="quantity-controls-wrapper d-flex align-items-center">
-                                        <button type="button" class="quantity-minus btn"><i class="bi bi-dash-lg"></i></button>
-                                        <div class="quantity">
-                                            <?php
-                                            woocommerce_quantity_input(
-                                                array(
-                                                    'min_value'   => apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ),
-                                                    'max_value'   => apply_filters( 'woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product ),
-                                                    'input_value' => isset( $_POST['quantity'] ) ? wc_stock_amount( wp_unslash( $_POST['quantity'] ) ) : $product->get_min_purchase_quantity(), // WPCS: CSRF ok, input var ok.
-                                                    'classes'     => array( 'input-text', 'qty', 'text' ),
-                                                )
-                                            );
-                                            ?>
-                                        </div>
-                                        <button type="button" class="quantity-plus btn"><i class="bi bi-plus-lg"></i></button>
-
-                                        <button type="submit" class="single_add_to_cart_button button alt wp-element-button disabled wc-variation-selection-needed">
-                                            <?php echo esc_html( $product->single_add_to_cart_text() ); ?>
-                                        </button>
-                                    </div>
-
-                                    <input type="hidden" name="add-to-cart" value="<?php echo absint( $product->get_id() ); ?>">
-                                    <input type="hidden" name="product_id" value="<?php echo absint( $product->get_id() ); ?>">
-                                    <input type="hidden" name="variation_id" class="variation_id" value="0">
-                                </div>
-                            </div>
-
-                        </form>
-                    <?php else : ?>
-                        <!-- Simple Product Form -->
-                        <form class="cart" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data'>
-
-                            <!-- Price Display -->
-                            <div class="price-display mb-3">
-                                <span class="price"><?php echo $product->get_price_html(); ?></span>
-                            </div>
-
-                            <!-- Quantity and Add to Cart -->
-                            <div class="quantity-controls-wrapper d-flex align-items-center">
-                                <button type="button" class="quantity-minus btn"><i class="bi bi-dash-lg"></i></button>
+                                <button type="button" class="minus btn"><i class="bi bi-dash-lg"></i></button>
                                 <div class="quantity">
-                                    <?php
-                                    woocommerce_quantity_input(
-                                        array(
-                                            'min_value'   => apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ),
-                                            'max_value'   => apply_filters( 'woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product ),
-                                            'input_value' => isset( $_POST['quantity'] ) ? wc_stock_amount( wp_unslash( $_POST['quantity'] ) ) : $product->get_min_purchase_quantity(),
-                                            'classes'     => array( 'input-text', 'qty', 'text' ),
-                                        )
-                                    );
-                                    ?>
+                                    <label class="screen-reader-text" for="quantity_6893d01eb31b5">FIDDES Danish Oil
+                                        quantity</label>
+                                    <input type="number" id="quantity_6893d01eb31b5" class="input-text qty text"
+                                        name="quantity" value="1" title="Qty" size="4" min="1" max="" step="1"
+                                        placeholder="" inputmode="numeric" autocomplete="off">
                                 </div>
-                                <button type="button" class="quantity-plus btn"><i class="bi bi-plus-lg"></i></button>
+                                <button type="button" class="plus btn"><i class="bi bi-plus-lg"></i></button>
+                                <button type="submit"
+                                    class="single_add_to_cart_button button alt wp-element-button disabled wc-variation-selection-needed">Add
+                                    to basket</button>
 
-                                <button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="single_add_to_cart_button button alt wp-element-button">
-                                    <?php echo esc_html( $product->single_add_to_cart_text() ); ?>
-                                </button>
+
+                                <input type="hidden" name="add-to-cart" value="1037">
+                                <input type="hidden" name="product_id" value="1037">
+                                <input type="hidden" name="variation_id" class="variation_id" value="0">
                             </div>
+                        </div>
 
-                        </form>
-                    <?php endif; ?>
+                    </form>
 
                     <?php
                     /**
@@ -191,8 +138,8 @@ if ( post_password_required() ) {
                 /* Hide any duplicate WooCommerce elements */
                 .woocommerce-product-attributes-item,
                 .product-addons-wrap,
-                .single-product .summary > .variations_form:not(.cart),
-                .single-product .summary > form.cart:not(.variations_form) {
+                .single-product .summary>.variations_form:not(.cart),
+                .single-product .summary>form.cart:not(.variations_form) {
                     display: none !important;
                 }
 
@@ -216,7 +163,8 @@ if ( post_password_required() ) {
                 }
 
                 .variations th {
-                    display: none; /* Hide the label */
+                    display: none;
+                    /* Hide the label */
                 }
 
                 .variations td {
@@ -406,7 +354,7 @@ if ( post_password_required() ) {
                             // Update the add to cart button
                             var $button = $('.single_add_to_cart_button');
                             $button.removeClass('disabled wc-variation-selection-needed')
-                                   .prop('disabled', false);
+                                .prop('disabled', false);
 
                             $('.woocommerce-variation-add-to-cart')
                                 .removeClass('woocommerce-variation-add-to-cart-disabled')
@@ -416,7 +364,7 @@ if ( post_password_required() ) {
                         $('.variations_form').on('hide_variation', function() {
                             var $button = $('.single_add_to_cart_button');
                             $button.addClass('disabled wc-variation-selection-needed')
-                                   .prop('disabled', true);
+                                .prop('disabled', true);
 
                             $('.woocommerce-variation-add-to-cart')
                                 .removeClass('woocommerce-variation-add-to-cart-enabled')
@@ -455,80 +403,80 @@ if ( post_password_required() ) {
                     });
                 });
                 </script>
-                </div>
             </div>
         </div>
+    </div>
 
-        <div class="row">
-            <div class="accordion mb-5" id="accordionProduct">
-                <?php
+    <div class="row">
+        <div class="accordion mb-5" id="accordionProduct">
+            <?php
                     $long_description = $product->get_description();
                     if($long_description){
                 ?>
-                <div class="accordion-item">
-                    <h2 class="accordion-header mt-0" id="heading-description">
-                        <button class="accordion-button" style="box-shadow: none !important;" type="button"
-                            data-bs-toggle="collapse" data-bs-target="#collapse-description" aria-expanded="false"
-                            aria-controls="collapse-description">
-                            <?php echo esc_html( $product->get_name() ); ?>
-                        </button>
-                    </h2>
-                    <div id="collapse-description" class="accordion-collapse collapse show"
-                        aria-labelledby="heading-description" data-bs-parent="#accordionExample-description">
-                        <div class="accordion-body px-0">
-                            <?php echo wp_kses_post( $long_description ); ?>
-                        </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header mt-0" id="heading-description">
+                    <button class="accordion-button" style="box-shadow: none !important;" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapse-description" aria-expanded="false"
+                        aria-controls="collapse-description">
+                        <?php echo esc_html( $product->get_name() ); ?>
+                    </button>
+                </h2>
+                <div id="collapse-description" class="accordion-collapse collapse show"
+                    aria-labelledby="heading-description" data-bs-parent="#accordionExample-description">
+                    <div class="accordion-body px-0">
+                        <?php echo wp_kses_post( $long_description ); ?>
                     </div>
                 </div>
-                <?php } ?>
-                <?php
+            </div>
+            <?php } ?>
+            <?php
                 $attributes = $product->get_attributes();
                 $has_weight = $product->has_weight();
                 $has_dimensions = $product->has_dimensions();
 
                 if ( ! empty( $attributes ) || $has_weight || $has_dimensions ) : ?>
-                <div class="accordion-item">
-                    <p class="accordion-header" id="headingadditional_information">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#additional_informationCollapse" aria-expanded="false"
-                            aria-controls="additional_informationCollapse">
-                            <?php esc_html_e( 'Additional information', 'woocommerce' ); ?>
-                        </button>
-                    </p>
-                    <div id="additional_informationCollapse" class="accordion-collapse collapse"
-                        aria-labelledby="headingadditional_information" data-bs-parent="#accordionProduct" style="">
-                        <div class="accordion-body px-0">
-                            <?php
+            <div class="accordion-item">
+                <p class="accordion-header" id="headingadditional_information">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#additional_informationCollapse" aria-expanded="false"
+                        aria-controls="additional_informationCollapse">
+                        <?php esc_html_e( 'Additional information', 'woocommerce' ); ?>
+                    </button>
+                </p>
+                <div id="additional_informationCollapse" class="accordion-collapse collapse"
+                    aria-labelledby="headingadditional_information" data-bs-parent="#accordionProduct" style="">
+                    <div class="accordion-body px-0">
+                        <?php
                             $attributes = $product->get_attributes();
                             if ( ! empty( $attributes ) ) : ?>
-                            <table class="woocommerce-product-attributes shop_attributes">
-                                <tbody>
-                                    <?php
+                        <table class="woocommerce-product-attributes shop_attributes">
+                            <tbody>
+                                <?php
                                     // Add weight row if it exists
                                     if ( $product->has_weight() ) : ?>
-                                    <tr
-                                        class="woocommerce-product-attributes-item woocommerce-product-attributes-item--weight">
-                                        <th class="woocommerce-product-attributes-item__label">
-                                            <?php esc_html_e( 'Weight', 'woocommerce' ); ?></th>
-                                        <td class="woocommerce-product-attributes-item__value">
-                                            <?php echo esc_html( wc_format_weight( $product->get_weight() ) ); ?></td>
-                                    </tr>
-                                    <?php endif; ?>
+                                <tr
+                                    class="woocommerce-product-attributes-item woocommerce-product-attributes-item--weight">
+                                    <th class="woocommerce-product-attributes-item__label">
+                                        <?php esc_html_e( 'Weight', 'woocommerce' ); ?></th>
+                                    <td class="woocommerce-product-attributes-item__value">
+                                        <?php echo esc_html( wc_format_weight( $product->get_weight() ) ); ?></td>
+                                </tr>
+                                <?php endif; ?>
 
-                                    <?php
+                                <?php
                                     // Add dimensions if they exist
                                     if ( $product->has_dimensions() ) : ?>
-                                    <tr
-                                        class="woocommerce-product-attributes-item woocommerce-product-attributes-item--dimensions">
-                                        <th class="woocommerce-product-attributes-item__label">
-                                            <?php esc_html_e( 'Dimensions', 'woocommerce' ); ?></th>
-                                        <td class="woocommerce-product-attributes-item__value">
-                                            <?php echo esc_html( wc_format_dimensions( $product->get_dimensions( false ) ) ); ?>
-                                        </td>
-                                    </tr>
-                                    <?php endif; ?>
+                                <tr
+                                    class="woocommerce-product-attributes-item woocommerce-product-attributes-item--dimensions">
+                                    <th class="woocommerce-product-attributes-item__label">
+                                        <?php esc_html_e( 'Dimensions', 'woocommerce' ); ?></th>
+                                    <td class="woocommerce-product-attributes-item__value">
+                                        <?php echo esc_html( wc_format_dimensions( $product->get_dimensions( false ) ) ); ?>
+                                    </td>
+                                </tr>
+                                <?php endif; ?>
 
-                                    <?php foreach ( $attributes as $attribute ) :
+                                <?php foreach ( $attributes as $attribute ) :
                                         $attribute_label = wc_attribute_label( $attribute->get_name() );
                                         $attribute_value = $product->get_attribute( $attribute->get_name() );
 
@@ -536,42 +484,41 @@ if ( post_password_required() ) {
                                             continue;
                                         }
                                         ?>
-                                    <tr
-                                        class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_<?php echo esc_attr( $attribute->get_name() ); ?>">
-                                        <th class="woocommerce-product-attributes-item__label">
-                                            <?php echo esc_html( $attribute_label ); ?></th>
-                                        <td class="woocommerce-product-attributes-item__value">
-                                            <?php if ( $attribute->get_variation() ) : ?>
-                                            <?php echo wp_kses_post( $attribute_value ); ?>
-                                            <?php else : ?>
-                                            <?php echo wp_kses_post( $attribute_value ); ?>
-                                            <?php endif; ?>
-                                        </td>
-                                    </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                            <?php else : ?>
-                            <p><?php esc_html_e( 'No additional information available.', 'woocommerce' ); ?></p>
-                            <?php endif; ?>
-                        </div>
+                                <tr
+                                    class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_<?php echo esc_attr( $attribute->get_name() ); ?>">
+                                    <th class="woocommerce-product-attributes-item__label">
+                                        <?php echo esc_html( $attribute_label ); ?></th>
+                                    <td class="woocommerce-product-attributes-item__value">
+                                        <?php if ( $attribute->get_variation() ) : ?>
+                                        <?php echo wp_kses_post( $attribute_value ); ?>
+                                        <?php else : ?>
+                                        <?php echo wp_kses_post( $attribute_value ); ?>
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                        <?php else : ?>
+                        <p><?php esc_html_e( 'No additional information available.', 'woocommerce' ); ?></p>
+                        <?php endif; ?>
                     </div>
                 </div>
-                <?php endif; ?>
+            </div>
+            <?php endif; ?>
 
-                <!-- Product Data Sheet Section -->
-                <div class="accordion-item">
-                    <p class="accordion-header" id="headingDataSheets">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#DataSheetsCollapse" aria-expanded="false"
-                            aria-controls="DataSheetsCollapse">
-                            Product Data Sheet
-                        </button>
-                    </p>
-                    <div id="DataSheetsCollapse" class="accordion-collapse collapse" aria-labelledby="headingDataSheets"
-                        data-bs-parent="#accordionProduct" style="">
-                        <div class="accordion-body px-0">
-                            <?php
+            <!-- Product Data Sheet Section -->
+            <div class="accordion-item">
+                <p class="accordion-header" id="headingDataSheets">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#DataSheetsCollapse" aria-expanded="false" aria-controls="DataSheetsCollapse">
+                        Product Data Sheet
+                    </button>
+                </p>
+                <div id="DataSheetsCollapse" class="accordion-collapse collapse" aria-labelledby="headingDataSheets"
+                    data-bs-parent="#accordionProduct" style="">
+                    <div class="accordion-body px-0">
+                        <?php
                             // Check for downloadable files
                             if ( $product->is_downloadable() && $product->has_file() ) {
                                 $downloads = $product->get_downloads();
@@ -595,13 +542,13 @@ if ( post_password_required() ) {
                                 }
                             }
                             ?>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row related-products-container pt-4">
-            <?php
+    </div>
+    <div class="row related-products-container pt-4">
+        <?php
                 /**
                  * Hook: woocommerce_output_related_products_args
                  *
@@ -617,31 +564,31 @@ if ( post_password_required() ) {
                 if ( ! empty( $related_products ) ) {
                     // Start custom structure
                     ?>
-            <div class="container">
-                <div class="row text-left">
-                    <h2><?php esc_html_e( 'You may also like…', 'woocommerce' ); ?></h2>
-                </div>
+        <div class="container">
+            <div class="row text-left">
+                <h2><?php esc_html_e( 'You may also like…', 'woocommerce' ); ?></h2>
             </div>
-            <div class="container">
-                <div class="row">
-                    <?php
+        </div>
+        <div class="container">
+            <div class="row">
+                <?php
                     foreach ( $related_products as $related_product_id ) { ?>
-                    <div class="col-md-3 col-12 mb-4">
-                        <?php
+                <div class="col-md-3 col-12 mb-4">
+                    <?php
                             $post_object = get_post( $related_product_id );
                             setup_postdata( $GLOBALS['post'] =& $post_object );
                             wc_get_template_part( 'content', 'product' );
                         ?>
-                    </div>
-                    <?php } ?>
                 </div>
+                <?php } ?>
             </div>
-            <?php
+        </div>
+        <?php
                     wp_reset_postdata();
                 }
             ?>
-        </div>
     </div>
+</div>
 </div>
 
 <div class="container">
