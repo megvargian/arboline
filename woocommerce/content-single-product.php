@@ -75,8 +75,9 @@ if ( post_password_required() ) {
                     <?php endif; ?>
 
                     <!-- Dynamic Price Display -->
-                    <div class="product-price-display mb-3">
+                    <div class="price mb-3">
                         <?php echo $product->get_price_html(); ?>
+                        <small class="woocommerce-price-suffix">INC. VAT</small>
                     </div>
                     <?php
                         $available_variations = $product->get_available_variations();
@@ -85,123 +86,127 @@ if ( post_password_required() ) {
                         $action_url = esc_url( get_permalink( $product_id ) );
                     ?>
 
-                        <form class="variations_form cart" method="post" enctype="multipart/form-data"
-                            action="<?php echo $action_url; ?>"
-                            data-product_id="<?php echo esc_attr( $product_id ); ?>"
-                            data-product_variations='<?php echo wp_json_encode( $available_variations ); ?>'>
+                    <form class="variations_form cart" method="post" enctype="multipart/form-data"
+                        action="<?php echo $action_url; ?>" data-product_id="<?php echo esc_attr( $product_id ); ?>"
+                        data-product_variations='<?php echo wp_json_encode( $available_variations ); ?>'>
 
-                            <table class="variations" cellspacing="0">
-                                <tbody>
+                        <table class="variations" cellspacing="0">
+                            <tbody>
                                 <?php foreach ( $attributes as $attribute_name => $options ) : ?>
-                                    <tr>
-                                        <th class="label"><label for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>">
-                                                <?php echo wc_attribute_label( $attribute_name ); ?>
-                                            </label></th>
-                                        <td class="value">
-                                            <select id="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>"
-                                                    name="attribute_<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>">
-                                                <option value="">Choose an option</option>
-                                                <?php foreach ( $options as $option ) : ?>
-                                                    <option value="<?php echo esc_attr( $option ); ?>"><?php echo esc_html( $option ); ?></option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <th class="label"><label
+                                            for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>">
+                                            <?php echo wc_attribute_label( $attribute_name ); ?>
+                                        </label></th>
+                                    <td class="value">
+                                        <select id="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>"
+                                            name="attribute_<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>">
+                                            <option value="">Choose an option</option>
+                                            <?php foreach ( $options as $option ) : ?>
+                                            <option value="<?php echo esc_attr( $option ); ?>">
+                                                <?php echo esc_html( $option ); ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </td>
+                                </tr>
                                 <?php endforeach; ?>
-                                </tbody>
-                            </table>
+                            </tbody>
+                        </table>
 
-                            <div class="single_variation_wrap">
-                                <div class="woocommerce-variation single_variation"></div>
-                                <div class="woocommerce-variation-add-to-cart variations_button woocommerce-variation-add-to-cart-disabled">
-                                    <button type="button" class="minus btn">-</button>
-                                    <div class="quantity">
-                                        <input type="number" class="input-text qty text" name="quantity" value="1" min="1" step="1">
-                                    </div>
-                                    <button type="button" class="plus btn">+</button>
-
-                                    <button type="submit"
-                                            class="single_add_to_cart_button button alt wp-element-button disabled wc-variation-selection-needed">
-                                        Add to basket
-                                    </button>
-
-                                    <input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product_id ); ?>">
-                                    <input type="hidden" name="product_id" value="<?php echo esc_attr( $product_id ); ?>">
-                                    <input type="hidden" name="variation_id" class="variation_id" value="0">
+                        <div class="single_variation_wrap">
+                            <div class="woocommerce-variation single_variation"></div>
+                            <div
+                                class="woocommerce-variation-add-to-cart variations_button woocommerce-variation-add-to-cart-disabled">
+                                <button type="button" class="minus btn">-</button>
+                                <div class="quantity">
+                                    <input type="number" class="input-text qty text" name="quantity" value="1" min="1"
+                                        step="1">
                                 </div>
+                                <button type="button" class="plus btn">+</button>
+
+                                <button type="submit"
+                                    class="single_add_to_cart_button button alt wp-element-button disabled wc-variation-selection-needed">
+                                    Add to basket
+                                </button>
+
+                                <input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product_id ); ?>">
+                                <input type="hidden" name="product_id" value="<?php echo esc_attr( $product_id ); ?>">
+                                <input type="hidden" name="variation_id" class="variation_id" value="0">
                             </div>
-                        </form>
+                        </div>
+                    </form>
 
                     <!-- jQuery Logic -->
                     <script>
-                        jQuery(document).ready(function ($) {
-                            const $form = $('.variations_form.cart');
-                            const $variationSelects = $form.find('select');
-                            const $addToCartButton = $form.find('.single_add_to_cart_button');
-                            const $variationIdInput = $form.find('input.variation_id');
-                            const $quantityInput = $form.find('input.qty');
+                    jQuery(document).ready(function($) {
+                        const $form = $('.variations_form.cart');
+                        const $variationSelects = $form.find('select');
+                        const $addToCartButton = $form.find('.single_add_to_cart_button');
+                        const $variationIdInput = $form.find('input.variation_id');
+                        const $quantityInput = $form.find('input.qty');
 
-                            $variationSelects.on('change', function () {
-                                const selectedAttributes = {};
+                        $variationSelects.on('change', function() {
+                            const selectedAttributes = {};
 
-                                $variationSelects.each(function () {
-                                    const name = $(this).attr('name');
-                                    const value = $(this).val();
-                                    selectedAttributes[name.replace('attribute_', '')] = value;
-                                });
+                            $variationSelects.each(function() {
+                                const name = $(this).attr('name');
+                                const value = $(this).val();
+                                selectedAttributes[name.replace('attribute_', '')] = value;
+                            });
 
-                                const variations = $form.data('product_variations');
-                                let found = false;
+                            const variations = $form.data('product_variations');
+                            let found = false;
 
-                                for (let i = 0; i < variations.length; i++) {
-                                    const variation = variations[i];
-                                    let match = true;
+                            for (let i = 0; i < variations.length; i++) {
+                                const variation = variations[i];
+                                let match = true;
 
-                                    for (let key in variation.attributes) {
-                                        if (variation.attributes[key] !== '' &&
-                                            variation.attributes[key] !== selectedAttributes[key]) {
-                                            match = false;
-                                            break;
-                                        }
-                                    }
-
-                                    if (match) {
-                                        found = true;
-                                        $variationIdInput.val(variation.variation_id);
-                                        $addToCartButton.removeClass('disabled wc-variation-selection-needed');
+                                for (let key in variation.attributes) {
+                                    if (variation.attributes[key] !== '' &&
+                                        variation.attributes[key] !== selectedAttributes[key]) {
+                                        match = false;
                                         break;
                                     }
                                 }
 
-                                if (!found) {
-                                    $variationIdInput.val(0);
-                                    $addToCartButton.addClass('disabled wc-variation-selection-needed');
+                                if (match) {
+                                    found = true;
+                                    $variationIdInput.val(variation.variation_id);
+                                    $addToCartButton.removeClass(
+                                        'disabled wc-variation-selection-needed');
+                                    break;
                                 }
-                            });
+                            }
 
-                            // + and - buttons
-                            $form.find('.plus').click(function () {
-                                const val = parseInt($quantityInput.val()) || 1;
-                                $quantityInput.val(val + 1);
-                            });
+                            if (!found) {
+                                $variationIdInput.val(0);
+                                $addToCartButton.addClass('disabled wc-variation-selection-needed');
+                            }
+                        });
 
-                            $form.find('.minus').click(function () {
-                                const val = parseInt($quantityInput.val()) || 1;
-                                if (val > 1) $quantityInput.val(val - 1);
-                            });
+                        // + and - buttons
+                        $form.find('.plus').click(function() {
+                            const val = parseInt($quantityInput.val()) || 1;
+                            $quantityInput.val(val + 1);
+                        });
 
-                            // On submit
-                            $addToCartButton.on('click', function (e) {
-                                e.preventDefault();
+                        $form.find('.minus').click(function() {
+                            const val = parseInt($quantityInput.val()) || 1;
+                            if (val > 1) $quantityInput.val(val - 1);
+                        });
 
-                                if ($(this).hasClass('disabled')) return;
+                        // On submit
+                        $addToCartButton.on('click', function(e) {
+                            e.preventDefault();
 
-                                const formData = $form.serialize();
-                                $.post($form.attr('action'), formData, function () {
-                                    window.location.href = "/cart/";
-                                });
+                            if ($(this).hasClass('disabled')) return;
+
+                            const formData = $form.serialize();
+                            $.post($form.attr('action'), formData, function() {
+                                window.location.href = "/cart/";
                             });
                         });
+                    });
                     </script>
 
                     <?php
@@ -391,7 +396,8 @@ if ( post_password_required() ) {
                 jQuery(document).ready(function($) {
                     // Helper function for price formatting
                     function wc_price_format(price) {
-                        return '<?php echo get_woocommerce_currency_symbol(); ?>' + parseFloat(price).toFixed(2);
+                        return '<?php echo get_woocommerce_currency_symbol(); ?>' + parseFloat(price).toFixed(
+                        2);
                     }
 
                     // Remove any duplicate forms that might be generated by WooCommerce
@@ -461,7 +467,8 @@ if ( post_password_required() ) {
                                         var $input = $form.find('input[name="' + attr_name + '"]');
                                         if ($input.length) {
                                             $input.val(attributes[attr_name]);
-                                            console.log('Setting attribute:', attr_name, '=', attributes[attr_name]);
+                                            console.log('Setting attribute:', attr_name, '=',
+                                                attributes[attr_name]);
                                         }
                                     }
                                 }
@@ -469,7 +476,8 @@ if ( post_password_required() ) {
                                 // Update price display if exists
                                 if (price) {
                                     $('.single_variation .price').remove();
-                                    $('.single_variation').html('<div class="price">' + wc_price_format(price) + '</div>');
+                                    $('.single_variation').html('<div class="price">' + wc_price_format(
+                                        price) + '</div>');
                                 }
 
                                 // Enable the add to cart button
@@ -568,7 +576,8 @@ if ( post_password_required() ) {
                             // AJAX request
                             $.ajax({
                                 type: 'POST',
-                                url: wc_add_to_cart_params ? wc_add_to_cart_params.ajax_url : '<?php echo admin_url('admin-ajax.php'); ?>',
+                                url: wc_add_to_cart_params ? wc_add_to_cart_params.ajax_url :
+                                    '<?php echo admin_url('admin-ajax.php'); ?>',
                                 data: {
                                     action: 'custom_variable_add_to_cart',
                                     product_id: product_id,
@@ -581,18 +590,27 @@ if ( post_password_required() ) {
                                     console.log('AJAX response:', response);
                                     if (response.success) {
                                         // Redirect to cart page
-                                        var cartUrl = wc_add_to_cart_params ? wc_add_to_cart_params.cart_url : '<?php echo wc_get_cart_url(); ?>';
+                                        var cartUrl = wc_add_to_cart_params ?
+                                            wc_add_to_cart_params.cart_url :
+                                            '<?php echo wc_get_cart_url(); ?>';
                                         console.log('Redirecting to cart:', cartUrl);
                                         window.location.href = cartUrl;
                                     } else {
-                                        var errorMessage = response.data && response.data.message ? response.data.message : 'Failed to add product to cart';
+                                        var errorMessage = response.data && response.data
+                                            .message ? response.data.message :
+                                            'Failed to add product to cart';
                                         console.error('Add to cart failed:', errorMessage);
                                         alert(errorMessage);
-                                        $button.prop('disabled', false).text('Add to basket');
+                                        $button.prop('disabled', false).text(
+                                            'Add to basket');
                                     }
                                 },
                                 error: function(xhr, status, error) {
-                                    console.error('AJAX error:', {xhr: xhr, status: status, error: error});
+                                    console.error('AJAX error:', {
+                                        xhr: xhr,
+                                        status: status,
+                                        error: error
+                                    });
                                     alert('An error occurred. Please try again.');
                                     $button.prop('disabled', false).text('Add to basket');
                                 }
@@ -606,7 +624,8 @@ if ( post_password_required() ) {
 
                         var $form = $(this);
                         var $button = $('.single_add_to_cart_button');
-                        var product_id = $form.find('input[name="add-to-cart"], input[name="product_id"]').val();
+                        var product_id = $form.find(
+                            'input[name="add-to-cart"], input[name="product_id"]').val();
                         var quantity = parseInt($form.find('input[name="quantity"]').val()) || 1;
 
                         // Ensure quantity is at least 1
@@ -620,7 +639,8 @@ if ( post_password_required() ) {
                         // AJAX request for simple products
                         $.ajax({
                             type: 'POST',
-                            url: wc_add_to_cart_params ? wc_add_to_cart_params.ajax_url : '<?php echo admin_url('admin-ajax.php'); ?>',
+                            url: wc_add_to_cart_params ? wc_add_to_cart_params.ajax_url :
+                                '<?php echo admin_url('admin-ajax.php'); ?>',
                             data: {
                                 action: 'custom_simple_add_to_cart',
                                 product_id: product_id,
@@ -630,10 +650,13 @@ if ( post_password_required() ) {
                             success: function(response) {
                                 if (response.success) {
                                     // Redirect to cart page
-                                    var cartUrl = wc_add_to_cart_params ? wc_add_to_cart_params.cart_url : '<?php echo wc_get_cart_url(); ?>';
+                                    var cartUrl = wc_add_to_cart_params ?
+                                        wc_add_to_cart_params.cart_url :
+                                        '<?php echo wc_get_cart_url(); ?>';
                                     window.location.href = cartUrl;
                                 } else {
-                                    alert(response.data.message || 'Failed to add product to cart');
+                                    alert(response.data.message ||
+                                        'Failed to add product to cart');
                                     $button.prop('disabled', false).text('Add to basket');
                                 }
                             },
