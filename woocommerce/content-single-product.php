@@ -332,14 +332,13 @@ if ( post_password_required() ) {
                                     product_id: '<?php echo $product_id; ?>',
                                     variation_id: variationId,
                                     quantity: quantity,
-                                    security: '<?php echo wp_create_nonce("add_to_cart_nonce"); ?>'
                                 },
                                 success: function(response) {
                                     console.log('AJAX response:', response);
                                     if (response.success) {
                                         window.location.href = '<?php echo wc_get_cart_url(); ?>';
                                     } else {
-                                        alert('Error adding product to cart: ' + (response.data || 'Unknown error'));
+                                        alert('Error adding product to cart: ' + (response.data.message || 'Unknown error'));
                                         $addToCartButton.text('ADD TO BASKET').prop('disabled', false);
                                     }
                                 },
