@@ -86,35 +86,88 @@ if ( post_password_required() ) {
 
                         <div class="custom-variation-selector">
                             <select id="variation_selector" name="variation_selector" class="variation-dropdown">
-                                <option value="">Choose an option</option>
+                                <option value="">Choose a size</option>
                                 <?php
+                                // Get only the size attribute values
+                                $variation_attributes = $product->get_variation_attributes();
                                 $available_variations = $product->get_available_variations();
-                                foreach ( $available_variations as $variation ) {
-                                    $variation_obj = wc_get_product( $variation['variation_id'] );
-                                    if ( $variation_obj && $variation_obj->is_in_stock() ) {
-                                        // Build option text from attributes
-                                        $option_text = '';
-                                        $attributes_data = array();
 
-                                        foreach ( $variation['attributes'] as $attr_name => $attr_value ) {
-                                            $attribute_label = wc_attribute_label( str_replace( 'attribute_', '', $attr_name ) );
-                                            $option_text .= $attribute_label . ': ' . $attr_value . ' ';
-                                            $attributes_data[$attr_name] = $attr_value;
-                                        }
+                                // Debug: log what we have
+                                error_log('Available variation attributes: ' . print_r($variation_attributes, true));
+                                error_log('Available variations count: ' . count($available_variations));
 
-                                        // Add price to option text
-                                        $price = $variation_obj->get_price();
-                                        if ( $price ) {
-                                            $option_text .= '- ' . wc_price( $price );
-                                        }
+                                // Find size attribute - check different possible names
+                                $size_options = array();
+                                $size_attribute_name = '';
 
-                                        echo '<option value="' . esc_attr( $variation['variation_id'] ) . '"
-                                                data-variation-id="' . esc_attr( $variation['variation_id'] ) . '"
-                                                data-attributes="' . esc_attr( wp_json_encode( $attributes_data ) ) . '"
-                                                data-price="' . esc_attr( $price ) . '">';
-                                        echo esc_html( trim( $option_text ) );
-                                        echo '</option>';
+                                // First, find the size attribute name
+                                foreach ( $variation_attributes as $attr_name => $attr_options ) {
+                                    if ( strpos( $attr_name, 'size' ) !== false || strpos( $attr_name, 'pa_size' ) !== false ) {
+                                        $size_attribute_name = $attr_name;
+                                        error_log('Found size attribute: ' . $size_attribute_name);
+                                        break;
                                     }
+                                }
+
+                                // If we found a size attribute, get its variations
+                                if ( $size_attribute_name ) {
+                                    foreach ( $available_variations as $variation ) {
+                                        if ( isset( $variation['attributes'][$size_attribute_name] ) ) {
+                                            $size_value = $variation['attributes'][$size_attribute_name];
+                                            $variation_obj = wc_get_product( $variation['variation_id'] );
+
+                                            if ( $variation_obj && $variation_obj->is_in_stock() && !isset( $size_options[$size_value] ) ) {
+                                                $price = $variation_obj->get_price();
+                                                $size_options[$size_value] = array(
+                                                    'variation_id' => $variation['variation_id'],
+                                                    'price' => $price,
+                                                    'attributes' => $variation['attributes']
+                                                );
+                                                error_log('Added size option: ' . $size_value . ' with variation ID: ' . $variation['variation_id']);
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    // Fallback: if no size attribute found, show all variations
+                                    error_log('No size attribute found, showing all variations');
+                                    foreach ( $available_variations as $variation ) {
+                                        $variation_obj = wc_get_product( $variation['variation_id'] );
+                                        if ( $variation_obj && $variation_obj->is_in_stock() ) {
+                                            // Build a label from all attributes
+                                            $label = '';
+                                            foreach ( $variation['attributes'] as $attr_name => $attr_value ) {
+                                                $clean_attr_name = str_replace( 'attribute_', '', $attr_name );
+                                                $clean_attr_name = str_replace( 'pa_', '', $clean_attr_name );
+                                                $label .= ucfirst( $clean_attr_name ) . ': ' . $attr_value . ' ';
+                                            }
+                                            $label = trim( $label );
+
+                                            if ( !isset( $size_options[$label] ) ) {
+                                                $price = $variation_obj->get_price();
+                                                $size_options[$label] = array(
+                                                    'variation_id' => $variation['variation_id'],
+                                                    'price' => $price,
+                                                    'attributes' => $variation['attributes']
+                                                );
+                                            }
+                                        }
+                                    }
+                                }
+
+                                // Display options
+                                foreach ( $size_options as $option_label => $variation_data ) {
+                                    $option_text = $option_label;
+                                    if ( $variation_data['price'] ) {
+                                        $option_text .= ' - ' . wc_price( $variation_data['price'] );
+                                    }
+
+                                    echo '<option value="' . esc_attr( $variation_data['variation_id'] ) . '"';
+                                    echo ' data-variation-id="' . esc_attr( $variation_data['variation_id'] ) . '"';
+                                    echo ' data-attributes="' . esc_attr( wp_json_encode( $variation_data['attributes'] ) ) . '"';
+                                    echo ' data-price="' . esc_attr( $variation_data['price'] ) . '"';
+                                    echo ' data-size="' . esc_attr( $option_label ) . '">';
+                                    echo esc_html( $option_text );
+                                    echo '</option>';
                                 }
                                 ?>
                             </select>
@@ -143,8 +196,13 @@ if ( post_password_required() ) {
                                 <input type="hidden" name="variation_id" class="variation_id" value="0">
 
                                 <!-- Hidden inputs for attributes -->
-                                <?php foreach ( $product->get_variation_attributes() as $attribute_name => $options ) : ?>
-                                    <input type="hidden" name="<?php echo esc_attr( $attribute_name ); ?>" class="variation_attribute" value="">
+                                <?php
+                                $variation_attributes = $product->get_variation_attributes();
+                                foreach ( $variation_attributes as $attribute_name => $options ) :
+                                    // Debug output
+                                    error_log('Attribute name: ' . $attribute_name);
+                                ?>
+                                    <input type="hidden" name="<?php echo esc_attr( $attribute_name ); ?>" class="variation_attribute" value="" data-attribute="<?php echo esc_attr( $attribute_name ); ?>">
                                 <?php endforeach; ?>
                             </div>
                         </div>
@@ -409,6 +467,14 @@ if ( post_password_required() ) {
                             var variation_id = selectedOption.val();
                             var attributes = selectedOption.data('attributes');
                             var price = selectedOption.data('price');
+                            var size = selectedOption.data('size');
+
+                            console.log('Variation selected:', {
+                                variation_id: variation_id,
+                                attributes: attributes,
+                                price: price,
+                                size: size
+                            });
 
                             if (variation_id && variation_id !== '') {
                                 // Set the variation ID
@@ -416,8 +482,13 @@ if ( post_password_required() ) {
 
                                 // Set the attribute values in hidden inputs
                                 if (attributes) {
+                                    $form.find('.variation_attribute').val(''); // Clear all first
                                     for (var attr_name in attributes) {
-                                        $form.find('input[name="' + attr_name + '"]').val(attributes[attr_name]);
+                                        var $input = $form.find('input[name="' + attr_name + '"]');
+                                        if ($input.length) {
+                                            $input.val(attributes[attr_name]);
+                                            console.log('Setting attribute:', attr_name, '=', attributes[attr_name]);
+                                        }
                                     }
                                 }
 
@@ -429,10 +500,14 @@ if ( post_password_required() ) {
 
                                 // Enable the add to cart button
                                 $button.removeClass('disabled wc-variation-selection-needed')
-                                    .prop('disabled', false);
+                                    .prop('disabled', false)
+                                    .css('background', '#000');
+
                                 $('.woocommerce-variation-add-to-cart')
                                     .removeClass('woocommerce-variation-add-to-cart-disabled')
                                     .addClass('woocommerce-variation-add-to-cart-enabled');
+
+                                console.log('Button enabled, variation_id set to:', variation_id);
                             } else {
                                 // Reset form when no variation selected
                                 $form.find('input[name="variation_id"]').val('0');
@@ -441,10 +516,14 @@ if ( post_password_required() ) {
 
                                 // Disable the add to cart button
                                 $button.addClass('disabled wc-variation-selection-needed')
-                                    .prop('disabled', true);
+                                    .prop('disabled', true)
+                                    .css('background', '#6c757d');
+
                                 $('.woocommerce-variation-add-to-cart')
                                     .removeClass('woocommerce-variation-add-to-cart-enabled')
                                     .addClass('woocommerce-variation-add-to-cart-disabled');
+
+                                console.log('Button disabled, no variation selected');
                             }
                         });
 
@@ -479,6 +558,12 @@ if ( post_password_required() ) {
                             var variation_id = $form.find('input[name="variation_id"]').val();
                             var quantity = parseInt($form.find('input[name="quantity"]').val()) || 1;
 
+                            console.log('Form submission started:', {
+                                product_id: product_id,
+                                variation_id: variation_id,
+                                quantity: quantity
+                            });
+
                             // Ensure quantity is at least 1
                             if (quantity < 1) {
                                 quantity = 1;
@@ -487,7 +572,7 @@ if ( post_password_required() ) {
 
                             // Check if variation is selected
                             if (!variation_id || variation_id === '0') {
-                                alert('Please select a product option before adding to cart.');
+                                alert('Please select a size before adding to cart.');
                                 return false;
                             }
 
@@ -500,6 +585,8 @@ if ( post_password_required() ) {
                                     selectedVariation[attrName] = attrValue;
                                 }
                             });
+
+                            console.log('Selected variation attributes:', selectedVariation);
 
                             // Show loading state
                             $button.prop('disabled', true).text('Adding...');
@@ -517,16 +604,21 @@ if ( post_password_required() ) {
                                     security: '<?php echo wp_create_nonce("add_to_cart_nonce"); ?>'
                                 },
                                 success: function(response) {
+                                    console.log('AJAX response:', response);
                                     if (response.success) {
                                         // Redirect to cart page
                                         var cartUrl = wc_add_to_cart_params ? wc_add_to_cart_params.cart_url : '<?php echo wc_get_cart_url(); ?>';
+                                        console.log('Redirecting to cart:', cartUrl);
                                         window.location.href = cartUrl;
                                     } else {
-                                        alert(response.data.message || 'Failed to add product to cart');
+                                        var errorMessage = response.data && response.data.message ? response.data.message : 'Failed to add product to cart';
+                                        console.error('Add to cart failed:', errorMessage);
+                                        alert(errorMessage);
                                         $button.prop('disabled', false).text('Add to basket');
                                     }
                                 },
-                                error: function() {
+                                error: function(xhr, status, error) {
+                                    console.error('AJAX error:', {xhr: xhr, status: status, error: error});
                                     alert('An error occurred. Please try again.');
                                     $button.prop('disabled', false).text('Add to basket');
                                 }
