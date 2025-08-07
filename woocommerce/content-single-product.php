@@ -222,6 +222,26 @@ if ( post_password_required() ) {
                         console.log('Variation form initialized');
                         console.log('Available variations:', $form.data('product_variations'));
 
+                        // Test AJAX connectivity
+                        $.ajax({
+                            type: 'POST',
+                            url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                            dataType: 'json',
+                            data: {
+                                action: 'test_ajax'
+                            },
+                            success: function(response) {
+                                console.log('AJAX test successful:', response);
+                            },
+                            error: function(xhr, status, error) {
+                                console.error('AJAX test failed:', {
+                                    status: status,
+                                    error: error,
+                                    responseText: xhr.responseText
+                                });
+                            }
+                        });
+
                         // Handle size selection
                         $sizeSelector.on('change', function() {
                             const selectedOption = $(this).find('option:selected');
@@ -670,7 +690,9 @@ if ( post_password_required() ) {
                             console.log('Form submission started:', {
                                 product_id: product_id,
                                 variation_id: variation_id,
-                                quantity: quantity
+                                quantity: quantity,
+                                ajax_url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                                nonce: '<?php echo wp_create_nonce("add_to_cart_nonce"); ?>'
                             });
 
                             // Ensure quantity is at least 1
@@ -704,12 +726,12 @@ if ( post_password_required() ) {
                             $.ajax({
                                 type: 'POST',
                                 url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                                dataType: 'json',
                                 data: {
                                     action: 'custom_variable_add_to_cart',
                                     product_id: product_id,
                                     variation_id: variation_id,
                                     quantity: quantity,
-                                    variation: selectedVariation,
                                     security: '<?php echo wp_create_nonce("add_to_cart_nonce"); ?>'
                                 },
                                 success: function(response) {
@@ -726,13 +748,45 @@ if ( post_password_required() ) {
                                     }
                                 },
                                 error: function(xhr, status, error) {
-                                    console.error('AJAX error:', {
+                                    console.error('AJAX error details:', {
                                         xhr: xhr,
                                         status: status,
-                                        error: error
+                                        error: error,
+                                        responseText: xhr.responseText
                                     });
-                                    alert('An error occurred. Please try again.');
-                                    $button.prop('disabled', false).text('ADD TO BASKET');
+
+                                    // Try to parse the response to see if it's an error page
+                                    var errorMessage = 'An error occurred. Please try again.';
+                                    if (xhr.responseText) {
+                                        if (xhr.responseText.indexOf('Fatal error') !== -1) {
+                                            errorMessage = 'Server error detected. Please check the error logs.';
+                                        } else if (xhr.responseText.indexOf('404') !== -1) {
+                                            errorMessage = 'AJAX endpoint not found. Please check the configuration.';
+                                        }
+                                    }
+
+                                    // Fallback: try traditional form submission
+                                    console.log('AJAX failed, trying fallback method...');
+                                    var fallbackUrl = '<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>';
+                                    var fallbackForm = $('<form>', {
+                                        'method': 'POST',
+                                        'action': fallbackUrl
+                                    }).append($('<input>', {
+                                        'type': 'hidden',
+                                        'name': 'add-to-cart',
+                                        'value': product_id
+                                    })).append($('<input>', {
+                                        'type': 'hidden',
+                                        'name': 'variation_id',
+                                        'value': variation_id
+                                    })).append($('<input>', {
+                                        'type': 'hidden',
+                                        'name': 'quantity',
+                                        'value': quantity
+                                    }));
+
+                                    $('body').append(fallbackForm);
+                                    fallbackForm.submit();
                                 }
                             });
                         });
@@ -759,6 +813,7 @@ if ( post_password_required() ) {
                         $.ajax({
                             type: 'POST',
                             url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                            dataType: 'json',
                             data: {
                                 action: 'custom_simple_add_to_cart',
                                 product_id: product_id,
@@ -774,7 +829,13 @@ if ( post_password_required() ) {
                                     $button.prop('disabled', false).text('ADD TO BASKET');
                                 }
                             },
-                            error: function() {
+                            error: function(xhr, status, error) {
+                                console.error('AJAX error:', {
+                                    xhr: xhr,
+                                    status: status,
+                                    error: error,
+                                    responseText: xhr.responseText
+                                });
                                 alert('An error occurred. Please try again.');
                                 $button.prop('disabled', false).text('ADD TO BASKET');
                             }

@@ -1172,9 +1172,19 @@ add_action('wp_head', 'arboline_woocommerce_custom_styles');
  * Custom AJAX handler for variable products add to cart
  */
 function custom_variable_add_to_cart_handler() {
+    // Check if this is an AJAX request
+    if (!wp_doing_ajax()) {
+        wp_die('Direct access not allowed');
+    }
+
     // Verify nonce
-    if (!wp_verify_nonce($_POST['security'], 'add_to_cart_nonce')) {
+    if (!isset($_POST['security']) || !wp_verify_nonce($_POST['security'], 'add_to_cart_nonce')) {
         wp_send_json_error(array('message' => 'Security check failed'));
+    }
+
+    // Validate required fields
+    if (!isset($_POST['product_id']) || !isset($_POST['variation_id']) || !isset($_POST['quantity'])) {
+        wp_send_json_error(array('message' => 'Missing required fields'));
     }
 
     $product_id = intval($_POST['product_id']);
@@ -1211,6 +1221,10 @@ function custom_variable_add_to_cart_handler() {
             wp_send_json_error(array('message' => 'Selected variation does not exist'));
         }
 
+        if (!$variation_product->is_purchasable()) {
+            wp_send_json_error(array('message' => 'This variation cannot be purchased'));
+        }
+
         if (!$variation_product->is_in_stock()) {
             wp_send_json_error(array('message' => 'Selected variation is out of stock'));
         }
@@ -1218,6 +1232,14 @@ function custom_variable_add_to_cart_handler() {
         // Validate that the variation belongs to the parent product
         if ($variation_product->get_parent_id() !== $product_id) {
             wp_send_json_error(array('message' => 'Invalid variation for this product'));
+        }
+
+        // Get the variation attributes if not provided
+        if (empty($variation)) {
+            $variation_attributes = $variation_product->get_variation_attributes();
+            foreach ($variation_attributes as $attribute_name => $attribute_value) {
+                $variation[$attribute_name] = $attribute_value;
+            }
         }
     }
 
@@ -1230,20 +1252,32 @@ function custom_variable_add_to_cart_handler() {
         }
 
         if ($added) {
+            // Trigger cart updated events
+            WC_AJAX::get_refreshed_fragments();
+
             wp_send_json_success(array(
                 'message' => 'Product added to cart successfully!',
                 'cart_count' => WC()->cart->get_cart_contents_count(),
-                'cart_url' => wc_get_cart_url()
+                'cart_url' => wc_get_cart_url(),
+                'added_to_cart' => true
             ));
         } else {
-            wp_send_json_error(array('message' => 'Failed to add product to cart'));
+            wp_send_json_error(array('message' => 'Failed to add product to cart. Please try again.'));
         }
     } catch (Exception $e) {
+        error_log('Add to cart error: ' . $e->getMessage());
         wp_send_json_error(array('message' => 'Error: ' . $e->getMessage()));
     }
 }
 add_action('wp_ajax_custom_variable_add_to_cart', 'custom_variable_add_to_cart_handler');
 add_action('wp_ajax_nopriv_custom_variable_add_to_cart', 'custom_variable_add_to_cart_handler');
+
+// Simple test function to verify AJAX is working
+function test_ajax_handler() {
+    wp_send_json_success(array('message' => 'AJAX is working!'));
+}
+add_action('wp_ajax_test_ajax', 'test_ajax_handler');
+add_action('wp_ajax_nopriv_test_ajax', 'test_ajax_handler');
 
 /**
  * Custom AJAX handler for simple products add to cart
