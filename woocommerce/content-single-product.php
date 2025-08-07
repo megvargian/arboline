@@ -592,7 +592,7 @@ if ( post_password_required() ) {
             <div class="accordion-item">
                 <p class="accordion-header mt-0" id="heading-description">
                     <button class="accordion-button" style="box-shadow: none !important;" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#collapse-description" aria-expanded="false"
+                        data-bs-toggle="collapse" data-bs-target="#collapse-description" aria-expanded="true"
                         aria-controls="collapse-description">
                         <?php echo esc_html( $product->get_name() ); ?>
                     </button>
