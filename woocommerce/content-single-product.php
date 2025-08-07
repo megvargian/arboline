@@ -69,7 +69,7 @@ if ( post_password_required() ) {
                     <?php
                     $short_description = $product->get_short_description();
                     if ( $short_description ) : ?>
-                    <div class="woocommerce-product-details__short-description mt-3 mb-4">
+                    <div class="woocommerce-product-details__short-description">
                         <?php echo wp_kses_post( $short_description ); ?>
                     </div>
                     <?php endif; ?>
@@ -424,8 +424,8 @@ if ( post_password_required() ) {
 
                 /* Price styling in variation area */
                 .single_variation .price {
-                    font-size: 18px;
-                    font-weight: 600;
+                    font-size: 2.25rem;
+                    font-weight: 500;
                     color: #000;
                     margin-bottom: 15px;
                     display: block;
