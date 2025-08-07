@@ -162,15 +162,15 @@ if ( post_password_required() ) {
                         </div>
 
                         <!-- Quantity and Add to Cart -->
-                        <div class="woocommerce-variation-add-to-cart variations_button d-flex align-items-center">
+                        <div class="woocommerce-variation-add-to-cart variations_button d-flex align-items-center" style="display: flex !important;">
                             <button type="button" class="minus btn btn-outline-secondary">-</button>
-                            <div class="quantity mx-2">
+                            <div class="quantity" style="margin: 0 !important; width: fit-content !important;">
                                 <input type="number" class="qty form-control text-center" name="quantity" value="1" min="1" style="width: 80px;">
                             </div>
                             <button type="button" class="plus btn btn-outline-secondary">+</button>
 
-                            <button type="submit" class="single_add_to_cart_button btn btn-dark ms-3 flex-grow-1 disabled"
-                                    disabled style="background-color: #6c757d; cursor: not-allowed;">
+                            <button type="submit" class="single_add_to_cart_button btn btn-dark ms-3 mt-0 flex-grow-1 disabled"
+                                    disabled style="background-color: #6c757d; cursor: not-allowed; width: fit-content !important;">
                                 ADD TO BASKET
                             </button>
 
