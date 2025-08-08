@@ -355,7 +355,13 @@ body.hide_scroll {
   border: none !important;
   margin: 0 !important;
 }
-
+/* Force table to be visible */
+.shop_attributes {
+  opacity: 1 !important;
+  visibility: visible !important;
+  height: auto !important;
+  overflow: visible !important;
+}
 /* Responsive styling for smaller screens */
 @media (max-width: 768px) {
   .woocommerce-product-attributes.shop_attributes th.woocommerce-product-attributes-item__label {
