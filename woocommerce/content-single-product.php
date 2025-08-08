@@ -339,10 +339,21 @@ if ( post_password_required() ) {
                                 },
                                 success: function(response) {
                                     console.log('AJAX response:', response);
-                                    if (response.success) {
+
+                                    // Check multiple success indicators
+                                    const isSuccess = response.success ||
+                                                    (response.cart_hash && response.cart_hash.length > 0) ||
+                                                    (response.data && response.data.success) ||
+                                                    (response.data && response.data.cart_hash);
+
+                                    if (isSuccess) {
+                                        console.log('Product added to cart successfully! Redirecting...');
                                         window.location.href = '<?php echo wc_get_cart_url(); ?>';
                                     } else {
-                                        alert('Error adding product to cart: ' + (response.data.message || 'Unknown error'));
+                                        const errorMessage = (response.data && response.data.message) ||
+                                                           response.message ||
+                                                           'Unknown error occurred';
+                                        alert('Error adding product to cart: ' + errorMessage);
                                         $addToCartButton.text('ADD TO BASKET').prop('disabled', false);
                                     }
                                 },
@@ -738,8 +749,15 @@ if ( post_password_required() ) {
                                 },
                                 success: function(response) {
                                     console.log('AJAX response:', response);
-                                    if (response.success) {
-                                        // Redirect to cart page
+
+                                    // Check multiple success indicators
+                                    const isSuccess = response.success ||
+                                                    (response.cart_hash && response.cart_hash.length > 0) ||
+                                                    (response.data && response.data.success) ||
+                                                    (response.data && response.data.cart_hash);
+
+                                    if (isSuccess) {
+                                        console.log('Product added to cart successfully! Redirecting...');
                                         window.location.href = '<?php echo wc_get_cart_url(); ?>';
                                     } else {
                                         var errorMessage = response.data && response.data.message ?
@@ -823,11 +841,22 @@ if ( post_password_required() ) {
                                 security: '<?php echo wp_create_nonce("add_to_cart_nonce"); ?>'
                             },
                             success: function(response) {
-                                if (response.success) {
-                                    // Redirect to cart page
+                                console.log('Simple product AJAX response:', response);
+
+                                // Check multiple success indicators
+                                const isSuccess = response.success ||
+                                                (response.cart_hash && response.cart_hash.length > 0) ||
+                                                (response.data && response.data.success) ||
+                                                (response.data && response.data.cart_hash);
+
+                                if (isSuccess) {
+                                    console.log('Product added to cart successfully! Redirecting...');
                                     window.location.href = '<?php echo wc_get_cart_url(); ?>';
                                 } else {
-                                    alert(response.data.message || 'Failed to add product to cart');
+                                    const errorMessage = (response.data && response.data.message) ||
+                                                       response.message ||
+                                                       'Failed to add product to cart';
+                                    alert(errorMessage);
                                     $button.prop('disabled', false).text('ADD TO BASKET');
                                 }
                             },

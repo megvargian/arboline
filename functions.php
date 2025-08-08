@@ -1196,6 +1196,9 @@ function custom_variable_add_to_cart_handler() {
         }
 
         if ($added) {
+            // Get cart hash to confirm addition
+            $cart_hash = WC()->cart->get_cart_hash();
+
             // Trigger cart updated events
             WC_AJAX::get_refreshed_fragments();
 
@@ -1203,7 +1206,9 @@ function custom_variable_add_to_cart_handler() {
                 'message' => 'Product added to cart successfully!',
                 'cart_count' => WC()->cart->get_cart_contents_count(),
                 'cart_url' => wc_get_cart_url(),
-                'added_to_cart' => true
+                'cart_hash' => $cart_hash,
+                'added_to_cart' => true,
+                'success' => true
             ));
         } else {
             // Check for WooCommerce notices/errors
@@ -1268,10 +1273,16 @@ function custom_simple_add_to_cart_handler() {
         $added = WC()->cart->add_to_cart($product_id, $quantity);
 
         if ($added) {
+            // Get cart hash to confirm addition
+            $cart_hash = WC()->cart->get_cart_hash();
+
             wp_send_json_success(array(
                 'message' => 'Product added to cart successfully!',
                 'cart_count' => WC()->cart->get_cart_contents_count(),
-                'cart_url' => wc_get_cart_url()
+                'cart_url' => wc_get_cart_url(),
+                'cart_hash' => $cart_hash,
+                'added_to_cart' => true,
+                'success' => true
             ));
         } else {
             wp_send_json_error(array('message' => 'Failed to add product to cart'));
