@@ -289,19 +289,6 @@ if ( post_password_required() ) {
                             }
                         });
 
-                        // + and - buttons
-                        $form.find('.plus').click(function(e) {
-                            e.preventDefault();
-                            const val = parseInt($quantityInput.val()) || 1;
-                            $quantityInput.val(val + 1);
-                        });
-
-                        $form.find('.minus').click(function(e) {
-                            e.preventDefault();
-                            const val = parseInt($quantityInput.val()) || 1;
-                            if (val > 1) $quantityInput.val(val - 1);
-                        });
-
                         // Form submission
                         $form.on('submit', function(e) {
                             e.preventDefault();
@@ -466,7 +453,6 @@ if ( post_password_required() ) {
                     font-size: 18px;
                     font-weight: bold;
                     cursor: pointer;
-                    transition: background 0.3s;
                     width: 50px;
                     height: 50px;
                     display: flex;
@@ -480,12 +466,6 @@ if ( post_password_required() ) {
 
                 .plus {
                     border-left: none;
-                }
-
-                .minus:hover,
-                .plus:hover {
-                    background: #f5f5f5;
-                    border-color: #000 !important;
                 }
 
                 .minus:focus,
@@ -587,6 +567,7 @@ if ( post_password_required() ) {
                     // Quantity controls for both variable and simple products
                     $(document).on('click', '.minus', function(e) {
                         e.preventDefault();
+                        e.stopPropagation();
                         var $input = $(this).siblings('.quantity').find('.qty');
                         var currentVal = parseInt($input.val()) || 1;
                         if (currentVal > 1) {
@@ -596,6 +577,7 @@ if ( post_password_required() ) {
 
                     $(document).on('click', '.plus', function(e) {
                         e.preventDefault();
+                        e.stopPropagation();
                         var $input = $(this).siblings('.quantity').find('.qty');
                         var currentVal = parseInt($input.val()) || 1;
                         var maxVal = parseInt($input.attr('max')) || 999;

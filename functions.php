@@ -1072,8 +1072,10 @@ function arboline_woocommerce_custom_styles() {
                 $('.variations_form:not(.custom-variations-form)').wc_variation_form();
             }
 
-            // Ensure quantity buttons work
-            $(document).on('click', '.quantity-wrapper .plus', function() {
+            // Ensure quantity buttons work (only for quantity-wrapper context)
+            $(document).on('click', '.quantity-wrapper .plus:not(.single-product .plus)', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
                 var input = $(this).siblings('.quantity').find('input');
                 var val = parseInt(input.val()) || 0;
                 var max = parseInt(input.attr('max')) || 999;
@@ -1082,7 +1084,9 @@ function arboline_woocommerce_custom_styles() {
                 }
             });
 
-            $(document).on('click', '.quantity-wrapper .minus', function() {
+            $(document).on('click', '.quantity-wrapper .minus:not(.single-product .minus)', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
                 var input = $(this).siblings('.quantity').find('input');
                 var val = parseInt(input.val()) || 0;
                 var min = parseInt(input.attr('min')) || 1;

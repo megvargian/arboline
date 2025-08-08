@@ -33,7 +33,7 @@ $label = ! empty( $args['product_name'] ) ? sprintf( esc_html__( '%s quantity', 
 	 */
 	do_action( 'woocommerce_before_quantity_input_field' );
 	?>
-	<button type="button" class="minus btn btn-outline-secondary" onclick="this.nextElementSibling.stepDown(); this.nextElementSibling.dispatchEvent(new Event('change'));">
+	<button type="button" class="minus btn btn-outline-secondary">
 		<i class="bi bi-dash-lg"></i>
 	</button>
 
@@ -59,7 +59,7 @@ $label = ! empty( $args['product_name'] ) ? sprintf( esc_html__( '%s quantity', 
 		/>
 	</div>
 
-	<button type="button" class="plus btn btn-outline-secondary" onclick="this.previousElementSibling.querySelector('input').stepUp(); this.previousElementSibling.querySelector('input').dispatchEvent(new Event('change'));">
+	<button type="button" class="plus btn btn-outline-secondary">
 		<i class="bi bi-plus-lg"></i>
 	</button>
 
