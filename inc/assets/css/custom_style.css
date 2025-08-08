@@ -274,65 +274,88 @@ body.hide_scroll {
 
 /* Additional Information Table Styling */
 .woocommerce-product-attributes.shop_attributes {
-  width: 100%;
-  border-collapse: collapse;
-  border: none;
-  margin: 0;
-  background: transparent;
+  width: 100% !important;
+  border-collapse: collapse !important;
+  border: none !important;
+  margin: 0 !important;
+  background: transparent !important;
+  min-height: 40px !important;
+  display: table !important;
+  table-layout: fixed !important;
 }
 
 .woocommerce-product-attributes.shop_attributes tbody {
-  border: none;
+  border: none !important;
+  display: table-row-group !important;
 }
 
 .woocommerce-product-attributes.shop_attributes tr {
-  border: none;
-  border-bottom: 1px solid #f0f0f0;
-  background: transparent;
+  border: none !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+  background: transparent !important;
+  display: table-row !important;
+  min-height: 40px !important;
 }
 
 .woocommerce-product-attributes.shop_attributes tr:nth-child(odd) {
-  background-color: #f9f9f9;
+  background-color: #f9f9f9 !important;
 }
 
 .woocommerce-product-attributes.shop_attributes tr:nth-child(even) {
-  background-color: #ffffff;
+  background-color: #ffffff !important;
 }
 
 .woocommerce-product-attributes.shop_attributes tr:last-child {
-  border-bottom: none;
+  border-bottom: none !important;
 }
 
 .woocommerce-product-attributes.shop_attributes th.woocommerce-product-attributes-item__label {
-  width: 30%;
-  padding: 20px 15px;
-  text-align: left;
-  font-weight: 400;
-  font-size: 14px;
-  color: #333;
-  background: inherit;
-  border: none;
-  vertical-align: top;
-  line-height: 1.4;
+  width: 30% !important;
+  padding: 20px 15px !important;
+  text-align: left !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  color: #333 !important;
+  background: inherit !important;
+  border: none !important;
+  vertical-align: top !important;
+  line-height: 1.4 !important;
+  display: table-cell !important;
+  min-height: 40px !important;
 }
 
 .woocommerce-product-attributes.shop_attributes td.woocommerce-product-attributes-item__value {
-  width: 70%;
-  padding: 20px 15px;
-  text-align: left;
-  font-size: 14px;
-  color: #666;
-  background: inherit;
-  border: none;
-  vertical-align: top;
-  line-height: 1.4;
+  width: 70% !important;
+  padding: 20px 15px !important;
+  text-align: left !important;
+  font-size: 14px !important;
+  color: #666 !important;
+  background: inherit !important;
+  border: none !important;
+  vertical-align: top !important;
+  line-height: 1.4 !important;
+  display: table-cell !important;
+  min-height: 40px !important;
 }
 
 .woocommerce-product-attributes.shop_attributes th,
 .woocommerce-product-attributes.shop_attributes td {
-  border-left: none;
-  border-right: none;
-  border-top: none;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+}
+
+/* Ensure accordion body is visible */
+.accordion-body {
+  min-height: 50px !important;
+}
+
+/* Force table to be visible */
+.shop_attributes {
+  opacity: 1 !important;
+  visibility: visible !important;
+  height: auto !important;
+  overflow: visible !important;
 }
 
 /* Responsive styling for smaller screens */

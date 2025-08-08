@@ -991,10 +991,44 @@ if ( post_password_required() ) {
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
+
+                                <?php
+                                // If no content was displayed, add a fallback row to ensure table has content
+                                $has_displayed_content = false;
+
+                                // Check if we displayed any weight, dimensions, custom fields, or attributes
+                                if ( $product->has_weight() || $product->has_dimensions() ||
+                                     ($has_custom_fields && !empty($custom_fields)) ||
+                                     !empty($attributes) ) {
+                                    $has_displayed_content = true;
+                                }
+
+                                // If no content was displayed, show a default message
+                                if ( !$has_displayed_content ) : ?>
+                                <tr class="woocommerce-product-attributes-item">
+                                    <th class="woocommerce-product-attributes-item__label">
+                                        Product Information
+                                    </th>
+                                    <td class="woocommerce-product-attributes-item__value">
+                                        Additional product details will be displayed here when available.
+                                    </td>
+                                </tr>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                         <?php else : ?>
-                        <p><?php esc_html_e( 'No additional information available.', 'woocommerce' ); ?></p>
+                        <table class="woocommerce-product-attributes shop_attributes">
+                            <tbody>
+                                <tr class="woocommerce-product-attributes-item">
+                                    <th class="woocommerce-product-attributes-item__label">
+                                        Product Information
+                                    </th>
+                                    <td class="woocommerce-product-attributes-item__value">
+                                        Additional product details will be displayed here when available.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                         <?php endif; ?>
                     </div>
                 </div>
