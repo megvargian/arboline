@@ -222,25 +222,25 @@ if ( post_password_required() ) {
                         console.log('Variation form initialized');
                         console.log('Available variations:', $form.data('product_variations'));
 
-                        // Test AJAX connectivity
-                        $.ajax({
-                            type: 'POST',
-                            url: '<?php echo admin_url('admin-ajax.php'); ?>',
-                            dataType: 'json',
-                            data: {
-                                action: 'test_ajax'
-                            },
-                            success: function(response) {
-                                console.log('AJAX test successful:', response);
-                            },
-                            error: function(xhr, status, error) {
-                                console.error('AJAX test failed:', {
-                                    status: status,
-                                    error: error,
-                                    responseText: xhr.responseText
-                                });
-                            }
-                        });
+                        // // Test AJAX connectivity
+                        // $.ajax({
+                        //     type: 'POST',
+                        //     url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                        //     dataType: 'json',
+                        //     data: {
+                        //         action: 'test_ajax'
+                        //     },
+                        //     success: function(response) {
+                        //         console.log('AJAX test successful:', response);
+                        //     },
+                        //     error: function(xhr, status, error) {
+                        //         console.error('AJAX test failed:', {
+                        //             status: status,
+                        //             error: error,
+                        //             responseText: xhr.responseText
+                        //         });
+                        //     }
+                        // });
 
                         // Handle size selection
                         $sizeSelector.on('change', function() {
@@ -830,36 +830,36 @@ if ( post_password_required() ) {
                         $button.prop('disabled', true).text('Adding...');
 
                         // AJAX request for simple products
-                        // $.ajax({
-                        //     type: 'POST',
-                        //     url: '<?php echo admin_url('admin-ajax.php'); ?>',
-                        //     dataType: 'json',
-                        //     data: {
-                        //         action: 'custom_simple_add_to_cart',
-                        //         product_id: product_id,
-                        //         quantity: quantity,
-                        //         security: '<?php echo wp_create_nonce("add_to_cart_nonce"); ?>'
-                        //     },
-                        //     success: function(response) {
-                        //         if (response.success) {
-                        //             // Redirect to cart page
-                        //             window.location.href = '<?php echo wc_get_cart_url(); ?>';
-                        //         } else {
-                        //             alert(response.data.message || 'Failed to add product to cart');
-                        //             $button.prop('disabled', false).text('ADD TO BASKET');
-                        //         }
-                        //     },
-                        //     error: function(xhr, status, error) {
-                        //         console.error('AJAX error:', {
-                        //             xhr: xhr,
-                        //             status: status,
-                        //             error: error,
-                        //             responseText: xhr.responseText
-                        //         });
-                        //         alert('An error occurred. Please try again.');
-                        //         $button.prop('disabled', false).text('ADD TO BASKET');
-                        //     }
-                        // });
+                        $.ajax({
+                            type: 'POST',
+                            url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                            dataType: 'json',
+                            data: {
+                                action: 'custom_simple_add_to_cart',
+                                product_id: product_id,
+                                quantity: quantity,
+                                security: '<?php echo wp_create_nonce("add_to_cart_nonce"); ?>'
+                            },
+                            success: function(response) {
+                                if (response.success) {
+                                    // Redirect to cart page
+                                    window.location.href = '<?php echo wc_get_cart_url(); ?>';
+                                } else {
+                                    alert(response.data.message || 'Failed to add product to cart');
+                                    $button.prop('disabled', false).text('ADD TO BASKET');
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                console.error('AJAX error:', {
+                                    xhr: xhr,
+                                    status: status,
+                                    error: error,
+                                    responseText: xhr.responseText
+                                });
+                                alert('An error occurred. Please try again.');
+                                $button.prop('disabled', false).text('ADD TO BASKET');
+                            }
+                        });
                     });
                 });
                 </script>
