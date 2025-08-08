@@ -919,7 +919,11 @@ if ( post_password_required() ) {
                     <div class="accordion-body px-0">
                         <?php
                             $attributes = $product->get_attributes();
-                            if ( ! empty( $attributes ) ) : ?>
+                            $custom_fields = get_post_meta( $product->get_id(), '_custom_product_info', true );
+                            $has_custom_fields = !empty($custom_fields) && is_array($custom_fields);
+                            $has_standard_info = !empty($attributes) || $product->has_weight() || $product->has_dimensions();
+
+                            if ( $has_standard_info || $has_custom_fields ) : ?>
                         <table class="woocommerce-product-attributes shop_attributes">
                             <tbody>
                                 <?php
@@ -947,7 +951,35 @@ if ( post_password_required() ) {
                                 </tr>
                                 <?php endif; ?>
 
-                                <?php foreach ( $attributes as $attribute ) :
+                                <?php
+                                // Display custom fields first
+                                if ( $has_custom_fields ) :
+                                    $field_labels = array(
+                                        'coverage' => 'Coverage',
+                                        'application_method' => 'Application Method',
+                                        'drying_time' => 'Drying Time',
+                                        'finish_type' => 'Finish Type',
+                                        'suitable_for' => 'Suitable For',
+                                        'color_options' => 'Color Options'
+                                    );
+
+                                    foreach ( $field_labels as $field_key => $field_label ) :
+                                        if ( !empty( $custom_fields[$field_key] ) ) : ?>
+                                <tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--custom-<?php echo esc_attr($field_key); ?>">
+                                    <th class="woocommerce-product-attributes-item__label">
+                                        <?php echo esc_html( $field_label ); ?>
+                                    </th>
+                                    <td class="woocommerce-product-attributes-item__value">
+                                        <?php echo esc_html( $custom_fields[$field_key] ); ?>
+                                    </td>
+                                </tr>
+                                        <?php endif;
+                                    endforeach;
+                                endif; ?>
+
+                                <?php
+                                // Then display standard WooCommerce attributes
+                                foreach ( $attributes as $attribute ) :
                                         $attribute_label = wc_attribute_label( $attribute->get_name() );
                                         $attribute_value = $product->get_attribute( $attribute->get_name() );
 

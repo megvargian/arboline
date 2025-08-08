@@ -1345,3 +1345,77 @@ function custom_add_to_cart_handler() {
 }
 add_action('wp_ajax_custom_add_to_cart', 'custom_add_to_cart_handler');
 add_action('wp_ajax_nopriv_custom_add_to_cart', 'custom_add_to_cart_handler');
+
+// Add custom meta box for additional product information
+add_action('add_meta_boxes', 'add_custom_product_info_meta_box');
+add_action('save_post', 'save_custom_product_info_meta_box');
+
+function add_custom_product_info_meta_box() {
+    add_meta_box(
+        'custom_product_info',
+        'Custom Additional Information',
+        'custom_product_info_meta_box_callback',
+        'product',
+        'normal',
+        'high'
+    );
+}
+
+function custom_product_info_meta_box_callback($post) {
+    // Add nonce for security
+    wp_nonce_field('save_custom_product_info', 'custom_product_info_nonce');
+
+    // Get existing values
+    $custom_fields = get_post_meta($post->ID, '_custom_product_info', true);
+    if (!is_array($custom_fields)) {
+        $custom_fields = array();
+    }
+
+    echo '<table class="form-table">';
+    echo '<tr><th colspan="2"><h4>Custom Table Fields for Additional Information Accordion</h4></th></tr>';
+
+    // Predefined fields that will appear in the table
+    $field_labels = array(
+        'coverage' => 'Coverage',
+        'application_method' => 'Application Method',
+        'drying_time' => 'Drying Time',
+        'finish_type' => 'Finish Type',
+        'suitable_for' => 'Suitable For',
+        'color_options' => 'Color Options'
+    );
+
+    foreach ($field_labels as $field_key => $field_label) {
+        $value = isset($custom_fields[$field_key]) ? $custom_fields[$field_key] : '';
+        echo '<tr>';
+        echo '<th><label for="custom_' . $field_key . '">' . $field_label . '</label></th>';
+        echo '<td><input type="text" id="custom_' . $field_key . '" name="custom_product_info[' . $field_key . ']" value="' . esc_attr($value) . '" class="regular-text" /></td>';
+        echo '</tr>';
+    }
+
+    echo '</table>';
+
+    echo '<p><strong>Note:</strong> These fields will be displayed in the "Additional Information" accordion table on the product page.</p>';
+}
+
+function save_custom_product_info_meta_box($post_id) {
+    // Check if nonce is valid
+    if (!isset($_POST['custom_product_info_nonce']) || !wp_verify_nonce($_POST['custom_product_info_nonce'], 'save_custom_product_info')) {
+        return;
+    }
+
+    // Check if user has permission to edit the post
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    // Check if not an autosave
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    // Save the custom fields
+    if (isset($_POST['custom_product_info'])) {
+        $custom_fields = array_map('sanitize_text_field', $_POST['custom_product_info']);
+        update_post_meta($post_id, '_custom_product_info', $custom_fields);
+    }
+}
