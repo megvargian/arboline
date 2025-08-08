@@ -279,21 +279,26 @@ body.hide_scroll {
   border: none !important;
   margin: 0 !important;
   background: transparent !important;
-  font-family: inherit !important;
+  min-height: 40px !important;
+  display: table !important;
+  table-layout: fixed !important;
 }
 
 .woocommerce-product-attributes.shop_attributes tbody {
   border: none !important;
+  display: table-row-group !important;
 }
 
 .woocommerce-product-attributes.shop_attributes tr {
   border: none !important;
-  border-bottom: 1px solid #e5e5e5 !important;
+  border-bottom: 1px solid #f0f0f0 !important;
   background: transparent !important;
+  display: table-row !important;
+  min-height: 40px !important;
 }
 
 .woocommerce-product-attributes.shop_attributes tr:nth-child(odd) {
-  background-color: #f8f8f8 !important;
+  background-color: #f9f9f9 !important;
 }
 
 .woocommerce-product-attributes.shop_attributes tr:nth-child(even) {
@@ -305,31 +310,32 @@ body.hide_scroll {
 }
 
 .woocommerce-product-attributes.shop_attributes th.woocommerce-product-attributes-item__label {
-  width: 25% !important;
-  padding: 16px 20px !important;
+  width: 30% !important;
+  padding: 20px 15px !important;
   text-align: left !important;
-  font-weight: 600 !important;
-  font-size: 15px !important;
-  color: #2c2c2c !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  color: #333 !important;
   background: inherit !important;
   border: none !important;
   vertical-align: top !important;
-  line-height: 1.5 !important;
-  letter-spacing: 0.3px !important;
+  line-height: 1.4 !important;
+  display: table-cell !important;
+  min-height: 40px !important;
 }
 
 .woocommerce-product-attributes.shop_attributes td.woocommerce-product-attributes-item__value {
-  width: 75% !important;
-  padding: 16px 20px !important;
+  width: 70% !important;
+  padding: 20px 15px !important;
   text-align: left !important;
-  font-size: 15px !important;
-  font-weight: 400 !important;
-  color: #4a4a4a !important;
+  font-size: 14px !important;
+  color: #666 !important;
   background: inherit !important;
   border: none !important;
   vertical-align: top !important;
-  line-height: 1.6 !important;
-  letter-spacing: 0.2px !important;
+  line-height: 1.4 !important;
+  display: table-cell !important;
+  min-height: 40px !important;
 }
 
 .woocommerce-product-attributes.shop_attributes th,
@@ -341,19 +347,15 @@ body.hide_scroll {
 
 /* Ensure accordion body is visible */
 .accordion-body {
-  padding: 0 !important;
+  min-height: 50px !important;
 }
 
-/* Remove any conflicting WooCommerce table styles */
-.woocommerce table.shop_attributes th,
-.woocommerce table.shop_attributes td {
-  padding: 16px 20px !important;
-  border: none !important;
-}
-
-.woocommerce table.shop_attributes {
-  border: none !important;
-  margin: 0 !important;
+/* Force table to be visible */
+.shop_attributes {
+  opacity: 1 !important;
+  visibility: visible !important;
+  height: auto !important;
+  overflow: visible !important;
 }
 /* Force table to be visible */
 .shop_attributes {
