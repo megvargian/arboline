@@ -742,73 +742,73 @@ if ( post_password_required() ) {
                             // Show loading state
                             $button.prop('disabled', true).text('Adding...');
 
-                            // // AJAX request
-                            // $.ajax({
-                            //     type: 'POST',
-                            //     url: '<?php echo admin_url('admin-ajax.php'); ?>',
-                            //     dataType: 'json',
-                            //     data: {
-                            //         action: 'custom_variable_add_to_cart',
-                            //         product_id: product_id,
-                            //         variation_id: variation_id,
-                            //         quantity: quantity,
-                            //         security: '<?php echo wp_create_nonce("add_to_cart_nonce"); ?>'
-                            //     },
-                            //     success: function(response) {
-                            //         console.log('AJAX response:', response);
-                            //         if (response.success) {
-                            //             // Redirect to cart page
-                            //             window.location.href = '<?php echo wc_get_cart_url(); ?>';
-                            //         } else {
-                            //             var errorMessage = response.data && response.data.message ?
-                            //                 response.data.message : 'Failed to add product to cart';
-                            //             console.error('Add to cart failed:', errorMessage);
-                            //             alert(errorMessage);
-                            //             $button.prop('disabled', false).text('ADD TO BASKET');
-                            //         }
-                            //     },
-                            //     error: function(xhr, status, error) {
-                            //         console.error('AJAX error details:', {
-                            //             xhr: xhr,
-                            //             status: status,
-                            //             error: error,
-                            //             responseText: xhr.responseText
-                            //         });
+                            // AJAX request
+                            $.ajax({
+                                type: 'POST',
+                                url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                                dataType: 'json',
+                                data: {
+                                    action: 'custom_variable_add_to_cart',
+                                    product_id: product_id,
+                                    variation_id: variation_id,
+                                    quantity: quantity,
+                                    security: '<?php echo wp_create_nonce("add_to_cart_nonce"); ?>'
+                                },
+                                success: function(response) {
+                                    console.log('AJAX response:', response);
+                                    if (response.success) {
+                                        // Redirect to cart page
+                                        window.location.href = '<?php echo wc_get_cart_url(); ?>';
+                                    } else {
+                                        var errorMessage = response.data && response.data.message ?
+                                            response.data.message : 'Failed to add product to cart';
+                                        console.error('Add to cart failed:', errorMessage);
+                                        alert(errorMessage);
+                                        $button.prop('disabled', false).text('ADD TO BASKET');
+                                    }
+                                },
+                                error: function(xhr, status, error) {
+                                    console.error('AJAX error details:', {
+                                        xhr: xhr,
+                                        status: status,
+                                        error: error,
+                                        responseText: xhr.responseText
+                                    });
 
-                            //         // Try to parse the response to see if it's an error page
-                            //         var errorMessage = 'An error occurred. Please try again.';
-                            //         if (xhr.responseText) {
-                            //             if (xhr.responseText.indexOf('Fatal error') !== -1) {
-                            //                 errorMessage = 'Server error detected. Please check the error logs.';
-                            //             } else if (xhr.responseText.indexOf('404') !== -1) {
-                            //                 errorMessage = 'AJAX endpoint not found. Please check the configuration.';
-                            //             }
-                            //         }
+                                    // Try to parse the response to see if it's an error page
+                                    var errorMessage = 'An error occurred. Please try again.';
+                                    if (xhr.responseText) {
+                                        if (xhr.responseText.indexOf('Fatal error') !== -1) {
+                                            errorMessage = 'Server error detected. Please check the error logs.';
+                                        } else if (xhr.responseText.indexOf('404') !== -1) {
+                                            errorMessage = 'AJAX endpoint not found. Please check the configuration.';
+                                        }
+                                    }
 
-                            //         // Fallback: try traditional form submission
-                            //         console.log('AJAX failed, trying fallback method...');
-                            //         var fallbackUrl = '<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>';
-                            //         var fallbackForm = $('<form>', {
-                            //             'method': 'POST',
-                            //             'action': fallbackUrl
-                            //         }).append($('<input>', {
-                            //             'type': 'hidden',
-                            //             'name': 'add-to-cart',
-                            //             'value': product_id
-                            //         })).append($('<input>', {
-                            //             'type': 'hidden',
-                            //             'name': 'variation_id',
-                            //             'value': variation_id
-                            //         })).append($('<input>', {
-                            //             'type': 'hidden',
-                            //             'name': 'quantity',
-                            //             'value': quantity
-                            //         }));
+                                    // Fallback: try traditional form submission
+                                    console.log('AJAX failed, trying fallback method...');
+                                    var fallbackUrl = '<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>';
+                                    var fallbackForm = $('<form>', {
+                                        'method': 'POST',
+                                        'action': fallbackUrl
+                                    }).append($('<input>', {
+                                        'type': 'hidden',
+                                        'name': 'add-to-cart',
+                                        'value': product_id
+                                    })).append($('<input>', {
+                                        'type': 'hidden',
+                                        'name': 'variation_id',
+                                        'value': variation_id
+                                    })).append($('<input>', {
+                                        'type': 'hidden',
+                                        'name': 'quantity',
+                                        'value': quantity
+                                    }));
 
-                            //         $('body').append(fallbackForm);
-                            //         fallbackForm.submit();
-                            //     }
-                            // });
+                                    $('body').append(fallbackForm);
+                                    fallbackForm.submit();
+                                }
+                            });
                         });
                     }
 
@@ -830,36 +830,36 @@ if ( post_password_required() ) {
                         $button.prop('disabled', true).text('Adding...');
 
                         // AJAX request for simple products
-                        $.ajax({
-                            type: 'POST',
-                            url: '<?php echo admin_url('admin-ajax.php'); ?>',
-                            dataType: 'json',
-                            data: {
-                                action: 'custom_simple_add_to_cart',
-                                product_id: product_id,
-                                quantity: quantity,
-                                security: '<?php echo wp_create_nonce("add_to_cart_nonce"); ?>'
-                            },
-                            success: function(response) {
-                                if (response.success) {
-                                    // Redirect to cart page
-                                    window.location.href = '<?php echo wc_get_cart_url(); ?>';
-                                } else {
-                                    alert(response.data.message || 'Failed to add product to cart');
-                                    $button.prop('disabled', false).text('ADD TO BASKET');
-                                }
-                            },
-                            error: function(xhr, status, error) {
-                                console.error('AJAX error:', {
-                                    xhr: xhr,
-                                    status: status,
-                                    error: error,
-                                    responseText: xhr.responseText
-                                });
-                                alert('An error occurred. Please try again.');
-                                $button.prop('disabled', false).text('ADD TO BASKET');
-                            }
-                        });
+                        // $.ajax({
+                        //     type: 'POST',
+                        //     url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                        //     dataType: 'json',
+                        //     data: {
+                        //         action: 'custom_simple_add_to_cart',
+                        //         product_id: product_id,
+                        //         quantity: quantity,
+                        //         security: '<?php echo wp_create_nonce("add_to_cart_nonce"); ?>'
+                        //     },
+                        //     success: function(response) {
+                        //         if (response.success) {
+                        //             // Redirect to cart page
+                        //             window.location.href = '<?php echo wc_get_cart_url(); ?>';
+                        //         } else {
+                        //             alert(response.data.message || 'Failed to add product to cart');
+                        //             $button.prop('disabled', false).text('ADD TO BASKET');
+                        //         }
+                        //     },
+                        //     error: function(xhr, status, error) {
+                        //         console.error('AJAX error:', {
+                        //             xhr: xhr,
+                        //             status: status,
+                        //             error: error,
+                        //             responseText: xhr.responseText
+                        //         });
+                        //         alert('An error occurred. Please try again.');
+                        //         $button.prop('disabled', false).text('ADD TO BASKET');
+                        //     }
+                        // });
                     });
                 });
                 </script>
