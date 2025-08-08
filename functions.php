@@ -1067,9 +1067,9 @@ function arboline_woocommerce_custom_styles() {
 
         <script>
         jQuery(document).ready(function($) {
-            // Initialize WooCommerce variation form
+            // Initialize WooCommerce variation form (but not our custom form)
             if (typeof wc_add_to_cart_variation_params !== 'undefined') {
-                $('.variations_form').wc_variation_form();
+                $('.variations_form:not(.custom-variations-form)').wc_variation_form();
             }
 
             // Ensure quantity buttons work
