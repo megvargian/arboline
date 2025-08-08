@@ -1197,6 +1197,10 @@ function custom_variable_add_to_cart_handler() {
         $quantity = 1;
     }
 
+    // Debug logging
+    error_log('Add to cart attempt - Product ID: ' . $product_id . ', Variation ID: ' . $variation_id . ', Quantity: ' . $quantity);
+    error_log('POST data: ' . print_r($_POST, true));
+
     // Handle variation attributes
     if (isset($_POST['variation']) && is_array($_POST['variation'])) {
         foreach ($_POST['variation'] as $key => $value) {
@@ -1240,15 +1244,22 @@ function custom_variable_add_to_cart_handler() {
             foreach ($variation_attributes as $attribute_name => $attribute_value) {
                 $variation[$attribute_name] = $attribute_value;
             }
+            error_log('Auto-populated variation attributes: ' . print_r($variation, true));
+        } else {
+            error_log('Using provided variation attributes: ' . print_r($variation, true));
         }
     }
+
+    error_log('Final add to cart parameters - Product ID: ' . $product_id . ', Quantity: ' . $quantity . ', Variation ID: ' . $variation_id . ', Variation: ' . print_r($variation, true));
 
     // Add to cart
     try {
         if ($variation_id > 0) {
-            $added = WC()->cart->add_to_cart($product_id, $quantity, $variation);
+            $added = WC()->cart->add_to_cart($product_id, $quantity, $variation_id, $variation);
+            error_log('Variable product add to cart result: ' . ($added ? 'SUCCESS' : 'FAILED'));
         } else {
             $added = WC()->cart->add_to_cart($product_id, $quantity);
+            error_log('Simple product add to cart result: ' . ($added ? 'SUCCESS' : 'FAILED'));
         }
 
         if ($added) {
@@ -1262,7 +1273,19 @@ function custom_variable_add_to_cart_handler() {
                 'added_to_cart' => true
             ));
         } else {
-            wp_send_json_error(array('message' => 'Failed to add product to cart. Please try again.'));
+            // Check for WooCommerce notices/errors
+            $error_messages = array();
+            $notices = wc_get_notices('error');
+            if (!empty($notices)) {
+                foreach ($notices as $notice) {
+                    $error_messages[] = $notice['notice'];
+                }
+                wc_clear_notices(); // Clear the notices
+            }
+
+            $error_message = !empty($error_messages) ? implode(', ', $error_messages) : 'Failed to add product to cart. Please try again.';
+            error_log('Add to cart failed with errors: ' . $error_message);
+            wp_send_json_error(array('message' => $error_message));
         }
     } catch (Exception $e) {
         error_log('Add to cart error: ' . $e->getMessage());

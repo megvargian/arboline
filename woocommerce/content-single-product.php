@@ -259,6 +259,9 @@ if ( post_password_required() ) {
                                 // Set variation ID
                                 $variationIdInput.val(variationId);
 
+                                // Store selected size value for submission
+                                $form.attr('data-selected-size', selectedValue);
+
                                 // Update price display
                                 if (priceHtml) {
                                     $priceDisplay.html(priceHtml);
@@ -274,6 +277,7 @@ if ( post_password_required() ) {
                             } else {
                                 // Reset form
                                 $variationIdInput.val('0');
+                                $form.removeAttr('data-selected-size');
 
                                 // Disable add to cart button
                                 $addToCartButton.addClass('disabled')
@@ -304,10 +308,14 @@ if ( post_password_required() ) {
 
                             const variationId = $variationIdInput.val();
                             const quantity = parseInt($quantityInput.val()) || 1;
+                            const selectedSize = $form.attr('data-selected-size');
+                            const sizeAttributeName = '<?php echo esc_js( str_replace( 'attribute_', '', sanitize_title( $size_attribute_name ) ) ); ?>';
 
                             console.log('Form submission:', {
                                 variationId: variationId,
-                                quantity: quantity
+                                quantity: quantity,
+                                selectedSize: selectedSize,
+                                sizeAttributeName: sizeAttributeName
                             });
 
                             if (!variationId || variationId === '0') {
@@ -323,15 +331,23 @@ if ( post_password_required() ) {
                             // Show loading state
                             $addToCartButton.text('Adding...').prop('disabled', true);
 
+                            // Prepare variation data
+                            const variationData = {};
+                            if (selectedSize) {
+                                variationData['attribute_' + sizeAttributeName] = selectedSize;
+                            }
+
                             // AJAX submission
                             $.ajax({
                                 type: 'POST',
                                 url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                                dataType: 'json',
                                 data: {
                                     action: 'custom_variable_add_to_cart',
                                     product_id: '<?php echo $product_id; ?>',
                                     variation_id: variationId,
                                     quantity: quantity,
+                                    variation: variationData,
                                     security: '<?php echo wp_create_nonce("add_to_cart_nonce"); ?>'
                                 },
                                 success: function(response) {
@@ -344,7 +360,11 @@ if ( post_password_required() ) {
                                     }
                                 },
                                 error: function(xhr, status, error) {
-                                    console.error('AJAX error:', error);
+                                    console.error('AJAX error:', {
+                                        status: status,
+                                        error: error,
+                                        responseText: xhr.responseText
+                                    });
                                     alert('Error adding product to cart. Please try again.');
                                     $addToCartButton.text('ADD TO BASKET').prop('disabled', false);
                                 }
