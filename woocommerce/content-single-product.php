@@ -954,23 +954,14 @@ if ( post_password_required() ) {
                                 <?php
                                 // Display custom fields first
                                 if ( $has_custom_fields ) :
-                                    $field_labels = array(
-                                        'coverage' => 'Coverage',
-                                        'application_method' => 'Application Method',
-                                        'drying_time' => 'Drying Time',
-                                        'finish_type' => 'Finish Type',
-                                        'suitable_for' => 'Suitable For',
-                                        'color_options' => 'Color Options'
-                                    );
-
-                                    foreach ( $field_labels as $field_key => $field_label ) :
-                                        if ( !empty( $custom_fields[$field_key] ) ) : ?>
-                                <tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--custom-<?php echo esc_attr($field_key); ?>">
+                                    foreach ( $custom_fields as $field ) :
+                                        if ( !empty( $field['label'] ) && !empty( $field['value'] ) ) : ?>
+                                <tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--custom">
                                     <th class="woocommerce-product-attributes-item__label">
-                                        <?php echo esc_html( $field_label ); ?>
+                                        <?php echo esc_html( $field['label'] ); ?>
                                     </th>
                                     <td class="woocommerce-product-attributes-item__value">
-                                        <?php echo esc_html( $custom_fields[$field_key] ); ?>
+                                        <?php echo esc_html( $field['value'] ); ?>
                                     </td>
                                 </tr>
                                         <?php endif;

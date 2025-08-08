@@ -1350,6 +1350,38 @@ add_action('wp_ajax_nopriv_custom_add_to_cart', 'custom_add_to_cart_handler');
 add_action('add_meta_boxes', 'add_custom_product_info_meta_box');
 add_action('save_post', 'save_custom_product_info_meta_box');
 
+// Migration function to convert old format to new format
+function migrate_custom_product_info_data($post_id) {
+    $custom_fields = get_post_meta($post_id, '_custom_product_info', true);
+
+    // Check if we have old format data (associative array with predefined keys)
+    if (is_array($custom_fields) && !isset($custom_fields[0]['label'])) {
+        $new_format = array();
+
+        $old_field_labels = array(
+            'coverage' => 'Coverage',
+            'application_method' => 'Application Method',
+            'drying_time' => 'Drying Time',
+            'finish_type' => 'Finish Type',
+            'suitable_for' => 'Suitable For',
+            'color_options' => 'Color Options'
+        );
+
+        foreach ($old_field_labels as $key => $label) {
+            if (!empty($custom_fields[$key])) {
+                $new_format[] = array(
+                    'label' => $label,
+                    'value' => $custom_fields[$key]
+                );
+            }
+        }
+
+        if (!empty($new_format)) {
+            update_post_meta($post_id, '_custom_product_info', $new_format);
+        }
+    }
+}
+
 function add_custom_product_info_meta_box() {
     add_meta_box(
         'custom_product_info',
@@ -1365,36 +1397,141 @@ function custom_product_info_meta_box_callback($post) {
     // Add nonce for security
     wp_nonce_field('save_custom_product_info', 'custom_product_info_nonce');
 
+    // Migrate old format data if needed
+    migrate_custom_product_info_data($post->ID);
+
     // Get existing values
     $custom_fields = get_post_meta($post->ID, '_custom_product_info', true);
     if (!is_array($custom_fields)) {
         $custom_fields = array();
     }
 
-    echo '<table class="form-table">';
-    echo '<tr><th colspan="2"><h4>Custom Table Fields for Additional Information Accordion</h4></th></tr>';
-
-    // Predefined fields that will appear in the table
-    $field_labels = array(
-        'coverage' => 'Coverage',
-        'application_method' => 'Application Method',
-        'drying_time' => 'Drying Time',
-        'finish_type' => 'Finish Type',
-        'suitable_for' => 'Suitable For',
-        'color_options' => 'Color Options'
-    );
-
-    foreach ($field_labels as $field_key => $field_label) {
-        $value = isset($custom_fields[$field_key]) ? $custom_fields[$field_key] : '';
-        echo '<tr>';
-        echo '<th><label for="custom_' . $field_key . '">' . $field_label . '</label></th>';
-        echo '<td><input type="text" id="custom_' . $field_key . '" name="custom_product_info[' . $field_key . ']" value="' . esc_attr($value) . '" class="regular-text" /></td>';
-        echo '</tr>';
+    // Ensure we have at least one empty field
+    if (empty($custom_fields)) {
+        $custom_fields = array(
+            array('label' => '', 'value' => '')
+        );
     }
 
-    echo '</table>';
+    ?>
+    <div id="custom-product-info-container">
+        <h4>Custom Additional Information Fields</h4>
+        <p>These fields will be displayed in the "Additional Information" accordion table on the product page.</p>
 
-    echo '<p><strong>Note:</strong> These fields will be displayed in the "Additional Information" accordion table on the product page.</p>';
+        <table class="form-table">
+            <thead>
+                <tr>
+                    <th width="25%">Field Label</th>
+                    <th width="60%">Field Value</th>
+                    <th width="15%">Action</th>
+                </tr>
+            </thead>
+            <tbody id="custom-fields-tbody">
+                <?php
+                $index = 0;
+                foreach ($custom_fields as $field) :
+                    $label = isset($field['label']) ? $field['label'] : '';
+                    $value = isset($field['value']) ? $field['value'] : '';
+                ?>
+                <tr class="custom-field-row" data-index="<?php echo $index; ?>">
+                    <td>
+                        <input type="text"
+                               name="custom_product_info[<?php echo $index; ?>][label]"
+                               value="<?php echo esc_attr($label); ?>"
+                               placeholder="Enter field label"
+                               class="regular-text field-label-input" />
+                    </td>
+                    <td>
+                        <input type="text"
+                               name="custom_product_info[<?php echo $index; ?>][value]"
+                               value="<?php echo esc_attr($value); ?>"
+                               placeholder="Enter field value"
+                               class="regular-text field-value-input" />
+                    </td>
+                    <td>
+                        <button type="button" class="button remove-field" onclick="removeCustomField(this)">Remove</button>
+                    </td>
+                </tr>
+                <?php
+                $index++;
+                endforeach;
+                ?>
+            </tbody>
+        </table>
+
+        <p>
+            <button type="button" class="button button-secondary" onclick="addCustomField()">Add New Field</button>
+        </p>
+    </div>
+
+    <script type="text/javascript">
+    let fieldIndex = <?php echo $index; ?>;
+
+    function addCustomField() {
+        const tbody = document.getElementById('custom-fields-tbody');
+        const newRow = document.createElement('tr');
+        newRow.className = 'custom-field-row';
+        newRow.setAttribute('data-index', fieldIndex);
+
+        newRow.innerHTML = `
+            <td>
+                <input type="text"
+                       name="custom_product_info[${fieldIndex}][label]"
+                       value=""
+                       placeholder="Enter field label"
+                       class="regular-text field-label-input" />
+            </td>
+            <td>
+                <input type="text"
+                       name="custom_product_info[${fieldIndex}][value]"
+                       value=""
+                       placeholder="Enter field value"
+                       class="regular-text field-value-input" />
+            </td>
+            <td>
+                <button type="button" class="button remove-field" onclick="removeCustomField(this)">Remove</button>
+            </td>
+        `;
+
+        tbody.appendChild(newRow);
+        fieldIndex++;
+    }
+
+    function removeCustomField(button) {
+        const row = button.closest('tr');
+        const tbody = document.getElementById('custom-fields-tbody');
+
+        // Don't remove if it's the last row
+        if (tbody.children.length > 1) {
+            row.remove();
+        } else {
+            // Clear the inputs instead of removing the row
+            row.querySelector('.field-label-input').value = '';
+            row.querySelector('.field-value-input').value = '';
+        }
+    }
+    </script>
+
+    <style>
+    #custom-product-info-container .form-table th,
+    #custom-product-info-container .form-table td {
+        padding: 10px;
+        vertical-align: middle;
+    }
+
+    .custom-field-row input[type="text"] {
+        width: 100%;
+    }
+
+    .remove-field {
+        color: #a00;
+    }
+
+    .remove-field:hover {
+        color: #dc3232;
+    }
+    </style>
+    <?php
 }
 
 function save_custom_product_info_meta_box($post_id) {
@@ -1415,7 +1552,24 @@ function save_custom_product_info_meta_box($post_id) {
 
     // Save the custom fields
     if (isset($_POST['custom_product_info'])) {
-        $custom_fields = array_map('sanitize_text_field', $_POST['custom_product_info']);
+        $custom_fields = array();
+
+        foreach ($_POST['custom_product_info'] as $field) {
+            $label = sanitize_text_field($field['label']);
+            $value = sanitize_text_field($field['value']);
+
+            // Only save fields that have both label and value
+            if (!empty($label) && !empty($value)) {
+                $custom_fields[] = array(
+                    'label' => $label,
+                    'value' => $value
+                );
+            }
+        }
+
         update_post_meta($post_id, '_custom_product_info', $custom_fields);
+    } else {
+        // If no fields are set, delete the meta
+        delete_post_meta($post_id, '_custom_product_info');
     }
 }
