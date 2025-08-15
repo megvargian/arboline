@@ -201,9 +201,9 @@ if ( post_password_required() ) {
                             console.log('Variation form initialized');
                             console.log('Available variations:', $form.data('product_variations'));
                         // Handle attribute selection for all dropdowns
+                        let selectedAttributes = {};
                         $('.variation-dropdown').on('change', function() {
                             let allSelected = true;
-                            let selectedAttributes = {};
 
                             // Check all selects
                             $('.variation-dropdown').each(function() {
@@ -213,6 +213,7 @@ if ( post_password_required() ) {
                                     allSelected = false;
                                 } else {
                                     selectedAttributes[name] = val;
+                                    console.log('Selected attribute:', name, val);
                                 }
                             });
 
@@ -480,60 +481,65 @@ if ( post_password_required() ) {
                             $('.custom-variations-form').not(':first').remove();
                         }
 
-                        // Handle custom variation dropdown selection
-                        $(document).on('change', '#size_selector', function() {
+                        // Handle custom variation dropdown selection for all attributes
+                        $(document).on('change', '.variation-dropdown', function() {
                             var $form = $('.custom-variations-form');
                             var $button = $('.single_add_to_cart_button');
-                            var selectedOption = $(this).find('option:selected');
-                            var variation_id = selectedOption.data('variation-id');
-                            var attributes = selectedOption.data('attributes');
-                            var price = selectedOption.data('price');
-                            var priceHtml = selectedOption.data('price-html');
-                            var size = selectedOption.val();
-
-                            console.log('Variation selected:', {
-                                variation_id: variation_id,
-                                attributes: attributes,
-                                price: price,
-                                priceHtml: priceHtml,
-                                size: size
+                            // Find selected values for all dropdowns
+                            var allSelected = true;
+                            var selectedAttributes = {};
+                            $form.find('.variation-dropdown').each(function() {
+                                var name = $(this).attr('name');
+                                var value = $(this).val();
+                                if (!value) {
+                                    allSelected = false;
+                                } else {
+                                    selectedAttributes[name] = value;
+                                }
                             });
 
-                            if (size && variation_id) {
-                                // Set the variation ID
-                                $form.find('input[name="variation_id"]').val(variation_id);
-
-                                // Update price display if exists
-                                if (priceHtml) {
-                                    $('.current-price .price-amount').html(priceHtml);
+                            // Find matching variation
+                            var productVariations = $form.data('product_variations');
+                            var foundVariationId = null;
+                            var foundPriceHtml = null;
+                            $.each(productVariations, function(i, variation) {
+                                var match = true;
+                                $.each(variation.attributes, function(attrName, attrValue) {
+                                    if (selectedAttributes[attrName] === undefined || selectedAttributes[attrName] != attrValue) {
+                                        match = false;
+                                        return false;
+                                    }
+                                });
+                                if (match) {
+                                    foundVariationId = variation.variation_id;
+                                    foundPriceHtml = variation.price_html;
+                                    return false;
                                 }
+                            });
 
-                                // Enable the add to cart button
+                            if (allSelected && foundVariationId) {
+                                $form.find('input[name="variation_id"]').val(foundVariationId);
+                                if (foundPriceHtml) {
+                                    $('.current-price .price-amount').html(foundPriceHtml);
+                                }
                                 $button.removeClass('disabled wc-variation-selection-needed')
                                     .prop('disabled', false)
                                     .css('background-color', '#000')
                                     .css('cursor', 'pointer');
-
                                 $('.woocommerce-variation-add-to-cart')
                                     .removeClass('woocommerce-variation-add-to-cart-disabled')
                                     .addClass('woocommerce-variation-add-to-cart-enabled');
-
-                                console.log('Button enabled, variation_id set to:', variation_id);
+                                console.log('Button enabled, variation_id set to:', foundVariationId);
                             } else {
-                                // Reset form when no variation selected
                                 $form.find('input[name="variation_id"]').val('0');
-
-                                // Disable the add to cart button
                                 $button.addClass('disabled wc-variation-selection-needed')
                                     .prop('disabled', true)
                                     .css('background-color', '#6c757d')
                                     .css('cursor', 'not-allowed');
-
                                 $('.woocommerce-variation-add-to-cart')
                                     .removeClass('woocommerce-variation-add-to-cart-enabled')
                                     .addClass('woocommerce-variation-add-to-cart-disabled');
-
-                                console.log('Button disabled, no variation selected');
+                                console.log('Button disabled, no valid variation selected');
                             }
                         });
 
