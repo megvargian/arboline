@@ -232,20 +232,38 @@ if ( post_password_required() ) {
                         $form.on('submit', function(e) {
                             e.preventDefault();
 
-                            const variationId = $variationIdInput.val();
                             const quantity = parseInt($quantityInput.val()) || 1;
-                            const selectedSize = $form.attr('data-selected-size');
-                            const sizeAttributeName = '<?php echo esc_js( str_replace( 'attribute_', '', sanitize_title( $size_attribute_name ) ) ); ?>';
+                            const productVariations = $form.data('product_variations');
 
-                            console.log('Form submission:', {
-                                variationId: variationId,
-                                quantity: quantity,
-                                selectedSize: selectedSize,
-                                sizeAttributeName: sizeAttributeName
+                            // Collect selected attributes
+                            let selectedAttributes = {};
+                            $('.variation-dropdown').each(function() {
+                                const name = $(this).attr('name');
+                                const value = $(this).val();
+                                if (value) {
+                                    selectedAttributes[name] = value;
+                                }
                             });
 
-                            if (!variationId || variationId === '0') {
-                                alert('Please select a size before adding to cart.');
+                            // Find matching variation
+                            let foundVariationId = null;
+                            $.each(productVariations, function(i, variation) {
+                                let match = true;
+                                $.each(variation.attributes, function(attrName, attrValue) {
+                                    // WooCommerce uses attribute_pa_xxx for custom attributes
+                                    if (selectedAttributes[attrName] === undefined || selectedAttributes[attrName] != attrValue) {
+                                        match = false;
+                                        return false;
+                                    }
+                                });
+                                if (match) {
+                                    foundVariationId = variation.variation_id;
+                                    return false;
+                                }
+                            });
+
+                            if (!foundVariationId) {
+                                alert('Please select valid options for all variants before adding to cart.');
                                 return false;
                             }
 
@@ -257,11 +275,8 @@ if ( post_password_required() ) {
                             // Show loading state
                             $addToCartButton.text('Adding...').prop('disabled', true);
 
-                            // Prepare variation data
-                            const variationData = {};
-                            if (selectedSize) {
-                                variationData['attribute_' + sizeAttributeName] = selectedSize;
-                            }
+                            // Prepare variation data for AJAX
+                            const variationData = selectedAttributes;
 
                             // AJAX submission
                             $.ajax({
@@ -271,7 +286,7 @@ if ( post_password_required() ) {
                                 data: {
                                     action: 'custom_variable_add_to_cart',
                                     product_id: '<?php echo $product_id; ?>',
-                                    variation_id: variationId,
+                                    variation_id: foundVariationId,
                                     quantity: quantity,
                                     variation: variationData,
                                     security: '<?php echo wp_create_nonce("add_to_cart_nonce"); ?>'
