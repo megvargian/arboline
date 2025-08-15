@@ -198,6 +198,8 @@ if ( post_password_required() ) {
                         // });
 
 
+                            console.log('Variation form initialized');
+                            console.log('Available variations:', $form.data('product_variations'));
                         // Handle attribute selection for all dropdowns
                         $('.variation-dropdown').on('change', function() {
                             let allSelected = true;
@@ -230,6 +232,11 @@ if ( post_password_required() ) {
 
                         // ...removed duplicate form submit handler...
 
+                            // Debug log selectedAttributes and variation.attributes
+                            console.log('selectedAttributes:', selectedAttributes);
+                            productVariations.forEach(function(variation) {
+                                console.log('variation.attributes:', variation.attributes);
+                            });
                         // Handle button click
                         $addToCartButton.on('click', function(e) {
                             e.preventDefault();
