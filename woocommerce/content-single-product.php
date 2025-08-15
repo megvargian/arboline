@@ -44,7 +44,7 @@ if ( post_password_required() ) {
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?> class="px-0 single-product">
     <div class="container py-5 pt-3 mt-2">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-5 col-12">
                 <div class="row px-0">
                     <?php
@@ -60,8 +60,7 @@ if ( post_password_required() ) {
 
                 <!-- Product Description will be moved to right column -->
             </div>
-
-            <div class="col-md-7 col-12">
+            <div class="col-md-5 col-12">
                 <div class="summary entry-summary w-100">
                     <h1 class="product_title entry-title"><?php echo esc_html( $product->get_name() ); ?></h1>
 
@@ -95,14 +94,14 @@ if ( post_password_required() ) {
                             $attr_label = wc_attribute_label( $attribute_name );
                             error_log( "Checking attribute: " . $attribute_name . " with label: " . $attr_label );
 
-                            if ( stripos( $attr_label, 'size' ) !== false ||
-                                 stripos( $attribute_name, 'size' ) !== false ||
-                                 stripos( $attribute_name, 'pa_size' ) !== false ) {
-                                $size_attribute_name = $attribute_name;
-                                $size_options = $options;
-                                error_log( "Found size attribute: " . $size_attribute_name . " with options: " . print_r( $size_options, true ) );
-                                break;
-                            }
+                            // if ( stripos( $attr_label, 'size' ) !== false ||
+                            //      stripos( $attribute_name, 'size' ) !== false ||
+                            //      stripos( $attribute_name, 'pa_size' ) !== false ) {
+                            //     $size_attribute_name = $attribute_name;
+                            //     $size_options = $options;
+                            //     error_log( "Found size attribute: " . $size_attribute_name . " with options: " . print_r( $size_options, true ) );
+                            //     break;
+                            // }
                         }
 
                         // If no size attribute found, try first attribute
@@ -877,7 +876,6 @@ if ( post_password_required() ) {
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="accordion mb-5" id="accordionProduct">
             <?php
@@ -1116,7 +1114,6 @@ if ( post_password_required() ) {
                 }
             ?>
     </div>
-</div>
 </div>
 
 <div class="container">
