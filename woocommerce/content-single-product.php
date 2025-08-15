@@ -86,73 +86,32 @@ if ( post_password_required() ) {
                         $available_variations = $product->get_available_variations();
                         $attributes = $product->get_variation_attributes();
 
-                        // Find size attribute
-                        $size_attribute_name = '';
-                        $size_options = array();
-
-                        foreach ( $attributes as $attribute_name => $options ) {
-                            $attr_label = wc_attribute_label( $attribute_name );
-                            error_log( "Checking attribute: " . $attribute_name . " with label: " . $attr_label );
-
-                            // if ( stripos( $attr_label, 'size' ) !== false ||
-                            //      stripos( $attribute_name, 'size' ) !== false ||
-                            //      stripos( $attribute_name, 'pa_size' ) !== false ) {
-                            //     $size_attribute_name = $attribute_name;
-                            //     $size_options = $options;
-                            //     error_log( "Found size attribute: " . $size_attribute_name . " with options: " . print_r( $size_options, true ) );
-                            //     break;
-                            // }
-                        }
-
-                        // If no size attribute found, try first attribute
-                        if ( empty( $size_attribute_name ) && ! empty( $attributes ) ) {
-                            $size_attribute_name = array_keys( $attributes )[0];
-                            $size_options = array_values( $attributes )[0];
-                            error_log( "Using first attribute as size: " . $size_attribute_name );
-                        }
-
-                        error_log( "Available variations: " . print_r( $available_variations, true ) );
+                        // Render all variation attributes as select dropdowns
                     ?>
 
                     <form class="custom-variations-form cart" method="post" enctype="multipart/form-data"
                           data-product_id="<?php echo esc_attr( $product_id ); ?>"
                           data-product_variations='<?php echo wp_json_encode( $available_variations ); ?>'>
 
-                        <?php if ( ! empty( $size_options ) ) : ?>
-                        <!-- Size Selection Dropdown -->
+                        <?php foreach ( $attributes as $attribute_name => $options ) :
+                            $attr_label = wc_attribute_label( $attribute_name );
+                            $sanitized_name = sanitize_title( $attribute_name );
+                        ?>
                         <div class="custom-variation-selector mb-3">
-                            <select id="size_selector" name="attribute_<?php echo esc_attr( sanitize_title( $size_attribute_name ) ); ?>"
+                            <label for="attribute_<?php echo esc_attr( $sanitized_name ); ?>" style="font-weight:600;display:block;margin-bottom:6px;">
+                                <?php echo esc_html( $attr_label ); ?>
+                            </label>
+                            <select id="attribute_<?php echo esc_attr( $sanitized_name ); ?>" name="attribute_<?php echo esc_attr( $sanitized_name ); ?>"
                                     class="variation-dropdown">
-                                <option value="">Choose a size</option>
-                                <?php
-                                foreach ( $available_variations as $variation ) {
-                                    $variation_obj = new WC_Product_Variation( $variation['variation_id'] );
-                                    $variation_attributes = $variation['attributes'];
-                                    $variation_price = $variation_obj->get_price();
-                                    $formatted_price = wc_price( $variation_price );
-
-                                    // Get the size value for this variation
-                                    $size_value = '';
-                                    foreach ( $variation_attributes as $attr_key => $attr_value ) {
-                                        // if ( strpos( $attr_key, 'size' ) !== false || $attr_key === $size_attribute_name ) {
-                                        //     $size_value = $attr_value;
-                                        //     break;
-                                        // }
-                                    }
-
-                                    if ( $size_value ) {
-                                        echo '<option value="' . esc_attr( $size_value ) . '"
-                                                     data-variation-id="' . esc_attr( $variation['variation_id'] ) . '"
-                                                     data-price="' . esc_attr( $variation_price ) . '"
-                                                     data-price-html="' . esc_attr( $formatted_price ) . '">';
-                                        echo esc_html( $size_value ) . ' - ' . $formatted_price;
-                                        echo '</option>';
-                                    }
-                                }
-                                ?>
+                                <option value="">Choose <?php echo esc_html( strtolower( $attr_label ) ); ?></option>
+                                <?php foreach ( $options as $option ) : ?>
+                                    <option value="<?php echo esc_attr( $option ); ?>">
+                                        <?php echo esc_html( $option ); ?>
+                                    </option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
-                        <?php endif; ?>
+                        <?php endforeach; ?>
 
                         <!-- Current Price Display -->
                         <div class="current-price mb-3">
