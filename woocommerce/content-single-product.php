@@ -234,10 +234,13 @@ if ( post_password_required() ) {
                         // ...removed duplicate form submit handler...
 
                             // Debug log selectedAttributes and variation.attributes
+                            var productVariations = $form.data('product_variations');
                             console.log('selectedAttributes:', selectedAttributes);
-                            productVariations.forEach(function(variation) {
-                                console.log('variation.attributes:', variation.attributes);
-                            });
+                            if (productVariations) {
+                                productVariations.forEach(function(variation) {
+                                    console.log('variation.attributes:', variation.attributes);
+                                });
+                            }
                         // Handle button click
                         $addToCartButton.on('click', function(e) {
                             e.preventDefault();
