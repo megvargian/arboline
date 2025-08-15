@@ -134,10 +134,10 @@ if ( post_password_required() ) {
                                     // Get the size value for this variation
                                     $size_value = '';
                                     foreach ( $variation_attributes as $attr_key => $attr_value ) {
-                                        if ( strpos( $attr_key, 'size' ) !== false || $attr_key === $size_attribute_name ) {
-                                            $size_value = $attr_value;
-                                            break;
-                                        }
+                                        // if ( strpos( $attr_key, 'size' ) !== false || $attr_key === $size_attribute_name ) {
+                                        //     $size_value = $attr_value;
+                                        //     break;
+                                        // }
                                     }
 
                                     if ( $size_value ) {
