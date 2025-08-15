@@ -262,10 +262,10 @@ if ( post_password_required() ) {
                                 }
                             });
 
-                            if (!foundVariationId) {
-                                alert('Please select valid options for all variants before adding to cart.');
-                                return false;
-                            }
+                            // if (!foundVariationId) {
+                            //     alert('Please select valid options for all variants before adding to cart.');
+                            //     return false;
+                            // }
 
                             if (quantity < 1) {
                                 alert('Please enter a valid quantity.');
@@ -669,10 +669,10 @@ if ( post_password_required() ) {
                             }
 
                             // Check if variation is selected
-                            if (!variation_id || variation_id === '0') {
-                                alert('Please select a size before adding to cart.');
-                                return false;
-                            }
+                            // if (!variation_id || variation_id === '0') {
+                            //     alert('Please select a size before adding to cart.');
+                            //     return false;
+                            // }
 
                             // Get selected variation attributes
                             var selectedVariation = {};
