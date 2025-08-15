@@ -98,12 +98,9 @@ if ( post_password_required() ) {
                             $sanitized_name = sanitize_title( $attribute_name );
                         ?>
                         <div class="custom-variation-selector mb-3">
-                            <label for="attribute_<?php echo esc_attr( $sanitized_name ); ?>" style="font-weight:600;display:block;margin-bottom:6px;">
-                                <?php echo esc_html( $attr_label ); ?>
-                            </label>
                             <select id="attribute_<?php echo esc_attr( $sanitized_name ); ?>" name="attribute_<?php echo esc_attr( $sanitized_name ); ?>"
                                     class="variation-dropdown">
-                                <option value="">Choose <?php echo esc_html( strtolower( $attr_label ) ); ?></option>
+                                <option value=""><?php echo esc_html( strtolower( $attr_label ) ); ?></option>
                                 <?php foreach ( $options as $option ) : ?>
                                     <option value="<?php echo esc_attr( $option ); ?>">
                                         <?php echo esc_html( $option ); ?>
@@ -200,50 +197,34 @@ if ( post_password_required() ) {
                         //     }
                         // });
 
-                        // Handle size selection
-                        $sizeSelector.on('change', function() {
-                            const selectedOption = $(this).find('option:selected');
-                            const selectedValue = selectedOption.val();
-                            const variationId = selectedOption.data('variation-id');
-                            const priceHtml = selectedOption.data('price-html');
 
-                            console.log('Size selected:', {
-                                value: selectedValue,
-                                variationId: variationId,
-                                priceHtml: priceHtml
+                        // Handle attribute selection for all dropdowns
+                        $('.variation-dropdown').on('change', function() {
+                            let allSelected = true;
+                            let selectedAttributes = {};
+
+                            // Check all selects
+                            $('.variation-dropdown').each(function() {
+                                const val = $(this).val();
+                                const name = $(this).attr('name');
+                                if (!val) {
+                                    allSelected = false;
+                                } else {
+                                    selectedAttributes[name] = val;
+                                }
                             });
 
-                            if (selectedValue && variationId) {
-                                // Set variation ID
-                                $variationIdInput.val(variationId);
-
-                                // Store selected size value for submission
-                                $form.attr('data-selected-size', selectedValue);
-
-                                // Update price display
-                                if (priceHtml) {
-                                    $priceDisplay.html(priceHtml);
-                                }
-
-                                // Enable add to cart button
+                            // Enable/disable button
+                            if (allSelected) {
                                 $addToCartButton.removeClass('disabled')
-                                                .prop('disabled', false)
-                                                .css('background-color', '#000')
-                                                .css('cursor', 'pointer');
-
-                                console.log('Button enabled, variation ID set to:', variationId);
+                                    .prop('disabled', false)
+                                    .css('background-color', '#000')
+                                    .css('cursor', 'pointer');
                             } else {
-                                // Reset form
-                                $variationIdInput.val('0');
-                                $form.removeAttr('data-selected-size');
-
-                                // Disable add to cart button
                                 $addToCartButton.addClass('disabled')
-                                                .prop('disabled', true)
-                                                .css('background-color', '#6c757d')
-                                                .css('cursor', 'not-allowed');
-
-                                console.log('Button disabled, no valid variation selected');
+                                    .prop('disabled', true)
+                                    .css('background-color', '#6c757d')
+                                    .css('cursor', 'not-allowed');
                             }
                         });
 
