@@ -262,6 +262,9 @@ if ( post_password_required() ) {
                                 }
                             });
 
+                            // Set the hidden input for variation_id
+                            $variationIdInput.val(foundVariationId ? foundVariationId : '0');
+
                             // if (!foundVariationId) {
                             //     alert('Please select valid options for all variants before adding to cart.');
                             //     return false;
@@ -286,7 +289,7 @@ if ( post_password_required() ) {
                                 data: {
                                     action: 'custom_variable_add_to_cart',
                                     product_id: '<?php echo $product_id; ?>',
-                                    variation_id: foundVariationId,
+                                    variation_id: $variationIdInput.val(),
                                     quantity: quantity,
                                     variation: variationData,
                                     security: '<?php echo wp_create_nonce("add_to_cart_nonce"); ?>'
