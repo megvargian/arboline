@@ -232,6 +232,88 @@ function my_acf_init_block_types()
         //         'keywords'          => array('testimonial', 'quote'),
         //     )
         // );
+            // Homepage blocks registration
+            acf_register_block_type(array(
+                'name'              => 'hero-section',
+                'title'             => __('Hero Section'),
+                'description'       => __('Homepage Hero Section'),
+                'render_template'   => 'block/hero-section.php',
+                'category'          => 'formatting',
+                'icon'              => 'cover-image',
+                'keywords'          => array('hero', 'homepage'),
+            ));
+            acf_register_block_type(array(
+                'name'              => 'british-section',
+                'title'             => __('Fervently British Section'),
+                'description'       => __('Homepage British Section'),
+                'render_template'   => 'block/british-section.php',
+                'category'          => 'formatting',
+                'icon'              => 'flag',
+                'keywords'          => array('british', 'homepage'),
+            ));
+            acf_register_block_type(array(
+                'name'              => 'beautiful-wood-section',
+                'title'             => __('Beautiful Wood Section'),
+                'description'       => __('Homepage Beautiful Wood Section'),
+                'render_template'   => 'block/beautiful-wood-section.php',
+                'category'          => 'formatting',
+                'icon'              => 'palmtree',
+                'keywords'          => array('wood', 'homepage'),
+            ));
+            acf_register_block_type(array(
+                'name'              => 'full-stop-section',
+                'title'             => __('Full Stop Section'),
+                'description'       => __('Homepage Full Stop Section'),
+                'render_template'   => 'block/full-stop-section.php',
+                'category'          => 'formatting',
+                'icon'              => 'minus',
+                'keywords'          => array('full stop', 'homepage'),
+            ));
+            acf_register_block_type(array(
+                'name'              => 'floor-worktop-section',
+                'title'             => __('Floor & Worktop Section'),
+                'description'       => __('Homepage Floor & Worktop Wood Finishes'),
+                'render_template'   => 'block/floor-worktop-section.php',
+                'category'          => 'formatting',
+                'icon'              => 'admin-home',
+                'keywords'          => array('floor', 'worktop', 'homepage'),
+            ));
+            acf_register_block_type(array(
+                'name'              => 'interior-wood-section',
+                'title'             => __('Interior Wood Section'),
+                'description'       => __('Homepage Interior Wood Finishes'),
+                'render_template'   => 'block/interior-wood-section.php',
+                'category'          => 'formatting',
+                'icon'              => 'admin-home',
+                'keywords'          => array('interior', 'wood', 'homepage'),
+            ));
+            acf_register_block_type(array(
+                'name'              => 'exterior-wood-section',
+                'title'             => __('Exterior Wood Section'),
+                'description'       => __('Homepage Exterior Wood Finishes'),
+                'render_template'   => 'block/exterior-wood-section.php',
+                'category'          => 'formatting',
+                'icon'              => 'admin-home',
+                'keywords'          => array('exterior', 'wood', 'homepage'),
+            ));
+            acf_register_block_type(array(
+                'name'              => 'sustainability-section',
+                'title'             => __('Sustainability Section'),
+                'description'       => __('Homepage Sustainability Section'),
+                'render_template'   => 'block/sustainability-section.php',
+                'category'          => 'formatting',
+                'icon'              => 'leaf',
+                'keywords'          => array('sustainability', 'homepage'),
+            ));
+            acf_register_block_type(array(
+                'name'              => 'slider-section',
+                'title'             => __('Slider Section'),
+                'description'       => __('Homepage Slider Section'),
+                'render_template'   => 'block/slider-section.php',
+                'category'          => 'formatting',
+                'icon'              => 'images-alt2',
+                'keywords'          => array('slider', 'homepage'),
+            ));
     }
 }
 
