@@ -1,0 +1,118 @@
+[
+  {
+    "key": "group_hero_section",
+    "title": "Hero Section",
+    "fields": [
+      {"key": "field_hero_video", "label": "Hero Video", "name": "hero_video", "type": "url"},
+      {"key": "field_hero_heading", "label": "Hero Heading", "name": "hero_heading", "type": "text"},
+      {"key": "field_hero_button_text", "label": "Button Text", "name": "hero_button_text", "type": "text"},
+      {"key": "field_hero_button_url", "label": "Button URL", "name": "hero_button_url", "type": "url"}
+    ],
+    "location": [[{"param": "block", "operator": "==", "value": "acf/hero-section"}]]
+  },
+  {
+    "key": "group_british_section",
+    "title": "Fervently British Section",
+    "fields": [
+      {"key": "field_british_flag_image", "label": "Flag Image", "name": "british_flag_image", "type": "image"},
+      {"key": "field_british_title", "label": "Title", "name": "british_title", "type": "text"},
+      {"key": "field_british_text", "label": "Text", "name": "british_text", "type": "textarea"},
+      {"key": "field_british_link_url", "label": "Link URL", "name": "british_link_url", "type": "url"},
+      {"key": "field_british_link_text", "label": "Link Text", "name": "british_link_text", "type": "text"},
+      {"key": "field_british_lid_image", "label": "Lid Image", "name": "british_lid_image", "type": "image"}
+    ],
+    "location": [[{"param": "block", "operator": "==", "value": "acf/british-section"}]]
+  },
+  {
+    "key": "group_beautiful_wood_section",
+    "title": "Beautiful Wood Section",
+    "fields": [
+      {"key": "field_beautiful_wood_bg", "label": "Background Image", "name": "beautiful_wood_bg", "type": "image"},
+      {"key": "field_beautiful_wood_text", "label": "Text", "name": "beautiful_wood_text", "type": "text"}
+    ],
+    "location": [[{"param": "block", "operator": "==", "value": "acf/beautiful-wood-section"}]]
+  },
+  {
+    "key": "group_full_stop_section",
+    "title": "Full Stop Section",
+    "fields": [
+      {"key": "field_full_stop_bg", "label": "Background Image", "name": "full_stop_bg", "type": "image"},
+      {"key": "field_full_stop_red_image", "label": "Red Image", "name": "full_stop_red_image", "type": "image"},
+      {"key": "field_full_stop_h2o_image", "label": "H2O Image", "name": "full_stop_h2o_image", "type": "image"},
+      {"key": "field_full_stop_link_url", "label": "Link URL", "name": "full_stop_link_url", "type": "url"},
+      {"key": "field_full_stop_link_text", "label": "Link Text", "name": "full_stop_link_text", "type": "text"},
+      {"key": "field_full_stop_new_h2o_image", "label": "New H2O Image", "name": "full_stop_new_h2o_image", "type": "image"}
+    ],
+    "location": [[{"param": "block", "operator": "==", "value": "acf/full-stop-section"}]]
+  },
+  {
+    "key": "group_floor_worktop_section",
+    "title": "Floor & Worktop Section",
+    "fields": [
+      {"key": "field_floor_worktop_bg", "label": "Background Image", "name": "floor_worktop_bg", "type": "image"},
+      {"key": "field_floor_worktop_hwo_image", "label": "HWO Image", "name": "floor_worktop_hwo_image", "type": "image"},
+      {"key": "field_floor_worktop_title", "label": "Title", "name": "floor_worktop_title", "type": "text"},
+      {"key": "field_floor_worktop_text", "label": "Text", "name": "floor_worktop_text", "type": "textarea"},
+      {"key": "field_floor_worktop_products", "label": "Products", "name": "floor_worktop_products", "type": "repeater", "sub_fields": [
+        {"key": "field_floor_worktop_product_name", "label": "Product Name", "name": "name", "type": "text"},
+        {"key": "field_floor_worktop_product_url", "label": "Product URL", "name": "url", "type": "url"},
+        {"key": "field_floor_worktop_product_id", "label": "Product ID", "name": "id", "type": "text"}
+      ]}
+    ],
+    "location": [[{"param": "block", "operator": "==", "value": "acf/floor-worktop-section"}]]
+  },
+  {
+    "key": "group_interior_wood_section",
+    "title": "Interior Wood Section",
+    "fields": [
+      {"key": "field_interior_wood_bg", "label": "Background Image", "name": "interior_wood_bg", "type": "image"},
+      {"key": "field_interior_wood_finishes_image", "label": "Finishes Image", "name": "interior_wood_finishes_image", "type": "image"},
+      {"key": "field_interior_wood_title", "label": "Title", "name": "interior_wood_title", "type": "text"},
+      {"key": "field_interior_wood_text", "label": "Text", "name": "interior_wood_text", "type": "textarea"},
+      {"key": "field_interior_wood_products", "label": "Products", "name": "interior_wood_products", "type": "repeater", "sub_fields": [
+        {"key": "field_interior_wood_product_name", "label": "Product Name", "name": "name", "type": "text"},
+        {"key": "field_interior_wood_product_url", "label": "Product URL", "name": "url", "type": "url"}
+      ]}
+    ],
+    "location": [[{"param": "block", "operator": "==", "value": "acf/interior-wood-section"}]]
+  },
+  {
+    "key": "group_exterior_wood_section",
+    "title": "Exterior Wood Section",
+    "fields": [
+      {"key": "field_exterior_wood_bg", "label": "Background Image", "name": "exterior_wood_bg", "type": "image"},
+      {"key": "field_exterior_wood_finishes_image", "label": "Finishes Image", "name": "exterior_wood_finishes_image", "type": "image"},
+      {"key": "field_exterior_wood_title", "label": "Title", "name": "exterior_wood_title", "type": "text"},
+      {"key": "field_exterior_wood_text", "label": "Text", "name": "exterior_wood_text", "type": "textarea"},
+      {"key": "field_exterior_wood_products", "label": "Products", "name": "exterior_wood_products", "type": "repeater", "sub_fields": [
+        {"key": "field_exterior_wood_product_name", "label": "Product Name", "name": "name", "type": "text"},
+        {"key": "field_exterior_wood_product_url", "label": "Product URL", "name": "url", "type": "url"}
+      ]}
+    ],
+    "location": [[{"param": "block", "operator": "==", "value": "acf/exterior-wood-section"}]]
+  },
+  {
+    "key": "group_sustainability_section",
+    "title": "Sustainability Section",
+    "fields": [
+      {"key": "field_sustainability_bg", "label": "Background Image", "name": "sustainability_bg", "type": "image"},
+      {"key": "field_sustainability_bee_image", "label": "Bee Image", "name": "sustainability_bee_image", "type": "image"},
+      {"key": "field_sustainability_title", "label": "Title", "name": "sustainability_title", "type": "text"},
+      {"key": "field_sustainability_text", "label": "Text", "name": "sustainability_text", "type": "textarea"}
+    ],
+    "location": [[{"param": "block", "operator": "==", "value": "acf/sustainability-section"}]]
+  },
+  {
+    "key": "group_slider_section",
+    "title": "Slider Section",
+    "fields": [
+      {"key": "field_slider_bg", "label": "Background Image", "name": "slider_bg", "type": "image"},
+      {"key": "field_slider_slides", "label": "Slides", "name": "slider_slides", "type": "repeater", "sub_fields": [
+        {"key": "field_slider_slide_image", "label": "Slide Image", "name": "image", "type": "image"},
+        {"key": "field_slider_slide_title", "label": "Slide Title", "name": "title", "type": "text"},
+        {"key": "field_slider_slide_text", "label": "Slide Text", "name": "text", "type": "textarea"}
+      ]}
+    ],
+    "location": [[{"param": "block", "operator": "==", "value": "acf/slider-section"}]]
+  }
+]
