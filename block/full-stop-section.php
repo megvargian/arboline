@@ -24,5 +24,16 @@ $new_h2o_image = $fields['full_stop_new_h2o_image'];
                 </div>
             </div>
         </div>
+        <style>
+        .full-stop-group {
+            width: 1100px !important;
+        }
+
+        @media screen and (max-width: 991px) {
+            .full-stop-group .wp-block-columns {
+                flex-direction: column-reverse;
+            }
+        }
+        </style>
     </div>
 </div>
