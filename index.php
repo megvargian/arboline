@@ -207,6 +207,7 @@ $dir_iamges = get_template_directory_uri() . '/inc/assets/images/';
             </div>
         </div>
     </div>
+
     <div class="wp-block-cover alignfull is-light my-0" style="min-height:60vh"><span aria-hidden="true"
             class="wp-block-cover__background has-background-dim-10 has-background-dim"
             style="background-color:#717171"></span><img decoding="async" loading="lazy" width="2000" height="430"
