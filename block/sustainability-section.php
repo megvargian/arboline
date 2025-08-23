@@ -41,7 +41,7 @@ $text = $fields['sustainability_text'];
 
                                                     <p
                                                         class="has-text-align-center mb-0 px-4 has-black-color has-text-color has-medium-font-size">
-                                                        <?php echo esc_html($description); ?>
+                                                        <?php echo esc_html($text); ?>
                                                     </p>
 
                                                     <div style="height:50px" aria-hidden="true" class="wp-block-spacer">
