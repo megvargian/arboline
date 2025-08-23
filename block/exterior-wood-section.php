@@ -19,7 +19,7 @@ $products = $fields['exterior_wood_products']; // Repeater field
             <div class="is-layout-flex wp-container-23 wp-block-columns mb-0 pt-0 pt-lg-5 pb-0 gap-2">
                 <div class="is-layout-flow wp-block-column is-vertically-aligned-center">
                     <figure class="wp-block-image size-full mb-0"><img decoding="async" loading="lazy" width="896"
-                            height="794" src="<?php echo esc_url($image_url); ?>exterior-finishes-img-min.png" alt=""
+                            height="794" src="<?php echo esc_url($finishes_image); ?>" alt=""
                             class="wp-image-3887"
                             sizes="(max-width: 896px) 100vw, 896px"></figure>
                 </div>
