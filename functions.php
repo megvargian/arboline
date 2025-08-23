@@ -314,6 +314,15 @@ function my_acf_init_block_types()
                 'icon'              => 'images-alt2',
                 'keywords'          => array('slider', 'homepage'),
             ));
+            acf_register_block_type(array(
+                'name'              => 'wood-bg-section',
+                'title'             => __('Wood Background Section'),
+                'description'       => __('Homepage Wood Background Section'),
+                'render_template'   => 'block/wood-bg-section.php',
+                'category'          => 'formatting',
+                'icon'              => 'images-alt2',
+                'keywords'          => array('wood', 'background', 'homepage'),
+            ));
     }
 }
 
