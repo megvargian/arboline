@@ -13,7 +13,7 @@ $options = get_fields('options');
 $header = $options['header'];
 $left_side = $header['left_side'];
 $right_side = $header['right_side'];
-$logo = $header['logo'];
+$logo = $header['header_logo'];
 $main_menu = $header['main_menu'];
 ?>
 <!DOCTYPE html>
