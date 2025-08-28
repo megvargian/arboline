@@ -1,0 +1,18 @@
+[
+  {
+    "key": "group_footer_options",
+    "title": "Footer Options",
+    "fields": [
+      {"key": "field_footer_logo", "label": "Footer Logo", "name": "footer_logo", "type": "image"},
+      {"key": "field_footer_menus", "label": "Footer Menus", "name": "footer_menus", "type": "repeater", "sub_fields": [
+        {"key": "field_footer_menu_title", "label": "Menu Title", "name": "title", "type": "text"},
+        {"key": "field_footer_menu_links", "label": "Menu Links", "name": "links", "type": "repeater", "sub_fields": [
+          {"key": "field_footer_menu_link_label", "label": "Link Label", "name": "label", "type": "text"},
+          {"key": "field_footer_menu_link_url", "label": "Link URL", "name": "url", "type": "url"}
+        ]}
+      ]},
+      {"key": "field_footer_text", "label": "Footer Text", "name": "footer_text", "type": "textarea"}
+    ],
+    "location": [[{"param": "options_page", "operator": "==", "value": "website-settings"}]]
+  }
+]
