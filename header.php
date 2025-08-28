@@ -9,6 +9,7 @@
  * @package WP_Bootstrap_Starter
  */
 $options = get_fields('options');
+$header = $options['header'];
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -29,8 +30,8 @@ $options = get_fields('options');
                     <div class="d-flex justify-content-between align-items-center row mx-0">
                         <div class="col-3">
                             <ul id="secondaryNav" class="nav">
-                                <?php if (!empty($options['header_secondary_menu'])): ?>
-                                    <?php foreach ($options['header_secondary_menu'] as $item): ?>
+                                <?php if (!empty($header['header_secondary_menu'])): ?>
+                                    <?php foreach ($header['header_secondary_menu'] as $item): ?>
                                         <li class="menu-item">
                                             <a href="<?php echo esc_url($item['url']); ?>" class="text-uppercase">
                                                 <?php echo esc_html($item['label']); ?>
@@ -42,14 +43,14 @@ $options = get_fields('options');
                             </ul>
                         </div>
                         <a class="brand my-4 p-lg-0 mx-auto d-block text-center col-6" href="<?php echo esc_url(home_url('/')); ?>">
-                            <?php if (!empty($options['header_logo'])): ?>
-                                <img src="<?php echo esc_url($options['header_logo']); ?>" alt="Logo" class="mx-auto img-fluid banner--logo-top light" />
+                            <?php if (!empty($header['header_logo'])): ?>
+                                <img src="<?php echo esc_url($header['header_logo']); ?>" alt="Logo" class="mx-auto img-fluid banner--logo-top light" />
                             <?php endif; ?>
                         </a>
                         <div class="account-nav col-3 d-none d-lg-flex align-items-center justify-content-end">
                             <ul class="account-nav__menu nav">
-                                <?php if (!empty($options['header_account_menu'])): ?>
-                                    <?php foreach ($options['header_account_menu'] as $item): ?>
+                                <?php if (!empty($header['header_account_menu'])): ?>
+                                    <?php foreach ($header['header_account_menu'] as $item): ?>
                                         <li class="account-nav__item">
                                             <a href="<?php echo esc_url($item['url']); ?>" class="account-nav__link">
                                                 <?php echo esc_html($item['icon_html']); ?>
@@ -58,11 +59,11 @@ $options = get_fields('options');
                                     <?php endforeach; ?>
                                 <?php endif; ?>
                                 <li class="manufacturing-info-header text-center">
-                                    <?php if (!empty($options['header_union_jack_svg'])): ?>
-                                        <?php echo $options['header_union_jack_svg']; ?>
+                                    <?php if (!empty($header['header_union_jack_svg'])): ?>
+                                        <?php echo $header['header_union_jack_svg']; ?>
                                     <?php endif; ?>
                                     <p class="text-center text-uppercase mt-n1 py-0 mb-0">
-                                        <small><?php echo esc_html($options['header_made_in_britain']); ?></small>
+                                        <small><?php echo esc_html($header['header_made_in_britain']); ?></small>
                                     </p>
                                 </li>
                             </ul>
@@ -74,8 +75,8 @@ $options = get_fields('options');
                 <div class="container-fluid">
                     <div class="d-flex justify-content-between align-items-center row mx-0">
                         <ul class="main-menu col-9 nav">
-                            <?php if (!empty($options['header_main_menu'])): ?>
-                                <?php foreach ($options['header_main_menu'] as $item): ?>
+                            <?php if (!empty($header['header_main_menu'])): ?>
+                                <?php foreach ($header['header_main_menu'] as $item): ?>
                                     <li class="menu-item">
                                         <a href="<?php echo esc_url($item['url']); ?>" class="text-uppercase">
                                             <?php echo esc_html($item['label']); ?>
