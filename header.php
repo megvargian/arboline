@@ -124,31 +124,21 @@ $main_menu = $header['main_menu'];
                         </a>
                         <div class="col-6 flex-column justify-content-between align-items-center d-none d-lg-flex">
                             <ul id="primaryNav" class="nav">
-                                <li class="menu-item   ">
-                                    <a href="https://arboline.com/restores-revives-protects/" class="text-uppercase">
-                                        About
-                                    </a>
-
-                                </li>
-
-                                <li class="menu-item product-dropdown awwdawda  ">
-                                    <a class="text-uppercase" data-bs-toggle="collapse" href="#collapseProducts"
-                                        role="button" aria-expanded="false" aria-controls="collapseProducts">
-                                        Products
-                                    </a>
-                                </li>
-                                <li class="menu-item   ">
-                                    <a href="https://arboline.com/articles-guides/" class="text-uppercase">
-                                        GUIDES
-                                    </a>
-
-                                </li>
-                                <li class="menu-item   ">
-                                    <a href="https://arboline.com/contact/" class="text-uppercase">
-                                        Contact
-                                    </a>
-
-                                </li>
+                                <?php foreach ($main_menu as $key => $menu_item) {
+                                    if ($key == 1) { ?>
+                                        <li class="menu-item product-dropdown awwdawda  ">
+                                            <a class="text-uppercase" data-bs-toggle="collapse" href="#collapseProducts"
+                                                role="button" aria-expanded="false" aria-controls="collapseProducts">
+                                                <?php echo $menu_item['title']; ?>
+                                            </a>
+                                        </li>
+                                    <?php } ?>
+                                    <li class="menu-item">
+                                        <a href="<?php echo $menu_item['url']; ?>" class="text-uppercase">
+                                            <?php echo $menu_item['title']; ?>
+                                        </a>
+                                    </li>
+                                <?php } ?>
                             </ul>
                         </div>
                         <div class="account-nav col-3 d-none d-lg-flex align-items-center justify-content-end">
