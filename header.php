@@ -913,66 +913,66 @@ $main_menu = $header['header_main_menu'];
         </div>
         <script>
         jQuery(document).ready(function($) {
-            <?php if(is_product_category() || is_product()){ ?>
-            $("header").addClass("active");
-            $('.banner--menu-row').css({
-                'border-top-width': '0px',
-                'border-color': 'rgb(204, 204, 204)',
-            });
-            $('.banner--menu-row').addClass("hide-bg");
-            $('.banner--logo-menu').css({
-                'opacity': '1',
-            });
-            $('.banner--menu-row.account-nav').css({
-                'opacity': '1',
-            });
-            $('.banner--top').css({
-                opacity: 0,
-                height: '0px'
-            });
-            <?php } else { ?>
-            $(window).scroll(function() {
-                var currentScreenPosition = $(document).scrollTop();
-                if (currentScreenPosition > 250) {
-                    $("header").addClass("active");
-                    $('.banner--menu-row').css({
-                        'border-top-width': '0px',
-                        'border-color': 'rgb(204, 204, 204)',
-                    });
-                    $('.banner--menu-row').addClass("hide-bg");
-                    $('.banner--logo-menu').css({
-                        'opacity': '1',
-                    });
-                    $('.banner--menu-row.account-nav').css({
-                        'opacity': '1',
-                    });
-                    $('.banner--top').css({
-                        opacity: 0,
-                        height: '0px'
-                    });
-                }
-                if (currentScreenPosition < 125) {
-                    $("header").removeClass("active");
-                    $('.banner--top').css({
-                        opacity: 1,
-                        height: '78px'
-                    });
-                    $('.banner--menu-row').css({
-                        'border-top': '1px solid #dee2e6',
-                        'border-top-color': 'rgb(222, 226, 230) rgb(0, 0, 0) rgb(0, 0, 0)',
-                    });
-                    $('.banner--logo-menu').css({
-                        'opacity': '0',
-                    });
-                    $('.banner--menu-row.account-nav').css({
-                        'opacity': '0',
-                    });
-                    $('.banner--menu-row').removeClass("hide-bg");
-                }
-                $('.wp-block-cover__inner-container').css({
-                    'margin-top': '0px',
+            <?php if(is_product_category() || is_product() || is_checkout() || is_account_page() || is_cart() ){ ?>
+                $("header").addClass("active");
+                $('.banner--menu-row').css({
+                    'border-top-width': '0px',
+                    'border-color': 'rgb(204, 204, 204)',
                 });
-            });
+                $('.banner--menu-row').addClass("hide-bg");
+                $('.banner--logo-menu').css({
+                    'opacity': '1',
+                });
+                $('.banner--menu-row.account-nav').css({
+                    'opacity': '1',
+                });
+                $('.banner--top').css({
+                    opacity: 0,
+                    height: '0px'
+                });
+            <?php } else { ?>
+                $(window).scroll(function() {
+                    var currentScreenPosition = $(document).scrollTop();
+                    if (currentScreenPosition > 250) {
+                        $("header").addClass("active");
+                        $('.banner--menu-row').css({
+                            'border-top-width': '0px',
+                            'border-color': 'rgb(204, 204, 204)',
+                        });
+                        $('.banner--menu-row').addClass("hide-bg");
+                        $('.banner--logo-menu').css({
+                            'opacity': '1',
+                        });
+                        $('.banner--menu-row.account-nav').css({
+                            'opacity': '1',
+                        });
+                        $('.banner--top').css({
+                            opacity: 0,
+                            height: '0px'
+                        });
+                    }
+                    if (currentScreenPosition < 125) {
+                        $("header").removeClass("active");
+                        $('.banner--top').css({
+                            opacity: 1,
+                            height: '78px'
+                        });
+                        $('.banner--menu-row').css({
+                            'border-top': '1px solid #dee2e6',
+                            'border-top-color': 'rgb(222, 226, 230) rgb(0, 0, 0) rgb(0, 0, 0)',
+                        });
+                        $('.banner--logo-menu').css({
+                            'opacity': '0',
+                        });
+                        $('.banner--menu-row.account-nav').css({
+                            'opacity': '0',
+                        });
+                        $('.banner--menu-row').removeClass("hide-bg");
+                    }
+                    $('.wp-block-cover__inner-container').css({
+                        'margin-top': '0px',
+                    });
+                });
             <?php } ?>
         });
         </script>
