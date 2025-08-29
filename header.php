@@ -14,7 +14,7 @@ $header = $options['header'];
 $left_side = $header['left_side'];
 $right_side = $header['right_side'];
 $logo = $header['header_logo'];
-$main_menu = $header['main_menu'];
+$main_menu = $header['header_main_menu'];
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -129,13 +129,13 @@ $main_menu = $header['main_menu'];
                                         <li class="menu-item product-dropdown awwdawda  ">
                                             <a class="text-uppercase" data-bs-toggle="collapse" href="#collapseProducts"
                                                 role="button" aria-expanded="false" aria-controls="collapseProducts">
-                                                <?php echo $menu_item['title']; ?>
+                                                <?php echo $menu_item['label']; ?>
                                             </a>
                                         </li>
                                     <?php } ?>
                                     <li class="menu-item">
                                         <a href="<?php echo $menu_item['url']; ?>" class="text-uppercase">
-                                            <?php echo $menu_item['title']; ?>
+                                            <?php echo $menu_item['label']; ?>
                                         </a>
                                     </li>
                                 <?php } ?>
