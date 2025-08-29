@@ -270,273 +270,13 @@ $sub_menu = $header['sub_menus'];
                                                 </li>
                                             <?php } else { ?>
                                                  <li class="menu-item mb-3   ">
-                                                    <a href="<?php echo $menu['title_url'] ?>"
+                                                    <a href="<?php echo $menu['title_url']; ?>"
                                                         class="pb-2 d-flex justify-content-between text-uppercase nav-link ">
                                                         <?php echo $menu['title']; ?>
                                                     </a>
                                                 </li>
                                             <?php } ?>
                                         <?php } ?>
-                                        <!-- <li class="menu-item mb-3  menu-item-type-taxonomy menu-item-object-product_cat  has-children dropdown">
-                                            <a href="#"
-                                                class="pb-2 d-flex justify-content-between text-uppercase nav-link  dropdown-toggle"
-                                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                Floor &amp; Worktop Finishes
-                                                <i class="bi bi-chevron-right"></i>
-                                            </a>
-                                            <ul class="ps-4 dropdown-menu child-menu list-unstyled shadow-0"
-                                                data-bs-popper="static" aria-labelledby="navbarDropdownMenuLink">
-                                                <li class="child-menu-item mb-2  menu-item-object-product ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product/hard-wax-oil/">
-                                                        Hard Wax Oil
-                                                    </a>
-                                                </li>
-                                                <li class="child-menu-item mb-2  ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product/hard-wax-oil/#fiddes-ultra-raw-hard-wax-oil">
-                                                        ULTRA RAW HARD WAX OIL
-                                                    </a>
-                                                </li>
-                                                <li class="child-menu-item mb-2  menu-item-object-product ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product/premier-wood-varnish/">
-                                                        Premier Wood Varnish
-                                                    </a>
-                                                </li>
-                                                <li class="child-menu-item mb-2  menu-item-object-product ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product/floor-reviving-kit/">
-                                                        Floor Reviving Kit
-                                                    </a>
-                                                </li>
-                                                <li class="child-menu-item mb-2  menu-item-object-product ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product/liquid-floor-wax/">
-                                                        Floor Wax
-                                                    </a>
-                                                </li>
-                                                <li class="child-menu-item mb-2  menu-item-object-product ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product/floor-surface-cleaner/">
-                                                        Floor Cleaner
-                                                    </a>
-                                                </li>
-                                                <li class="child-menu-item mb-2  menu-item-object-product ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product/wood-surface-cleaner/">
-                                                        Wood Surface Cleaner
-                                                    </a>
-                                                </li>
-                                                <li class="child-menu-item mb-2  menu-item-object-product ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product/barrier-seal/">
-                                                        Barrier Seal
-                                                    </a>
-                                                </li>
-                                                <li class="child-menu-item mb-2  menu-item-object-product ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product/clear-glaze/">
-                                                        Clear Glaze
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item mb-3  menu-item-type-taxonomy menu-item-object-product_cat  has-children dropdown">
-                                            <a href="#"
-                                                class="pb-2 d-flex justify-content-between text-uppercase nav-link  dropdown-toggle"
-                                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                Interior Wood Finishes
-                                                <i class="bi bi-chevron-right"></i>
-                                            </a>
-
-                                            <ul class="ps-4 dropdown-menu child-menu list-unstyled shadow-0"
-                                                data-bs-popper="static" aria-labelledby="navbarDropdownMenuLink">
-                                                <li
-                                                    class="child-menu-item mb-2  menu-item-type-taxonomy menu-item-object-product_cat ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product-category/wood-finishes/oils/">
-                                                        Oils
-                                                    </a>
-                                                </li>
-                                                <li
-                                                    class="child-menu-item mb-2  menu-item-type-taxonomy menu-item-object-product_cat ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product-category/wood-finishes/shellac-polish/">
-                                                        Shellac
-                                                    </a>
-                                                </li>
-                                                <li
-                                                    class="child-menu-item mb-2  menu-item-type-taxonomy menu-item-object-product_cat ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product-category/wood-finishes/wax/">
-                                                        Wax
-                                                    </a>
-                                                </li>
-                                                <li
-                                                    class="child-menu-item mb-2  menu-item-type-taxonomy menu-item-object-product_cat ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product-category/wood-finishes/stains/">
-                                                        Stains
-                                                    </a>
-                                                </li>
-                                                <li
-                                                    class="child-menu-item mb-2  menu-item-type-taxonomy menu-item-object-product_cat ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product-category/wood-finishes/thinners/">
-                                                        Thinners
-                                                    </a>
-                                                </li>
-                                                <li class="child-menu-item mb-2  menu-item-object-product ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product/light-fast-water-concentrates/">
-                                                        Concentrates
-                                                    </a>
-                                                </li>
-                                                <li class="child-menu-item mb-2  menu-item-object-product ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product/spirit-oil-soluble-base-tints/">
-                                                        Base Tints
-                                                    </a>
-                                                </li>
-                                                <li class="child-menu-item mb-2  menu-item-object-product ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product/spirit-soluble-dry-pigment-powders/">
-                                                        Pigment Powder
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li
-                                            class="menu-item mb-3  menu-item-type-taxonomy menu-item-object-product_cat  has-children dropdown">
-                                            <a href="#"
-                                                class="pb-2 d-flex justify-content-between text-uppercase nav-link  dropdown-toggle"
-                                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                Exterior Wood Finishes
-                                                <i class="bi bi-chevron-right"></i>
-                                            </a>
-
-                                            <ul class="ps-4 dropdown-menu child-menu list-unstyled shadow-0"
-                                                data-bs-popper="static" aria-labelledby="navbarDropdownMenuLink">
-                                                <li class="child-menu-item mb-2  menu-item-object-product ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product/exterior-high-build-wood-oil/">
-                                                        Exterior High Build Wood Oil
-                                                    </a>
-                                                </li>
-                                                <li class="child-menu-item mb-2  menu-item-object-product ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product/exterior-wood-protector/">
-                                                        Exterior Wood Protector
-                                                    </a>
-                                                </li>
-                                                <li class="child-menu-item mb-2  menu-item-object-product ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product/decking-oil/">
-                                                        Universal Decking Oil
-                                                    </a>
-                                                </li>
-                                                <li class="child-menu-item mb-2  menu-item-object-product ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product/fiddes-deck-cleaner/">
-                                                        FIDDES Deck Cleaner
-                                                    </a>
-                                                </li>
-                                                <li class="child-menu-item mb-2  menu-item-object-product ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product/wood-reviver-gel/">
-                                                        WOOD REVIVER GEL
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li
-                                            class="menu-item mb-3  menu-item-type-taxonomy menu-item-object-product_cat  has-children dropdown">
-                                            <a href="#"
-                                                class="pb-2 d-flex justify-content-between text-uppercase nav-link  dropdown-toggle"
-                                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                Accessories
-                                                <i class="bi bi-chevron-right"></i>
-                                            </a>
-
-                                            <ul class="ps-4 dropdown-menu child-menu list-unstyled shadow-0"
-                                                data-bs-popper="static" aria-labelledby="navbarDropdownMenuLink">
-                                                <li
-                                                    class="child-menu-item mb-2  menu-item-type-taxonomy menu-item-object-product_cat ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product-category/accessories/abrasives/">
-                                                        Abrasives
-                                                    </a>
-                                                </li>
-                                                <li
-                                                    class="child-menu-item mb-2  menu-item-type-taxonomy menu-item-object-product_cat ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product-category/accessories/adhesives/">
-                                                        Adhesives
-                                                    </a>
-                                                </li>
-                                                <li
-                                                    class="child-menu-item mb-2  menu-item-type-taxonomy menu-item-object-product_cat ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product-category/accessories/brushes/">
-                                                        Brushes
-                                                    </a>
-                                                </li>
-                                                <li
-                                                    class="child-menu-item mb-2  menu-item-type-taxonomy menu-item-object-product_cat ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product-category/accessories/chemicals-solvents/">
-                                                        Chemicals &amp; Solvents
-                                                    </a>
-                                                </li>
-                                                <li
-                                                    class="child-menu-item mb-2  menu-item-type-taxonomy menu-item-object-product_cat ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product-category/accessories/sundries/">
-                                                        Sundries
-                                                    </a>
-                                                </li>
-                                                <li
-                                                    class="child-menu-item mb-2  menu-item-type-taxonomy menu-item-object-product_cat ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product-category/accessories/wood-fillers/">
-                                                        Wood Fillers
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item mb-3   ">
-                                            <a href="https://arboline.com/spray-finishes/"
-                                                class="pb-2 d-flex justify-content-between text-uppercase nav-link ">
-                                                Industrial Spray Finishes
-                                            </a>
-
-                                        </li>
-                                        <li
-                                            class="menu-item mb-3  menu-item-type-taxonomy menu-item-object-product_cat  has-children dropdown">
-                                            <a href="#"
-                                                class="pb-2 d-flex justify-content-between text-uppercase nav-link  dropdown-toggle"
-                                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                Stain Block
-                                                <i class="bi bi-chevron-right"></i>
-                                            </a>
-
-                                            <ul class="ps-4 dropdown-menu child-menu list-unstyled shadow-0"
-                                                data-bs-popper="static" aria-labelledby="navbarDropdownMenuLink">
-                                                <li class="child-menu-item mb-2  menu-item-object-product ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product/full-stop-stain-block/">
-                                                        FIDDES Full Stop Stain Block
-                                                    </a>
-                                                </li>
-                                                <li class="child-menu-item mb-2  menu-item-object-product ">
-                                                    <a class="text-uppercase"
-                                                        href="https://arboline.com/product/fiddes-full-stop-h20-stain-block-1/">
-                                                        FIDDES Full Stop H20
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li> -->
                                     </ul>
                                 </nav>
                             </div>
@@ -582,7 +322,42 @@ $sub_menu = $header['sub_menus'];
             <div class="offcanvas-body">
                 <p class="h2 mb-0">Products</p>
                 <div class="accordion mobile-nav mb-4" id="mobileNavAcordion">
-                    <div class="accordion-item border-0">
+                    <?php foreach ($sub_menu as $key => $menu) {
+                        if($menu['has_menu']) { ?>
+                            <div class="accordion-item border-0">
+                                <p class="accordion-header border-0" id="heading-floor-worktop-finishes-<?php echo $key; ?>">
+                                    <a class="text-uppercase accordion-button border-bottom collapsed px-0 has-children"
+                                        type="button" data-bs-toggle="collapse" data-bs-target="#floor-worktop-finishes-<?php echo $key; ?>"
+                                        aria-expanded="" aria-controls="floor-worktop-finishes-<?php echo $key; ?>">
+                                        <?php echo $menu['title']; ?>
+                                    </a>
+                                </p>
+                                <div id="floor-worktop-finishes-<?php echo $key; ?>" class="accordion-collapse collapse"
+                                    aria-labelledby="heading-floor-worktop-finishes-<?php echo $key; ?>" data-bs-parent="#mobileNavAcordion">
+                                    <div class="accordion-body bg-gray-100 p-0">
+                                        <ul class="list-unstyled m-0 py-2 px-2">
+                                            <?php foreach ($menu['menu'] as $key => $menu_item) { ?>
+                                                <li class="child-menu-item  menu-item-object-product ">
+                                                    <a class="p-2 w-100 d-block text-uppercase"
+                                                        href="<?php echo $menu_item['url']; ?>">
+                                                        <?php echo $menu_item['title']; ?>
+                                                    </a>
+                                                </li>
+                                            <?php } ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } else { ?>
+                            <div class="accordion-item border-0 ">
+                                <a class="accordion-button border-bottom collapsed px-0 menu-link text-uppercase"
+                                    href="<?php echo $menu['title_url']; ?>">
+                                    <?php echo $menu['title']; ?>
+                                </a>
+                            </div>
+                        <?php  } ?>
+                    <?php  } ?>
+                    <!-- <div class="accordion-item border-0">
                         <p class="accordion-header border-0" id="heading-floor-worktop-finishes">
                             <a class="text-uppercase accordion-button border-bottom collapsed px-0 has-children"
                                 type="button" data-bs-toggle="collapse" data-bs-target="#floor-worktop-finishes"
@@ -847,7 +622,7 @@ $sub_menu = $header['sub_menus'];
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <p class="h2 mb-0">FIDDES</p>
