@@ -333,7 +333,7 @@ $footer = $options['footer'];
                     <section class="widget nav_menu-2 widget_nav_menu">
                         <div class="menu-footer-navigation-container">
                             <ul id="menu-footer-navigation" class="menu">
-                                <?php foreach ($footer['footer_menu']['links'] as $key => $menu_item) { ?>
+                                <?php foreach ($footer['footer_menu'] as $key => $menu_item) { ?>
                                     <li id="menu-item-<?php echo esc_attr($key); ?>"
                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-<?php echo esc_attr($key); ?>">
                                         <a href="<?php echo esc_url($menu_item['url']); ?>">
