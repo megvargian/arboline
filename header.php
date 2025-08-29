@@ -126,13 +126,13 @@ $main_menu = $header['header_main_menu'];
                             <ul id="primaryNav" class="nav">
                                 <?php foreach ($main_menu as $key => $menu_item) {
                                     if ($key == 1) { ?>
-                                        <li class="menu-item product-dropdown awwdawda  ">
+                                        <li class="menu-item product-dropdown awwdawda">
                                             <a class="text-uppercase" data-bs-toggle="collapse" href="#collapseProducts"
                                                 role="button" aria-expanded="false" aria-controls="collapseProducts">
                                                 <?php echo $menu_item['label']; ?>
                                             </a>
                                         </li>
-                                    <?php } ?>
+                                    <?php continue; } ?>
                                     <li class="menu-item">
                                         <a href="<?php echo $menu_item['url']; ?>" class="text-uppercase">
                                             <?php echo $menu_item['label']; ?>
