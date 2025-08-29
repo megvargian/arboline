@@ -341,23 +341,6 @@ $footer = $options['footer'];
                                         </a>
                                     </li>
                                 <?php } ?>
-                                <!-- <li id="menu-item-3298"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3298"><a
-                                        href="https://arboline.com/technical-sheets/">Technical Sheets</a></li>
-                                <li id="menu-item-2468"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2468"><a
-                                        href="https://arboline.com/delivery-returns/">Delivery &amp; Returns</a></li>
-                                <li id="menu-item-2467"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2467"><a
-                                        href="https://arboline.com/terms-conditions/">Terms &amp; Conditions</a></li>
-                                <li id="menu-item-2466"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-2466">
-                                    <a href="https://arboline.com/privacy-policy/">Privacy Policy</a>
-                                </li>
-                                <li id="menu-item-2229"
-                                    class="d-none menu-item menu-item-type-post_type menu-item-object-page menu-item-2229">
-                                    <a href="https://arboline.com/media/">Media</a> -->
-                                </li>
                             </ul>
                         </div>
                     </section>
