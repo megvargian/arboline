@@ -333,11 +333,11 @@ $footer = $options['footer'];
                     <section class="widget nav_menu-2 widget_nav_menu">
                         <div class="menu-footer-navigation-container">
                             <ul id="menu-footer-navigation" class="menu">
-                                <?php foreach ($footer['footer_menu'] as $key => $menu_item) { ?>
+                                <?php foreach ($footer['footer_menu']['links'] as $key => $menu_item) { ?>
                                     <li id="menu-item-<?php echo esc_attr($key); ?>"
                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-<?php echo esc_attr($key); ?>">
-                                        <a href="<?php echo esc_url($menu_item['links']['url']); ?>">
-                                            <?php echo esc_html($menu_item['links']['label']); ?>
+                                        <a href="<?php echo esc_url($menu_item['url']); ?>">
+                                            <?php echo esc_html($menu_item['label']); ?>
                                         </a>
                                     </li>
                                 <?php } ?>
@@ -348,7 +348,7 @@ $footer = $options['footer'];
                         <div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
                     </section>
                     <section class="widget block-6 widget_block widget_text">
-                        <p class="mb-0"><?php echo esc_html($footer['lower_text']); ?></p>
+                        <p class="mb-0"><?php echo $footer['lower_text']; ?></p>
                     </section>
                 </div>
                 <div class="col-3">
