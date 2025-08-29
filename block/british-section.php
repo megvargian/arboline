@@ -1,6 +1,7 @@
 <?php
 // Fervently British Section Block
 $fields = get_fields();
+$bg_image = $fields['background_image'];
 $flag_image = $fields['british_flag_image'];
 $title = $fields['british_title'];
 $text = $fields['british_text'];
@@ -14,9 +15,8 @@ $dir_images = get_template_directory_uri() . '/inc/assets/images/';
         class="wp-block-cover__background has-white-background-color has-background-dim-90 has-background-dim">
     </span>
     <img decoding="async" width="2560" height="551" class="wp-block-cover__image-background wp-image-2244" alt=""
-        src="<?php echo $dir_images; ?>wood-grain@2x-100-min-scaled.jpg" style="object-position:10% 54%"
+        src="<?php echo $bg_image; ?>" style="object-position:10% 54%"
         data-object-fit="cover" data-object-position="10% 54%"
-        srcset="<?php echo $dir_images; ?>wood-grain@2x-100-min-scaled.jpg 2560w, <?php echo $dir_images; ?>wood-grain@2x-100-min-scaled-600x129.jpg 600w, <?php echo $dir_images; ?>wood-grain@2x-100-min-300x65.jpg 300w, <?php echo $dir_images; ?>wood-grain@2x-100-min-1024x220.jpg 1024w, <?php echo $dir_images; ?>wood-grain@2x-100-min-768x165.jpg 768w, <?php echo $dir_images; ?>wood-grain@2x-100-min-1536x330.jpg 1536w, <?php echo $dir_images; ?>wood-grain@2x-100-min-2048x440.jpg 2048w, <?php echo $dir_images; ?>wood-grain@2x-100-min-1320x284.jpg 1320w"
         sizes="(max-width: 2560px) 100vw, 2560px">
     <div class="wp-block-cover__inner-container">
         <div class="wp-block-cover alignfull is-light contained-bg mb-0 pb-0"><span aria-hidden="true"
