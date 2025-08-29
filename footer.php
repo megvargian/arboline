@@ -358,7 +358,7 @@ $footer = $options['footer'];
                     <div
                         class="d-flex flex-column flex-md-row justify-content-start justify-content-lg-end align-items-start align-items-lg-center">
                         <ul class="socials list-unstyled d-flex mx-n1 mb-0 ms-2">
-                            <?php if($footer['social_links']['instagram']){ ?>
+                            <?php if($footer['social_links']['insta']){ ?>
                                 <li>
                                     <a target="_blank" rel="noopener noreferrer"
                                         href="<?php echo esc_url($footer['social_links']['insta']); ?>">
