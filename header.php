@@ -28,8 +28,8 @@ $main_menu = $header['header_main_menu'];
 
 <body <?php body_class(); ?>>
     <div id="page" class="site main_page_wrapper">
-        <div class="modal fade show" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            style="display: block;" aria-modal="true" role="dialog">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            style="display: none;" aria-modal="true" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header bg-black text-white">
