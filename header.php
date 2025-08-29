@@ -340,7 +340,7 @@ $sub_menu = $header['sub_menus'];
                                                 <li class="child-menu-item  menu-item-object-product ">
                                                     <a class="p-2 w-100 d-block text-uppercase"
                                                         href="<?php echo $menu_item['url']; ?>">
-                                                        <?php echo $menu_item['title']; ?>
+                                                        <?php echo $menu_item['label']; ?>
                                                     </a>
                                                 </li>
                                             <?php } ?>
