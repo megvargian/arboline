@@ -2,6 +2,7 @@
 // Fervently British Section Block
 $fields = get_fields();
 $bg_image = $fields['background_image'];
+$fade_image = $fields['fade_image'];
 $flag_image = $fields['british_flag_image'];
 $title = $fields['british_title'];
 $text = $fields['british_text'];
@@ -19,12 +20,13 @@ $dir_images = get_template_directory_uri() . '/inc/assets/images/';
         data-object-fit="cover" data-object-position="10% 54%"
         sizes="(max-width: 2560px) 100vw, 2560px">
     <div class="wp-block-cover__inner-container">
-        <div class="wp-block-cover alignfull is-light contained-bg mb-0 pb-0"><span aria-hidden="true"
-                class="wp-block-cover__background has-secondary-background-color has-background-dim-0 has-background-dim"></span><img
+        <div class="wp-block-cover alignfull is-light contained-bg mb-0 pb-0">
+            <span aria-hidden="true"
+                class="wp-block-cover__background has-secondary-background-color has-background-dim-0 has-background-dim"></span>
+            <img
                 decoding="async" loading="lazy" width="2560" height="1449"
-                class="wp-block-cover__image-background wp-image-2303" alt="" src="<?php echo $dir_iamges; ?>1896-1.png"
+                class="wp-block-cover__image-background wp-image-2303" alt="" src="<?php echo $fade_image; ?>"
                 style="object-position:50% 48%" data-object-fit="cover" data-object-position="50% 48%"
-                srcset="<?php echo $dir_images; ?>1896-1.png 2560w, <?php echo $dir_images; ?>1896-1-600x340.png 600w, <?php echo $dir_images; ?>1896-1-300x170.png 300w, <?php echo $dir_images; ?>1896-1-1024x580.png 1024w, <?php echo $dir_images; ?>1896-1-768x435.png 768w, <?php echo $dir_images; ?>1896-1-1536x869.png 1536w, <?php echo $dir_images; ?>1896-1-2048x1159.png 2048w, <?php echo $dir_images; ?>1896-1-1320x747.png 1320w"
                 sizes="(max-width: 2560px) 100vw, 2560px">
             <div class="wp-block-cover__inner-container">
                 <div class="is-layout-flex wp-container-4 wp-block-columns are-vertically-aligned-center mb-0">
