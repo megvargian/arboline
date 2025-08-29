@@ -28,6 +28,34 @@ $main_menu = $header['header_main_menu'];
 
 <body <?php body_class(); ?>>
     <div id="page" class="site main_page_wrapper">
+        <div class="modal fade show" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            style="display: block;" aria-modal="true" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-black text-white">
+                        <h5 class="modal-title text-white" id="exampleModalLabel">Find a Product</h5>
+                        <a type="button" class="text-white" data-bs-dismiss="modal" aria-label="Close"><i
+                                class="bi bi-x-lg"></i></a>
+                    </div>
+                    <div class="modal-body">
+                        <div class="yith-ajaxsearchform-container">
+                            <form role="search" method="get" id="yith-ajaxsearchform" action="/">
+                                <div>
+                                    <label class="screen-reader-text" for="yith-s">Search for:</label>
+                                    <input type="search" value="" name="s" id="yith-s" class="yith-s"
+                                        placeholder="Search for products" data-loader-icon="" data-min-chars="3"
+                                        autocomplete="off">
+                                    <input type="submit" id="yith-searchsubmit" value="Search">
+                                    <input type="hidden" name="post_type" value="product">
+                                </div>
+                            </form>
+                            <div class="autocomplete-suggestions"
+                                style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <header class="banner position-fixed w-100 tinted-bg d-none d-lg-block shadow-sm"
             style="background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0.33);">
             <div class="banner--top position-relative d-lg-block d-none" style="opacity: 1; height: auto;">
@@ -51,7 +79,8 @@ $main_menu = $header['header_main_menu'];
                         </div>
                         <a class="brand my-4 p-lg-0 mx-auto d-block text-center col-6"
                             href="<?php echo esc_url(home_url('/')); ?>">
-                            <img aria-label="Logo" class="mx-auto img-fluid banner--logo-top light" id="Layer_1" src="<?php echo $logo; ?>" alt="arboline">
+                            <img aria-label="Logo" class="mx-auto img-fluid banner--logo-top light" id="Layer_1"
+                                src="<?php echo $logo; ?>" alt="arboline">
                         </a>
                         <div class="account-nav col-3 d-none d-lg-flex align-items-center justify-content-end">
                             <ul class="account-nav__menu nav">
@@ -73,7 +102,8 @@ $main_menu = $header['header_main_menu'];
                                     </a>
                                 </li>
                                 <li class="manufacturing-info-header text-center">
-                                    <img src="<?php echo $right_side['image_flag']; ?>" alt="Union Jack Logo" class="img-fluid union-jack-logo m-0">
+                                    <img src="<?php echo $right_side['image_flag']; ?>" alt="Union Jack Logo"
+                                        class="img-fluid union-jack-logo m-0">
                                     <p class="text-center text-uppercase mt-n1 py-0 mb-0">
                                         <small><?php echo $right_side['made_in_text']; ?></small>
                                     </p>
@@ -126,18 +156,18 @@ $main_menu = $header['header_main_menu'];
                             <ul id="primaryNav" class="nav">
                                 <?php foreach ($main_menu as $key => $menu_item) {
                                     if ($key == 1) { ?>
-                                        <li class="menu-item product-dropdown awwdawda">
-                                            <a class="text-uppercase" data-bs-toggle="collapse" href="#collapseProducts"
-                                                role="button" aria-expanded="false" aria-controls="collapseProducts">
-                                                <?php echo $menu_item['label']; ?>
-                                            </a>
-                                        </li>
-                                    <?php continue; } ?>
-                                    <li class="menu-item">
-                                        <a href="<?php echo $menu_item['url']; ?>" class="text-uppercase">
-                                            <?php echo $menu_item['label']; ?>
-                                        </a>
-                                    </li>
+                                <li class="menu-item product-dropdown awwdawda">
+                                    <a class="text-uppercase" data-bs-toggle="collapse" href="#collapseProducts"
+                                        role="button" aria-expanded="false" aria-controls="collapseProducts">
+                                        <?php echo $menu_item['label']; ?>
+                                    </a>
+                                </li>
+                                <?php continue; } ?>
+                                <li class="menu-item">
+                                    <a href="<?php echo $menu_item['url']; ?>" class="text-uppercase">
+                                        <?php echo $menu_item['label']; ?>
+                                    </a>
+                                </li>
                                 <?php } ?>
                             </ul>
                         </div>
@@ -213,8 +243,8 @@ $main_menu = $header['header_main_menu'];
                             <div class="col-12 col-lg-7 py-4">
                                 <p class="h2 text-uppercase underline mb-5 text-center"><span
                                         class="w-100 d-block">Categories</span></p>
-                                <nav
-                                    class="navbar navbar-expand-lg navbar-light bg-light flex-column align-items-start" style="background-color: #efefef !important">
+                                <nav class="navbar navbar-expand-lg navbar-light bg-light flex-column align-items-start"
+                                    style="background-color: #efefef !important">
                                     <ul id="productMegaNav" class="mx-0 p-0 w-50">
                                         <li
                                             class="menu-item mb-3  menu-item-type-taxonomy menu-item-object-product_cat  has-children dropdown">
@@ -836,8 +866,7 @@ $main_menu = $header['header_main_menu'];
                         </a>
                     </li>
                     <li class="menu-item font-weight-bold d-block w-100   ">
-                        <a href="https://arboline.com/about/"
-                            class="text-uppercase py-1 d-block w-100">
+                        <a href="https://arboline.com/about/" class="text-uppercase py-1 d-block w-100">
                             About
                         </a>
                     </li>
@@ -915,65 +944,65 @@ $main_menu = $header['header_main_menu'];
         <script>
         jQuery(document).ready(function($) {
             <?php if(is_product_category() || is_product()){ ?>
-                $("header").addClass("active");
-                $('.banner--menu-row').css({
-                    'border-top-width': '0px',
-                    'border-color': 'rgb(204, 204, 204)',
-                });
-                $('.banner--menu-row').addClass("hide-bg");
-                $('.banner--logo-menu').css({
-                    'opacity': '1',
-                });
-                $('.banner--menu-row.account-nav').css({
-                    'opacity': '1',
-                });
-                $('.banner--top').css({
-                    opacity: 0,
-                    height: '0px'
-                });
+            $("header").addClass("active");
+            $('.banner--menu-row').css({
+                'border-top-width': '0px',
+                'border-color': 'rgb(204, 204, 204)',
+            });
+            $('.banner--menu-row').addClass("hide-bg");
+            $('.banner--logo-menu').css({
+                'opacity': '1',
+            });
+            $('.banner--menu-row.account-nav').css({
+                'opacity': '1',
+            });
+            $('.banner--top').css({
+                opacity: 0,
+                height: '0px'
+            });
             <?php } else { ?>
-                $(window).scroll(function() {
-                    var currentScreenPosition = $(document).scrollTop();
-                    if (currentScreenPosition > 250) {
-                        $("header").addClass("active");
-                        $('.banner--menu-row').css({
-                            'border-top-width': '0px',
-                            'border-color': 'rgb(204, 204, 204)',
-                        });
-                        $('.banner--menu-row').addClass("hide-bg");
-                        $('.banner--logo-menu').css({
-                            'opacity': '1',
-                        });
-                        $('.banner--menu-row.account-nav').css({
-                            'opacity': '1',
-                        });
-                        $('.banner--top').css({
-                            opacity: 0,
-                            height: '0px'
-                        });
-                    }
-                    if (currentScreenPosition < 125) {
-                        $("header").removeClass("active");
-                        $('.banner--top').css({
-                            opacity: 1,
-                            height: '78px'
-                        });
-                        $('.banner--menu-row').css({
-                            'border-top': '1px solid #dee2e6',
-                            'border-top-color': 'rgb(222, 226, 230) rgb(0, 0, 0) rgb(0, 0, 0)',
-                        });
-                        $('.banner--logo-menu').css({
-                            'opacity': '0',
-                        });
-                        $('.banner--menu-row.account-nav').css({
-                            'opacity': '0',
-                        });
-                        $('.banner--menu-row').removeClass("hide-bg");
-                    }
-                    $('.wp-block-cover__inner-container').css({
-                        'margin-top': '0px',
+            $(window).scroll(function() {
+                var currentScreenPosition = $(document).scrollTop();
+                if (currentScreenPosition > 250) {
+                    $("header").addClass("active");
+                    $('.banner--menu-row').css({
+                        'border-top-width': '0px',
+                        'border-color': 'rgb(204, 204, 204)',
                     });
+                    $('.banner--menu-row').addClass("hide-bg");
+                    $('.banner--logo-menu').css({
+                        'opacity': '1',
+                    });
+                    $('.banner--menu-row.account-nav').css({
+                        'opacity': '1',
+                    });
+                    $('.banner--top').css({
+                        opacity: 0,
+                        height: '0px'
+                    });
+                }
+                if (currentScreenPosition < 125) {
+                    $("header").removeClass("active");
+                    $('.banner--top').css({
+                        opacity: 1,
+                        height: '78px'
+                    });
+                    $('.banner--menu-row').css({
+                        'border-top': '1px solid #dee2e6',
+                        'border-top-color': 'rgb(222, 226, 230) rgb(0, 0, 0) rgb(0, 0, 0)',
+                    });
+                    $('.banner--logo-menu').css({
+                        'opacity': '0',
+                    });
+                    $('.banner--menu-row.account-nav').css({
+                        'opacity': '0',
+                    });
+                    $('.banner--menu-row').removeClass("hide-bg");
+                }
+                $('.wp-block-cover__inner-container').css({
+                    'margin-top': '0px',
                 });
+            });
             <?php } ?>
         });
         </script>
