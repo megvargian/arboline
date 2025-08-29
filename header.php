@@ -15,6 +15,7 @@ $left_side = $header['left_side'];
 $right_side = $header['right_side'];
 $logo = $header['header_logo'];
 $main_menu = $header['header_main_menu'];
+$sub_menu = $header['sub_menus'];
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -113,7 +114,6 @@ $main_menu = $header['header_main_menu'];
                     </div>
                 </div>
             </div>
-
             <div class="py-3 banner--menu-row"
                 style="border-top-width: 1px; border-color: rgb(222, 226, 230) rgb(0, 0, 0) rgb(0, 0, 0);">
                 <div class="container-fluid">
@@ -241,20 +241,49 @@ $main_menu = $header['header_main_menu'];
                     <div class="container">
                         <div class="row">
                             <div class="col-12 col-lg-7 py-4">
-                                <p class="h2 text-uppercase underline mb-5 text-center"><span
-                                        class="w-100 d-block">Categories</span></p>
+                                <p class="h2 text-uppercase underline mb-5 text-center">
+                                    <span class="w-100 d-block">Categories</span>
+                                </p>
                                 <nav class="navbar navbar-expand-lg navbar-light bg-light flex-column align-items-start"
                                     style="background-color: #efefef !important">
                                     <ul id="productMegaNav" class="mx-0 p-0 w-50">
-                                        <li
-                                            class="menu-item mb-3  menu-item-type-taxonomy menu-item-object-product_cat  has-children dropdown">
+                                        <?php foreach ($sub_menu as $key => $menu) {
+                                            if($menu['has_menu']) { ?>
+                                                <li class="menu-item mb-3  menu-item-type-taxonomy menu-item-object-product_cat  has-children dropdown">
+                                                    <a href="#"
+                                                        class="pb-2 d-flex justify-content-between text-uppercase nav-link  dropdown-toggle"
+                                                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <?php echo $menu['title']; ?>
+                                                        <i class="bi bi-chevron-right"></i>
+                                                    </a>
+                                                    <ul class="ps-4 dropdown-menu child-menu list-unstyled shadow-0"
+                                                        data-bs-popper="static" aria-labelledby="navbarDropdownMenuLink">
+                                                        <?php foreach ($menu['menu'] as $key => $menu_item) { ?>
+                                                            <li class="child-menu-item mb-2  menu-item-object-product ">
+                                                                <a class="text-uppercase"
+                                                                    href="<?php echo $menu_item['url']; ?>">
+                                                                    <?php echo $menu_item['title']; ?>
+                                                                </a>
+                                                            </li>
+                                                        <?php } ?>
+                                                    </ul>
+                                                </li>
+                                            <?php } else { ?>
+                                                 <li class="menu-item mb-3   ">
+                                                    <a href="<?php echo $menu['title_url'] ?>"
+                                                        class="pb-2 d-flex justify-content-between text-uppercase nav-link ">
+                                                        <?php echo $menu['title']; ?>
+                                                    </a>
+                                                </li>
+                                            <?php } ?>
+                                        <?php } ?>
+                                        <!-- <li class="menu-item mb-3  menu-item-type-taxonomy menu-item-object-product_cat  has-children dropdown">
                                             <a href="#"
                                                 class="pb-2 d-flex justify-content-between text-uppercase nav-link  dropdown-toggle"
                                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 Floor &amp; Worktop Finishes
                                                 <i class="bi bi-chevron-right"></i>
                                             </a>
-
                                             <ul class="ps-4 dropdown-menu child-menu list-unstyled shadow-0"
                                                 data-bs-popper="static" aria-labelledby="navbarDropdownMenuLink">
                                                 <li class="child-menu-item mb-2  menu-item-object-product ">
@@ -313,8 +342,7 @@ $main_menu = $header['header_main_menu'];
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li
-                                            class="menu-item mb-3  menu-item-type-taxonomy menu-item-object-product_cat  has-children dropdown">
+                                        <li class="menu-item mb-3  menu-item-type-taxonomy menu-item-object-product_cat  has-children dropdown">
                                             <a href="#"
                                                 class="pb-2 d-flex justify-content-between text-uppercase nav-link  dropdown-toggle"
                                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -508,7 +536,7 @@ $main_menu = $header['header_main_menu'];
                                                     </a>
                                                 </li>
                                             </ul>
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </nav>
                             </div>
