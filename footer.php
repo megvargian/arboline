@@ -11,20 +11,19 @@
 
 $options = get_fields('options');
 $footer = $options['footer'];
+$first_block = $footer['first_block'];
+$second_block = $footer['second_block'];
 ?>
         <?php if(!is_product_category() && !is_product()){ ?>
             <div class="wp-block-cover alignfull is-light" style="min-height:60vh"><span aria-hidden="true"
                     class="wp-block-cover__background has-background-dim-10 has-background-dim"
                     style="background-color:#717171"></span><img decoding="async" loading="lazy" width="2000" height="430"
                     class="wp-block-cover__image-background wp-image-2499" alt=""
-                    src="https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1.jpg" data-object-fit="cover"
-                    srcset="https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1.jpg 2000w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1-600x129.jpg 600w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1-300x65.jpg 300w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1-1024x220.jpg 1024w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1-768x165.jpg 768w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1-1536x330.jpg 1536w, https://fiddes.co.uk/app/uploads/2022/11/wood-grain-1-1320x284.jpg 1320w"
+                    src="<?php echo esc_url($first_block['background_image']); ?>" data-object-fit="cover"
                     sizes="(max-width: 2000px) 100vw, 2000px">
                 <div class="wp-block-cover__inner-container">
                     <div class="is-layout-flow wp-block-group alignfull py-0 py-lg-5">
                         <div class="wp-block-suppliers text-center">
-
-
                             <figure class="wp-block-image size-full is-resized mx-auto"><img decoding="async" loading="lazy"
                                     src="https://fiddes.co.uk/app/uploads/2022/09/product-tins-1.png" alt="" class="wp-image-993"
                                     width="623" height="343"
@@ -34,20 +33,8 @@ $footer = $options['footer'];
 
 
                             <h3 class="has-text-align-center underline h1 has-black-color has-text-color"><span
-                                    style="text-decoration: underline;">WHERE TO BUY</span></h3>
-
-
-
-                            <p class="has-text-align-center has-black-color has-text-color has-medium-font-size">Our products
-                                are <a href="https://fiddes.co.uk/product-catalogue/" data-type="page"
-                                    data-id="1413"><strong>available online</strong></a> or at your local decorating centre.</p>
-
-
-
-                            <p class="has-text-align-center has-black-color has-text-color has-medium-font-size">Search your
-                                nearest stockist below.</p>
-
-
+                                    style="text-decoration: underline;"><?php echo esc_html($first_block['title']); ?></span></h3>
+                                <?php echo $first_block['message']; ?>
                             <form class="af-form acf-form" method="POST" action="/" id="form_where_to_buy"
                                 data-key="form_where_to_buy">
                                 <div class="af-fields acf-fields acf-form-fields -top">
@@ -72,15 +59,16 @@ $footer = $options['footer'];
                                 <div class="swiper whereToBuySwiper">
                                     <div class="swiper-wrapper align-items-center"
                                         style="opacity: 1; width: 4872px; transform: translate3d(-696px, 0px, 0px);">
-                                        <div class="swiper-slide slick-cloned" data-slick-index="-3" id="" aria-hidden="true"
-                                            style="width: 232px;" tabindex="-1">
-                                            <div class="w-100"><a class="w-100 d-block" target="_blank"
+                                        <div class="swiper-slide slick-cloned" data-slick-index="-3" id="" aria-hidden="true" style="width: 232px;" tabindex="-1">
+                                            <div class="w-100">
+                                                <a class="w-100 d-block" target="_blank"
                                                     href="https://nextdaypaint.co.uk/" rel="noopener" tabindex="-1"
                                                     style="width: 100%; display: inline-block;">
                                                     <img decoding="async"
                                                         src="https://fiddes.co.uk/app/uploads/2025/04/next-day-paint-logo.png"
                                                         class="img-fluid" alt="Next Day Paint">
-                                                </a></div>
+                                                </a>
+                                            </div>
                                         </div>
                                         <div class="swiper-slide slick-cloned" data-slick-index="-2" id="" aria-hidden="true"
                                             style="width: 232px;" tabindex="-1">
@@ -294,31 +282,22 @@ $footer = $options['footer'];
                     <div class="is-layout-flow wp-block-column is-vertically-aligned-center px-5 px-lg-2" style="flex-basis:40%">
                         <figure class="wp-block-image aligncenter size-full is-resized">
                             <img decoding="async" loading="lazy"
-                                src="https://fiddes.co.uk/app/uploads/2022/12/White-circular-logo-for-green-background.svg" alt=""
+                                src="<?php echo esc_url($second_block['image']); ?>" alt=""
                                 class="wp-image-3285" width="425" height="425">
                         </figure>
                     </div>
                     <div class="is-layout-flow wp-block-column is-vertically-aligned-center px-4" style="flex-basis:60%">
                         <h2 class="has-text-align-center underline h1 underline--white has-white-color has-text-color"><span
-                                style="text-decoration: underline;">ESTABLISHED 1896</span></h2>
-
-
-
-                        <p class="has-text-align-center has-text-color has-medium-font-size" style="color:#fefefe">For over four
-                            generations, FIDDES remains a family owned independent <br>British manufacturer of traditional wood
-                            and floor finishes. </p>
-
-
-
-                        <p class="has-text-align-center has-text-color has-medium-font-size" style="color:#fefefe">Originally
-                            developing wood finishing products for the professional woodworking trade, FIDDES has also built a
-                            reputation as being the natural choice for interior wood and outdoor DIY enthusiasts.</p>
+                                style="text-decoration: underline;"><?php echo $second_block['title']; ?></span></h2>
+                        <?php echo $second_block['message']; ?>
                         <div style="height:10px" aria-hidden="true" class="wp-block-spacer"></div>
                         <div class="is-layout-flex wp-block-buttons">
                             <div class="wp-block-button aligncenter">
                                 <a class="wp-block-button__link has-secondary-background-color has-background wp-element-button"
-                                    href="https://fiddes.co.uk/product-catalogue/"
-                                    style="border-radius:0px; color: #fff; width: fit-content;">Shop now</a>
+                                    href="<?php echo esc_url($second_block['button_link']); ?>"
+                                    style="border-radius:0px; color: #fff; width: fit-content;">
+                                    <?php echo esc_html($second_block['button_text']); ?>
+                                </a>
                             </div>
                         </div>
                     </div>
