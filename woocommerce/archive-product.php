@@ -55,8 +55,13 @@ global $wp_query;
 			</div>
 			<div class="col-12  col-md-6 ">
 				<header class="d-flex justify-content-center mb-4 flex-column">
-					<h1 class="woocommerce-products-header__title page-title">Oils</h1>
-					<p></p>
+					<?php
+					// Get current category object
+					$term = get_queried_object();
+					?>
+					<h1 class="woocommerce-products-header__title page-title">
+						<?php echo esc_html($term->name); ?>
+					</h1>
 				</header>
 				<div class="woocommerce-notices-wrapper"></div>
 				<p class="woocommerce-result-count">
@@ -72,50 +77,34 @@ global $wp_query;
 					<input type="hidden" name="paged" value="1">
 				</form>
 				<ul class="products columns-6">
-
 					<div class="mb-4">
-						<p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">
-							<a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1"
-								href="https://arboline.com/product/test/">
-								FIDDES Danish Oil <i class="bi bi-chevron-right"></i>
-							</a>
-						</p>
-						<p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">
-							<a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1"
-								href="https://arboline.com/product/test/">
-								FIDDES Raw Linseed Oil <i class="bi bi-chevron-right"></i>
-							</a>
-						</p>
-						<p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">
-							<a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1"
-								href="https://arboline.com/product/test/">
-								FIDDES Boiled Linseed Oil <i class="bi bi-chevron-right"></i>
-							</a>
-						</p>
-						<p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">
-							<a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1"
-								href="https://arboline.com/product/test/">
-								FIDDES Teak Oil <i class="bi bi-chevron-right"></i>
-							</a>
-						</p>
-						<p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">
-							<a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1"
-								href="https://arboline.com/product/test/">
-								FIDDES White Polishing Oil <i class="bi bi-chevron-right"></i>
-							</a>
-						</p>
-						<p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">
-							<a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1"
-								href="https://arboline.com/product/test/">
-								FIDDES Finishing Oil <i class="bi bi-chevron-right"></i>
-							</a>
-						</p>
-						<p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">
-							<a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1"
-								href="https://arboline.com/product/test/">
-								FIDDES Pure Tung Oil <i class="bi bi-chevron-right"></i>
-							</a>
-						</p>
+						<?php
+						// Query products in this category
+						if (is_product_category()) {
+							$cat_id = get_queried_object_id();
+							$args = array(
+								'post_type' => 'product',
+								'posts_per_page' => -1,
+								'tax_query' => array(
+									array(
+										'taxonomy' => 'product_cat',
+										'field' => 'term_id',
+										'terms' => $cat_id,
+									),
+								),
+							);
+							$products = get_posts($args);
+							foreach ($products as $prod) {
+								$link = get_permalink($prod->ID);
+								$title = get_the_title($prod->ID);
+								echo '<p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">';
+								echo '<a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1" href="' . esc_url($link) . '">';
+								echo esc_html($title) . ' <span class="badge bg-primary ms-2">Product</span> <i class="bi bi-chevron-right"></i>';
+								echo '</a>';
+								echo '</p>';
+							}
+						}
+						?>
 					</div>
 				</ul>
 			</div>
