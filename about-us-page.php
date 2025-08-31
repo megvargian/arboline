@@ -7,7 +7,7 @@ get_header();
 <section class="info_content pt-5">
     <div class="container pt-5">
 
-        <div class="wp-block-cover alignfull is-light pt-3 pt-lg-5"><span aria-hidden="true"
+        <!-- <div class="wp-block-cover alignfull is-light pt-3 pt-lg-5"><span aria-hidden="true"
                 class="wp-block-cover__background has-white-background-color has-background-dim-90 has-background-dim"></span><img
                 decoding="async" width="2560" height="551" class="wp-block-cover__image-background wp-image-2244" alt=""
                 src="https://fiddes.co.uk/app/uploads/2022/11/wood-grain@2x-100-min-scaled.jpg"
@@ -197,7 +197,7 @@ get_header();
         </div>
 
         <figure class="wp-block-video alignfull mb-0"><video autoplay="" loop="" muted=""
-                src="https://fiddes.co.uk/app/uploads/2023/03/About-us-video-vid.mp4" playsinline=""></video></figure>
+                src="https://fiddes.co.uk/app/uploads/2023/03/About-us-video-vid.mp4" playsinline=""></video></figure> -->
         <?php
             while ( have_posts() ) : the_post();
                 the_content();
