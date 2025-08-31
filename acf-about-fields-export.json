@@ -1,0 +1,60 @@
+[
+  {
+    "key": "group_about_first_block",
+    "title": "About Us - First Block",
+    "fields": [
+      {"key": "field_about_first_image", "label": "Image", "name": "image", "type": "image"},
+      {"key": "field_about_first_title", "label": "Title", "name": "title", "type": "text"},
+      {"key": "field_about_first_description", "label": "Description", "name": "description", "type": "textarea"}
+    ],
+    "location": [[{"param": "block", "operator": "==", "value": "acf/about-first-block"}]]
+  },
+  {
+    "key": "group_about_second_block",
+    "title": "About Us - Second Block",
+    "fields": [
+      {"key": "field_about_second_bg_image", "label": "Background Image", "name": "bg_image", "type": "image"},
+      {"key": "field_about_second_description_1", "label": "Description 1", "name": "description_1", "type": "textarea"},
+      {"key": "field_about_second_description_2", "label": "Description 2", "name": "description_2", "type": "textarea"},
+      {"key": "field_about_second_image", "label": "Image", "name": "image", "type": "image"}
+    ],
+    "location": [[{"param": "block", "operator": "==", "value": "acf/about-second-block"}]]
+  },
+  {
+    "key": "group_about_third_block",
+    "title": "About Us - Third Block",
+    "fields": [
+      {"key": "field_about_third_bg_image", "label": "Background Image", "name": "bg_image", "type": "image"},
+      {"key": "field_about_third_image", "label": "Image", "name": "image", "type": "image"},
+      {"key": "field_about_third_description_1", "label": "Description 1", "name": "description_1", "type": "textarea"},
+      {"key": "field_about_third_description_2", "label": "Description 2", "name": "description_2", "type": "textarea"}
+    ],
+    "location": [[{"param": "block", "operator": "==", "value": "acf/about-third-block"}]]
+  },
+  {
+    "key": "group_about_fourth_block",
+    "title": "About Us - Fourth Block",
+    "fields": [
+      {"key": "field_about_fourth_bg_image", "label": "Background Image", "name": "bg_image", "type": "image"},
+      {"key": "field_about_fourth_title", "label": "Title", "name": "title", "type": "text"},
+      {"key": "field_about_fourth_image_1", "label": "Image 1", "name": "image_1", "type": "image"},
+      {"key": "field_about_fourth_name_1", "label": "Name 1", "name": "name_1", "type": "text"},
+      {"key": "field_about_fourth_generation_1", "label": "Generation 1", "name": "generation_1", "type": "text"},
+      {"key": "field_about_fourth_image_2", "label": "Image 2", "name": "image_2", "type": "image"},
+      {"key": "field_about_fourth_name_2", "label": "Name 2", "name": "name_2", "type": "text"},
+      {"key": "field_about_fourth_generation_2", "label": "Generation 2", "name": "generation_2", "type": "text"},
+      {"key": "field_about_fourth_image_3", "label": "Image 3", "name": "image_3", "type": "image"},
+      {"key": "field_about_fourth_name_3", "label": "Name 3", "name": "name_3", "type": "text"},
+      {"key": "field_about_fourth_generation_3", "label": "Generation 3", "name": "generation_3", "type": "text"}
+    ],
+    "location": [[{"param": "block", "operator": "==", "value": "acf/about-fourth-block"}]]
+  },
+  {
+    "key": "group_about_fifth_block",
+    "title": "About Us - Fifth Block",
+    "fields": [
+      {"key": "field_about_fifth_video", "label": "Video", "name": "video", "type": "file"}
+    ],
+    "location": [[{"param": "block", "operator": "==", "value": "acf/about-fifth-block"}]]
+  }
+]
