@@ -323,6 +323,51 @@ function my_acf_init_block_types()
                 'icon'              => 'images-alt2',
                 'keywords'          => array('wood', 'background', 'homepage'),
             ));
+            acf_register_block_type(array(
+                'name'              => 'about-first-block',
+                'title'             => __('About Us - First Block'),
+                'description'       => __('About Us First Section'),
+                'render_template'   => 'block/about/first.php',
+                'category'          => 'formatting',
+                'icon'              => 'id',
+                'keywords'          => array('about', 'history'),
+            ));
+            acf_register_block_type(array(
+                'name'              => 'about-second-block',
+                'title'             => __('About Us - Second Block'),
+                'description'       => __('About Us Second Section'),
+                'render_template'   => 'block/about/second.php',
+                'category'          => 'formatting',
+                'icon'              => 'id',
+                'keywords'          => array('about', 'trade street'),
+            ));
+            acf_register_block_type(array(
+                'name'              => 'about-third-block',
+                'title'             => __('About Us - Third Block'),
+                'description'       => __('About Us Third Section'),
+                'render_template'   => 'block/about/third.php',
+                'category'          => 'formatting',
+                'icon'              => 'id',
+                'keywords'          => array('about', 'manufacturing'),
+            ));
+            acf_register_block_type(array(
+                'name'              => 'about-fourth-block',
+                'title'             => __('About Us - Fourth Block'),
+                'description'       => __('About Us Fourth Section'),
+                'render_template'   => 'block/about/fourth.php',
+                'category'          => 'formatting',
+                'icon'              => 'id',
+                'keywords'          => array('about', 'generations'),
+            ));
+            acf_register_block_type(array(
+                'name'              => 'about-fifth-block',
+                'title'             => __('About Us - Fifth Block'),
+                'description'       => __('About Us Fifth Section'),
+                'render_template'   => 'block/about/fifth.php',
+                'category'          => 'formatting',
+                'icon'              => 'id',
+                'keywords'          => array('about', 'video'),
+            ));
     }
 }
 
