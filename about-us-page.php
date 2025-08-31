@@ -4,7 +4,7 @@
  */
 get_header();
 ?>
-<section class="info_content py-5">
+<section class="info_content pt-5">
     <div class="container pt-5">
         <div class="wp-block-cover alignfull is-light pt-3 pt-lg-5"><span aria-hidden="true"
                 class="wp-block-cover__background has-white-background-color has-background-dim-90 has-background-dim"></span><img
@@ -36,6 +36,7 @@ get_header();
                 </div>
             </div>
         </div>
+
         <div class="wp-block-cover alignfull is-light mt-0"><span aria-hidden="true"
                 class="wp-block-cover__background has-background-dim-10 has-background-dim"
                 style="background-color:#717171"></span><img decoding="async" loading="lazy" width="2000" height="430"
@@ -70,8 +71,6 @@ get_header();
                 </div>
             </div>
         </div>
-
-
 
         <div class="wp-block-cover alignfull is-light pt-5"><span aria-hidden="true"
                 class="wp-block-cover__background has-white-background-color has-background-dim-90 has-background-dim"></span><img
@@ -110,8 +109,6 @@ get_header();
                 </div>
             </div>
         </div>
-
-
 
         <div class="wp-block-cover alignfull is-light mt-0"><span aria-hidden="true"
                 class="wp-block-cover__background has-background-dim-10 has-background-dim"
@@ -197,8 +194,6 @@ get_header();
                 <div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
             </div>
         </div>
-
-
 
         <figure class="wp-block-video alignfull mb-0"><video autoplay="" loop="" muted=""
                 src="https://fiddes.co.uk/app/uploads/2023/03/About-us-video-vid.mp4" playsinline=""></video></figure>
@@ -325,8 +320,6 @@ get_header();
             </div>
         </div>
 
-
-
         <div class="wp-block-cover alignfull is-light my-0" style="min-height:60vh"><span aria-hidden="true"
                 class="wp-block-cover__background has-background-dim-10 has-background-dim"
                 style="background-color:#717171"></span><img decoding="async" loading="lazy" width="2000" height="430"
@@ -411,8 +404,6 @@ get_header();
                 </div>
             </div>
         </div>
-
-
 
         <div class="wp-block-cover alignfull is-light my-0" style="min-height:60vh"><span aria-hidden="true"
                 class="wp-block-cover__background has-white-background-color has-background-dim-90 has-background-dim"></span><img
@@ -503,8 +494,6 @@ get_header();
             </div>
         </div>
 
-
-
         <div class="wp-block-cover alignfull is-light my-0" style="min-height:60vh"><span aria-hidden="true"
                 class="wp-block-cover__background has-background-dim-10 has-background-dim"
                 style="background-color:#717171"></span><img decoding="async" loading="lazy" width="2000" height="430"
@@ -581,8 +570,6 @@ get_header();
                 </div>
             </div>
         </div>
-
-
 
         <div class="wp-block-cover alignfull is-light my-0 d-none" style="min-height:60vh"><span aria-hidden="true"
                 class="wp-block-cover__background has-white-background-color has-background-dim-80 has-background-dim"></span><img
