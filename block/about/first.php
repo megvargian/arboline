@@ -4,9 +4,9 @@ $fields = get_fields();
 ?>
 <div class="wp-block-cover alignfull is-light pt-3 pt-lg-5">
     <span aria-hidden="true" class="wp-block-cover__background has-white-background-color has-background-dim-90 has-background-dim"></span>
-    <?php if (!empty($fields['image'])): ?>
+    <?php if (!empty($fields['background_image'])): ?>
         <img decoding="async" width="2560" height="551" class="wp-block-cover__image-background" alt=""
-            src="<?php echo esc_url($fields['image']['url']); ?>"
+            src="<?php echo esc_url($fields['background_image']); ?>"
             style="object-position:12% 100%" data-object-fit="cover" data-object-position="12% 100%"
             sizes="(max-width: 2560px) 100vw, 2560px">
     <?php endif; ?>
