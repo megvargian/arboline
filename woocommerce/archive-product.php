@@ -50,8 +50,13 @@ global $wp_query;
 	<div class="container">
 		<div class="row">
 			<div class="woocommerce-products-header col-12  col-md-6 ">
-				<img src="https://fiddes.co.uk/app/uploads/2022/12/Fiddes-Group-Tins_OILS.jpg" alt="Oils"
-					class="img-fluid w-100">
+					<?php
+					// Get current category object
+					$term = get_queried_object();
+					$thumbnail_id = get_term_meta($term->term_id, 'thumbnail_id', true);
+					$image_url = $thumbnail_id ? wp_get_attachment_url($thumbnail_id) : 'https://fiddes.co.uk/app/uploads/2022/12/Fiddes-Group-Tins_OILS.jpg';
+					?>
+					<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($term->name); ?>" class="img-fluid w-100">
 			</div>
 			<div class="col-12  col-md-6 ">
 				<header class="d-flex justify-content-center mb-4 flex-column">
