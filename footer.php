@@ -59,7 +59,7 @@ $second_block = $footer['second_block'];
                                 <div class="swiper whereToBuySwiper">
                                     <div class="swiper-wrapper align-items-center"
                                         style="opacity: 1; width: 4872px; transform: translate3d(-696px, 0px, 0px);">
-                                        <?php foreach ($second_block['sponsers'] as $key => $sponser) {?>
+                                        <?php foreach ($first_block['sponsers'] as $key => $sponser) {?>
                                             <div class="swiper-slide slick-cloned" data-slick-index="-2" id="" aria-hidden="true"
                                                 style="width: 232px;" tabindex="-1">
                                                 <div class="w-100">
