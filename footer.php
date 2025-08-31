@@ -60,15 +60,14 @@ $second_block = $footer['second_block'];
                                     <div class="swiper-wrapper align-items-center"
                                         style="opacity: 1; width: 4872px; transform: translate3d(-696px, 0px, 0px);">
                                         <?php foreach ($first_block['sponsers'] as $key => $sponser) {?>
-                                            <div class="swiper-slide slick-cloned" data-slick-index="-2" id="" aria-hidden="true"
-                                                style="width: 232px;" tabindex="-1">
+                                            <div class="swiper-slide slick-cloned" data-slick-index="-2" id="" aria-hidden="true" style="width: 232px;" tabindex="-1">
                                                 <div class="w-100">
                                                     <a class="w-100 d-block" target="_blank"
                                                         href="<?php echo esc_url($sponser['url']); ?>" rel="noopener" tabindex="-1"
                                                         style="width: 100%; display: inline-block;">
                                                         <img decoding="async"
-                                                            src="<?php echo esc_url($sponser['image']['url']); ?>"
-                                                            class="img-fluid" alt="<?php echo esc_attr($sponser['image']['alt']); ?>">
+                                                            src="<?php echo esc_url($sponser['image']); ?>"
+                                                            class="img-fluid" alt="">
                                                     </a>
                                                 </div>
                                             </div>
