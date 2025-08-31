@@ -99,7 +99,7 @@ global $wp_query;
 								$title = get_the_title($prod->ID);
 								echo '<p class="text-uppercase w-100 mb-2" id="fiddesRelatedProduct">';
 								echo '<a class="d-flex align-items-center justify-content-between w-100 border-bottom pb-1" href="' . esc_url($link) . '">';
-								echo esc_html($title) . ' <span class="badge bg-primary ms-2">Product</span> <i class="bi bi-chevron-right"></i>';
+								// echo esc_html($title) . ' <span class="badge bg-primary ms-2">Product</span> <i class="bi bi-chevron-right"></i>';
 								echo '</a>';
 								echo '</p>';
 							}
