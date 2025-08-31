@@ -59,7 +59,21 @@ $second_block = $footer['second_block'];
                                 <div class="swiper whereToBuySwiper">
                                     <div class="swiper-wrapper align-items-center"
                                         style="opacity: 1; width: 4872px; transform: translate3d(-696px, 0px, 0px);">
-                                        <div class="swiper-slide slick-cloned" data-slick-index="-3" id="" aria-hidden="true" style="width: 232px;" tabindex="-1">
+                                        <?php foreach ($second_block['sponsers'] as $key => $sponser) {?>
+                                            <div class="swiper-slide slick-cloned" data-slick-index="-2" id="" aria-hidden="true"
+                                                style="width: 232px;" tabindex="-1">
+                                                <div class="w-100">
+                                                    <a class="w-100 d-block" target="_blank"
+                                                        href="<?php echo esc_url($sponser['url']); ?>" rel="noopener" tabindex="-1"
+                                                        style="width: 100%; display: inline-block;">
+                                                        <img decoding="async"
+                                                            src="<?php echo esc_url($sponser['image']['url']); ?>"
+                                                            class="img-fluid" alt="<?php echo esc_attr($sponser['image']['alt']); ?>">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        <?php }?>
+                                        <!-- <div class="swiper-slide slick-cloned" data-slick-index="-3" id="" aria-hidden="true" style="width: 232px;" tabindex="-1">
                                             <div class="w-100">
                                                 <a class="w-100 d-block" target="_blank"
                                                     href="https://nextdaypaint.co.uk/" rel="noopener" tabindex="-1"
@@ -267,7 +281,7 @@ $second_block = $footer['second_block'];
                                                         src="https://fiddes.co.uk/app/uploads/2025/04/wood-finishes-direct-logo.png"
                                                         class="img-fluid" alt="Wood Finishes Direct">
                                                 </a></div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div><a type="button" class="slick-next slick-arrow" style=""><i
                                         class="bi bi-chevron-compact-right"></i></a>
