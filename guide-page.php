@@ -8,7 +8,11 @@ get_header();
     <div class="container pt-5">
         <div style="height:40px" aria-hidden="true" class="wp-block-spacer"></div>
         <h1 class="has-text-align-center underline"><span style="text-decoration: underline;"><?php the_title(); ?></span></h1>
-
+        <?php
+            while ( have_posts() ) : the_post();
+                the_content();
+            endwhile;
+        ?>
     </div>
 </section>
 <?php
