@@ -368,6 +368,15 @@ function my_acf_init_block_types()
                 'icon'              => 'id',
                 'keywords'          => array('about', 'video'),
             ));
+            acf_register_block_type(array(
+                'name'              => 'guide-block',
+                'title'             => __('Guide Block'),
+                'description'       => __('A block to display guides'),
+                'render_template'   => 'block/guide_block.php',
+                'category'          => 'formatting',
+                'icon'              => 'id',
+                'keywords'          => array('about', 'video'),
+            ));
     }
 }
 
