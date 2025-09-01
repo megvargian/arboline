@@ -236,8 +236,8 @@ $sub_menu = $header['sub_menus'];
                     </div>
                 </div>
             </div>
-            <div class="collapse product-mega-menu bg-gray-200" id="collapseProducts">
-                <div class="product-mega-menu__inner py-4">
+            <div class="collapse product-mega-menu bg-gray-200 pb-3" id="collapseProducts">
+                <div class="product-mega-menu__inner py-4 pb-5">
                     <div class="container">
                         <div class="row">
                             <div class="col-12 col-lg-7 py-4">
