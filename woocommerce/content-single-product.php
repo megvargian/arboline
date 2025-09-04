@@ -760,11 +760,8 @@ if ( post_password_required() ) {
             </div>
             <?php } ?>
             <?php
-                $attributes = $product->get_attributes();
-                $has_weight = $product->has_weight();
-                $has_dimensions = $product->has_dimensions();
 
-                if ( ! empty( $attributes ) || $has_weight || $has_dimensions ) : ?>
+
             <div class="accordion-item">
                 <p class="accordion-header" id="headingadditional_information">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -777,46 +774,15 @@ if ( post_password_required() ) {
                     aria-labelledby="headingadditional_information" data-bs-parent="#accordionProduct" style="">
                     <div class="accordion-body px-0">
                         <?php
-                            $attributes = $product->get_attributes();
                             $custom_fields = get_post_meta( $product->get_id(), '_custom_product_info', true );
                             $has_custom_fields = !empty($custom_fields) && is_array($custom_fields);
-                            $has_standard_info = !empty($attributes) || $product->has_weight() || $product->has_dimensions();
-
-                            if ( $has_standard_info || $has_custom_fields ) : ?>
+                        ?>
+                        <?php if ( $has_custom_fields ) : ?>
                         <table class="woocommerce-product-attributes shop_attributes">
                             <tbody>
-                                <?php
-                                    // Add weight row if it exists
-                                    if ( $product->has_weight() ) : ?>
-                                <tr
-                                    class="woocommerce-product-attributes-item woocommerce-product-attributes-item--weight">
-                                    <th class="woocommerce-product-attributes-item__label">
-                                        <?php esc_html_e( 'Weight', 'woocommerce' ); ?></th>
-                                    <td class="woocommerce-product-attributes-item__value">
-                                        <?php echo esc_html( wc_format_weight( $product->get_weight() ) ); ?></td>
-                                </tr>
-                                <?php endif; ?>
-
-                                <?php
-                                    // Add dimensions if they exist
-                                    if ( $product->has_dimensions() ) : ?>
-                                <tr
-                                    class="woocommerce-product-attributes-item woocommerce-product-attributes-item--dimensions">
-                                    <th class="woocommerce-product-attributes-item__label">
-                                        <?php esc_html_e( 'Dimensions', 'woocommerce' ); ?></th>
-                                    <td class="woocommerce-product-attributes-item__value">
-                                        <?php echo esc_html( wc_format_dimensions( $product->get_dimensions( false ) ) ); ?>
-                                    </td>
-                                </tr>
-                                <?php endif; ?>
-
-                                <?php
-                                // Display custom fields first
-                                if ( $has_custom_fields ) :
-                                    foreach ( $custom_fields as $field ) :
-                                        if ( !empty( $field['label'] ) && !empty( $field['value'] ) ) : ?>
-                                <tr
-                                    class="woocommerce-product-attributes-item woocommerce-product-attributes-item--custom">
+                                <?php foreach ( $custom_fields as $field ) :
+                                    if ( !empty( $field['label'] ) && !empty( $field['value'] ) ) : ?>
+                                <tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--custom">
                                     <th class="woocommerce-product-attributes-item__label">
                                         <?php echo esc_html( $field['label'] ); ?>
                                     </th>
@@ -825,75 +791,13 @@ if ( post_password_required() ) {
                                     </td>
                                 </tr>
                                 <?php endif;
-                                    endforeach;
-                                endif; ?>
-
-                                <?php
-                                // Then display standard WooCommerce attributes
-                                foreach ( $attributes as $attribute ) :
-                                        $attribute_label = wc_attribute_label( $attribute->get_name() );
-                                        $attribute_value = $product->get_attribute( $attribute->get_name() );
-
-                                        if ( empty( $attribute_value ) ) {
-                                            continue;
-                                        }
-                                        ?>
-                                <tr
-                                    class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_<?php echo esc_attr( $attribute->get_name() ); ?>">
-                                    <th class="woocommerce-product-attributes-item__label">
-                                        <?php echo esc_html( $attribute_label ); ?></th>
-                                    <td class="woocommerce-product-attributes-item__value">
-                                        <?php if ( $attribute->get_variation() ) : ?>
-                                        <?php echo wp_kses_post( $attribute_value ); ?>
-                                        <?php else : ?>
-                                        <?php echo wp_kses_post( $attribute_value ); ?>
-                                        <?php endif; ?>
-                                    </td>
-                                </tr>
-                                <?php endforeach; ?>
-
-                                <?php
-                                // If no content was displayed, add a fallback row to ensure table has content
-                                $has_displayed_content = false;
-
-                                // Check if we displayed any weight, dimensions, custom fields, or attributes
-                                if ( $product->has_weight() || $product->has_dimensions() ||
-                                     ($has_custom_fields && !empty($custom_fields)) ||
-                                     !empty($attributes) ) {
-                                    $has_displayed_content = true;
-                                }
-
-                                // If no content was displayed, show a default message
-                                if ( !$has_displayed_content ) : ?>
-                                <tr class="woocommerce-product-attributes-item">
-                                    <th class="woocommerce-product-attributes-item__label">
-                                        Product Information
-                                    </th>
-                                    <td class="woocommerce-product-attributes-item__value">
-                                        Additional product details will be displayed here when available.
-                                    </td>
-                                </tr>
-                                <?php endif; ?>
-                            </tbody>
-                        </table>
-                        <?php else : ?>
-                        <table class="woocommerce-product-attributes shop_attributes">
-                            <tbody>
-                                <tr class="woocommerce-product-attributes-item">
-                                    <th class="woocommerce-product-attributes-item__label">
-                                        Product Information
-                                    </th>
-                                    <td class="woocommerce-product-attributes-item__value">
-                                        Additional product details will be displayed here when available.
-                                    </td>
-                                </tr>
+                                endforeach; ?>
                             </tbody>
                         </table>
                         <?php endif; ?>
                     </div>
                 </div>
             </div>
-            <?php endif; ?>
 
             <!-- Product Data Sheet Section -->
             <div class="accordion-item">
