@@ -772,23 +772,23 @@ if ( post_password_required() ) {
                     <div class="accordion-body px-0">
                         <?php
                             $custom_fields = get_post_meta( $product->get_id(), '_custom_product_info', true );
-                            //$has_custom_fields = !empty($custom_fields) && is_array($custom_fields);
-                            // Debug output for troubleshooting
-                            echo '<pre style="background:#f8f9fa;border:1px solid #ccc;padding:10px;">';
-                            echo 'DEBUG _custom_product_info:\n';
-                            print_r($custom_fields);
-                            echo '</pre>';
-                            foreach ($custom_fields as $key => $field) {
-                               echo esc_html( $field['label'] );
-                               echo esc_html( $field['value'] );
-                            }
+                            $has_custom_fields = !empty($custom_fields) && is_array($custom_fields);
+                            // // Debug output for troubleshooting
+                            // echo '<pre style="background:#f8f9fa;border:1px solid #ccc;padding:10px;">';
+                            // echo 'DEBUG _custom_product_info:\n';
+                            // print_r($custom_fields);
+                            // echo '</pre>';
+                            // foreach ($custom_fields as $key => $field) {
+                            //    echo esc_html( $field['label'] );
+                            //    echo esc_html( $field['value'] );
+                            // }
                         ?>
-                        <?php if (is_array($custom_fields)) : ?>
+                        <?php if ($has_custom_fields) : ?>
                             <table class="woocommerce-product-attributes shop_attributes">
                                 <tbody>
                                     <?php foreach ( $custom_fields as $field ) :
                                         if ( !empty( $field['label'] ) && !empty( $field['value'] ) ) : ?>
-                                            <tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--custom">
+                                            <tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--custom" style="display: table-row !important;">
                                                 <th class="woocommerce-product-attributes-item__label">
                                                     <?php echo esc_html( $field['label'] ); ?>
                                                 </th>
