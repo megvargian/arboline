@@ -788,14 +788,14 @@ if ( post_password_required() ) {
                                 <tbody>
                                     <?php foreach ( $custom_fields as $field ) :
                                         if ( !empty( $field['label'] ) && !empty( $field['value'] ) ) : ?>
-                                    <tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--custom">
-                                        <th class="woocommerce-product-attributes-item__label">
-                                            <?php echo esc_html( $field['label'] ); ?>
-                                        </th>
-                                        <td class="woocommerce-product-attributes-item__value">
-                                            <?php echo esc_html( $field['value'] ); ?>
-                                        </td>
-                                    </tr>
+                                            <tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--custom">
+                                                <th class="woocommerce-product-attributes-item__label">
+                                                    <?php echo esc_html( $field['label'] ); ?>
+                                                </th>
+                                                <td class="woocommerce-product-attributes-item__value">
+                                                    <?php echo esc_html( $field['value'] ); ?>
+                                                </td>
+                                            </tr>
                                     <?php endif;
                                     endforeach; ?>
                                 </tbody>
