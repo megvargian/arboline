@@ -773,6 +773,11 @@ if ( post_password_required() ) {
                         <?php
                             $custom_fields = get_post_meta( $product->get_id(), '_custom_product_info', true );
                             $has_custom_fields = !empty($custom_fields) && is_array($custom_fields);
+                            // Debug output for troubleshooting
+                            echo '<pre style="background:#f8f9fa;border:1px solid #ccc;padding:10px;">';
+                            echo 'DEBUG _custom_product_info:\n';
+                            print_r($custom_fields);
+                            echo '</pre>';
                         ?>
                         <?php if ( $has_custom_fields ) : ?>
                         <table class="woocommerce-product-attributes shop_attributes">
