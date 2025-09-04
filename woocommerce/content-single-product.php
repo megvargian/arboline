@@ -112,8 +112,10 @@ if ( post_password_required() ) {
                                             var coverage = parseFloat(form.querySelector('.coverage').value) || 1;
                                             var area = width * length;
                                             var mlNeeded = area > 0 && coverage > 0 ? Math.ceil((area * 1000) / coverage) : 0;
-                                            var totalEl = form.querySelector('.total strong');
-                                            totalEl.textContent = mlNeeded + ' ml';
+                                            var totalEl = form.querySelector('.total');
+                                            if (totalEl) {
+                                                totalEl.textContent = mlNeeded + ' ml';
+                                            }
                                         }
                                         var form = document.getElementById('ml-calc-form');
                                         form.querySelector('.width').addEventListener('input', updateMLResult);
