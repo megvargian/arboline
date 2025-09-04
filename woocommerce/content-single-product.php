@@ -250,7 +250,7 @@ if ( post_password_required() ) {
                         });
                     });
                     </script>
-
+                    <p class="finish-description mb-1">Click to preview tints</p>
                     <?php
                     /**
                      * Hook: woocommerce_template_single_meta.
