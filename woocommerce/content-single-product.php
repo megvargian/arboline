@@ -90,21 +90,21 @@ if ( post_password_required() ) {
                     ?>
 
                     <form class="custom-variations-form cart" method="post" enctype="multipart/form-data"
-                          data-product_id="<?php echo esc_attr( $product_id ); ?>"
-                          data-product_variations='<?php echo wp_json_encode( $available_variations ); ?>'>
+                        data-product_id="<?php echo esc_attr( $product_id ); ?>"
+                        data-product_variations='<?php echo wp_json_encode( $available_variations ); ?>'>
 
                         <?php foreach ( $attributes as $attribute_name => $options ) :
                             $attr_label = wc_attribute_label( $attribute_name );
                             $sanitized_name = sanitize_title( $attribute_name );
                         ?>
                         <div class="custom-variation-selector mb-3">
-                            <select id="attribute_<?php echo esc_attr( $sanitized_name ); ?>" name="attribute_<?php echo esc_attr( $sanitized_name ); ?>"
-                                    class="variation-dropdown">
+                            <select id="attribute_<?php echo esc_attr( $sanitized_name ); ?>"
+                                name="attribute_<?php echo esc_attr( $sanitized_name ); ?>" class="variation-dropdown">
                                 <option value=""><?php echo esc_html( strtolower( $attr_label ) ); ?></option>
                                 <?php foreach ( $options as $option ) : ?>
-                                    <option value="<?php echo esc_attr( $option ); ?>">
-                                        <?php echo esc_html( $option ); ?>
-                                    </option>
+                                <option value="<?php echo esc_attr( $option ); ?>">
+                                    <?php echo esc_html( $option ); ?>
+                                </option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -117,15 +117,18 @@ if ( post_password_required() ) {
                         </div>
 
                         <!-- Quantity and Add to Cart -->
-                        <div class="woocommerce-variation-add-to-cart variations_button d-flex align-items-center" style="display: flex !important;">
+                        <div class="woocommerce-variation-add-to-cart variations_button d-flex align-items-center"
+                            style="display: flex !important;">
                             <button type="button" class="minus btn btn-outline-secondary">-</button>
                             <div class="quantity" style="margin: 0 !important; width: fit-content !important;">
-                                <input type="number" class="qty form-control text-center" name="quantity" value="1" min="1" style="width: 80px;">
+                                <input type="number" class="qty form-control text-center" name="quantity" value="1"
+                                    min="1" style="width: 80px;">
                             </div>
                             <button type="button" class="plus btn btn-outline-secondary">+</button>
 
-                            <button type="submit" class="single_add_to_cart_button btn btn-dark ms-3 mt-0 flex-grow-1 disabled"
-                                    disabled style="background-color: #6c757d; cursor: not-allowed; width: fit-content !important;">
+                            <button type="submit"
+                                class="single_add_to_cart_button btn btn-dark ms-3 mt-0 flex-grow-1 disabled" disabled
+                                style="background-color: #6c757d; cursor: not-allowed; width: fit-content !important;">
                                 ADD TO BASKET
                             </button>
 
@@ -150,7 +153,8 @@ if ( post_password_required() ) {
                         <div class="single-product-add-to-cart d-flex align-items-center">
                             <button type="button" class="minus btn btn-outline-secondary">-</button>
                             <div class="quantity mx-2">
-                                <input type="number" class="qty form-control text-center" name="quantity" value="1" min="1" style="width: 80px;">
+                                <input type="number" class="qty form-control text-center" name="quantity" value="1"
+                                    min="1" style="width: 80px;">
                             </div>
                             <button type="button" class="plus btn btn-outline-secondary">+</button>
 
@@ -198,8 +202,8 @@ if ( post_password_required() ) {
                         // });
 
 
-                            console.log('Variation form initialized');
-                            console.log('Available variations:', $form.data('product_variations'));
+                        console.log('Variation form initialized');
+                        console.log('Available variations:', $form.data('product_variations'));
                         // Handle attribute selection for all dropdowns
                         let selectedAttributes = {};
                         $('.variation-dropdown').on('change', function() {
@@ -233,14 +237,14 @@ if ( post_password_required() ) {
 
                         // ...removed duplicate form submit handler...
 
-                            // Debug log selectedAttributes and variation.attributes
-                            var productVariations = $form.data('product_variations');
-                            console.log('selectedAttributes:', selectedAttributes);
-                            if (productVariations) {
-                                productVariations.forEach(function(variation) {
-                                    console.log('variation.attributes:', variation.attributes);
-                                });
-                            }
+                        // Debug log selectedAttributes and variation.attributes
+                        var productVariations = $form.data('product_variations');
+                        console.log('selectedAttributes:', selectedAttributes);
+                        if (productVariations) {
+                            productVariations.forEach(function(variation) {
+                                console.log('variation.attributes:', variation.attributes);
+                            });
+                        }
                         // Handle button click
                         $addToCartButton.on('click', function(e) {
                             e.preventDefault();
@@ -251,6 +255,74 @@ if ( post_password_required() ) {
                     });
                     </script>
                     <p class="finish-description mb-1">Click to preview tints</p>
+                    <div class="row mx-0">
+                        <div class="col-1 ps-0 pe-1 pb-1 single-swatch">
+                            <div id="swatchImage" class="w-100 h-100">
+                                <a href="https://fiddes.co.uk/app/uploads/2022/09/mahogony.jpg" class="glightbox"
+                                    data-title="Brown Mahogany">
+                                    <img width="150" height="150"
+                                        src="https://fiddes.co.uk/app/uploads/2022/09/mahogony-150x150.jpg"
+                                        class="w-100 h-auto" alt="" decoding="async" loading="lazy"
+                                        srcset="https://fiddes.co.uk/app/uploads/2022/09/mahogony-150x150.jpg 150w, https://fiddes.co.uk/app/uploads/2022/09/mahogony-300x300.jpg 300w, https://fiddes.co.uk/app/uploads/2022/09/mahogony-200x200.jpg 200w, https://fiddes.co.uk/app/uploads/2022/09/mahogony-600x600.jpg 600w, https://fiddes.co.uk/app/uploads/2022/09/mahogony-768x768.jpg 768w, https://fiddes.co.uk/app/uploads/2022/09/mahogony-32x32.jpg 32w, https://fiddes.co.uk/app/uploads/2022/09/mahogony.jpg 1000w"
+                                        sizes="(max-width: 150px) 100vw, 150px"> </a>
+                            </div>
+                        </div>
+                        <div class="col-1 ps-0 pe-1 pb-1 single-swatch">
+                            <div id="swatchImage" class="w-100 h-100">
+                                <a href="https://fiddes.co.uk/app/uploads/2022/09/HWO-Dark-Oak-Swatch.jpg"
+                                    class="glightbox" data-title="Dark Oak">
+                                    <img width="150" height="150"
+                                        src="https://fiddes.co.uk/app/uploads/2022/09/HWO-Dark-Oak-Swatch-150x150.jpg"
+                                        class="w-100 h-auto" alt="" decoding="async" loading="lazy"
+                                        srcset="https://fiddes.co.uk/app/uploads/2022/09/HWO-Dark-Oak-Swatch-150x150.jpg 150w, https://fiddes.co.uk/app/uploads/2022/09/HWO-Dark-Oak-Swatch-300x300.jpg 300w, https://fiddes.co.uk/app/uploads/2022/09/HWO-Dark-Oak-Swatch-200x200.jpg 200w, https://fiddes.co.uk/app/uploads/2022/09/HWO-Dark-Oak-Swatch-32x32.jpg 32w, https://fiddes.co.uk/app/uploads/2022/09/HWO-Dark-Oak-Swatch.jpg 600w"
+                                        sizes="(max-width: 150px) 100vw, 150px"> </a>
+                            </div>
+                        </div>
+                        <div class="col-1 ps-0 pe-1 pb-1 single-swatch">
+                            <div id="swatchImage" class="w-100 h-100">
+                                <a href="https://fiddes.co.uk/app/uploads/2022/09/swp-jacobeen.jpg" class="glightbox"
+                                    data-title="Jacobean">
+                                    <img width="150" height="150"
+                                        src="https://fiddes.co.uk/app/uploads/2022/09/swp-jacobeen-150x150.jpg"
+                                        class="w-100 h-auto" alt="" decoding="async" loading="lazy"
+                                        srcset="https://fiddes.co.uk/app/uploads/2022/09/swp-jacobeen-150x150.jpg 150w, https://fiddes.co.uk/app/uploads/2022/09/swp-jacobeen-300x300.jpg 300w, https://fiddes.co.uk/app/uploads/2022/09/swp-jacobeen-200x200.jpg 200w, https://fiddes.co.uk/app/uploads/2022/09/swp-jacobeen-600x600.jpg 600w, https://fiddes.co.uk/app/uploads/2022/09/swp-jacobeen-768x768.jpg 768w, https://fiddes.co.uk/app/uploads/2022/09/swp-jacobeen-32x32.jpg 32w, https://fiddes.co.uk/app/uploads/2022/09/swp-jacobeen.jpg 1000w"
+                                        sizes="(max-width: 150px) 100vw, 150px"> </a>
+                            </div>
+                        </div>
+                        <div class="col-1 ps-0 pe-1 pb-1 single-swatch">
+                            <div id="swatchImage" class="w-100 h-100">
+                                <a href="https://fiddes.co.uk/app/uploads/2022/09/HWO-Light-Oak-Swatch.png"
+                                    class="glightbox" data-title="Light Oak">
+                                    <img width="150" height="150"
+                                        src="https://fiddes.co.uk/app/uploads/2022/09/HWO-Light-Oak-Swatch-150x150.png"
+                                        class="w-100 h-auto" alt="" decoding="async" loading="lazy"
+                                        srcset="https://fiddes.co.uk/app/uploads/2022/09/HWO-Light-Oak-Swatch-150x150.png 150w, https://fiddes.co.uk/app/uploads/2022/09/HWO-Light-Oak-Swatch-300x300.png 300w, https://fiddes.co.uk/app/uploads/2022/09/HWO-Light-Oak-Swatch-200x200.png 200w, https://fiddes.co.uk/app/uploads/2022/09/HWO-Light-Oak-Swatch-600x600.png 600w, https://fiddes.co.uk/app/uploads/2022/09/HWO-Light-Oak-Swatch-768x768.png 768w, https://fiddes.co.uk/app/uploads/2022/09/HWO-Light-Oak-Swatch-32x32.png 32w, https://fiddes.co.uk/app/uploads/2022/09/HWO-Light-Oak-Swatch.png 1000w"
+                                        sizes="(max-width: 150px) 100vw, 150px"> </a>
+                            </div>
+                        </div>
+                        <div class="col-1 ps-0 pe-1 pb-1 single-swatch">
+                            <div id="swatchImage" class="w-100 h-100">
+                                <a href="https://fiddes.co.uk/app/uploads/2022/09/medium-oak.jpg" class="glightbox"
+                                    data-title="Medium Oak">
+                                    <img width="150" height="150"
+                                        src="https://fiddes.co.uk/app/uploads/2022/09/medium-oak-150x150.jpg"
+                                        class="w-100 h-auto" alt="" decoding="async" loading="lazy"
+                                        srcset="https://fiddes.co.uk/app/uploads/2022/09/medium-oak-150x150.jpg 150w, https://fiddes.co.uk/app/uploads/2022/09/medium-oak-300x300.jpg 300w, https://fiddes.co.uk/app/uploads/2022/09/medium-oak-200x200.jpg 200w, https://fiddes.co.uk/app/uploads/2022/09/medium-oak-600x600.jpg 600w, https://fiddes.co.uk/app/uploads/2022/09/medium-oak-768x768.jpg 768w, https://fiddes.co.uk/app/uploads/2022/09/medium-oak-32x32.jpg 32w, https://fiddes.co.uk/app/uploads/2022/09/medium-oak.jpg 1000w"
+                                        sizes="(max-width: 150px) 100vw, 150px"> </a>
+                            </div>
+                        </div>
+                        <div class="col-1 ps-0 pe-1 pb-1 single-swatch">
+                            <div id="swatchImage" class="w-100 h-100">
+                                <a href="https://fiddes.co.uk/app/uploads/2022/09/teak.jpg" class="glightbox"
+                                    data-title="Teak">
+                                    <img width="150" height="150"
+                                        src="https://fiddes.co.uk/app/uploads/2022/09/teak-150x150.jpg"
+                                        class="w-100 h-auto" alt="" decoding="async" loading="lazy"
+                                        srcset="https://fiddes.co.uk/app/uploads/2022/09/teak-150x150.jpg 150w, https://fiddes.co.uk/app/uploads/2022/09/teak-300x300.jpg 300w, https://fiddes.co.uk/app/uploads/2022/09/teak-200x200.jpg 200w, https://fiddes.co.uk/app/uploads/2022/09/teak-600x600.jpg 600w, https://fiddes.co.uk/app/uploads/2022/09/teak-768x768.jpg 768w, https://fiddes.co.uk/app/uploads/2022/09/teak-32x32.jpg 32w, https://fiddes.co.uk/app/uploads/2022/09/teak.jpg 1000w"
+                                        sizes="(max-width: 150px) 100vw, 150px"> </a>
+                            </div>
+                        </div>
+                    </div>
                     <?php
                     /**
                      * Hook: woocommerce_template_single_meta.
@@ -263,184 +335,185 @@ if ( post_password_required() ) {
 
                 <!-- Custom Styling and JavaScript -->
                 <style>
-                    /* Hide any duplicate WooCommerce elements */
-                    .woocommerce-product-attributes-item,
-                    .product-addons-wrap,
-                    .single-product .summary>.variations_form:not(.cart),
-                    .single-product .summary>form.cart:not(.custom-variations-form) {
-                        display: none !important;
-                    }
+                /* Hide any duplicate WooCommerce elements */
+                .woocommerce-product-attributes-item,
+                .product-addons-wrap,
+                .single-product .summary>.variations_form:not(.cart),
+                .single-product .summary>form.cart:not(.custom-variations-form) {
+                    display: none !important;
+                }
 
-                    /* Ensure our custom form is visible */
-                    .summary .custom-variations-form.cart,
-                    .summary form.cart {
-                        display: block !important;
-                    }
+                /* Ensure our custom form is visible */
+                .summary .custom-variations-form.cart,
+                .summary form.cart {
+                    display: block !important;
+                }
 
-                    /* Hide default table styling and replace with custom dropdown */
-                    .variations {
-                        display: none !important;
-                    }
+                /* Hide default table styling and replace with custom dropdown */
+                .variations {
+                    display: none !important;
+                }
 
-                    /* Custom single variation dropdown styling */
-                    .custom-variation-selector {
-                        margin-bottom: 20px;
-                    }
+                /* Custom single variation dropdown styling */
+                .custom-variation-selector {
+                    margin-bottom: 20px;
+                }
 
-                    .variation-dropdown {
-                        width: 100%;
-                        padding: 15px 20px;
-                        border: 1px solid #000;
-                        border-radius: 0;
-                        background: white;
-                        font-size: 16px;
-                        color: #333;
-                        appearance: none;
-                        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-                        background-position: right 15px center;
-                        background-repeat: no-repeat;
-                        background-size: 16px;
-                        height: 50px;
-                    }
+                .variation-dropdown {
+                    width: 100%;
+                    padding: 15px 20px;
+                    border: 1px solid #000;
+                    border-radius: 0;
+                    background: white;
+                    font-size: 16px;
+                    color: #333;
+                    appearance: none;
+                    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+                    background-position: right 15px center;
+                    background-repeat: no-repeat;
+                    background-size: 16px;
+                    height: 50px;
+                }
 
-                    .variation-dropdown:focus {
-                        outline: none;
-                        border-color: #000;
-                    }
+                .variation-dropdown:focus {
+                    outline: none;
+                    border-color: #000;
+                }
 
-                    .reset_variations {
-                        display: none !important;
-                    }
+                .reset_variations {
+                    display: none !important;
+                }
 
-                    /* Price styling in variation area */
-                    .single_variation .price {
-                        font-size: 2.25rem;
-                        font-weight: 500;
-                        color: #000;
-                        margin-bottom: 15px;
-                        display: block;
-                    }
+                /* Price styling in variation area */
+                .single_variation .price {
+                    font-size: 2.25rem;
+                    font-weight: 500;
+                    color: #000;
+                    margin-bottom: 15px;
+                    display: block;
+                }
 
-                    /* Quantity controls styling */
-                    .woocommerce-variation-add-to-cart {
-                        gap: 0;
-                        margin-top: 15px;
-                    }
+                /* Quantity controls styling */
+                .woocommerce-variation-add-to-cart {
+                    gap: 0;
+                    margin-top: 15px;
+                }
 
-                    .minus,
-                    .plus {
-                        background: white;
-                        border: 1px solid #000;
-                        border-radius: 0;
-                        padding: 0;
-                        font-size: 18px;
-                        font-weight: bold;
-                        cursor: pointer;
-                        width: 50px;
-                        height: 50px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    }
+                .minus,
+                .plus {
+                    background: white;
+                    border: 1px solid #000;
+                    border-radius: 0;
+                    padding: 0;
+                    font-size: 18px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    width: 50px;
+                    height: 50px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
 
-                    .minus {
-                        border-right: none;
-                    }
+                .minus {
+                    border-right: none;
+                }
 
-                    .plus {
-                        border-left: none;
-                    }
+                .plus {
+                    border-left: none;
+                }
 
-                    .minus:focus,
-                    .plus:focus {
-                        outline: none;
-                        border-color: #000 !important;
-                        box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
-                    }
+                .minus:focus,
+                .plus:focus {
+                    outline: none;
+                    border-color: #000 !important;
+                    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+                }
 
-                    .quantity {
-                        margin: 0;
-                    }
+                .quantity {
+                    margin: 0;
+                }
 
-                    .quantity .qty {
-                        border: 1px solid #000;
-                        border-left: none;
-                        border-right: none;
-                        border-radius: 0;
-                        text-align: center;
-                        padding: 0;
-                        width: 80px;
-                        font-size: 16px;
-                        background: white;
-                        height: 50px;
-                        margin: 0;
-                    }
+                .quantity .qty {
+                    border: 1px solid #000;
+                    border-left: none;
+                    border-right: none;
+                    border-radius: 0;
+                    text-align: center;
+                    padding: 0;
+                    width: 80px;
+                    font-size: 16px;
+                    background: white;
+                    height: 50px;
+                    margin: 0;
+                }
 
-                    .quantity .qty:focus {
-                        outline: none;
-                    }
+                .quantity .qty:focus {
+                    outline: none;
+                }
 
-                    .single_add_to_cart_button {
-                        background: #000;
-                        color: white;
-                        border: none;
-                        padding: 0 30px;
-                        font-size: 16px;
-                        font-weight: 600;
-                        text-transform: uppercase;
-                        border-radius: 0;
-                        cursor: pointer;
-                        transition: background 0.3s;
-                        flex-grow: 1;
-                        height: 50px;
-                        margin-left: 15px;
-                    }
+                .single_add_to_cart_button {
+                    background: #000;
+                    color: white;
+                    border: none;
+                    padding: 0 30px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    border-radius: 0;
+                    cursor: pointer;
+                    transition: background 0.3s;
+                    flex-grow: 1;
+                    height: 50px;
+                    margin-left: 15px;
+                }
 
-                    .single_add_to_cart_button:hover:not(:disabled):not(.disabled) {
-                        background: #333;
-                    }
+                .single_add_to_cart_button:hover:not(:disabled):not(.disabled) {
+                    background: #333;
+                }
 
-                    .single_add_to_cart_button:disabled,
-                    .single_add_to_cart_button.disabled {
-                        background: #6c757d !important;
-                        cursor: not-allowed !important;
-                        opacity: 0.7;
-                    }
+                .single_add_to_cart_button:disabled,
+                .single_add_to_cart_button.disabled {
+                    background: #6c757d !important;
+                    cursor: not-allowed !important;
+                    opacity: 0.7;
+                }
 
-                    /* Hide WooCommerce default variation styling */
-                    .woocommerce-variation-add-to-cart-disabled .single_add_to_cart_button {
-                        background: #6c757d;
-                    }
+                /* Hide WooCommerce default variation styling */
+                .woocommerce-variation-add-to-cart-disabled .single_add_to_cart_button {
+                    background: #6c757d;
+                }
 
-                    .woocommerce-variation-add-to-cart-enabled .single_add_to_cart_button {
-                        background: #000;
-                    }
+                .woocommerce-variation-add-to-cart-enabled .single_add_to_cart_button {
+                    background: #000;
+                }
 
-                    /* Simple product price styling */
-                    .product-price-display .price {
-                        font-size: 18px;
-                        font-weight: 600;
-                        color: #000;
-                        margin-bottom: 15px;
-                    }
+                /* Simple product price styling */
+                .product-price-display .price {
+                    font-size: 18px;
+                    font-weight: 600;
+                    color: #000;
+                    margin-bottom: 15px;
+                }
 
-                    .product-price-display .price .woocommerce-Price-amount {
-                        font-size: 18px;
-                        font-weight: 600;
-                    }
+                .product-price-display .price .woocommerce-Price-amount {
+                    font-size: 18px;
+                    font-weight: 600;
+                }
 
-                    /* Hide any WooCommerce generated duplicate forms or elements */
-                    .single-product-summary .cart:not(.custom-variations-form),
-                    .woocommerce div.product form.cart:not(.custom-variations-form) {
-                        display: none !important;
-                    }
+                /* Hide any WooCommerce generated duplicate forms or elements */
+                .single-product-summary .cart:not(.custom-variations-form),
+                .woocommerce div.product form.cart:not(.custom-variations-form) {
+                    display: none !important;
+                }
                 </style>
 
                 <script>
                 jQuery(document).ready(function($) {
                     // Helper function for price formatting
                     function wc_price_format(price) {
-                        return '<?php echo get_woocommerce_currency_symbol(); ?>' + parseFloat(price).toFixed(2);
+                        return '<?php echo get_woocommerce_currency_symbol(); ?>' + parseFloat(price).toFixed(
+                        2);
                     }
 
                     // Remove any duplicate forms that might be generated by WooCommerce
@@ -511,7 +584,8 @@ if ( post_password_required() ) {
                                 $.each(variation.attributes, function(attrName, attrValue) {
                                     // Normalize keys for comparison
                                     var selectedVal = selectedAttributes[attrName];
-                                    if (typeof selectedVal === 'undefined' || selectedVal != attrValue) {
+                                    if (typeof selectedVal === 'undefined' ||
+                                        selectedVal != attrValue) {
                                         match = false;
                                         return false;
                                     }
@@ -596,16 +670,21 @@ if ( post_password_required() ) {
                                 },
                                 success: function(response) {
                                     const isSuccess = response.success ||
-                                        (response.cart_hash && response.cart_hash.length > 0) ||
+                                        (response.cart_hash && response.cart_hash.length >
+                                            0) ||
                                         (response.data && response.data.success) ||
                                         (response.data && response.data.cart_hash);
                                     if (isSuccess) {
-                                        window.location.href = '<?php echo wc_get_cart_url(); ?>';
+                                        window.location.href =
+                                            '<?php echo wc_get_cart_url(); ?>';
                                     } else {
-                                        var errorMessage = response.data && response.data.message ?
-                                            response.data.message : 'Failed to add product to cart';
+                                        var errorMessage = response.data && response.data
+                                            .message ?
+                                            response.data.message :
+                                            'Failed to add product to cart';
                                         alert(errorMessage);
-                                        $button.prop('disabled', false).text('ADD TO BASKET');
+                                        $button.prop('disabled', false).text(
+                                            'ADD TO BASKET');
                                     }
                                 },
                                 error: function(xhr, status, error) {
@@ -622,7 +701,8 @@ if ( post_password_required() ) {
 
                         var $form = $(this);
                         var $button = $('.single_add_to_cart_button');
-                        var product_id = $form.find('input[name="add-to-cart"], input[name="product_id"]').val();
+                        var product_id = $form.find(
+                            'input[name="add-to-cart"], input[name="product_id"]').val();
                         var quantity = parseInt($form.find('input[name="quantity"]').val()) || 1;
 
                         // Ensure quantity is at least 1
@@ -649,17 +729,21 @@ if ( post_password_required() ) {
 
                                 // Check multiple success indicators
                                 const isSuccess = response.success ||
-                                                (response.cart_hash && response.cart_hash.length > 0) ||
-                                                (response.data && response.data.success) ||
-                                                (response.data && response.data.cart_hash);
+                                    (response.cart_hash && response.cart_hash.length > 0) ||
+                                    (response.data && response.data.success) ||
+                                    (response.data && response.data.cart_hash);
 
                                 if (isSuccess) {
-                                    console.log('Product added to cart successfully! Redirecting...');
-                                    window.location.href = '<?php echo wc_get_cart_url(); ?>';
+                                    console.log(
+                                        'Product added to cart successfully! Redirecting...'
+                                        );
+                                    window.location.href =
+                                        '<?php echo wc_get_cart_url(); ?>';
                                 } else {
-                                    const errorMessage = (response.data && response.data.message) ||
-                                                       response.message ||
-                                                       'Failed to add product to cart';
+                                    const errorMessage = (response.data && response.data
+                                            .message) ||
+                                        response.message ||
+                                        'Failed to add product to cart';
                                     alert(errorMessage);
                                     $button.prop('disabled', false).text('ADD TO BASKET');
                                 }
@@ -759,7 +843,8 @@ if ( post_password_required() ) {
                                 if ( $has_custom_fields ) :
                                     foreach ( $custom_fields as $field ) :
                                         if ( !empty( $field['label'] ) && !empty( $field['value'] ) ) : ?>
-                                <tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--custom">
+                                <tr
+                                    class="woocommerce-product-attributes-item woocommerce-product-attributes-item--custom">
                                     <th class="woocommerce-product-attributes-item__label">
                                         <?php echo esc_html( $field['label'] ); ?>
                                     </th>
@@ -767,7 +852,7 @@ if ( post_password_required() ) {
                                         <?php echo esc_html( $field['value'] ); ?>
                                     </td>
                                 </tr>
-                                        <?php endif;
+                                <?php endif;
                                     endforeach;
                                 endif; ?>
 
