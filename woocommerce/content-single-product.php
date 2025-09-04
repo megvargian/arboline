@@ -330,8 +330,13 @@ if ( post_password_required() ) {
                                     if ($image_url) {
                                     ?>
                                         <div class="col-1 ps-0 pe-1 pb-1 single-swatch">
-                                            <a href="<?php echo esc_url($image_url); ?>" class="glightbox-tint" data-glightbox="title: <?php echo esc_attr($tint); ?>">
-                                                <img width="150" height="150" src="<?php echo esc_url($image_url); ?>" class="w-100 h-auto" alt="<?php echo esc_attr($tint); ?>" />
+                                            <a href="<?php echo esc_url($image_url); ?>"
+                                            class="glightbox-tint"
+                                            data-glightbox="title: <?php echo esc_attr($tint); ?>; description: <?php echo esc_attr($tint); ?>">
+                                                <img width="150" height="150"
+                                                    src="<?php echo esc_url($image_url); ?>"
+                                                    class="w-100 h-auto"
+                                                    alt="<?php echo esc_attr($tint); ?>" />
                                             </a>
                                         </div>
                                     <?php
@@ -341,6 +346,18 @@ if ( post_password_required() ) {
                         }
                     ?>
                     </div>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            const lightbox = GLightbox({
+                                selector: ".glightbox-tint",
+                                touchNavigation: true,
+                                loop: true,
+                                zoomable: true,
+                                width: "90%",
+                                height: "auto"
+                            });
+                        });
+                    </script>
                     <style>
                     .tint-swatch-row .single-swatch {
                         display: flex;
