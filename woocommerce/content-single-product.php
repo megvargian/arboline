@@ -759,9 +759,6 @@ if ( post_password_required() ) {
                 </div>
             </div>
             <?php } ?>
-            <?php
-
-
             <div class="accordion-item">
                 <p class="accordion-header" id="headingadditional_information">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
