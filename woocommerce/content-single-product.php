@@ -488,7 +488,6 @@ if ( post_password_required() ) {
                         $(document).on('change', '.variation-dropdown', function() {
                             var $form = $('.custom-variations-form');
                             var $button = $('.single_add_to_cart_button');
-                            // Find selected values for all dropdowns
                             var allSelected = true;
                             var selectedAttributes = {};
                             $form.find('.variation-dropdown').each(function() {
@@ -497,6 +496,8 @@ if ( post_password_required() ) {
                                 if (!value) {
                                     allSelected = false;
                                 } else {
+                                    // WooCommerce expects attribute keys like 'attribute_pa_color', not just 'attribute_color'
+                                    // So we normalize the name to match variation.attributes keys
                                     selectedAttributes[name] = value;
                                 }
                             });
@@ -508,7 +509,9 @@ if ( post_password_required() ) {
                             $.each(productVariations, function(i, variation) {
                                 var match = true;
                                 $.each(variation.attributes, function(attrName, attrValue) {
-                                    if (selectedAttributes[attrName] === undefined || selectedAttributes[attrName] != attrValue) {
+                                    // Normalize keys for comparison
+                                    var selectedVal = selectedAttributes[attrName];
+                                    if (typeof selectedVal === 'undefined' || selectedVal != attrValue) {
                                         match = false;
                                         return false;
                                     }
@@ -570,44 +573,11 @@ if ( post_password_required() ) {
                         // Handle custom AJAX form submission
                         $('.custom-variations-form').on('submit', function(e) {
                             e.preventDefault();
-
                             var $form = $(this);
                             var $button = $('.single_add_to_cart_button');
                             var product_id = $form.find('input[name="product_id"]').val();
                             var variation_id = $form.find('input[name="variation_id"]').val();
                             var quantity = parseInt($form.find('input[name="quantity"]').val()) || 1;
-
-                            console.log('Form submission started:', {
-                                product_id: product_id,
-                                variation_id: variation_id,
-                                quantity: quantity,
-                                ajax_url: '<?php echo admin_url('admin-ajax.php'); ?>',
-                                nonce: '<?php echo wp_create_nonce("add_to_cart_nonce"); ?>'
-                            });
-
-                            // Ensure quantity is at least 1
-                            if (quantity < 1) {
-                                quantity = 1;
-                                $form.find('input[name="quantity"]').val(1);
-                            }
-
-                            // Check if variation is selected
-                            // if (!variation_id || variation_id === '0') {
-                            //     alert('Please select a size before adding to cart.');
-                            //     return false;
-                            // }
-
-                            // Get selected variation attributes
-                            var selectedVariation = {};
-                            $form.find('.variation_attribute').each(function() {
-                                var attrName = $(this).attr('name');
-                                var attrValue = $(this).val();
-                                if (attrValue) {
-                                    selectedVariation[attrName] = attrValue;
-                                }
-                            });
-
-                            console.log('Selected variation attributes:', selectedVariation);
 
                             // Show loading state
                             $button.prop('disabled', true).text('Adding...');
@@ -625,65 +595,22 @@ if ( post_password_required() ) {
                                     security: '<?php echo wp_create_nonce("add_to_cart_nonce"); ?>'
                                 },
                                 success: function(response) {
-                                    console.log('AJAX response:', response);
-
-                                    // Check multiple success indicators
                                     const isSuccess = response.success ||
-                                                    (response.cart_hash && response.cart_hash.length > 0) ||
-                                                    (response.data && response.data.success) ||
-                                                    (response.data && response.data.cart_hash);
-
+                                        (response.cart_hash && response.cart_hash.length > 0) ||
+                                        (response.data && response.data.success) ||
+                                        (response.data && response.data.cart_hash);
                                     if (isSuccess) {
-                                        console.log('Product added to cart successfully! Redirecting...');
                                         window.location.href = '<?php echo wc_get_cart_url(); ?>';
                                     } else {
                                         var errorMessage = response.data && response.data.message ?
                                             response.data.message : 'Failed to add product to cart';
-                                        console.error('Add to cart failed:', errorMessage);
                                         alert(errorMessage);
                                         $button.prop('disabled', false).text('ADD TO BASKET');
                                     }
                                 },
                                 error: function(xhr, status, error) {
-                                    console.error('AJAX error details:', {
-                                        xhr: xhr,
-                                        status: status,
-                                        error: error,
-                                        responseText: xhr.responseText
-                                    });
-
-                                    // Try to parse the response to see if it's an error page
-                                    var errorMessage = 'An error occurred. Please try again.';
-                                    if (xhr.responseText) {
-                                        if (xhr.responseText.indexOf('Fatal error') !== -1) {
-                                            errorMessage = 'Server error detected. Please check the error logs.';
-                                        } else if (xhr.responseText.indexOf('404') !== -1) {
-                                            errorMessage = 'AJAX endpoint not found. Please check the configuration.';
-                                        }
-                                    }
-
-                                    // Fallback: try traditional form submission
-                                    console.log('AJAX failed, trying fallback method...');
-                                    var fallbackUrl = '<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>';
-                                    var fallbackForm = $('<form>', {
-                                        'method': 'POST',
-                                        'action': fallbackUrl
-                                    }).append($('<input>', {
-                                        'type': 'hidden',
-                                        'name': 'add-to-cart',
-                                        'value': product_id
-                                    })).append($('<input>', {
-                                        'type': 'hidden',
-                                        'name': 'variation_id',
-                                        'value': variation_id
-                                    })).append($('<input>', {
-                                        'type': 'hidden',
-                                        'name': 'quantity',
-                                        'value': quantity
-                                    }));
-
-                                    $('body').append(fallbackForm);
-                                    fallbackForm.submit();
+                                    alert('An error occurred. Please try again.');
+                                    $button.prop('disabled', false).text('ADD TO BASKET');
                                 }
                             });
                         });
