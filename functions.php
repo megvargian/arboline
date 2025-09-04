@@ -1818,7 +1818,7 @@ function enqueue_glightbox_assets() {
             const lightbox = GLightbox({
                 selector: ".glightbox-tint",
                 touchNavigation: true,
-                loop: true,
+                loop: false,
                 zoomable: true,
                 width: "90%",
                 height: "auto"
