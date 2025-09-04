@@ -268,7 +268,7 @@ if ( post_password_required() ) {
                     ?>
                     <?php if ($has_tint_attribute) : ?>
                     <p class="finish-description mb-1">Click to preview tints</p>
-                    <div class="row mx-0">
+                    <div class="row mx-0 tint-swatch-row">
                     <?php
                         $product_id = $product->get_id();
                         $variation_attributes = $product->get_variation_attributes();
@@ -294,6 +294,41 @@ if ( post_password_required() ) {
                         }
                     ?>
                     </div>
+                    <style>
+                    .tint-swatch-row .single-swatch {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100px;
+                    }
+                    .tint-swatch-square {
+                        width: 100px;
+                        height: 100px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: #fff;
+                        border: 1px solid #ddd;
+                        border-radius: 8px;
+                        overflow: hidden;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+                        transition: box-shadow 0.2s;
+                    }
+                    .tint-swatch-square:hover {
+                        box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+                    }
+                    .tint-swatch-img {
+                        width: 100px;
+                        height: 100px;
+                        object-fit: cover;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        transition: transform 0.2s;
+                    }
+                    .tint-swatch-img:hover {
+                        transform: scale(1.05);
+                    }
+                    </style>
                     <?php endif; ?>
                     <?php
                     /**
