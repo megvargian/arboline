@@ -327,12 +327,13 @@ if ( post_password_required() ) {
                                     $image_url = $image_id ? wp_get_attachment_url($image_id) : '';
                                     if ($image_url) {
                                     ?>
-                                            <div class="col-1 ps-0 pe-1 pb-1 single-swatch">
-                                                <a href="<?php echo esc_url($image_url); ?>" class="glightbox-tint" data-glightbox="title: <?php echo esc_attr($tint); ?>" data-title="<?php echo esc_attr($tint); ?>">
+                                        <div class="col-1 ps-0 pe-1 pb-1 single-swatch">
+                                            <a href="#<?php echo esc_attr($tint); ?>" class="w-100 h-100">
+                                                <div class="glightbox" data-title="<?php echo esc_attr($tint); ?>">
                                                     <img width="150" height="150" src="<?php echo esc_url($image_url); ?>" class="w-100 h-auto" alt="<?php echo esc_attr($tint); ?>" />
-                                                    <div class="tint-title text-center mt-2" style="font-size: 1rem;"> <?php echo esc_html($tint); ?> </div>
-                                                </a>
-                                            </div>
+                                                </div>
+                                            </a>
+                                        </div>
                                     <?php
                                     }
                                 }
