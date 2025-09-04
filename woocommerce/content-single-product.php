@@ -346,18 +346,6 @@ if ( post_password_required() ) {
                         }
                     ?>
                     </div>
-                    <script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                            const lightbox = GLightbox({
-                                selector: ".glightbox-tint",
-                                touchNavigation: true,
-                                loop: true,
-                                zoomable: true,
-                                width: "90%",
-                                height: "auto"
-                            });
-                        });
-                    </script>
                     <style>
                     .tint-swatch-row .single-swatch {
                         display: flex;

@@ -1791,3 +1791,39 @@ add_action('admin_enqueue_scripts', function($hook) {
         });');
     }
 });
+
+
+function enqueue_glightbox_assets() {
+    // Glightbox CSS
+    wp_enqueue_style(
+        'glightbox-css',
+        'https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css',
+        array(),
+        null
+    );
+
+    // Glightbox JS
+    wp_enqueue_script(
+        'glightbox-js',
+        'https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js',
+        array(),
+        null,
+        true
+    );
+
+    // Init script
+    wp_add_inline_script(
+        'glightbox-js',
+        'document.addEventListener("DOMContentLoaded", function() {
+            const lightbox = GLightbox({
+                selector: ".glightbox-tint",
+                touchNavigation: true,
+                loop: true,
+                zoomable: true,
+                width: "90%",
+                height: "auto"
+            });
+        });'
+    );
+}
+add_action('wp_enqueue_scripts', 'enqueue_glightbox_assets');
