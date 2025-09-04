@@ -87,19 +87,38 @@ if ( post_password_required() ) {
 
                         <div class="collapse" id="collapseCalc" style="">
                             <div class="card card-body">
-                            <form class="form w-100">
-                                <input class="form-control d-none coverage" value="16">
-                                <div class="input-wrap mb-3">
-                                <label class="form-label" for="width">Width <span>(meters)</span></label>
-                                <input class="form-control width" value="5">
-                                </div>
-                                <div class="input-wrap mb-3">
-                                <label class="form-label" for="width">Length <span>(meters)</span></label>
-                                <input class="form-control length" value="14">
-                                </div>
-                                <p class="total h4 mb-0"><strong></strong></p>
-                                <div class="form-text">(Single Coat depending on substrate)</div>
-                            </form>
+                                <form class="form w-100" id="ml-calc-form">
+                                    <input class="form-control d-none coverage" value="16">
+                                    <div class="input-wrap mb-3">
+                                        <label class="form-label" for="width">Width <span>(meters)</span></label>
+                                        <input class="form-control width" value="5" type="number" min="0" step="0.01">
+                                    </div>
+                                    <div class="input-wrap mb-3">
+                                        <label class="form-label" for="length">Length <span>(meters)</span></label>
+                                        <input class="form-control length" value="14" type="number" min="0" step="0.01">
+                                    </div>
+                                    <p class="total h4 mb-0"><strong>0 ml</strong></p>
+                                    <div class="form-text">(Single Coat depending on substrate)</div>
+                                </form>
+                                <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    function updateMLResult() {
+                                        var form = document.getElementById('ml-calc-form');
+                                        var width = parseFloat(form.querySelector('.width').value) || 0;
+                                        var length = parseFloat(form.querySelector('.length').value) || 0;
+                                        var coverage = parseFloat(form.querySelector('.coverage').value) || 1;
+                                        var area = width * length;
+                                        var mlNeeded = area > 0 && coverage > 0 ? Math.ceil((area * 1000) / coverage) : 0;
+                                        var totalEl = form.querySelector('.total strong');
+                                        totalEl.textContent = mlNeeded + ' ml';
+                                    }
+                                    var form = document.getElementById('ml-calc-form');
+                                    form.querySelector('.width').addEventListener('input', updateMLResult);
+                                    form.querySelector('.length').addEventListener('input', updateMLResult);
+                                    // Initial calculation
+                                    updateMLResult();
+                                });
+                                </script>
                             </div>
                         </div>
                     </div>
