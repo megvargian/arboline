@@ -78,7 +78,31 @@ if ( post_password_required() ) {
                         <?php echo $product->get_price_html(); ?>
                         <small class="woocommerce-price-suffix">INC. VAT</small>
                     </div>
+                    <div id="calculator" class="w-100 mb-2">
+                        <p id="show-cal" class="w-100 mb-0">
+                            <a class="d-flex justify-content-between w-100 py-2 collapsed" data-bs-toggle="collapse" href="#collapseCalc" role="button" aria-expanded="false" aria-controls="collapseCalc">
+                            <span>How much do I need?</span> <i class="bi bi-question-circle"></i>
+                            </a>
+                        </p>
 
+                        <div class="collapse" id="collapseCalc" style="">
+                            <div class="card card-body">
+                            <form class="form w-100">
+                                <input class="form-control d-none coverage" value="16">
+                                <div class="input-wrap mb-3">
+                                <label class="form-label" for="width">Width <span>(meters)</span></label>
+                                <input class="form-control width" value="5">
+                                </div>
+                                <div class="input-wrap mb-3">
+                                <label class="form-label" for="width">Length <span>(meters)</span></label>
+                                <input class="form-control length" value="14">
+                                </div>
+                                <p class="total h4 mb-0"><strong></strong></p>
+                                <div class="form-text">(Single Coat depending on substrate)</div>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
                     <?php
                     $product_id = $product->get_id();
 
