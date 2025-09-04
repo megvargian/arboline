@@ -254,75 +254,47 @@ if ( post_password_required() ) {
                         });
                     });
                     </script>
+                    <?php
+                    $has_tint_attribute = false;
+                    if ($product->is_type('variable')) {
+                        $variation_attributes = $product->get_variation_attributes();
+                        foreach ($variation_attributes as $attribute_name => $options) {
+                            if (stripos($attribute_name, 'tint') !== false) {
+                                $has_tint_attribute = true;
+                                break;
+                            }
+                        }
+                    }
+                    ?>
+                    <?php if ($has_tint_attribute) : ?>
                     <p class="finish-description mb-1">Click to preview tints</p>
                     <div class="row mx-0">
+                    <?php
+                        $product_id = $product->get_id();
+                        $variation_attributes = $product->get_variation_attributes();
+                        foreach ($variation_attributes as $attribute_name => $options) {
+                            if (stripos($attribute_name, 'tint') !== false) {
+                                foreach ($options as $tint) {
+                                    $field_id = 'tint_image_' . sanitize_title($tint);
+                                    $image_id = get_post_meta($product_id, $field_id, true);
+                                    $image_url = $image_id ? wp_get_attachment_url($image_id) : '';
+                                    if ($image_url) {
+                    ?>
                         <div class="col-1 ps-0 pe-1 pb-1 single-swatch">
-                            <div id="swatchImage" class="w-100 h-100">
-                                <a href="https://fiddes.co.uk/app/uploads/2022/09/mahogony.jpg" class="glightbox"
-                                    data-title="Brown Mahogany">
-                                    <img width="150" height="150"
-                                        src="https://fiddes.co.uk/app/uploads/2022/09/mahogony-150x150.jpg"
-                                        class="w-100 h-auto" alt="" decoding="async" loading="lazy"
-                                        srcset="https://fiddes.co.uk/app/uploads/2022/09/mahogony-150x150.jpg 150w, https://fiddes.co.uk/app/uploads/2022/09/mahogony-300x300.jpg 300w, https://fiddes.co.uk/app/uploads/2022/09/mahogony-200x200.jpg 200w, https://fiddes.co.uk/app/uploads/2022/09/mahogony-600x600.jpg 600w, https://fiddes.co.uk/app/uploads/2022/09/mahogony-768x768.jpg 768w, https://fiddes.co.uk/app/uploads/2022/09/mahogony-32x32.jpg 32w, https://fiddes.co.uk/app/uploads/2022/09/mahogony.jpg 1000w"
-                                        sizes="(max-width: 150px) 100vw, 150px"> </a>
+                            <div class="w-100 h-100">
+                                <a href="<?php echo esc_url($image_url); ?>" class="glightbox" data-title="<?php echo esc_attr($tint); ?>">
+                                    <img width="150" height="150" src="<?php echo esc_url($image_url); ?>" class="w-100 h-auto" alt="<?php echo esc_attr($tint); ?>" />
+                                </a>
                             </div>
                         </div>
-                        <div class="col-1 ps-0 pe-1 pb-1 single-swatch">
-                            <div id="swatchImage" class="w-100 h-100">
-                                <a href="https://fiddes.co.uk/app/uploads/2022/09/HWO-Dark-Oak-Swatch.jpg"
-                                    class="glightbox" data-title="Dark Oak">
-                                    <img width="150" height="150"
-                                        src="https://fiddes.co.uk/app/uploads/2022/09/HWO-Dark-Oak-Swatch-150x150.jpg"
-                                        class="w-100 h-auto" alt="" decoding="async" loading="lazy"
-                                        srcset="https://fiddes.co.uk/app/uploads/2022/09/HWO-Dark-Oak-Swatch-150x150.jpg 150w, https://fiddes.co.uk/app/uploads/2022/09/HWO-Dark-Oak-Swatch-300x300.jpg 300w, https://fiddes.co.uk/app/uploads/2022/09/HWO-Dark-Oak-Swatch-200x200.jpg 200w, https://fiddes.co.uk/app/uploads/2022/09/HWO-Dark-Oak-Swatch-32x32.jpg 32w, https://fiddes.co.uk/app/uploads/2022/09/HWO-Dark-Oak-Swatch.jpg 600w"
-                                        sizes="(max-width: 150px) 100vw, 150px"> </a>
-                            </div>
-                        </div>
-                        <div class="col-1 ps-0 pe-1 pb-1 single-swatch">
-                            <div id="swatchImage" class="w-100 h-100">
-                                <a href="https://fiddes.co.uk/app/uploads/2022/09/swp-jacobeen.jpg" class="glightbox"
-                                    data-title="Jacobean">
-                                    <img width="150" height="150"
-                                        src="https://fiddes.co.uk/app/uploads/2022/09/swp-jacobeen-150x150.jpg"
-                                        class="w-100 h-auto" alt="" decoding="async" loading="lazy"
-                                        srcset="https://fiddes.co.uk/app/uploads/2022/09/swp-jacobeen-150x150.jpg 150w, https://fiddes.co.uk/app/uploads/2022/09/swp-jacobeen-300x300.jpg 300w, https://fiddes.co.uk/app/uploads/2022/09/swp-jacobeen-200x200.jpg 200w, https://fiddes.co.uk/app/uploads/2022/09/swp-jacobeen-600x600.jpg 600w, https://fiddes.co.uk/app/uploads/2022/09/swp-jacobeen-768x768.jpg 768w, https://fiddes.co.uk/app/uploads/2022/09/swp-jacobeen-32x32.jpg 32w, https://fiddes.co.uk/app/uploads/2022/09/swp-jacobeen.jpg 1000w"
-                                        sizes="(max-width: 150px) 100vw, 150px"> </a>
-                            </div>
-                        </div>
-                        <div class="col-1 ps-0 pe-1 pb-1 single-swatch">
-                            <div id="swatchImage" class="w-100 h-100">
-                                <a href="https://fiddes.co.uk/app/uploads/2022/09/HWO-Light-Oak-Swatch.png"
-                                    class="glightbox" data-title="Light Oak">
-                                    <img width="150" height="150"
-                                        src="https://fiddes.co.uk/app/uploads/2022/09/HWO-Light-Oak-Swatch-150x150.png"
-                                        class="w-100 h-auto" alt="" decoding="async" loading="lazy"
-                                        srcset="https://fiddes.co.uk/app/uploads/2022/09/HWO-Light-Oak-Swatch-150x150.png 150w, https://fiddes.co.uk/app/uploads/2022/09/HWO-Light-Oak-Swatch-300x300.png 300w, https://fiddes.co.uk/app/uploads/2022/09/HWO-Light-Oak-Swatch-200x200.png 200w, https://fiddes.co.uk/app/uploads/2022/09/HWO-Light-Oak-Swatch-600x600.png 600w, https://fiddes.co.uk/app/uploads/2022/09/HWO-Light-Oak-Swatch-768x768.png 768w, https://fiddes.co.uk/app/uploads/2022/09/HWO-Light-Oak-Swatch-32x32.png 32w, https://fiddes.co.uk/app/uploads/2022/09/HWO-Light-Oak-Swatch.png 1000w"
-                                        sizes="(max-width: 150px) 100vw, 150px"> </a>
-                            </div>
-                        </div>
-                        <div class="col-1 ps-0 pe-1 pb-1 single-swatch">
-                            <div id="swatchImage" class="w-100 h-100">
-                                <a href="https://fiddes.co.uk/app/uploads/2022/09/medium-oak.jpg" class="glightbox"
-                                    data-title="Medium Oak">
-                                    <img width="150" height="150"
-                                        src="https://fiddes.co.uk/app/uploads/2022/09/medium-oak-150x150.jpg"
-                                        class="w-100 h-auto" alt="" decoding="async" loading="lazy"
-                                        srcset="https://fiddes.co.uk/app/uploads/2022/09/medium-oak-150x150.jpg 150w, https://fiddes.co.uk/app/uploads/2022/09/medium-oak-300x300.jpg 300w, https://fiddes.co.uk/app/uploads/2022/09/medium-oak-200x200.jpg 200w, https://fiddes.co.uk/app/uploads/2022/09/medium-oak-600x600.jpg 600w, https://fiddes.co.uk/app/uploads/2022/09/medium-oak-768x768.jpg 768w, https://fiddes.co.uk/app/uploads/2022/09/medium-oak-32x32.jpg 32w, https://fiddes.co.uk/app/uploads/2022/09/medium-oak.jpg 1000w"
-                                        sizes="(max-width: 150px) 100vw, 150px"> </a>
-                            </div>
-                        </div>
-                        <div class="col-1 ps-0 pe-1 pb-1 single-swatch">
-                            <div id="swatchImage" class="w-100 h-100">
-                                <a href="https://fiddes.co.uk/app/uploads/2022/09/teak.jpg" class="glightbox"
-                                    data-title="Teak">
-                                    <img width="150" height="150"
-                                        src="https://fiddes.co.uk/app/uploads/2022/09/teak-150x150.jpg"
-                                        class="w-100 h-auto" alt="" decoding="async" loading="lazy"
-                                        srcset="https://fiddes.co.uk/app/uploads/2022/09/teak-150x150.jpg 150w, https://fiddes.co.uk/app/uploads/2022/09/teak-300x300.jpg 300w, https://fiddes.co.uk/app/uploads/2022/09/teak-200x200.jpg 200w, https://fiddes.co.uk/app/uploads/2022/09/teak-600x600.jpg 600w, https://fiddes.co.uk/app/uploads/2022/09/teak-768x768.jpg 768w, https://fiddes.co.uk/app/uploads/2022/09/teak-32x32.jpg 32w, https://fiddes.co.uk/app/uploads/2022/09/teak.jpg 1000w"
-                                        sizes="(max-width: 150px) 100vw, 150px"> </a>
-                            </div>
-                        </div>
+                    <?php
+                                    }
+                                }
+                            }
+                        }
+                    ?>
                     </div>
+                    <?php endif; ?>
                     <?php
                     /**
                      * Hook: woocommerce_template_single_meta.

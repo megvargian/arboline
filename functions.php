@@ -1718,3 +1718,76 @@ function save_custom_product_info_meta_box($post_id) {
         delete_post_meta($post_id, '_custom_product_info');
     }
 }
+
+
+// Add custom fields for tint images in WooCommerce product edit page
+add_action('woocommerce_product_options_general_product_data', function() {
+    global $post;
+    $product = wc_get_product($post->ID);
+    if ($product && $product->is_type('variable')) {
+        $variation_attributes = $product->get_variation_attributes();
+        foreach ($variation_attributes as $attribute_name => $options) {
+            if (stripos($attribute_name, 'tint') !== false) {
+                echo '<div class="options_group">';
+                echo '<h4>Tint Images</h4>';
+                foreach ($options as $tint) {
+                    $field_id = 'tint_image_' . sanitize_title($tint);
+                    $image_id = get_post_meta($post->ID, $field_id, true);
+                    $image_url = $image_id ? wp_get_attachment_url($image_id) : '';
+                    echo '<p class="form-field">';
+                    echo '<label>' . esc_html($tint) . ' Image</label><br>';
+                    echo '<input type="hidden" class="tint-image-upload" name="' . esc_attr($field_id) . '" value="' . esc_attr($image_id) . '" />';
+                    echo '<img src="' . esc_url($image_url) . '" style="max-width:100px;max-height:100px;display:' . ($image_url ? 'block' : 'none') . ';" class="tint-image-preview" />';
+                    echo '<button type="button" class="button tint-image-upload-btn" data-field="' . esc_attr($field_id) . '">Upload</button>';
+                    echo '<button type="button" class="button tint-image-remove-btn" data-field="' . esc_attr($field_id) . '">Remove</button>';
+                    echo '</p>';
+                }
+                echo '</div>';
+            }
+        }
+    }
+});
+
+// Save tint image fields
+add_action('woocommerce_process_product_meta', function($post_id) {
+    $product = wc_get_product($post_id);
+    if ($product && $product->is_type('variable')) {
+        $variation_attributes = $product->get_variation_attributes();
+        foreach ($variation_attributes as $attribute_name => $options) {
+            if (stripos($attribute_name, 'tint') !== false) {
+                foreach ($options as $tint) {
+                    $field_id = 'tint_image_' . sanitize_title($tint);
+                    if (isset($_POST[$field_id])) {
+                        update_post_meta($post_id, $field_id, intval($_POST[$field_id]));
+                    }
+                }
+            }
+        }
+    }
+});
+
+// Enqueue media uploader for admin
+add_action('admin_enqueue_scripts', function($hook) {
+    if ($hook === 'post.php' || $hook === 'post-new.php') {
+        wp_enqueue_media();
+        wp_add_inline_script('jquery', 'jQuery(document).ready(function($){
+            $(".tint-image-upload-btn").on("click", function(e){
+                e.preventDefault();
+                var field = $(this).data("field");
+                var frame = wp.media({title: "Select or Upload Tint Image", button: {text: "Use this image"}, multiple: false});
+                frame.on("select", function(){
+                    var attachment = frame.state().get("selection").first().toJSON();
+                    $("input[name="+field+"]").val(attachment.id);
+                    $("input[name="+field+"]").siblings(".tint-image-preview").attr("src", attachment.url).show();
+                });
+                frame.open();
+            });
+            $(".tint-image-remove-btn").on("click", function(e){
+                e.preventDefault();
+                var field = $(this).data("field");
+                $("input[name="+field+"]").val("");
+                $("input[name="+field+"]").siblings(".tint-image-preview").attr("src", "").hide();
+            });
+        });');
+    }
+});
