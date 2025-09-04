@@ -779,7 +779,7 @@ if ( post_password_required() ) {
                             // print_r($custom_fields);
                             // echo '</pre>';
                         ?>
-                        <?php if (is_array($custom_fields)) : ?>
+                        <?php //if (is_array($custom_fields)) : ?>
                             <table class="woocommerce-product-attributes shop_attributes">
                                 <tbody>
                                     <?php foreach ( $custom_fields as $field ) :
@@ -796,7 +796,7 @@ if ( post_password_required() ) {
                                     endforeach; ?>
                                 </tbody>
                             </table>
-                        <?php endif; ?>
+                        <?php //endif; ?>
                     </div>
                 </div>
             </div>
