@@ -778,6 +778,10 @@ if ( post_password_required() ) {
                             echo 'DEBUG _custom_product_info:\n';
                             print_r($custom_fields);
                             echo '</pre>';
+                            foreach ($custom_fields as $key => $field) {
+                               echo esc_html( $field['label'] );
+                               echo esc_html( $field['value'] );
+                            }
                         ?>
                         <?php if (is_array($custom_fields)) : ?>
                             <table class="woocommerce-product-attributes shop_attributes">
