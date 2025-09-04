@@ -65,54 +65,19 @@ if ( empty( $product ) || ! $product->is_visible() ) {
          */
         // do_action( 'woocommerce_after_shop_loop_item' );
         ?>
-    <?php
-        // Open the product link
-        // $short_description = $product->get_short_description();
-        // $attachment_ids = $product->get_gallery_image_ids();
-        // if ($attachment_ids && !empty($attachment_ids)) {
-        //         $first_image_id = $attachment_ids[0]; // Get the first image ID
-        //         $first_image_url = wp_get_attachment_image_src($first_image_id, 'full'); // Get the URL of the first image
-        // }
-        ?>
-    <!-- <a class="w-100 h-100 d-block pb-3 <?php //echo $first_image_url ? 'cat-single-product' : '' ?>" href="<?php //echo esc_url( $product->get_permalink() ) ?>"> -->
-    <?php
-                // $attachment_id = $product->get_image_id(); // Get the product image ID
-                // $image_url_mobile = isMob() ? wp_get_attachment_image_src($attachment_id, 'custom-woocommerce-thumbnail') : wp_get_attachment_image_src($attachment_id, 'full');
-                // $image_url = wp_get_attachment_image_src($attachment_id, 'full');
-                // if ($image_url || $image_url_mobile) {
-                //         echo '<img class="d-md-block d-none main-img-product-'.$product_id.' main-thumbnail-img" src="' . esc_url($image_url[0]) . '" alt="' . esc_attr($product->get_name()) . '" width="500" height="500" />';
-                //         echo '<img class="d-md-none d-block main-thumbnail-img-mobile" src="' . esc_url($image_url_mobile[0]) . '" alt="' . esc_attr($product->get_name()) . '" width="500" height="500" />';
-                // }
-                //  // Check if there are gallery images
-                // if ($first_image_url) {
-                //         echo '<img class="first-gallery-image d-none" src="' . esc_url($first_image_url[0]) . '" alt="First Gallery Image">';
-                // }
-                ?>
-    <!-- <h2 class="woocommerce-loop-product__title"><?php //echo $product -> get_name(); ?></h2> -->
-    <?php
-                // if ( ! empty( $short_description ) ) {
-                //         echo '<p class="woocommerce-product-short-description my-0">' . $short_description . '</p>';
-                // }
-                // echo '<span class="price">' . $product->get_price_html() . '</span>';
-        // Close the product link
-        // echo '</a>';
-        // Display the add to cart button
-        // echo $counter_products > 1 ? '' : woocommerce_template_single_add_to_cart();
-        ?>
-
-        <a href="https://arboline.com/product/test/"
-            class="woocommerce-LoopProduct-link woocommerce-loop-product__link"><img width="300" height="300"
-                src="https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Polishing-Cloth-scaled-300x300.jpg"
-                class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" decoding="async"
-                loading="lazy"
-                srcset="https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Polishing-Cloth-scaled-300x300.jpg 300w, https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Polishing-Cloth-scaled-200x200.jpg 200w, https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Polishing-Cloth-scaled-600x600.jpg 600w, https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Polishing-Cloth-scaled-150x150.jpg 150w, https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Polishing-Cloth-scaled-768x768.jpg 768w, https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Polishing-Cloth-scaled.jpg 850w"
-                sizes="(max-width: 300px) 100vw, 300px">
-            <h2 class="woocommerce-loop-product__title">Mutton Cloth</h2>
-            <!-- <span class="price"><span class="woocommerce-Price-amount amount"><bdi><span
-                            class="woocommerce-Price-currencySymbol">£</span>10.60</bdi></span> <small
-                    class="woocommerce-price-suffix">INC. VAT</small></span> -->
-        </a><a href="https://arboline.com/product/test/" data-quantity="1"
-            class="button wp-element-button product_type_simple" data-product_id="1027" data-product_sku=""
-            aria-label="Read more about “Mutton Cloth”" rel="nofollow">Shop now</a>
+        <a href="<?php echo esc_url( $product->get_permalink() ); ?>"
+            class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+            <?php
+                $attachment_id = $product->get_image_id();
+                $image_url = wp_get_attachment_image_src($attachment_id, 'woocommerce_thumbnail');
+                if ($image_url) {
+                    echo '<img width="300" height="300" src="' . esc_url($image_url[0]) . '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="' . esc_attr($product->get_name()) . '" decoding="async" loading="lazy">';
+                }
+            ?>
+            <h2 class="woocommerce-loop-product__title"><?php echo esc_html($product->get_name()); ?></h2>
+        </a>
+        <a href="<?php echo esc_url( $product->get_permalink() ); ?>" data-quantity="1"
+            class="button wp-element-button product_type_simple" data-product_id="<?php echo esc_attr($product_id); ?>" data-product_sku="<?php echo esc_attr($product->get_sku()); ?>"
+            aria-label="Read more about &ldquo;<?php echo esc_attr($product->get_name()); ?>&rdquo;" rel="nofollow">Shop now</a>
 </div>
 <?php

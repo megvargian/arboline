@@ -328,10 +328,8 @@ if ( post_password_required() ) {
                                     if ($image_url) {
                                     ?>
                                         <div class="col-1 ps-0 pe-1 pb-1 single-swatch">
-                                            <a href="#<?php echo esc_attr($tint); ?>" class="w-100 h-100">
-                                                <div class="glightbox" data-title="<?php echo esc_attr($tint); ?>">
-                                                    <img width="150" height="150" src="<?php echo esc_url($image_url); ?>" class="w-100 h-auto" alt="<?php echo esc_attr($tint); ?>" />
-                                                </div>
+                                            <a href="<?php echo esc_url($image_url); ?>" class="glightbox-tint" data-glightbox="title: <?php echo esc_attr($tint); ?>">
+                                                <img width="150" height="150" src="<?php echo esc_url($image_url); ?>" class="w-100 h-auto" alt="<?php echo esc_attr($tint); ?>" />
                                             </a>
                                         </div>
                                     <?php
