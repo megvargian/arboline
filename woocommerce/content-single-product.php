@@ -282,7 +282,7 @@ if ( post_password_required() ) {
                     ?>
                         <div class="col-1 ps-0 pe-1 pb-1 single-swatch">
                             <div class="w-100 h-100">
-                                <a href="<?php echo esc_url($image_url); ?>" class="glightbox" data-title="<?php echo esc_attr($tint); ?>">
+                                <a href="#" class="glightbox" data-title="<?php echo esc_attr($tint); ?>">
                                     <img width="150" height="150" src="<?php echo esc_url($image_url); ?>" class="w-100 h-auto" alt="<?php echo esc_attr($tint); ?>" />
                                 </a>
                             </div>
@@ -773,15 +773,6 @@ if ( post_password_required() ) {
                         <?php
                             $custom_fields = get_post_meta( $product->get_id(), '_custom_product_info', true );
                             $has_custom_fields = !empty($custom_fields) && is_array($custom_fields);
-                            // // Debug output for troubleshooting
-                            // echo '<pre style="background:#f8f9fa;border:1px solid #ccc;padding:10px;">';
-                            // echo 'DEBUG _custom_product_info:\n';
-                            // print_r($custom_fields);
-                            // echo '</pre>';
-                            // foreach ($custom_fields as $key => $field) {
-                            //    echo esc_html( $field['label'] );
-                            //    echo esc_html( $field['value'] );
-                            // }
                         ?>
                         <?php if ($has_custom_fields) : ?>
                             <table class="woocommerce-product-attributes shop_attributes">
@@ -857,10 +848,22 @@ if ( post_password_required() ) {
                     'columns'        => 4,
                 ) );
 
-                $related_products = wc_get_related_products( $product->get_id(), $related_products_args['posts_per_page'] );
+                // Get current product categories
+                $product_cats = wp_get_post_terms( $product->get_id(), 'product_cat', array('fields' => 'ids') );
+                $related_query = new WP_Query( array(
+                    'post_type' => 'product',
+                    'posts_per_page' => 4,
+                    'post__not_in' => array( $product->get_id() ),
+                    'tax_query' => array(
+                        array(
+                            'taxonomy' => 'product_cat',
+                            'field'    => 'term_id',
+                            'terms'    => $product_cats,
+                        ),
+                    ),
+                ) );
 
-                if ( ! empty( $related_products ) ) {
-                    // Start custom structure
+                if ( $related_query->have_posts() ) {
                     ?>
         <div class="container">
             <div class="row text-left">
@@ -870,13 +873,10 @@ if ( post_password_required() ) {
         <div class="container">
             <div class="row">
                 <?php
-                    foreach ( $related_products as $related_product_id ) { ?>
+                    while ( $related_query->have_posts() ) {
+                        $related_query->the_post(); ?>
                 <div class="col-md-3 col-12 mb-4">
-                    <?php
-                            $post_object = get_post( $related_product_id );
-                            setup_postdata( $GLOBALS['post'] =& $post_object );
-                            wc_get_template_part( 'content', 'product' );
-                        ?>
+                    <?php wc_get_template_part( 'content', 'product' ); ?>
                 </div>
                 <?php } ?>
             </div>
