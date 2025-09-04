@@ -91,11 +91,11 @@ if ( post_password_required() ) {
                                     <input class="form-control d-none coverage" value="16">
                                     <div class="input-wrap mb-3">
                                         <label class="form-label" for="width">Width <span>(meters)</span></label>
-                                        <input class="form-control width" value="5" type="number" min="0" step="0.01">
+                                        <input class="form-control width" value="5" type="text">
                                     </div>
                                     <div class="input-wrap mb-3">
                                         <label class="form-label" for="length">Length <span>(meters)</span></label>
-                                        <input class="form-control length" value="14" type="number" min="0" step="0.01">
+                                        <input class="form-control length" value="14" type="text">
                                     </div>
                                     <p class="total h4 mb-0"><strong>0 ml</strong></p>
                                     <div class="form-text">(Single Coat depending on substrate)</div>
