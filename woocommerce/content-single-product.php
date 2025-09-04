@@ -279,15 +279,15 @@ if ( post_password_required() ) {
                                     $image_id = get_post_meta($product_id, $field_id, true);
                                     $image_url = $image_id ? wp_get_attachment_url($image_id) : '';
                                     if ($image_url) {
-                    ?>
-                        <div class="col-1 ps-0 pe-1 pb-1 single-swatch">
-                            <a href="#<?php echo esc_attr($tint); ?>" class="w-100 h-100 fancybox" data-fancybox="<?php echo esc_attr($tint); ?>">
-                                <div class="glightbox" data-title="<?php echo esc_attr($tint); ?>">
-                                    <img width="150" height="150" src="<?php echo esc_url($image_url); ?>" class="w-100 h-auto" alt="<?php echo esc_attr($tint); ?>" />
-                                </div>
-                            </a>
-                        </div>
-                    <?php
+                                    ?>
+                                        <div class="col-1 ps-0 pe-1 pb-1 single-swatch">
+                                            <a href="#<?php echo esc_attr($tint); ?>" class="w-100 h-100 fancybox" data-fancybox="<?php echo esc_attr($tint); ?>">
+                                                <div class="glightbox" data-title="<?php echo esc_attr($tint); ?>">
+                                                    <img width="150" height="150" src="<?php echo esc_url($image_url); ?>" class="w-100 h-auto" alt="<?php echo esc_attr($tint); ?>" />
+                                                </div>
+                                            </a>
+                                        </div>
+                                    <?php
                                     }
                                 }
                             }
