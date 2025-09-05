@@ -9,10 +9,10 @@
     width: 100% !important;
     margin: 0 !important;
   }
-  .button.plus {
+  button.plus {
     margin-right: 0;
   }
-  .button.minus, button.plus {
+  button.minus, button.plus {
     width: 40%;
   }
 }
