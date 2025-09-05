@@ -20,6 +20,11 @@
 	button.minus, button.plus {
 		width: 40%;
 	}
+	 /* Variation add to cart wrapper */
+	.woocommerce-variation-add-to-cart {
+		display: block !important;
+		width: 100%;
+	}
 }
 @media screen and (max-width: 991px) {
 }

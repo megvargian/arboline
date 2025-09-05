@@ -71,7 +71,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
                 $attachment_id = $product->get_image_id();
                 $image_url = wp_get_attachment_image_src($attachment_id, 'woocommerce_thumbnail');
                 if ($image_url) {
-                    echo '<img width="300" height="300" src="' . esc_url($image_url[0]) . '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="' . esc_attr($product->get_name()) . '" decoding="async" loading="lazy">';
+                    echo '<img width="300" height="300" src="' . esc_url($image_url[0]) . '" class="w-100 attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="' . esc_attr($product->get_name()) . '" decoding="async" loading="lazy">';
                 }
             ?>
             <h2 class="woocommerce-loop-product__title"><?php echo esc_html($product->get_name()); ?></h2>
