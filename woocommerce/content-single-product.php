@@ -444,7 +444,7 @@ if ( post_password_required() ) {
                 }
 
                 /* Price styling in variation area */
-                .single_variation .price {
+                .price {
                     font-size: 2.25rem;
                     font-weight: 500;
                     color: #000;
