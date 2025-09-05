@@ -166,8 +166,8 @@ if ( post_password_required() ) {
                         </div>
 
                         <!-- Quantity and Add to Cart -->
-                        <div class="woocommerce-variation-add-to-cart variations_button d-md-flex d-block align-items-center">
-                            <div>
+                        <div class="woocommerce-variation-add-to-cart variations_button d-md-flex justify-content-md-between justify-content-center d-block align-items-center">
+                            <div class="mb-md-0 mb-3">
                                 <button type="button" class="minus btn btn-outline-secondary">-</button>
                                 <div class="quantity" style="margin: 0 !important; width: fit-content !important;">
                                     <input type="number" class="qty form-control text-center" name="quantity" value="1"
