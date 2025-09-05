@@ -84,7 +84,7 @@ if ( post_password_required() ) {
                     ?>
                         <div id="calculator" class="w-100 mb-2">
                             <p id="show-cal" class="w-100 mb-0">
-                                <a class="d-flex justify-content-between w-100 py-2 collapsed" data-bs-toggle="collapse" href="#collapseCalc" role="button" aria-expanded="false" aria-controls="collapseCalc">
+                                <a class="d-flex justify-content-between align-items-center w-100 py-2 collapsed" data-bs-toggle="collapse" href="#collapseCalc" role="button" aria-expanded="false" aria-controls="collapseCalc">
                                 <span>How much do I need?</span> <i class="bi bi-question-circle"></i>
                                 </a>
                             </p>
