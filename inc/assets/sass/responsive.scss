@@ -14,6 +14,12 @@
 		width: 100% !important;
 		margin: 0 !important;
 	}
+	.button.plus{
+		margin-right: 0;
+	}
+	.button.minus, button.plus {
+		width: 40%;
+	}
 }
 @media screen and (max-width: 991px) {
 }

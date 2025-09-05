@@ -9,6 +9,12 @@
     width: 100% !important;
     margin: 0 !important;
   }
+  .button.plus {
+    margin-right: 0;
+  }
+  .button.minus, button.plus {
+    width: 40%;
+  }
 }
 @media (min-width: 1390px) {
   /* change this, by default 1140px */
