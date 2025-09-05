@@ -7,6 +7,7 @@
   }
   .btn-add-to-basket {
     width: 100% !important;
+    margin: 0 !important;
   }
 }
 @media (min-width: 1390px) {
