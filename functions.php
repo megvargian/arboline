@@ -1116,7 +1116,6 @@ function arboline_woocommerce_custom_styles() {
 
         /* Variation add to cart wrapper */
         .woocommerce-variation-add-to-cart {
-            display: block !important;
             width: 100%;
         }
 
