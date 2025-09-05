@@ -3,6 +3,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
+  }
+  .btn-add-to-basket {
+    width: 100% !important;
   }
 }
 @media (min-width: 1390px) {

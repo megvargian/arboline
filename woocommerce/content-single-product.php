@@ -176,8 +176,8 @@ if ( post_password_required() ) {
                                 <button type="button" class="plus btn btn-outline-secondary">+</button>
                             </div>
                             <button type="submit"
-                                class="single_add_to_cart_button btn btn-dark ms-3 mt-0 flex-grow-1 disabled" disabled
-                                style="background-color: #6c757d; cursor: not-allowed; width: fit-content !important;">
+                                class="single_add_to_cart_button btn btn-dark ms-3 mt-0 flex-grow-1 disabled btn-add-to-basket" disabled
+                                style="background-color: #6c757d; cursor: not-allowed;">
                                 ADD TO BASKET
                             </button>
 
