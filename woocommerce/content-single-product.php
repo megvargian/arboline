@@ -79,8 +79,17 @@ if ( post_password_required() ) {
                         <small class="woocommerce-price-suffix">INC. VAT</small>
                     </div>
                     <?php
-                    $specific_cat_ids = array(21, 22, 23, 24); // only for walls and ceillers
-                    if ( has_term($specific_cat_ids, 'product_cat', $product->get_id()) ) :
+                    // IDs of categories and products allowed to show the calculator
+                    $allowed_cat_ids = array(21, 22, 23, 24); // category IDs
+                    $allowed_product_ids = array(728, 743, 758, 773, 788); // product IDs (replace with your actual IDs)
+                    $show_calculator = false;
+                    if ( has_term($allowed_cat_ids, 'product_cat', $product->get_id()) ) {
+                        $show_calculator = true;
+                    }
+                    if ( in_array($product->get_id(), $allowed_product_ids) ) {
+                        $show_calculator = true;
+                    }
+                    if ( $show_calculator ) :
                     ?>
                         <div id="calculator" class="w-100 mb-2">
                             <p id="show-cal" class="w-100 mb-0">
