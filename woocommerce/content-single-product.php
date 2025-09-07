@@ -81,7 +81,7 @@ if ( post_password_required() ) {
                     <?php
                     // IDs of categories and products allowed to show the calculator
                     $allowed_cat_ids = array(21, 22, 23, 24); // category IDs
-                    $allowed_product_ids = array(728, 743, 758, 773, 788, 804, 819); // product IDs (replace with your actual IDs)
+                    $allowed_product_ids = array(728, 743, 758, 773, 788, 804, 819, 971, 986, 1001, 1016); // product IDs (replace with your actual IDs)
                     $show_calculator = false;
                     if ( has_term($allowed_cat_ids, 'product_cat', $product->get_id()) ) {
                         $show_calculator = true;
