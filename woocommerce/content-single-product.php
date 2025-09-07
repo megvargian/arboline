@@ -333,7 +333,7 @@ if ( post_password_required() ) {
                                             <a href="<?php echo esc_url($image_url); ?>"
                                             class="glightbox-tint"
                                             data-glightbox="title: <?php echo esc_attr($tint); ?>;">
-                                                <img width="150" height="150"
+                                                <img
                                                     src="<?php echo esc_url($image_url); ?>"
                                                     class="w-100 h-auto"
                                                     alt="<?php echo esc_attr($tint); ?>" />
