@@ -420,11 +420,11 @@ if ( post_password_required() ) {
 
                 .variation-dropdown {
                     width: 100%;
-                    padding: 15px 20px;
+                    padding: 10px 12px;
                     border: 1px solid #000;
                     border-radius: 0;
                     background: white;
-                    font-size: 16px;
+                    font-size: 20px;
                     color: #333;
                     appearance: none;
                     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
