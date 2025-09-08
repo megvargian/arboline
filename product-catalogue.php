@@ -55,7 +55,7 @@ get_header();
                         // Featured image URL or default
                         $image_url = get_the_post_thumbnail_url( $product->get_id(), 'medium' );
                         if ( ! $image_url ) {
-                            $image_url = get_template_directory_uri() . '/assets/images/default.jpg';
+                            $image_url = 'https://arboline.com/wp-content/uploads/woocommerce-placeholder.png';
                             // 👆 Change this path to your own default image inside your theme
                         }
                         ?>
