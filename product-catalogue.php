@@ -98,43 +98,17 @@ get_header();
 }
 
 .custom-product-item {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 15px;
   text-align: center;
-  background: #fff;
 }
 
 .custom-product-item img {
   max-width: 100%;
   height: auto;
-  border-radius: 5px;
-}
-
-.custom-product-title {
-  font-size: 16px;
-  font-weight: 600;
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 .custom-product-link {
   text-decoration: none;
   color: inherit;
-}
-
-.wp-block-button__link {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 8px 15px;
-  background: #0073aa;
-  color: #fff !important;
-  border-radius: 5px;
-  text-decoration: none;
-}
-
-.wp-block-button__link:hover {
-  background: #005177;
 }
 
 /* Responsive grid */
