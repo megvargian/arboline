@@ -5,150 +5,64 @@
 get_header();
 ?>
 <div class="container">
+    <h1 class="has-text-align-center underline text-uppercase"><span style="text-decoration: underline;">Catalogue</span></h1>
     <div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
-
-
-
-    <div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
-
-
-
-    <h1 class="has-text-align-center underline text-uppercase"><span
-            style="text-decoration: underline;">Catalogue</span></h1>
-
-
-
-    <div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
-
-
-
-    <p class="border-bottom pb-3 mb-4 fs-3"><strong>FIDDES</strong> <strong>FLOOR / WORKTOP FINISHES</strong></p>
-
-
-    <div data-block-name="woocommerce/product-category" data-columns="6" data-rows="6"
-        data-content-visibility="{&quot;image&quot;:true,&quot;title&quot;:true,&quot;price&quot;:false,&quot;rating&quot;:true,&quot;button&quot;:true}"
-        data-categories="[28]"
-        data-stock-status="[&quot;&quot;,&quot;instock&quot;,&quot;outofstock&quot;,&quot;onbackorder&quot;]"
-        data-orderby="menu_order"
-        class="wc-block-grid wp-block-product-category wc-block-product-category has-6-columns has-multiple-rows">
-        <ul class="wc-block-grid__products">
-            <li class="wc-block-grid__product">
-                <a href="https://fiddes.co.uk/product/fiddes-ultra-raw-hard-wax-oil/"
-                    class="wc-block-grid__product-link">
-                    <div class="wc-block-grid__product-image"><img width="300" height="300"
-                            src="https://fiddes.co.uk/app/uploads/2024/01/hard-wx-oil-ultra-1-300x300.png"
-                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                            alt="FIDDES Ultra Raw Hard Wax Oil" decoding="async" loading="lazy"
-                            srcset="https://fiddes.co.uk/app/uploads/2024/01/hard-wx-oil-ultra-1-300x300.png 300w, https://fiddes.co.uk/app/uploads/2024/01/hard-wx-oil-ultra-1-200x200.png 200w"
-                            sizes="(max-width: 300px) 100vw, 300px"></div>
-                    <div class="wc-block-grid__product-title">FIDDES Ultra Raw <br class="d-none d-md-block">Hard Wax
-                        Oil</div>
-                </a>
-
-
-
-                <div class="wp-block-button wc-block-grid__product-add-to-cart"><a
-                        href="https://fiddes.co.uk/product/fiddes-ultra-raw-hard-wax-oil/"
-                        aria-label="Select options for “FIDDES Ultra Raw Hard Wax Oil”" data-quantity="1"
-                        data-product_id="30787" data-product_sku="" rel="nofollow"
-                        class="wp-block-button__link wp-element-button add_to_cart_button">Shop now</a></div>
-            </li>
-            <li class="wc-block-grid__product">
-                <a href="https://fiddes.co.uk/product/hard-wax-oil/" class="wc-block-grid__product-link">
-                    <div class="wc-block-grid__product-image"><img width="300" height="300"
-                            src="https://fiddes.co.uk/app/uploads/2024/01/hwo-new-raw-badge-300x300.jpg"
-                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                            alt="FIDDES Hard Wax Oil" decoding="async" loading="lazy"
-                            srcset="https://fiddes.co.uk/app/uploads/2024/01/hwo-new-raw-badge-300x300.jpg 300w, https://fiddes.co.uk/app/uploads/2024/01/hwo-new-raw-badge-600x600.jpg 600w, https://fiddes.co.uk/app/uploads/2024/01/hwo-new-raw-badge-200x200.jpg 200w, https://fiddes.co.uk/app/uploads/2024/01/hwo-new-raw-badge.jpg 763w"
-                            sizes="(max-width: 300px) 100vw, 300px"></div>
-                    <div class="wc-block-grid__product-title">FIDDES Hard <br class="d-none d-md-block d-lg-none">Wax
-                        Oil</div>
-                </a>
-
-
-
-                <div class="wp-block-button wc-block-grid__product-add-to-cart"><a
-                        href="https://fiddes.co.uk/product/hard-wax-oil/"
-                        aria-label="Select options for “FIDDES Hard Wax Oil”" data-quantity="1" data-product_id="1045"
-                        data-product_sku="" rel="nofollow"
-                        class="wp-block-button__link wp-element-button add_to_cart_button">Shop now</a></div>
-            </li>
-            <li class="wc-block-grid__product">
-                <a href="https://fiddes.co.uk/product/barrier-seal/" class="wc-block-grid__product-link">
-                    <div class="wc-block-grid__product-image"><img width="300" height="300"
-                            src="https://fiddes.co.uk/app/uploads/2022/09/barrier-seal-300x300.jpg"
-                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                            alt="FIDDES Barrier Seal" decoding="async" loading="lazy"
-                            srcset="https://fiddes.co.uk/app/uploads/2022/09/barrier-seal-300x300.jpg 300w, https://fiddes.co.uk/app/uploads/2022/09/barrier-seal-200x200.jpg 200w, https://fiddes.co.uk/app/uploads/2022/09/barrier-seal-600x600.jpg 600w, https://fiddes.co.uk/app/uploads/2022/09/barrier-seal-150x150.jpg 150w, https://fiddes.co.uk/app/uploads/2022/09/barrier-seal-32x32.jpg 32w, https://fiddes.co.uk/app/uploads/2022/09/barrier-seal.jpg 763w"
-                            sizes="(max-width: 300px) 100vw, 300px"></div>
-                    <div class="wc-block-grid__product-title">FIDDES Barrier Seal</div>
-                </a>
-
-
-
-                <div class="wp-block-button wc-block-grid__product-add-to-cart"><a
-                        href="https://fiddes.co.uk/product/barrier-seal/"
-                        aria-label="Add “FIDDES Barrier Seal” to your cart" data-quantity="1" data-product_id="1046"
-                        data-product_sku="" rel="nofollow"
-                        class="wp-block-button__link wp-element-button add_to_cart_button">Shop now</a></div>
-            </li>
-            <li class="wc-block-grid__product">
-                <a href="https://fiddes.co.uk/product/floor-reviving-kit/" class="wc-block-grid__product-link">
-                    <div class="wc-block-grid__product-image"><img width="300" height="300"
-                            src="https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Floor-Reviver-Kit-Box-scaled-300x300.jpg"
-                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Floor Reviving Kit"
-                            decoding="async" loading="lazy"
-                            srcset="https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Floor-Reviver-Kit-Box-300x300.jpg 300w, https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Floor-Reviver-Kit-Box-scaled-200x200.jpg 200w, https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Floor-Reviver-Kit-Box-scaled-600x600.jpg 600w, https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Floor-Reviver-Kit-Box-1024x1024.jpg 1024w, https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Floor-Reviver-Kit-Box-150x150.jpg 150w, https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Floor-Reviver-Kit-Box-768x768.jpg 768w, https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Floor-Reviver-Kit-Box-1536x1536.jpg 1536w, https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Floor-Reviver-Kit-Box-1320x1320.jpg 1320w, https://fiddes.co.uk/app/uploads/2022/09/Fiddes-Floor-Reviver-Kit-Box-32x32.jpg 32w"
-                            sizes="(max-width: 300px) 100vw, 300px"></div>
-                    <div class="wc-block-grid__product-title">Floor Reviving Kit</div>
-                </a>
-
-
-
-                <div class="wp-block-button wc-block-grid__product-add-to-cart"><a
-                        href="https://fiddes.co.uk/product/floor-reviving-kit/"
-                        aria-label="Add “Floor Reviving Kit” to your cart" data-quantity="1" data-product_id="1047"
-                        data-product_sku="" rel="nofollow"
-                        class="wp-block-button__link wp-element-button add_to_cart_button">Shop now</a></div>
-            </li>
-            <li class="wc-block-grid__product">
-                <a href="https://fiddes.co.uk/product/floor-surface-cleaner/" class="wc-block-grid__product-link">
-                    <div class="wc-block-grid__product-image"><img width="300" height="300"
-                            src="https://fiddes.co.uk/app/uploads/2022/09/floor-cleaner-300x300.jpg"
-                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                            alt="FIDDES FLOOR CLEANER" decoding="async" loading="lazy"
-                            srcset="https://fiddes.co.uk/app/uploads/2022/09/floor-cleaner-300x300.jpg 300w, https://fiddes.co.uk/app/uploads/2022/09/floor-cleaner-200x200.jpg 200w, https://fiddes.co.uk/app/uploads/2022/09/floor-cleaner-600x600.jpg 600w, https://fiddes.co.uk/app/uploads/2022/09/floor-cleaner-150x150.jpg 150w, https://fiddes.co.uk/app/uploads/2022/09/floor-cleaner-32x32.jpg 32w, https://fiddes.co.uk/app/uploads/2022/09/floor-cleaner.jpg 763w"
-                            sizes="(max-width: 300px) 100vw, 300px"></div>
-                    <div class="wc-block-grid__product-title">FIDDES FLOOR CLEANER</div>
-                </a>
-
-
-
-                <div class="wp-block-button wc-block-grid__product-add-to-cart"><a
-                        href="https://fiddes.co.uk/product/floor-surface-cleaner/"
-                        aria-label="Add “FIDDES FLOOR CLEANER” to your cart" data-quantity="1" data-product_id="1048"
-                        data-product_sku="" rel="nofollow"
-                        class="wp-block-button__link wp-element-button add_to_cart_button">Shop now</a></div>
-            </li>
-            <li class="wc-block-grid__product">
-                <a href="https://fiddes.co.uk/product/wood-surface-cleaner/" class="wc-block-grid__product-link">
-                    <div class="wc-block-grid__product-image"><img width="300" height="300"
-                            src="https://fiddes.co.uk/app/uploads/2022/09/surface-cleaner-300x300.jpg"
-                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                            alt="FIDDES Wood Surface Cleaner" decoding="async" loading="lazy"
-                            srcset="https://fiddes.co.uk/app/uploads/2022/09/surface-cleaner-300x300.jpg 300w, https://fiddes.co.uk/app/uploads/2022/09/surface-cleaner-200x200.jpg 200w, https://fiddes.co.uk/app/uploads/2022/09/surface-cleaner-600x600.jpg 600w, https://fiddes.co.uk/app/uploads/2022/09/surface-cleaner-150x150.jpg 150w, https://fiddes.co.uk/app/uploads/2022/09/surface-cleaner-32x32.jpg 32w, https://fiddes.co.uk/app/uploads/2022/09/surface-cleaner.jpg 763w"
-                            sizes="(max-width: 300px) 100vw, 300px"></div>
-                    <div class="wc-block-grid__product-title">FIDDES Wood Surface Cleaner</div>
-                </a>
-
-
-
-                <div class="wp-block-button wc-block-grid__product-add-to-cart"><a
-                        href="https://fiddes.co.uk/product/wood-surface-cleaner/"
-                        aria-label="Read more about “FIDDES Wood Surface Cleaner”" data-quantity="1"
-                        data-product_id="1049" data-product_sku="" rel="nofollow"
-                        class="wp-block-button__link wp-element-button add_to_cart_button">Shop now</a></div>
-            </li>
+    <?php
+    // Get all product categories
+    $categories = get_terms(array(
+        'taxonomy' => 'product_cat',
+        'hide_empty' => true,
+    ));
+    foreach ($categories as $category) {
+        // Query products in this category
+        $args = array(
+            'post_type' => 'product',
+            'posts_per_page' => -1,
+            'post_status' => 'publish',
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'product_cat',
+                    'field'    => 'term_id',
+                    'terms'    => $category->term_id,
+                ),
+            ),
+        );
+        $loop = new WP_Query($args);
+        if ($loop->have_posts()) {
+            echo '<h2 class="product-category-title mt-5 mb-3">' . esc_html($category->name) . '</h2>';
+            echo '<ul class="product-catalogue-list row list-unstyled">';
+            while ($loop->have_posts()) : $loop->the_post();
+                global $product;
+                $product_id = $product->get_id();
+                $image_id = $product->get_image_id();
+                $image_url = $image_id ? wp_get_attachment_image_url($image_id, 'woocommerce_thumbnail') : wc_placeholder_img_src();
+    ?>
+        <li class="col-12 col-md-6 mb-4 d-flex align-items-stretch">
+            <a href="<?php the_permalink(); ?>" class="wc-block-grid__product-link w-100">
+                <div class="wc-block-grid__product-image text-center mb-2">
+                    <img width="300" height="300" src="<?php echo esc_url($image_url); ?>" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="<?php echo esc_attr($product->get_name()); ?>" />
+                </div>
+                <div class="wc-block-grid__product-title text-center mb-1"><?php echo esc_html($product->get_name()); ?></div>
+            </a>
+            <div class="wp-block-button wc-block-grid__product-add-to-cart w-100 text-center mt-2">
+                <a href="<?php the_permalink(); ?>" class="wp-block-button__link wp-element-button add_to_cart_button">Shop now</a>
+            </div>
+        </li>
+    <?php endwhile; wp_reset_postdata();
+        echo '</ul>';
+        }
+    }
+    ?>
+    <style>
+    .product-catalogue-list { display: flex; flex-wrap: wrap; margin-left: -15px; margin-right: -15px; }
+    .product-catalogue-list > li { padding-left: 15px; padding-right: 15px; }
+    @media (min-width: 768px) {
+        .product-catalogue-list > li { width: 50%; }
+    }
+    @media (max-width: 767.98px) {
+        .product-catalogue-list > li { width: 100%; }
+    }
+    </style>
             <li class="wc-block-grid__product">
                 <a href="https://fiddes.co.uk/product/clear-glaze/" class="wc-block-grid__product-link">
                     <div class="wc-block-grid__product-image"><img width="300" height="300"
