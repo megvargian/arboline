@@ -111,11 +111,16 @@ get_header();
   color: inherit;
 }
 .custom-product-title {
-    flex: 1 0 16.6666666667%;
-    max-width: 16.6666666667%;
+    min-height: 60px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+.wc-block-grid__product-add-to-cart{
+    margin-top: auto;
 }
 .wp-block-button__link{
     align-items: center;
