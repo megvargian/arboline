@@ -4,7 +4,7 @@
  */
 get_header();
 ?>
-<div class="container">
+<div class="container pt-5">
     <div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
     <div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
     <h1 class="has-text-align-center underline text-uppercase">
@@ -109,6 +109,24 @@ get_header();
 .custom-product-link {
   text-decoration: none;
   color: inherit;
+}
+.custom-product-title {
+    flex: 1 0 16.6666666667%;
+    max-width: 16.6666666667%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.wp-block-button__link{
+    align-items: center;
+    background: #000;
+    border-radius: 0;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 1.125rem;
+    justify-content: center;
+    min-height: auto;
+    color: #fff;
 }
 
 /* Responsive grid */
