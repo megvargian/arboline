@@ -131,7 +131,11 @@ get_header();
     font-size: 1.125rem;
     justify-content: center;
     min-height: auto;
-    color: #fff;
+    color: #fff !important;
+}
+.wp-element-button{
+    padding: 5px 20px !important;
+    color: #fff !important;
 }
 
 /* Responsive grid */
