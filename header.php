@@ -46,12 +46,64 @@ $sub_menu = $header['sub_menus'];
                                     <input type="search" value="" name="s" id="yith-s" class="yith-s"
                                         placeholder="Search for products" data-loader-icon="" data-min-chars="3"
                                         autocomplete="off">
+                                    <div id="search-dropdown" class="autocomplete-suggestions bg-white border rounded shadow-sm" style="position: absolute; display: none; max-height: 300px; overflow-y: auto; width: 100%; z-index: 9999;"></div>
                                     <input type="submit" id="yith-searchsubmit" value="Search">
                                     <input type="hidden" name="post_type" value="product">
                                 </div>
                             </form>
                             <div class="autocomplete-suggestions"
-                                style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div>
+                                style="display: none;"></div>
+<script>
+jQuery(document).ready(function($) {
+    var $input = $('#yith-s');
+    var $dropdown = $('#search-dropdown');
+    var timer = null;
+    function doSearch(query) {
+        if (query.length < 2) {
+            $dropdown.hide();
+            return;
+        }
+        $.ajax({
+            url: '/wp-admin/admin-ajax.php',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                action: 'arboline_search_suggestions',
+                q: query
+            },
+            success: function(res) {
+                if (res && res.length) {
+                    var html = '';
+                    res.forEach(function(item) {
+                        html += '<div class="autocomplete-suggestion px-3 py-2 border-bottom">'
+                            + '<a href="' + item.url + '" class="d-block text-dark">' + item.label + '</a>'
+                            + '</div>';
+                    });
+                    $dropdown.html(html).show();
+                } else {
+                    $dropdown.html('<div class="px-3 py-2 text-muted">No results found</div>').show();
+                }
+            },
+            error: function() {
+                $dropdown.hide();
+            }
+        });
+    }
+    $input.on('keyup keydown', function(e) {
+        clearTimeout(timer);
+        var val = $(this).val();
+        timer = setTimeout(function() {
+            doSearch(val);
+        }, 200);
+    });
+    // Hide dropdown on click outside
+    $(document).on('click', function(e) {
+        if (!$(e.target).closest('#yith-s, #search-dropdown').length) {
+            $dropdown.hide();
+        }
+    });
+});
+</script>
                         </div>
                     </div>
                 </div>
