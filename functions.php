@@ -1826,3 +1826,51 @@ function enqueue_glightbox_assets() {
     );
 }
 add_action('wp_enqueue_scripts', 'enqueue_glightbox_assets');
+
+// AJAX search for products and categories (for header search popup)
+add_action('wp_ajax_arboline_search_suggestions', 'arboline_search_suggestions');
+add_action('wp_ajax_nopriv_arboline_search_suggestions', 'arboline_search_suggestions');
+function arboline_search_suggestions() {
+    $results = array();
+    $q = isset($_POST['q']) ? sanitize_text_field($_POST['q']) : '';
+    if (strlen($q) < 2) {
+        wp_send_json($results);
+    }
+    // Search products
+    $product_args = array(
+        'post_type' => 'product',
+        'post_status' => 'publish',
+        'posts_per_page' => 10,
+        's' => $q,
+    );
+    $product_query = new WP_Query($product_args);
+    if ($product_query->have_posts()) {
+        while ($product_query->have_posts()) {
+            $product_query->the_post();
+            $results[] = array(
+                'label' => get_the_title(),
+                'url' => get_permalink(),
+                'type' => 'product',
+            );
+        }
+        wp_reset_postdata();
+    }
+    // Search categories
+    $cat_args = array(
+        'taxonomy' => 'product_cat',
+        'hide_empty' => false,
+        'name__like' => $q,
+        'number' => 10,
+    );
+    $categories = get_terms($cat_args);
+    if (!is_wp_error($categories)) {
+        foreach ($categories as $cat) {
+            $results[] = array(
+                'label' => $cat->name . ' (Category)',
+                'url' => get_term_link($cat),
+                'type' => 'category',
+            );
+        }
+    }
+    wp_send_json($results);
+}
