@@ -40,15 +40,15 @@ $sub_menu = $header['sub_menus'];
                     </div>
                     <div class="modal-body">
                         <div class="yith-ajaxsearchform-container">
-                            <form role="search" method="get" id="yith-ajaxsearchform" action="/">
+                            <form role="search" method="get" id="yith-ajaxsearchform">
                                 <div>
                                     <label class="screen-reader-text" for="yith-s">Search for:</label>
                                     <input type="search" value="" name="s" id="yith-s" class="yith-s"
                                         placeholder="Search for products" data-loader-icon="" data-min-chars="3"
                                         autocomplete="off">
                                     <div id="search-dropdown" class="autocomplete-suggestions bg-white border rounded shadow-sm" style="position: absolute; display: none; max-height: 300px; overflow-y: auto; width: 100%; z-index: 9999; left: 0;"></div>
-                                    <input type="submit" id="yith-searchsubmit" value="Search">
-                                    <input type="hidden" name="post_type" value="product">
+                                    <!-- <input type="submit" id="yith-searchsubmit" value="Search">
+                                    <input type="hidden" name="post_type" value="product"> -->
                                 </div>
                             </form>
                             <div class="autocomplete-suggestions"
