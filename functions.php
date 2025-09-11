@@ -1874,3 +1874,25 @@ function arboline_search_suggestions() {
     }
     wp_send_json($results);
 }
+
+// // Add custom field for calculator formula in product edit page
+// add_action('add_meta_boxes', function() {
+//     add_meta_box(
+//         'custom_calculator_formula',
+//         'Custom Calculator Formula',
+//         function($post) {
+//             $value = get_post_meta($post->ID, '_custom_calculator_formula', true);
+//             echo '<label for="custom_calculator_formula">Enter a PHP formula using $width, $length, $coverage (e.g., ($width * $length * 1000) / $coverage):</label>';
+//             echo '<input type="text" id="custom_calculator_formula" name="custom_calculator_formula" value="' . esc_attr($value) . '" style="width:100%">';
+//         },
+//         'product',
+//         'side',
+//         'default'
+//     );
+// });
+
+// add_action('save_post_product', function($post_id) {
+//     if (isset($_POST['custom_calculator_formula'])) {
+//         update_post_meta($post_id, '_custom_calculator_formula', sanitize_text_field($_POST['custom_calculator_formula']));
+//     }
+// });
