@@ -1896,3 +1896,36 @@ function arboline_search_suggestions() {
 //         update_post_meta($post_id, '_custom_calculator_formula', sanitize_text_field($_POST['custom_calculator_formula']));
 //     }
 // });
+
+// Add custom field for thickness in product edit page (for calculator)
+add_action('add_meta_boxes', function() {
+    add_meta_box(
+        'product_thickness',
+        'Calculator Thickness',
+        function($post) {
+            // Only show for specific products or categories
+            $allowed_product_ids = array(728, 743, 758, 773, 788, 804, 819, 971, 986, 1001, 1016, 1225, 1240, 1255); // update as needed
+            $allowed_cat_ids = array(21, 22, 23, 24, 35, 34, 27); // update as needed
+            $show = false;
+            if (in_array($post->ID, $allowed_product_ids)) {
+                $show = true;
+            }
+            if (has_term($allowed_cat_ids, 'product_cat', $post->ID)) {
+                $show = true;
+            }
+            if (!$show) return;
+            $value = get_post_meta($post->ID, '_product_thickness', true);
+            echo '<label for="product_thickness">Thickness (mm):</label>';
+            echo '<input type="number" id="product_thickness" name="product_thickness" value="' . esc_attr($value) . '" min="0" step="0.01" style="width:100%">';
+        },
+        'product',
+        'side',
+        'default'
+    );
+});
+
+add_action('save_post_product', function($post_id) {
+    if (isset($_POST['product_thickness'])) {
+        update_post_meta($post_id, '_product_thickness', floatval($_POST['product_thickness']));
+    }
+});

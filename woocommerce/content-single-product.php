@@ -100,7 +100,8 @@ if ( post_password_required() ) {
                             <div class="collapse" id="collapseCalc" style="">
                                 <div class="card card-body">
                                     <form class="form w-100" id="ml-calc-form">
-                                        <input class="form-control d-none coverage" value="16">
+                                        <?php $thickness = get_post_meta($product->get_id(), '_product_thickness', true);?>
+                                        <input class="form-control d-none thickness" value="<?php echo esc_attr($thickness); ?>">
                                         <div class="input-wrap mb-3">
                                             <label class="form-label" for="width">Width <span>(meters)</span></label>
                                             <input id="width" class="form-control width" style="border: 1px solid #000;" value="5" type="number" min="0" step="0.01">
@@ -118,9 +119,9 @@ if ( post_password_required() ) {
                                             var form = document.getElementById('ml-calc-form');
                                             var width = parseFloat(form.querySelector('.width').value) || 0;
                                             var length = parseFloat(form.querySelector('.length').value) || 0;
-                                            var coverage = parseFloat(form.querySelector('.coverage').value) || 1;
+                                            var thickness = parseFloat(form.querySelector('.thickness').value) || 1;
                                             var area = width * length;
-                                            var mlNeeded = area > 0 && coverage > 0 ? Math.ceil((area * 1000) / coverage) : 0;
+                                            var mlNeeded = area > 0 && thickness > 0 ? Math.ceil(area * thickness) : 0;
                                             var totalEl = form.querySelector('.total');
                                             if (totalEl) {
                                                 totalEl.textContent = mlNeeded + ' ml';
