@@ -101,7 +101,7 @@ if ( post_password_required() ) {
                                 <div class="card card-body">
                                     <form class="form w-100" id="ml-calc-form">
                                         <?php $thickness = get_post_meta($product->get_id(), '_product_thickness', true);?>
-                                        <input class="form-control d-none thickness" value="<?php echo esc_attr($thickness) ? esc_attr($thickness) : 0.001; ?>">
+                                        <input id="thickness" class="form-control d-none thickness" value="<?php echo esc_attr($thickness) ? esc_attr($thickness) : '0.001'; ?>">
                                         <div class="input-wrap mb-3">
                                             <label class="form-label" for="width">Width <span>(meters)</span></label>
                                             <input id="width" class="form-control width" style="border: 1px solid #000;" value="5" type="number" min="0" step="0.01">
