@@ -1916,7 +1916,7 @@ add_action('add_meta_boxes', function() {
             if (!$show) return;
             $value = get_post_meta($post->ID, '_product_thickness', true);
             echo '<label for="product_thickness">Thickness (mm):</label>';
-            echo '<input type="number" id="product_thickness" name="product_thickness" value="' . esc_attr($value) . '" min="0" step="0.01" style="width:100%">';
+            echo '<input type="number" id="product_thickness" name="product_thickness" value="' . esc_attr($value) . '" min="0" step="0.001" style="width:100%">';
         },
         'product',
         'side',
