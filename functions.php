@@ -1904,8 +1904,8 @@ add_action('add_meta_boxes', function() {
         'Calculator Thickness',
         function($post) {
             // Only show for specific products or categories
-            $allowed_product_ids = array(728, 743, 758, 773, 788, 804, 819, 971, 986, 1001, 1016, 1225, 1240, 1255); // update as needed
-            $allowed_cat_ids = array(21, 22, 23, 24, 35, 34, 27); // update as needed
+            $allowed_cat_ids = array(21, 22, 23, 24, 35, 34, 27, 41, 39); // category IDs
+            $allowed_product_ids = array(728, 743, 758, 773, 788, 804, 819, 971, 986, 1001, 1016, 1225, 1240, 1255); // product IDs (replace with your actual IDs)
             $show = false;
             if (in_array($post->ID, $allowed_product_ids)) {
                 $show = true;
