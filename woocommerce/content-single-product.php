@@ -91,6 +91,10 @@ if ( post_password_required() ) {
                     }
                     if ( $show_calculator ) :
                     ?>
+                        <?php
+                        $formula_type = get_post_meta($product->get_id(), '_product_formula_type', true);
+                        $density = get_post_meta($product->get_id(), '_product_density', true);
+                        ?>
                         <div id="calculator" class="w-100 mb-2">
                             <p id="show-cal" class="w-100 mb-0">
                                 <a class="d-flex justify-content-between align-items-center w-100 py-2 collapsed" data-bs-toggle="collapse" href="#collapseCalc" role="button" aria-expanded="false" aria-controls="collapseCalc">
@@ -99,41 +103,85 @@ if ( post_password_required() ) {
                             </p>
                             <div class="collapse" id="collapseCalc" style="">
                                 <div class="card card-body">
-                                    <form class="form w-100" id="ml-calc-form">
-                                        <?php $thickness = get_post_meta($product->get_id(), '_product_thickness', true);?>
-                                        <input id="thickness" class="form-control d-none thickness" value="<?php echo esc_attr($thickness) ? esc_attr($thickness) : '0.001'; ?>">
-                                        <div class="input-wrap mb-3">
-                                            <label class="form-label" for="width">Width <span>(meters)</span></label>
-                                            <input id="width" class="form-control width" style="border: 1px solid #000;" value="5" type="number" min="0" step="0.01">
-                                        </div>
-                                        <div class="input-wrap mb-3">
-                                            <label class="form-label" for="length">Length <span>(meters)</span></label>
-                                            <input id="length" class="form-control length" style="border: 1px solid #000;" value="14" type="number" min="0" step="0.01">
-                                        </div>
-                                        <p class="total h4 mb-0">0 ml</p>
-                                        <div class="form-text">(Single Coat depending on substrate)</div>
-                                    </form>
-                                    <script>
-                                    document.addEventListener('DOMContentLoaded', function() {
-                                        function updateMLResult() {
-                                            var form = document.getElementById('ml-calc-form');
-                                            var width = parseFloat(form.querySelector('.width').value) || 0;
-                                            var length = parseFloat(form.querySelector('.length').value) || 0;
-                                            var thickness = parseFloat(form.querySelector('.thickness').value) || 1;
-                                            var area = width * length;
-                                            var mlNeeded = area > 0 && thickness > 0 ? Math.ceil(area * thickness) : 0;
-                                            var totalEl = form.querySelector('.total');
-                                            if (totalEl) {
-                                                totalEl.textContent = mlNeeded + ' L';
+                                    <?php if ($formula_type == '2') : ?>
+                                        <form class="form w-100" id="ml-calc-form-2" data-density="<?php echo esc_attr($density); ?>">
+                                            <div class="input-wrap mb-3">
+                                                <label class="form-label" for="length">Length <span>(cm)</span></label>
+                                                <input id="length" class="form-control length" style="border: 1px solid #000;" value="0" type="number" min="0" step="0.01">
+                                            </div>
+                                            <div class="input-wrap mb-3">
+                                                <label class="form-label" for="width">Width <span>(cm)</span></label>
+                                                <input id="width" class="form-control width" style="border: 1px solid #000;" value="0" type="number" min="0" step="0.01">
+                                            </div>
+                                            <div class="input-wrap mb-3">
+                                                <label class="form-label" for="height">Height <span>(cm)</span></label>
+                                                <input id="height" class="form-control height" style="border: 1px solid #000;" value="0" type="number" min="0" step="0.01">
+                                            </div>
+                                            <div class="input-wrap mb-3 d-none">
+                                                <label class="form-label">Density (Kg/L):</label>
+                                                <input class="form-control density" value="<?php echo esc_attr($density); ?>" type="number" min="0" step="0.01" readonly>
+                                            </div>
+                                            <p class="total-liters h4 mb-0">0 L</p>
+                                            <p class="total-kg h5 mb-0">0 Kg</p>
+                                            <div class="form-text">(Amount required in Liters and Kg)</div>
+                                        </form>
+                                        <script>
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            function updateFormula2Result() {
+                                                var form = document.getElementById('ml-calc-form-2');
+                                                var length = parseFloat(form.querySelector('.length').value) || 0;
+                                                var width = parseFloat(form.querySelector('.width').value) || 0;
+                                                var height = parseFloat(form.querySelector('.height').value) || 0;
+                                                var density = parseFloat(form.getAttribute('data-density')) || 0;
+                                                var liters = (length * width * height) / 1000;
+                                                var kg = density > 0 ? (density * liters) : 0;
+                                                form.querySelector('.total-liters').textContent = liters.toFixed(2) + ' L';
+                                                form.querySelector('.total-kg').textContent = kg.toFixed(2) + ' Kg';
                                             }
-                                        }
-                                        var form = document.getElementById('ml-calc-form');
-                                        form.querySelector('.width').addEventListener('input', updateMLResult);
-                                        form.querySelector('.length').addEventListener('input', updateMLResult);
-                                        // Initial calculation
-                                        updateMLResult();
-                                    });
-                                    </script>
+                                            var form = document.getElementById('ml-calc-form-2');
+                                            form.querySelectorAll('input').forEach(function(input) {
+                                                input.addEventListener('input', updateFormula2Result);
+                                            });
+                                            updateFormula2Result();
+                                        });
+                                        </script>
+                                    <?php else : ?>
+                                        <form class="form w-100" id="ml-calc-form">
+                                            <?php $thickness = get_post_meta($product->get_id(), '_product_thickness', true);?>
+                                            <input id="thickness" class="form-control d-none thickness" value="<?php echo esc_attr($thickness) ? esc_attr($thickness) : '0.001'; ?>">
+                                            <div class="input-wrap mb-3">
+                                                <label class="form-label" for="width">Width <span>(meters)</span></label>
+                                                <input id="width" class="form-control width" style="border: 1px solid #000;" value="5" type="number" min="0" step="0.01">
+                                            </div>
+                                            <div class="input-wrap mb-3">
+                                                <label class="form-label" for="length">Length <span>(meters)</span></label>
+                                                <input id="length" class="form-control length" style="border: 1px solid #000;" value="14" type="number" min="0" step="0.01">
+                                            </div>
+                                            <p class="total h4 mb-0">0 ml</p>
+                                            <div class="form-text">(Single Coat depending on substrate)</div>
+                                        </form>
+                                        <script>
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            function updateMLResult() {
+                                                var form = document.getElementById('ml-calc-form');
+                                                var width = parseFloat(form.querySelector('.width').value) || 0;
+                                                var length = parseFloat(form.querySelector('.length').value) || 0;
+                                                var thickness = parseFloat(form.querySelector('.thickness').value) || 1;
+                                                var area = width * length;
+                                                var mlNeeded = area > 0 && thickness > 0 ? Math.ceil(area * thickness) : 0;
+                                                var totalEl = form.querySelector('.total');
+                                                if (totalEl) {
+                                                    totalEl.textContent = mlNeeded + ' L';
+                                                }
+                                            }
+                                            var form = document.getElementById('ml-calc-form');
+                                            form.querySelector('.width').addEventListener('input', updateMLResult);
+                                            form.querySelector('.length').addEventListener('input', updateMLResult);
+                                            // Initial calculation
+                                            updateMLResult();
+                                        });
+                                        </script>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>

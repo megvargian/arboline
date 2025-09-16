@@ -1916,7 +1916,20 @@ add_action('add_meta_boxes', function() {
             if (!$show) return;
             $value = get_post_meta($post->ID, '_product_thickness', true);
             echo '<label for="product_thickness">Thickness (mm):</label>';
-            echo '<input type="number" id="product_thickness" name="product_thickness" value="' . esc_attr($value) . '" min="0" step="0.001" style="width:100%">';
+            echo '<input type="number" id="product_thickness" name="product_thickness" value="' . esc_attr($value) . '" min="0" step="0.01" style="width:100%"><br><br>';
+
+            // Formula type field
+            $formula_type = get_post_meta($post->ID, '_product_formula_type', true);
+            echo '<label for="product_formula_type">Calculator Formula Type:</label>';
+            echo '<select id="product_formula_type" name="product_formula_type" style="width:100%">';
+            echo '<option value="1"' . selected($formula_type, '1', false) . '>Formula 1 (default)</option>';
+            echo '<option value="2"' . selected($formula_type, '2', false) . '>Formula 2 (density required)</option>';
+            echo '</select><br><br>';
+
+            // Density field
+            $density = get_post_meta($post->ID, '_product_density', true);
+            echo '<label for="product_density">Product Density (Kg/L):</label>';
+            echo '<input type="number" id="product_density" name="product_density" value="' . esc_attr($density) . '" min="0" step="0.01" style="width:100%">';
         },
         'product',
         'side',
@@ -1927,5 +1940,11 @@ add_action('add_meta_boxes', function() {
 add_action('save_post_product', function($post_id) {
     if (isset($_POST['product_thickness'])) {
         update_post_meta($post_id, '_product_thickness', floatval($_POST['product_thickness']));
+    }
+    if (isset($_POST['product_formula_type'])) {
+        update_post_meta($post_id, '_product_formula_type', sanitize_text_field($_POST['product_formula_type']));
+    }
+    if (isset($_POST['product_density'])) {
+        update_post_meta($post_id, '_product_density', floatval($_POST['product_density']));
     }
 });
