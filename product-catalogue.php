@@ -87,6 +87,53 @@ get_header();
                         echo '</ul>';
                         echo '<div style="height:30px" aria-hidden="true" class="wp-block-spacer"></div>';
                     }
+                } else {
+                    echo '<h3 class="border-bottom pb-2 mb-3 fs-4 text-secondary">' . esc_html( $parent_cat->name ) . '</h3>';
+                    echo '<ul class="custom-product-grid">';
+
+                    // Query products in this child category
+                    $products_args = array(
+                        'post_type'      => 'product',
+                        'posts_per_page' => -1,
+                        'tax_query'      => array(
+                            array(
+                                'taxonomy' => 'product_cat',
+                                'field'    => 'slug',
+                                'terms'    => $parent_cat->slug,
+                            ),
+                        ),
+                    );
+                    $products = new WP_Query( $products_args );
+
+                    if ( $products->have_posts() ) {
+                        while ( $products->have_posts() ) {
+                            $products->the_post();
+                            global $product;
+                            $image_url = get_the_post_thumbnail_url( $product->get_id(), 'medium' );
+                            if ( ! $image_url ) {
+                                $image_url = 'https://arboline.com/wp-content/uploads/woocommerce-placeholder.png';
+                            }
+                            ?>
+                            <li class="custom-product-item">
+                                <a href="<?php echo get_permalink(); ?>" class="custom-product-link">
+                                    <div class="custom-product-image">
+                                        <img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" />
+                                    </div>
+                                    <div class="custom-product-title"><?php echo get_the_title(); ?></div>
+                                </a>
+                                <div class="wp-block-button wc-block-grid__product-add-to-cart">
+                                    <a href="<?php echo get_permalink(); ?>"
+                                        class="wp-block-button__link wp-element-button">
+                                        Shop now
+                                    </a>
+                                </div>
+                            </li>
+                            <?php
+                        }
+                        wp_reset_postdata();
+                    }
+                    echo '</ul>';
+                    echo '<div style="height:30px" aria-hidden="true" class="wp-block-spacer"></div>';
                 }
             }
         }
