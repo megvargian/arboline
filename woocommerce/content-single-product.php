@@ -168,7 +168,7 @@ if ( post_password_required() ) {
                                                 var length = parseFloat(form.querySelector('.length').value) || 0;
                                                 var thickness = parseFloat(form.querySelector('.thickness').value) || 1;
                                                 var area = width * length;
-                                                var mlNeeded = area > 0 && thickness > 0 ? Math.ceil(area * thickness) : 0;
+                                                var mlNeeded = area > 0 && thickness > 0 ? Math.ceil(area / thickness) : 0;
                                                 var totalEl = form.querySelector('.total');
                                                 if (totalEl) {
                                                     totalEl.textContent = mlNeeded + ' L';
