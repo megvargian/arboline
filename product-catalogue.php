@@ -15,73 +15,79 @@ get_header();
     <?php
     if ( class_exists( 'WooCommerce' ) ) {
 
-        // Get all categories except "Uncategorized"
-        $args = array(
+        // Get all parent categories except "Uncategorized"
+        $parent_args = array(
             'taxonomy'   => 'product_cat',
             'orderby'    => 'name',
             'hide_empty' => true,
+            'parent'     => 0,
             'exclude'    => array( get_cat_ID( 'Uncategorized' ) )
         );
+        $parent_categories = get_terms( $parent_args );
 
-        $product_categories = get_terms( $args );
+        if ( ! empty( $parent_categories ) && ! is_wp_error( $parent_categories ) ) {
+            foreach ( $parent_categories as $parent_cat ) {
+                echo '<h2 class="border-bottom pb-3 mb-4 fs-2 text-uppercase">' . esc_html( $parent_cat->name ) . '</h2>';
 
-        if ( ! empty( $product_categories ) && ! is_wp_error( $product_categories ) ) {
-            foreach ( $product_categories as $category ) { ?>
-
-                <p class="border-bottom pb-3 mb-4 fs-3"><?php echo esc_html( $category->name ); ?></p>
-
-                <ul class="custom-product-grid">
-                <?php
-                // Query products in this category
-                $products_args = array(
-                    'post_type'      => 'product',
-                    'posts_per_page' => -1,
-                    'tax_query'      => array(
-                        array(
-                            'taxonomy' => 'product_cat',
-                            'field'    => 'slug',
-                            'terms'    => $category->slug,
-                        ),
-                    ),
+                // Get child categories
+                $child_args = array(
+                    'taxonomy'   => 'product_cat',
+                    'orderby'    => 'name',
+                    'hide_empty' => true,
+                    'parent'     => $parent_cat->term_id,
                 );
+                $child_categories = get_terms( $child_args );
 
-                $products = new WP_Query( $products_args );
+                if ( ! empty( $child_categories ) && ! is_wp_error( $child_categories ) ) {
+                    foreach ( $child_categories as $child_cat ) {
+                        echo '<h3 class="border-bottom pb-2 mb-3 fs-4 text-secondary">' . esc_html( $parent_cat->name . ' / ' . $child_cat->name ) . '</h3>';
+                        echo '<ul class="custom-product-grid">';
 
-                if ( $products->have_posts() ) {
-                    while ( $products->have_posts() ) {
-                        $products->the_post();
-                        global $product;
+                        // Query products in this child category
+                        $products_args = array(
+                            'post_type'      => 'product',
+                            'posts_per_page' => -1,
+                            'tax_query'      => array(
+                                array(
+                                    'taxonomy' => 'product_cat',
+                                    'field'    => 'slug',
+                                    'terms'    => $child_cat->slug,
+                                ),
+                            ),
+                        );
+                        $products = new WP_Query( $products_args );
 
-                        // Featured image URL or default
-                        $image_url = get_the_post_thumbnail_url( $product->get_id(), 'medium' );
-                        if ( ! $image_url ) {
-                            $image_url = 'https://arboline.com/wp-content/uploads/woocommerce-placeholder.png';
-                            // 👆 Change this path to your own default image inside your theme
+                        if ( $products->have_posts() ) {
+                            while ( $products->have_posts() ) {
+                                $products->the_post();
+                                global $product;
+                                $image_url = get_the_post_thumbnail_url( $product->get_id(), 'medium' );
+                                if ( ! $image_url ) {
+                                    $image_url = 'https://arboline.com/wp-content/uploads/woocommerce-placeholder.png';
+                                }
+                                ?>
+                                <li class="custom-product-item">
+                                    <a href="<?php echo get_permalink(); ?>" class="custom-product-link">
+                                        <div class="custom-product-image">
+                                            <img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" />
+                                        </div>
+                                        <div class="custom-product-title"><?php echo get_the_title(); ?></div>
+                                    </a>
+                                    <div class="wp-block-button wc-block-grid__product-add-to-cart">
+                                        <a href="<?php echo get_permalink(); ?>"
+                                           class="wp-block-button__link wp-element-button">
+                                            Shop now
+                                        </a>
+                                    </div>
+                                </li>
+                                <?php
+                            }
+                            wp_reset_postdata();
                         }
-                        ?>
-                        <li class="custom-product-item">
-                            <a href="<?php echo get_permalink(); ?>" class="custom-product-link">
-                                <div class="custom-product-image">
-                                    <img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" />
-                                </div>
-                                <div class="custom-product-title"><?php echo get_the_title(); ?></div>
-                            </a>
-                            <div class="wp-block-button wc-block-grid__product-add-to-cart">
-                                <a href="<?php echo get_permalink(); ?>"
-                                   class="wp-block-button__link wp-element-button">
-                                    Shop now
-                                </a>
-                            </div>
-                        </li>
-                        <?php
+                        echo '</ul>';
+                        echo '<div style="height:30px" aria-hidden="true" class="wp-block-spacer"></div>';
                     }
-                    wp_reset_postdata();
                 }
-                ?>
-                </ul>
-
-                <div style="height:30px" aria-hidden="true" class="wp-block-spacer"></div>
-            <?php
             }
         }
     }
