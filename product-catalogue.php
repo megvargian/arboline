@@ -21,13 +21,13 @@ get_header();
             'orderby'    => 'name',
             'hide_empty' => true,
             'parent'     => 0,
-            'exclude'    => array( get_cat_ID( 'Uncategorized' ) )
+            'exclude'    => array(17)
         );
         $parent_categories = get_terms( $parent_args );
 
         if ( ! empty( $parent_categories ) && ! is_wp_error( $parent_categories ) ) {
             foreach ( $parent_categories as $parent_cat ) {
-                echo '<h2 class="border-bottom pb-3 mb-4 fs-2 text-uppercase">' . esc_html( $parent_cat->name ) . '</h2>';
+                // echo '<h2 class="border-bottom pb-3 mb-4 fs-2 text-uppercase">' . esc_html( $parent_cat->name ) . '</h2>';
 
                 // Get child categories
                 $child_args = array(
