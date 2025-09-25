@@ -374,37 +374,90 @@ if ( post_password_required() ) {
                     }
                     ?>
                     <?php if ($has_tint_attribute) : ?>
-                    <p class="finish-description mb-1">Click to preview tints</p>
-                    <div class="row mx-0 tint-swatch-row">
                     <?php
-                        $product_id = $product->get_id();
-                        $variation_attributes = $product->get_variation_attributes();
-                        foreach ($variation_attributes as $attribute_name => $options) {
-                            if (stripos($attribute_name, 'tint') !== false) {
-                                foreach ($options as $tint) {
-                                    $field_id = 'tint_image_' . sanitize_title($tint);
-                                    $image_id = get_post_meta($product_id, $field_id, true);
-                                    $image_url = $image_id ? wp_get_attachment_url($image_id) : '';
-                                    if ($image_url) {
-                                    ?>
-                                        <div class="col-1 ps-0 pe-1 pb-1 single-swatch">
-                                            <a href="<?php echo esc_url($image_url); ?>"
-                                            class="glightbox-tint"
-                                            data-glightbox="title: <?php echo esc_attr($tint); ?>;">
-                                                <img
-                                                    src="<?php echo esc_url($image_url); ?>"
-                                                    class="w-100 h-auto"
-                                                    alt="<?php echo esc_attr($tint); ?>" />
-                                            </a>
-                                        </div>
-                                    <?php
+                    // Check if product is in category 21
+                    $product_categories = wp_get_post_terms($product->get_id(), 'product_cat', array('fields' => 'ids'));
+                    $is_category_21 = in_array(21, $product_categories);
+                    ?>
+
+                    <?php if ($is_category_21) : ?>
+                        <!-- Accordion for Category 21 -->
+                        <p class="finish-description mb-1">Available Colors</p>
+                        <div class="accordion tint-accordion" id="tintAccordion">
+                            <?php
+                            $product_id = $product->get_id();
+                            $variation_attributes = $product->get_variation_attributes();
+                            $accordion_index = 0;
+                            foreach ($variation_attributes as $attribute_name => $options) {
+                                if (stripos($attribute_name, 'tint') !== false) {
+                                    foreach ($options as $tint) {
+                                        $field_id = 'tint_image_' . sanitize_title($tint);
+                                        $image_id = get_post_meta($product_id, $field_id, true);
+                                        $image_url = $image_id ? wp_get_attachment_url($image_id) : '';
+                                        if ($image_url) {
+                                            $accordion_id = 'collapse' . $accordion_index;
+                                        ?>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="heading<?php echo $accordion_index; ?>">
+                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $accordion_id; ?>" aria-expanded="false" aria-controls="<?php echo $accordion_id; ?>">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="color-square me-3" style="width: 30px; height: 30px; background-image: url('<?php echo esc_url($image_url); ?>'); background-size: cover; background-position: center; border-radius: 4px; border: 1px solid #ddd;"></div>
+                                                            <span><?php echo esc_html($tint); ?></span>
+                                                        </div>
+                                                    </button>
+                                                </h2>
+                                                <div id="<?php echo $accordion_id; ?>" class="accordion-collapse collapse" aria-labelledby="heading<?php echo $accordion_index; ?>" data-bs-parent="#tintAccordion">
+                                                    <div class="accordion-body text-center">
+                                                        <a href="<?php echo esc_url($image_url); ?>" class="glightbox-tint" data-glightbox="title: <?php echo esc_attr($tint); ?>;">
+                                                            <img src="<?php echo esc_url($image_url); ?>" class="img-fluid tint-full-image" alt="<?php echo esc_attr($tint); ?>" style="max-width: 300px; cursor: pointer; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+                                                        </a>
+                                                        <p class="mt-2 mb-0"><strong><?php echo esc_html($tint); ?></strong></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php
+                                        $accordion_index++;
+                                        }
                                     }
                                 }
                             }
-                        }
-                    ?>
-                    </div>
+                            ?>
+                        </div>
+                    <?php else : ?>
+                        <!-- Original squares for other categories -->
+                        <p class="finish-description mb-1">Click to preview tints</p>
+                        <div class="row mx-0 tint-swatch-row">
+                        <?php
+                            $product_id = $product->get_id();
+                            $variation_attributes = $product->get_variation_attributes();
+                            foreach ($variation_attributes as $attribute_name => $options) {
+                                if (stripos($attribute_name, 'tint') !== false) {
+                                    foreach ($options as $tint) {
+                                        $field_id = 'tint_image_' . sanitize_title($tint);
+                                        $image_id = get_post_meta($product_id, $field_id, true);
+                                        $image_url = $image_id ? wp_get_attachment_url($image_id) : '';
+                                        if ($image_url) {
+                                        ?>
+                                            <div class="col-1 ps-0 pe-1 pb-1 single-swatch">
+                                                <a href="<?php echo esc_url($image_url); ?>"
+                                                class="glightbox-tint"
+                                                data-glightbox="title: <?php echo esc_attr($tint); ?>;">
+                                                    <img
+                                                        src="<?php echo esc_url($image_url); ?>"
+                                                        class="w-100 h-auto"
+                                                        alt="<?php echo esc_attr($tint); ?>" />
+                                                </a>
+                                            </div>
+                                        <?php
+                                        }
+                                    }
+                                }
+                            }
+                        ?>
+                        </div>
+                    <?php endif; ?>
                     <style>
+                    /* Original squares styling */
                     .tint-swatch-row .single-swatch {
                         display: flex;
                         align-items: center;
@@ -438,7 +491,80 @@ if ( post_password_required() ) {
                     .tint-swatch-img:hover {
                         transform: scale(1.05);
                     }
+
+                    /* Accordion styling for category 21 */
+                    .tint-accordion {
+                        max-width: 100%;
+                        margin-bottom: 20px;
+                    }
+                    .tint-accordion .accordion-item {
+                        border: 1px solid #ddd;
+                        border-radius: 8px !important;
+                        margin-bottom: 8px;
+                        overflow: hidden;
+                    }
+                    .tint-accordion .accordion-button {
+                        padding: 12px 16px;
+                        background-color: #f8f9fa;
+                        border: none;
+                        border-radius: 8px !important;
+                        font-weight: 500;
+                    }
+                    .tint-accordion .accordion-button:not(.collapsed) {
+                        background-color: #e3f2fd;
+                        box-shadow: none;
+                    }
+                    .tint-accordion .accordion-button:focus {
+                        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+                    }
+                    .tint-accordion .accordion-body {
+                        padding: 20px;
+                        background-color: #fff;
+                    }
+                    .tint-accordion .color-square {
+                        border: 2px solid #fff;
+                        box-shadow: 0 0 0 1px #ddd;
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                    }
+                    .tint-accordion .color-square:hover {
+                        transform: scale(1.1);
+                        box-shadow: 0 0 0 2px #007bff, 0 2px 8px rgba(0,123,255,0.3);
+                    }
+                    .tint-full-image {
+                        transition: transform 0.2s ease;
+                    }
+                    .tint-full-image:hover {
+                        transform: scale(1.02);
+                    }
                     </style>
+
+                    <?php if ($is_category_21) : ?>
+                    <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // Handle color square clicks in accordion headers
+                        document.querySelectorAll('.tint-accordion .color-square').forEach(function(colorSquare) {
+                            colorSquare.addEventListener('click', function(e) {
+                                e.stopPropagation(); // Prevent accordion toggle
+
+                                // Get the accordion item
+                                const accordionItem = this.closest('.accordion-item');
+                                const accordionBody = accordionItem.querySelector('.accordion-body');
+                                const lightboxLink = accordionBody.querySelector('.glightbox-tint');
+
+                                if (lightboxLink) {
+                                    // Trigger the lightbox
+                                    lightboxLink.click();
+                                }
+                            });
+
+                            // Add pointer cursor to indicate clickability
+                            colorSquare.style.cursor = 'pointer';
+                        });
+                    });
+                    </script>
+                    <?php endif; ?>
+
                     <?php endif; ?>
                     <?php
                     /**
