@@ -492,33 +492,36 @@ if ( post_password_required() ) {
                         transform: scale(1.05);
                     }
 
-                    /* Accordion styling for category 21 */
+                    /* Accordion styling for category 21 - matching main product accordion */
                     .tint-accordion {
                         max-width: 100%;
-                        margin-bottom: 20px;
+                        margin-bottom: 1rem;
                     }
                     .tint-accordion .accordion-item {
-                        border: 1px solid #ddd;
-                        border-radius: 8px !important;
-                        margin-bottom: 8px;
-                        overflow: hidden;
+                        border: 0;
                     }
                     .tint-accordion .accordion-button {
-                        padding: 12px 16px;
-                        background-color: #f8f9fa;
-                        border: none;
-                        border-radius: 8px !important;
-                        font-weight: 500;
+                        background: none;
+                        border-bottom: 1px solid #000;
+                        font-size: 1.40625rem;
+                        padding-left: 0;
+                        padding-right: 0;
+                        padding-top: var(--bs-accordion-btn-padding-y);
+                        padding-bottom: var(--bs-accordion-btn-padding-y);
+                        border-radius: 0 !important;
+                        font-weight: normal;
                     }
                     .tint-accordion .accordion-button:not(.collapsed) {
-                        background-color: #e3f2fd;
+                        background: none;
                         box-shadow: none;
+                        border-bottom: 1px solid #000;
                     }
                     .tint-accordion .accordion-button:focus {
-                        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+                        box-shadow: none;
+                        border-bottom: 1px solid #000;
                     }
                     .tint-accordion .accordion-body {
-                        padding: 15px;
+                        padding: var(--bs-accordion-body-padding-y) 0;
                         background-color: #fff;
                     }
                     .tint-accordion .color-item {
