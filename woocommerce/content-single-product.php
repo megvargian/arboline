@@ -381,47 +381,47 @@ if ( post_password_required() ) {
                     ?>
 
                     <?php if ($is_category_21) : ?>
-                        <!-- Accordion for Category 21 -->
+                        <!-- Single Accordion for Category 21 -->
                         <p class="finish-description mb-1">Available Colors</p>
                         <div class="accordion tint-accordion" id="tintAccordion">
-                            <?php
-                            $product_id = $product->get_id();
-                            $variation_attributes = $product->get_variation_attributes();
-                            $accordion_index = 0;
-                            foreach ($variation_attributes as $attribute_name => $options) {
-                                if (stripos($attribute_name, 'tint') !== false) {
-                                    foreach ($options as $tint) {
-                                        $field_id = 'tint_image_' . sanitize_title($tint);
-                                        $image_id = get_post_meta($product_id, $field_id, true);
-                                        $image_url = $image_id ? wp_get_attachment_url($image_id) : '';
-                                        if ($image_url) {
-                                            $accordion_id = 'collapse' . $accordion_index;
-                                        ?>
-                                            <div class="accordion-item">
-                                                <h2 class="accordion-header" id="heading<?php echo $accordion_index; ?>">
-                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $accordion_id; ?>" aria-expanded="false" aria-controls="<?php echo $accordion_id; ?>">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="color-square me-3" style="width: 30px; height: 30px; background-image: url('<?php echo esc_url($image_url); ?>'); background-size: cover; background-position: center; border-radius: 4px; border: 1px solid #ddd;"></div>
-                                                            <span><?php echo esc_html($tint); ?></span>
-                                                        </div>
-                                                    </button>
-                                                </h2>
-                                                <div id="<?php echo $accordion_id; ?>" class="accordion-collapse collapse" aria-labelledby="heading<?php echo $accordion_index; ?>" data-bs-parent="#tintAccordion">
-                                                    <div class="accordion-body text-center">
-                                                        <a href="<?php echo esc_url($image_url); ?>" class="glightbox-tint" data-glightbox="title: <?php echo esc_attr($tint); ?>;">
-                                                            <img src="<?php echo esc_url($image_url); ?>" class="img-fluid tint-full-image" alt="<?php echo esc_attr($tint); ?>" style="max-width: 300px; cursor: pointer; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
-                                                        </a>
-                                                        <p class="mt-2 mb-0"><strong><?php echo esc_html($tint); ?></strong></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <?php
-                                        $accordion_index++;
-                                        }
-                                    }
-                                }
-                            }
-                            ?>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingColors">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseColors" aria-expanded="false" aria-controls="collapseColors">
+                                        <span>View Colors</span>
+                                    </button>
+                                </h2>
+                                <div id="collapseColors" class="accordion-collapse collapse" aria-labelledby="headingColors" data-bs-parent="#tintAccordion">
+                                    <div class="accordion-body">
+                                        <div class="row g-2">
+                                            <?php
+                                            $product_id = $product->get_id();
+                                            $variation_attributes = $product->get_variation_attributes();
+                                            foreach ($variation_attributes as $attribute_name => $options) {
+                                                if (stripos($attribute_name, 'tint') !== false) {
+                                                    foreach ($options as $tint) {
+                                                        $field_id = 'tint_image_' . sanitize_title($tint);
+                                                        $image_id = get_post_meta($product_id, $field_id, true);
+                                                        $image_url = $image_id ? wp_get_attachment_url($image_id) : '';
+                                                        if ($image_url) {
+                                                        ?>
+                                                            <div class="col-3">
+                                                                <div class="color-item text-center p-2">
+                                                                    <a href="<?php echo esc_url($image_url); ?>" class="glightbox-tint" data-glightbox="title: <?php echo esc_attr($tint); ?>;">
+                                                                        <div class="color-square-grid mx-auto mb-2" style="width: 60px; height: 60px; background-image: url('<?php echo esc_url($image_url); ?>'); background-size: cover; background-position: center; border-radius: 8px; border: 2px solid #ddd; cursor: pointer;"></div>
+                                                                    </a>
+                                                                    <small class="color-name d-block"><?php echo esc_html($tint); ?></small>
+                                                                </div>
+                                                            </div>
+                                                        <?php
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     <?php else : ?>
                         <!-- Original squares for other categories -->
@@ -518,18 +518,30 @@ if ( post_password_required() ) {
                         box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
                     }
                     .tint-accordion .accordion-body {
-                        padding: 20px;
+                        padding: 15px;
                         background-color: #fff;
                     }
-                    .tint-accordion .color-square {
-                        border: 2px solid #fff;
-                        box-shadow: 0 0 0 1px #ddd;
-                        cursor: pointer;
-                        transition: all 0.2s ease;
+                    .tint-accordion .color-item {
+                        transition: transform 0.2s ease;
                     }
-                    .tint-accordion .color-square:hover {
-                        transform: scale(1.1);
-                        box-shadow: 0 0 0 2px #007bff, 0 2px 8px rgba(0,123,255,0.3);
+                    .tint-accordion .color-item:hover {
+                        transform: translateY(-2px);
+                    }
+                    .tint-accordion .color-square-grid {
+                        transition: all 0.2s ease;
+                        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                    }
+                    .tint-accordion .color-square-grid:hover {
+                        transform: scale(1.05);
+                        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                        border-color: #007bff !important;
+                    }
+                    .tint-accordion .color-name {
+                        font-size: 12px;
+                        font-weight: 500;
+                        color: #666;
+                        text-align: center;
+                        word-break: break-word;
                     }
                     .tint-full-image {
                         transition: transform 0.2s ease;
@@ -539,31 +551,7 @@ if ( post_password_required() ) {
                     }
                     </style>
 
-                    <?php if ($is_category_21) : ?>
-                    <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        // Handle color square clicks in accordion headers
-                        document.querySelectorAll('.tint-accordion .color-square').forEach(function(colorSquare) {
-                            colorSquare.addEventListener('click', function(e) {
-                                e.stopPropagation(); // Prevent accordion toggle
 
-                                // Get the accordion item
-                                const accordionItem = this.closest('.accordion-item');
-                                const accordionBody = accordionItem.querySelector('.accordion-body');
-                                const lightboxLink = accordionBody.querySelector('.glightbox-tint');
-
-                                if (lightboxLink) {
-                                    // Trigger the lightbox
-                                    lightboxLink.click();
-                                }
-                            });
-
-                            // Add pointer cursor to indicate clickability
-                            colorSquare.style.cursor = 'pointer';
-                        });
-                    });
-                    </script>
-                    <?php endif; ?>
 
                     <?php endif; ?>
                     <?php
