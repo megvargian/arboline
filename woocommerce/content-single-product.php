@@ -510,6 +510,7 @@ if ( post_password_required() ) {
                         padding-bottom: var(--bs-accordion-btn-padding-y);
                         border-radius: 0 !important;
                         font-weight: normal;
+                        font-family: "gill-sans-nova",sans-serif;
                     }
                     .tint-accordion .accordion-button:not(.collapsed) {
                         background: none;
