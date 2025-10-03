@@ -24,6 +24,10 @@ $sub_menu = $header['sub_menus'];
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tailwind CSS CDN for this page only -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Alpine.js CDN for modal interactivity -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <?php wp_head(); ?>
 </head>
 
@@ -768,7 +772,7 @@ jQuery(document).ready(function($) {
         </div>
         <script>
         jQuery(document).ready(function($) {
-            <?php if(is_product_category() || is_product() || is_checkout() || is_account_page() || is_cart() || is_page(13) || is_page(1055) || is_page(1760) ){ ?>
+            <?php if(is_product_category() || is_product() || is_checkout() || is_account_page() || is_cart() || is_page(13) || is_page(1055) || is_page(1760) || is_page(1762)){ ?>
                 $("header").addClass("active");
                 $('.banner--menu-row').css({
                     'border-top-width': '0px',

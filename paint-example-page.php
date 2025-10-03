@@ -20433,5 +20433,70 @@ get_header();
     </div>
 </div>
 
+<!-- Modal Template (Tailwind + Alpine.js) -->
+<div x-data="{ open: false, color: '', colorName: '', colorHex: '' }" @keydown.escape.window="open = false">
+  <!-- Modal Backdrop -->
+  <div x-show="open" class="fixed inset-0 bg-black bg-opacity-50 z-[9999] flex items-center justify-center" x-transition.opacity style="display: none;">
+    <!-- Modal Box -->
+    <div class="bg-white rounded-lg shadow-2xl max-w-md w-full mx-4 p-8 relative" @click.away="open = false" x-transition>
+      <!-- Close Button -->
+      <button @click="open = false" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- Modal Content -->
+      <div class="flex flex-col items-center text-center">
+        <!-- Color Swatch -->
+        <div class="w-32 h-32 rounded-lg shadow-lg border-4 border-gray-100 mb-6" :style="'background:' + color"></div>
+
+        <!-- Color Name -->
+        <h2 class="text-2xl font-bold text-gray-800 mb-2" x-text="colorName"></h2>
+
+        <!-- Color Code -->
+        <p class="text-sm text-gray-500 mb-6" x-text="colorHex"></p>
+
+        <!-- Action Buttons -->
+        <div class="flex gap-3 w-full">
+          <button class="flex-1 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors" @click="open = false">
+            Select Color
+          </button>
+          <button class="flex-1 px-6 py-3 bg-gray-100 text-gray-700 font-semibold rounded-lg hover:bg-gray-200 transition-colors" @click="open = false">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('alpine:init', () => {
+    // Attach click handlers to all color swatches
+    document.querySelectorAll('.wall-color-swatch').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const swatch = btn.closest('[data-testid="color-wall-swatch"]');
+        const swatchBg = swatch.querySelector('[data-testid="swatch-bg"]');
+        const color = swatchBg ? swatchBg.style.background : '';
+        const colorName = btn.getAttribute('aria-label') || 'Unnamed Color';
+
+        // Extract RGB values for display
+        const colorHex = color;
+
+        // Find the Alpine.js component and update its data
+        const modalRoot = document.querySelector('[x-data*="open"]');
+        if (modalRoot && modalRoot.__x) {
+          modalRoot.__x.$data.open = true;
+          modalRoot.__x.$data.color = color;
+          modalRoot.__x.$data.colorName = colorName;
+          modalRoot.__x.$data.colorHex = colorHex;
+        }
+      });
+    });
+  });
+</script>
+
 <?php
 get_footer();
