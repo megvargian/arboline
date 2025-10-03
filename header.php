@@ -768,7 +768,7 @@ jQuery(document).ready(function($) {
         </div>
         <script>
         jQuery(document).ready(function($) {
-            <?php if(is_product_category() || is_product() || is_checkout() || is_account_page() || is_cart() || is_page(13) || is_page(1055) ){ ?>
+            <?php if(is_product_category() || is_product() || is_checkout() || is_account_page() || is_cart() || is_page(13) || is_page(1055) || is_page(1760) ){ ?>
                 $("header").addClass("active");
                 $('.banner--menu-row').css({
                     'border-top-width': '0px',
