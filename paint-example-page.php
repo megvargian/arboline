@@ -9,105 +9,83 @@ get_header();
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
 
 <style>
+.color-wall-wrapper {
+    position: relative;
+    background: #eee;
+    padding: 20px;
+}
+
 .color-swatch-item {
     position: relative;
     width: 100%;
     padding-bottom: 100%;
     cursor: pointer;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255,255,255,0.3);
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255,255,255,0.2);
 }
 
 .color-swatch-item:hover {
-    transform: scale(1.05);
-    z-index: 10;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    transform: scale(1.02);
+    z-index: 5;
 }
 
-.color-swatch-item:hover .color-info {
-    opacity: 1;
+.color-swatch-item.selected {
+    z-index: 20;
+    border: 4px solid white;
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.5),
+                0 0 0 4px white,
+                0 0 0 6px rgba(255,255,255,0.5),
+                0 0 0 8px white,
+                0 0 20px rgba(0,0,0,0.3);
 }
 
-.color-info {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0,0,0,0.7);
-    color: white;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    padding: 8px;
-    text-align: center;
-}
-
-.color-info .color-code {
-    font-size: 10px;
-    font-weight: bold;
-    margin-bottom: 4px;
-}
-
-.color-info .color-name {
-    font-size: 9px;
-    line-height: 1.2;
-}
-
-/* Modal styles */
-.modal-overlay {
+/* Color detail panel overlay */
+.color-detail-panel {
     display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.6);
-    z-index: 9999;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-overlay.active {
-    display: flex;
-}
-
-.modal-content {
-    background: white;
-    padding: 40px;
-    border-radius: 8px;
-    max-width: 500px;
-    width: 90%;
-    position: relative;
-    text-align: center;
-}
-
-.modal-color-preview {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto 20px;
-    border-radius: 4px;
-    border: 3px solid #fff;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.close-modal {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 28px;
-    cursor: pointer;
-    color: #666;
-    line-height: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px 40px;
+    border-radius: 4px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    z-index: 30;
+    text-align: center;
+    min-width: 300px;
 }
 
-.close-modal:hover {
+.color-detail-panel.active {
+    display: block;
+}
+
+.color-detail-code {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.color-detail-name {
+    font-size: 24px;
     color: #000;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.view-details-btn {
+    background: #2c5f7c;
+    color: white;
+    border: 2px solid #2c5f7c;
+    padding: 10px 30px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.view-details-btn:hover {
+    background: #1e4158;
+    border-color: #1e4158;
 }
 </style>
 
@@ -137,11 +115,12 @@ get_header();
             </div>
         </div>
 
-        <!-- Color Grid -->
-        <div class="grid grid-cols-16 gap-0 bg-white p-4">
-            <?php
-            // Define color families with their shades
-            $colorFamilies = [
+        <!-- Color Grid with Overlay Panel -->
+        <div class="color-wall-wrapper">
+            <div class="grid grid-cols-16 gap-0 bg-white p-4 relative">
+                <?php
+                // Define color families with their shades
+                $colorFamilies = [
                 // Reds/Pinks
                 ['rgb(181, 77, 127)', 'SW 2527', 'Exuberant Pink'],
                 ['rgb(204, 97, 127)', 'SW 2542', 'Dragon Fruit'],
@@ -247,34 +226,24 @@ get_header();
             $colorsPerRow = 16;
             $rows = 8;
 
-            for ($i = 0; $i < $totalColors && $i < ($colorsPerRow * $rows); $i++) {
-                $color = $colorFamilies[$i];
-                $bgColor = htmlspecialchars($color[0], ENT_QUOTES);
-                $colorCode = htmlspecialchars($color[1], ENT_QUOTES);
-                $colorName = htmlspecialchars($color[2], ENT_QUOTES);
+                for ($i = 0; $i < $totalColors && $i < ($colorsPerRow * $rows); $i++) {
+                    $color = $colorFamilies[$i];
+                    $bgColor = htmlspecialchars($color[0], ENT_QUOTES);
+                    $colorCode = htmlspecialchars($color[1], ENT_QUOTES);
+                    $colorName = htmlspecialchars($color[2], ENT_QUOTES);
 
-                echo '<div class="color-swatch-item" style="background: ' . $bgColor . ';" data-color="' . $bgColor . '" data-code="' . $colorCode . '" data-name="' . $colorName . '">';
-                echo '<div class="color-info">';
-                echo '<div class="color-code">' . $colorCode . '</div>';
-                echo '<div class="color-name">' . $colorName . '</div>';
-                echo '</div>';
-                echo '</div>';
-            }
-            ?>
+                    echo '<div class="color-swatch-item" style="background: ' . $bgColor . ';" data-color="' . $bgColor . '" data-code="' . $colorCode . '" data-name="' . $colorName . '"></div>';
+                }
+                ?>
+
+                <!-- Color Detail Panel (shown on click) -->
+                <div id="colorDetailPanel" class="color-detail-panel">
+                    <div class="color-detail-code" id="detailColorCode">SW 9058</div>
+                    <div class="color-detail-name" id="detailColorName">Secret Cove</div>
+                    <button class="view-details-btn">View Details</button>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-
-<!-- Modal -->
-<div id="colorModal" class="modal-overlay" onclick="closeModal(event)">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <button class="close-modal" onclick="closeModal()">&times;</button>
-        <div id="modalColorPreview" class="modal-color-preview"></div>
-        <h2 id="modalColorCode" class="text-xl font-bold mb-2"></h2>
-        <p id="modalColorName" class="text-gray-600 mb-6"></p>
-        <button class="px-6 py-3 bg-gray-800 text-white rounded hover:bg-gray-700 transition-colors">
-            View Details
-        </button>
     </div>
 </div>
 
@@ -282,40 +251,62 @@ get_header();
 // Event delegation for color swatches
 document.addEventListener('click', function(e) {
     const swatch = e.target.closest('.color-swatch-item');
+    const panel = document.getElementById('colorDetailPanel');
+
+    // If clicking outside, close the panel
+    if (!swatch && !e.target.closest('.color-detail-panel')) {
+        // Remove all selected states
+        document.querySelectorAll('.color-swatch-item.selected').forEach(item => {
+            item.classList.remove('selected');
+        });
+        if (panel) {
+            panel.classList.remove('active');
+        }
+        return;
+    }
+
+    // If clicking a swatch
     if (swatch) {
         const color = swatch.getAttribute('data-color');
         const code = swatch.getAttribute('data-code');
         const name = swatch.getAttribute('data-name');
-        showColorModal(color, code, name);
+
+        // Remove previous selection
+        document.querySelectorAll('.color-swatch-item.selected').forEach(item => {
+            item.classList.remove('selected');
+        });
+
+        // Add selected class to clicked swatch
+        swatch.classList.add('selected');
+
+        // Show the detail panel
+        showColorDetail(code, name);
     }
 });
 
-function showColorModal(color, code, name) {
-    const modal = document.getElementById('colorModal');
-    const preview = document.getElementById('modalColorPreview');
-    const codeEl = document.getElementById('modalColorCode');
-    const nameEl = document.getElementById('modalColorName');
+function showColorDetail(code, name) {
+    const panel = document.getElementById('colorDetailPanel');
+    const codeEl = document.getElementById('detailColorCode');
+    const nameEl = document.getElementById('detailColorName');
 
-    preview.style.background = color;
-    codeEl.textContent = code;
-    nameEl.textContent = name;
+    if (codeEl) codeEl.textContent = code;
+    if (nameEl) nameEl.textContent = name;
 
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeModal(event) {
-    if (!event || event.target.id === 'colorModal' || event.target.classList.contains('close-modal')) {
-        const modal = document.getElementById('colorModal');
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
+    if (panel) {
+        panel.classList.add('active');
     }
 }
 
-// Close modal on ESC key
+// Close on ESC key
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
-        closeModal();
+        document.querySelectorAll('.color-swatch-item.selected').forEach(item => {
+            item.classList.remove('selected');
+        });
+        const panel = document.getElementById('colorDetailPanel');
+        if (panel) {
+            panel.classList.remove('active');
+        }
     }
 });
 </script>
