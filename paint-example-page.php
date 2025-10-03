@@ -20794,10 +20794,11 @@ document.addEventListener('keydown', function(e) {
           modalRoot.__x.$data.open = true;
           modalRoot.__x.$data.color = color;
           modalRoot.__x.$data.colorName = colorName;
-        </section>
-    </div>
-</div>
-<!-- End old color wall code -->
+        }
+      });
+    });
+  });
+</script>
 
 <?php
 get_footer();
