@@ -249,10 +249,14 @@ get_header();
 
             for ($i = 0; $i < $totalColors && $i < ($colorsPerRow * $rows); $i++) {
                 $color = $colorFamilies[$i];
-                echo '<div class="color-swatch-item" style="background: ' . $color[0] . ';" onclick="showColorModal(\'' . $color[0] . '\', \'' . $color[1] . '\', \'' . addslashes($color[2]) . '\')">';
+                $bgColor = htmlspecialchars($color[0], ENT_QUOTES);
+                $colorCode = htmlspecialchars($color[1], ENT_QUOTES);
+                $colorName = htmlspecialchars($color[2], ENT_QUOTES);
+
+                echo '<div class="color-swatch-item" style="background: ' . $bgColor . ';" data-color="' . $bgColor . '" data-code="' . $colorCode . '" data-name="' . $colorName . '">';
                 echo '<div class="color-info">';
-                echo '<div class="color-code">' . $color[1] . '</div>';
-                echo '<div class="color-name">' . $color[2] . '</div>';
+                echo '<div class="color-code">' . $colorCode . '</div>';
+                echo '<div class="color-name">' . $colorName . '</div>';
                 echo '</div>';
                 echo '</div>';
             }
@@ -275,6 +279,17 @@ get_header();
 </div>
 
 <script>
+// Event delegation for color swatches
+document.addEventListener('click', function(e) {
+    const swatch = e.target.closest('.color-swatch-item');
+    if (swatch) {
+        const color = swatch.getAttribute('data-color');
+        const code = swatch.getAttribute('data-code');
+        const name = swatch.getAttribute('data-name');
+        showColorModal(color, code, name);
+    }
+});
+
 function showColorModal(color, code, name) {
     const modal = document.getElementById('colorModal');
     const preview = document.getElementById('modalColorPreview');
