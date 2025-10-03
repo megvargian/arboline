@@ -4,7 +4,308 @@
  */
 get_header();
 ?>
-<div class="color-wall-overrides" style="height: 475px;">
+
+<!-- Tailwind CSS CDN -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+
+<style>
+.color-swatch-item {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.color-swatch-item:hover {
+    transform: scale(1.05);
+    z-index: 10;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.color-swatch-item:hover .color-info {
+    opacity: 1;
+}
+
+.color-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 8px;
+    text-align: center;
+}
+
+.color-info .color-code {
+    font-size: 10px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.color-info .color-name {
+    font-size: 9px;
+    line-height: 1.2;
+}
+
+/* Modal styles */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    text-align: center;
+}
+
+.modal-color-preview {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+    border-radius: 4px;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #666;
+    line-height: 1;
+}
+
+.close-modal:hover {
+    color: #000;
+}
+</style>
+
+<div class="color-wall-container bg-gray-100 py-8">
+    <div class="container mx-auto px-4">
+        <!-- Header -->
+        <div class="bg-gray-800 text-white p-4 mb-6 flex justify-between items-center">
+            <div class="flex gap-4">
+                <button class="px-4 py-2 bg-white text-gray-800 rounded flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    SEARCH COLOR
+                </button>
+                <button class="px-4 py-2 bg-white text-gray-800 rounded flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                    </svg>
+                    COLOR FAMILIES
+                </button>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="font-semibold">Sherwin-Williams Colors</span>
+                <select class="bg-gray-700 text-white px-4 py-2 rounded">
+                    <option>SELECT COLOR COLLECTION</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Color Grid -->
+        <div class="grid grid-cols-16 gap-0 bg-white p-4">
+            <?php
+            // Define color families with their shades
+            $colorFamilies = [
+                // Reds/Pinks
+                ['rgb(181, 77, 127)', 'SW 2527', 'Exuberant Pink'],
+                ['rgb(204, 97, 127)', 'SW 2542', 'Dragon Fruit'],
+                ['rgb(171, 60, 81)', 'SW 2549', 'Cherries Jubilee'],
+                ['rgb(164, 46, 65)', 'SW 2548', 'Radish'],
+                ['rgb(168, 46, 51)', 'SW 2553', 'Heartthrob'],
+                ['rgb(191, 45, 50)', 'SW 2555', 'Real Red'],
+                ['rgb(173, 44, 52)', 'SW 2558', 'Positive Red'],
+                ['rgb(195, 58, 54)', 'SW 2556', 'Stop'],
+
+                // Oranges
+                ['rgb(215, 85, 42)', 'SW 2563', 'Daredevil'],
+                ['rgb(224, 102, 51)', 'SW 2564', 'Obstinate Orange'],
+                ['rgb(232, 119, 34)', 'SW 2567', 'Invigorate'],
+                ['rgb(237, 139, 0)', 'SW 2570', 'Navel'],
+                ['rgb(241, 158, 0)', 'SW 2573', 'Decisive Yellow'],
+                ['rgb(244, 170, 0)', 'SW 2575', 'Saffron Thread'],
+                ['rgb(247, 181, 0)', 'SW 2577', 'Funky Yellow'],
+                ['rgb(249, 193, 0)', 'SW 2579', 'Forsythia'],
+
+                // Yellows
+                ['rgb(252, 204, 0)', 'SW 2581', 'Citrus'],
+                ['rgb(255, 215, 0)', 'SW 2583', 'Bee'],
+                ['rgb(255, 224, 79)', 'SW 2585', 'Lemon Twist'],
+                ['rgb(255, 233, 140)', 'SW 2587', 'Glad Yellow'],
+                ['rgb(255, 240, 179)', 'SW 2589', 'Butter Up'],
+                ['rgb(255, 246, 209)', 'SW 2591', 'Rice Paddy'],
+                ['rgb(254, 250, 224)', 'SW 2593', 'Lantern Light'],
+                ['rgb(252, 252, 237)', 'SW 2595', 'Narcissus'],
+
+                // Greens
+                ['rgb(176, 196, 56)', 'SW 2730', 'Electric Lime'],
+                ['rgb(162, 179, 66)', 'SW 2732', 'Luau Green'],
+                ['rgb(148, 166, 74)', 'SW 2734', 'Gecko'],
+                ['rgb(134, 154, 81)', 'SW 2736', 'Verdant'],
+                ['rgb(122, 143, 89)', 'SW 2738', 'Tansy Green'],
+                ['rgb(108, 131, 95)', 'SW 2740', 'Dill'],
+                ['rgb(94, 119, 101)', 'SW 2742', 'Jadite'],
+                ['rgb(81, 108, 107)', 'SW 2744', 'Rookwood Sash Green'],
+
+                // Teals/Aquas
+                ['rgb(0, 168, 168)', 'SW 2849', 'Surfer'],
+                ['rgb(0, 155, 164)', 'SW 2850', 'Aquarium'],
+                ['rgb(0, 143, 158)', 'SW 2851', 'Tempo Teal'],
+                ['rgb(0, 131, 152)', 'SW 2852', 'Cruising'],
+                ['rgb(0, 120, 145)', 'SW 2853', 'Loch Blue'],
+                ['rgb(0, 109, 138)', 'SW 2854', 'Blue Mosque'],
+                ['rgb(0, 98, 131)', 'SW 2855', 'Secure Blue'],
+                ['rgb(0, 87, 124)', 'SW 2856', 'Loyal Blue'],
+
+                // Blues
+                ['rgb(0, 103, 177)', 'SW 2907', 'Hyper Blue'],
+                ['rgb(0, 92, 168)', 'SW 2908', 'Blue Chip'],
+                ['rgb(0, 82, 158)', 'SW 2909', 'Brilliant Blue'],
+                ['rgb(0, 72, 148)', 'SW 2910', 'Jay Blue'],
+                ['rgb(0, 62, 138)', 'SW 2911', 'Honorable Blue'],
+                ['rgb(0, 53, 128)', 'SW 2912', 'Indigo'],
+                ['rgb(36, 44, 117)', 'SW 2913', 'Valiant Violet'],
+                ['rgb(61, 39, 106)', 'SW 2914', 'Izmir Purple'],
+
+                // Purples
+                ['rgb(120, 81, 169)', 'SW 2974', 'Kismet'],
+                ['rgb(107, 91, 149)', 'SW 2975', 'Gutsy Grape'],
+                ['rgb(95, 99, 130)', 'SW 2976', 'Soulful Blue'],
+                ['rgb(132, 117, 168)', 'SW 2977', 'Brave Purple'],
+                ['rgb(151, 137, 183)', 'SW 2978', 'Dahlia'],
+                ['rgb(170, 157, 198)', 'SW 2979', 'Gentle Grape'],
+                ['rgb(189, 177, 213)', 'SW 2980', 'Potentially Purple'],
+                ['rgb(208, 197, 228)', 'SW 2981', 'Euphoric Lilac'],
+
+                // Grays
+                ['rgb(198, 198, 198)', 'SW 7072', 'Eider White'],
+                ['rgb(176, 176, 176)', 'SW 7073', 'Worldly Gray'],
+                ['rgb(153, 153, 153)', 'SW 7074', 'Software'],
+                ['rgb(131, 131, 131)', 'SW 7075', 'Cyberspace'],
+                ['rgb(109, 109, 109)', 'SW 7076', 'Peppercorn'],
+                ['rgb(88, 88, 88)', 'SW 7077', 'Tricorn Black'],
+                ['rgb(66, 66, 66)', 'SW 7078', 'Black Magic'],
+                ['rgb(45, 45, 45)', 'SW 7069', 'Iron Ore'],
+
+                // Browns/Taupes
+                ['rgb(214, 194, 190)', 'SW 1709', 'Breathless'],
+                ['rgb(201, 176, 171)', 'SW 1710', 'Insightful Rose'],
+                ['rgb(184, 157, 154)', 'SW 1711', 'Dressy Rose'],
+                ['rgb(158, 109, 121)', 'SW 1977', 'Moss Rose'],
+                ['rgb(184, 126, 147)', 'SW 2251', 'Red Clover'],
+                ['rgb(185, 149, 161)', 'SW 1976', 'Rosé'],
+                ['rgb(203, 154, 173)', 'SW 2250', 'Rosebay'],
+                ['rgb(216, 153, 177)', 'SW 2257', 'Haute Pink'],
+
+                // Beiges/Creams
+                ['rgb(242, 237, 227)', 'SW 7012', 'Creamy'],
+                ['rgb(239, 234, 223)', 'SW 7013', 'Ivory Lace'],
+                ['rgb(236, 231, 218)', 'SW 7014', 'Eider White'],
+                ['rgb(233, 228, 214)', 'SW 7015', 'Repose Gray'],
+                ['rgb(230, 225, 209)', 'SW 7016', 'Mindful Gray'],
+                ['rgb(227, 222, 205)', 'SW 7017', 'Dorian Gray'],
+                ['rgb(224, 219, 200)', 'SW 7018', 'Dovetail'],
+                ['rgb(221, 216, 196)', 'SW 7019', 'Gauntlet Gray'],
+            ];
+
+            $totalColors = count($colorFamilies);
+            $colorsPerRow = 16;
+            $rows = 8;
+
+            for ($i = 0; $i < $totalColors && $i < ($colorsPerRow * $rows); $i++) {
+                $color = $colorFamilies[$i];
+                echo '<div class="color-swatch-item" style="background: ' . $color[0] . ';" onclick="showColorModal(\'' . $color[0] . '\', \'' . $color[1] . '\', \'' . addslashes($color[2]) . '\')">';
+                echo '<div class="color-info">';
+                echo '<div class="color-code">' . $color[1] . '</div>';
+                echo '<div class="color-name">' . $color[2] . '</div>';
+                echo '</div>';
+                echo '</div>';
+            }
+            ?>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="colorModal" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <button class="close-modal" onclick="closeModal()">&times;</button>
+        <div id="modalColorPreview" class="modal-color-preview"></div>
+        <h2 id="modalColorCode" class="text-xl font-bold mb-2"></h2>
+        <p id="modalColorName" class="text-gray-600 mb-6"></p>
+        <button class="px-6 py-3 bg-gray-800 text-white rounded hover:bg-gray-700 transition-colors">
+            View Details
+        </button>
+    </div>
+</div>
+
+<script>
+function showColorModal(color, code, name) {
+    const modal = document.getElementById('colorModal');
+    const preview = document.getElementById('modalColorPreview');
+    const codeEl = document.getElementById('modalColorCode');
+    const nameEl = document.getElementById('modalColorName');
+
+    preview.style.background = color;
+    codeEl.textContent = code;
+    nameEl.textContent = name;
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal(event) {
+    if (!event || event.target.id === 'colorModal' || event.target.classList.contains('close-modal')) {
+        const modal = document.getElementById('colorModal');
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Close modal on ESC key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeModal();
+    }
+});
+</script>
+
+<div class="color-wall-overrides-old" style="display:none; height: 475px;">
     <div class=" ">
         <section class="relative block"><button aria-hidden="true" class="sr-only"></button>
             <div style="overflow: visible; width: 100%;"><span class="hidden"></span></div><button
@@ -20491,12 +20792,10 @@ get_header();
           modalRoot.__x.$data.open = true;
           modalRoot.__x.$data.color = color;
           modalRoot.__x.$data.colorName = colorName;
-          modalRoot.__x.$data.colorHex = colorHex;
-        }
-      });
-    });
-  });
-</script>
+        </section>
+    </div>
+</div>
+<!-- End old color wall code -->
 
 <?php
 get_footer();
