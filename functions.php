@@ -2000,7 +2000,7 @@ function filter_products_by_tint() {
                 // Check if this is a tint attribute (case-insensitive)
                 if (stripos($attribute_name, 'tint') !== false) {
                     $options = $attribute->get_options();
-
+                    echo '<!-- Checking Product ID ' . $product_id . ' with tint options: ' . implode(', ', $options) . ' -->'; // Debug output
                     // Search through tint options
                     foreach ($options as $option) {
                         $term = get_term($option);
@@ -2011,6 +2011,7 @@ function filter_products_by_tint() {
                             // This will match "B" in "Black", "Brown", "Blue", etc.
                             if (stripos($tint_name, $search_term) !== false) {
                                 $matched_products[] = $product_id;
+                                echo '<!-- Matched Product ID ' . $product_id . ' with tint: ' . $tint_name . ' -->'; // Debug output
                                 $product_matched = true;
                                 break; // Break out of tint options loop
                             }
@@ -2021,7 +2022,7 @@ function filter_products_by_tint() {
         }
         wp_reset_postdata();
     }
-
+    echo '<!-- Matched Products: ' . implode(', ', $matched_products) . ' -->'; // Debug output
     // Remove duplicates
     $matched_products = array_unique($matched_products);
 
