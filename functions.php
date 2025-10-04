@@ -2016,17 +2016,24 @@ function filter_products_by_tint() {
 
                     // Search through tint options
                     foreach ($options as $option) {
-                        $term = get_term($option);
-                        if ($term && !is_wp_error($term)) {
-                            $tint_name = $term->name;
-
-                            // Check if tint name contains the search term (case-insensitive)
-                            // This will match "B" in "Black", "Brown", "Blue", etc.
-                            if (stripos($tint_name, $search_term) !== false) {
-                                $matched_products[] = $product_id;
-                                $product_matched = true;
-                                break; // Break out of tint options loop
+                        if ($attribute->is_taxonomy()) {
+                            // Taxonomy attribute (e.g. pa_tint)
+                            $term = get_term($option);
+                            if ($term && !is_wp_error($term)) {
+                                $tint_name = $term->name;
+                            } else {
+                                continue;
                             }
+                        } else {
+                            // Custom attribute (text)
+                            $tint_name = $option;
+                        }
+
+                        // Check match (case-insensitive, partial)
+                        if (stripos($tint_name, $search_term) !== false) {
+                            $matched_products[] = $product_id;
+                            $product_matched = true;
+                            break;
                         }
                     }
                 }
@@ -2037,7 +2044,6 @@ function filter_products_by_tint() {
 
     // Remove duplicates
     $matched_products = array_unique($matched_products);
-    echo 'Matched Products: ' . implode(', ', $matched_products); // Debug output
     if (empty($matched_products)) {
         wp_send_json_error(array('message' => 'No products found'));
         return;
