@@ -1056,7 +1056,11 @@ get_header();
         font-family: "gillsansnova_book", sans-serif;
         transition: border-color 0.3s ease;
     }
-
+    @media screen and (max-width: 768px) {
+        .color-search-input {
+           width: 100%;
+        }
+    }
     .color-search-input:focus {
         outline: none;
         border-color: #000;
