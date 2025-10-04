@@ -285,7 +285,7 @@ body.hide_scroll {
   font-size: 20px !important;
 }
 
-.wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button, .wc-block-components-checkout-return-to-cart-button {
+.wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button, .wc-block-components-checkout-return-to-cart-button, .wc-block-components-button.wp-element-button.wc-block-cart__submit-button {
   background-color: #000;
   border-radius: 0;
   color: #fff;
@@ -298,6 +298,6 @@ body.hide_scroll {
   text-transform: uppercase;
 }
 
-.wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button:hover, .wc-block-components-checkout-return-to-cart-button:hover {
+.wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button:hover, .wc-block-components-checkout-return-to-cart-button:hover, .wc-block-components-button.wp-element-button.wc-block-cart__submit-button:hover {
   background-color: green !important;
 }
