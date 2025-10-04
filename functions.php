@@ -1989,8 +1989,12 @@ function filter_products_by_tint() {
             // Get product attributes
             $attributes = $product->get_attributes();
 
+            $product_matched = false;
+
             // Look for tint attribute
             foreach ($attributes as $attribute) {
+                if ($product_matched) break; // Skip if already matched
+
                 $attribute_name = $attribute->get_name();
 
                 // Check if this is a tint attribute (case-insensitive)
@@ -2003,10 +2007,12 @@ function filter_products_by_tint() {
                         if ($term && !is_wp_error($term)) {
                             $tint_name = $term->name;
 
-                            // Check if search term matches tint name (case-insensitive)
+                            // Check if tint name contains the search term (case-insensitive)
+                            // This will match "B" in "Black", "Brown", "Blue", etc.
                             if (stripos($tint_name, $search_term) !== false) {
                                 $matched_products[] = $product_id;
-                                break 2; // Break out of both loops once matched
+                                $product_matched = true;
+                                break; // Break out of tint options loop
                             }
                         }
                     }
