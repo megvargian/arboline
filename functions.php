@@ -190,6 +190,18 @@ if (function_exists('acf_add_options_page')) {
             'capabality' => 'edit_posts'
         )
     );
+
+    // Add Paint Colors Options Page
+    acf_add_options_page(
+        array(
+            'page_title' => 'Paint Color Picker',
+            'menu_title' => 'Paint Colors',
+            'menu_slug' => 'paint-colors-settings',
+            'capability' => 'edit_posts',
+            'icon_url' => 'dashicons-art',
+            'position' => 30
+        )
+    );
 }
 
 // if (function_exists('acf_add_options_page')) {
@@ -202,6 +214,126 @@ if (function_exists('acf_add_options_page')) {
 //         )
 //     );
 // }
+
+// Register ACF fields for Paint Color Picker
+add_action('acf/init', 'register_paint_color_picker_fields');
+function register_paint_color_picker_fields() {
+    if (function_exists('acf_add_local_field_group')) {
+        acf_add_local_field_group(array(
+            'key' => 'group_paint_colors',
+            'title' => 'Paint Color Picker Settings',
+            'fields' => array(
+                array(
+                    'key' => 'field_paint_colors_repeater',
+                    'label' => 'Paint Colors',
+                    'name' => 'paint_colors',
+                    'type' => 'repeater',
+                    'instructions' => 'Add paint colors that will appear in the color picker page. Each color can be assigned to a color family for filtering.',
+                    'required' => 0,
+                    'layout' => 'table',
+                    'button_label' => 'Add Color',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_color_name',
+                            'label' => 'Color Name',
+                            'name' => 'color_name',
+                            'type' => 'text',
+                            'required' => 1,
+                            'placeholder' => 'e.g., Real Red',
+                            'wrapper' => array(
+                                'width' => '20',
+                            ),
+                        ),
+                        array(
+                            'key' => 'field_color_code',
+                            'label' => 'Color Code',
+                            'name' => 'color_code',
+                            'type' => 'text',
+                            'required' => 1,
+                            'placeholder' => 'e.g., SW 6868',
+                            'wrapper' => array(
+                                'width' => '15',
+                            ),
+                        ),
+                        array(
+                            'key' => 'field_hex_color',
+                            'label' => 'Hex Color',
+                            'name' => 'hex_color',
+                            'type' => 'color_picker',
+                            'required' => 1,
+                            'default_value' => '#ffffff',
+                            'wrapper' => array(
+                                'width' => '15',
+                            ),
+                        ),
+                        array(
+                            'key' => 'field_color_family',
+                            'label' => 'Color Family',
+                            'name' => 'color_family',
+                            'type' => 'select',
+                            'required' => 1,
+                            'choices' => array(
+                                'reds' => 'Reds',
+                                'oranges' => 'Oranges',
+                                'yellows' => 'Yellows',
+                                'greens' => 'Greens',
+                                'blues' => 'Blues',
+                                'purples' => 'Purples',
+                                'neutrals' => 'Neutrals',
+                                'whites' => 'Whites',
+                                'blacks' => 'Blacks',
+                            ),
+                            'default_value' => 'neutrals',
+                            'wrapper' => array(
+                                'width' => '15',
+                            ),
+                        ),
+                        array(
+                            'key' => 'field_rgb_values',
+                            'label' => 'RGB Values',
+                            'name' => 'rgb_values',
+                            'type' => 'text',
+                            'instructions' => 'Enter RGB values separated by commas (e.g., 200,16,46)',
+                            'required' => 0,
+                            'placeholder' => 'e.g., 200, 16, 46',
+                            'wrapper' => array(
+                                'width' => '20',
+                            ),
+                        ),
+                        array(
+                            'key' => 'field_lrv_value',
+                            'label' => 'LRV',
+                            'name' => 'lrv_value',
+                            'type' => 'number',
+                            'instructions' => 'Light Reflectance Value (0-100)',
+                            'required' => 0,
+                            'min' => 0,
+                            'max' => 100,
+                            'step' => 1,
+                            'wrapper' => array(
+                                'width' => '15',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'options_page',
+                        'operator' => '==',
+                        'value' => 'paint-colors-settings',
+                    ),
+                ),
+            ),
+            'menu_order' => 0,
+            'position' => 'normal',
+            'style' => 'default',
+            'label_placement' => 'top',
+            'instruction_placement' => 'label',
+        ));
+    }
+}
 
 add_image_size('main_homepage_img', 1903, 690, true);
 add_image_size('main_img_company_services', 1903, 300, true);
