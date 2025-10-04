@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 do_action( 'woocommerce_before_customer_login_form' ); ?>
 
 <div class="account-page-header">
-	<h1 class="account-page-title">YOUR ACCOUNT</h1>
+	<h1 class="product_title entry-title">YOUR ACCOUNT</h1>
 </div>
 
 <div class="u-columns col2-set" id="customer_login">
