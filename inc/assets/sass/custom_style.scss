@@ -249,83 +249,19 @@ $grid-breakpoints: (
 	font-size: 20px !important;
 }
 
-/* WooCommerce Buttons - Match Shop Now button styling */
-/* Applies to: Place Order, Return to Cart, Proceed to Checkout, Add to Cart, etc. */
-
-.woocommerce a.button,
-.woocommerce button.button,
-.woocommerce input.button,
-.woocommerce #respond input#submit,
-.woocommerce .button.alt,
-.woocommerce button.single_add_to_cart_button,
-.woocommerce .woocommerce-cart-form button[name="update_cart"],
-.woocommerce .cart .button,
-.woocommerce .cart input.button,
-.woocommerce-page .button,
-.woocommerce a.product_type_simple,
-.woocommerce .checkout-button,
-.woocommerce-checkout button[name="woocommerce_checkout_place_order"],
-.woocommerce-checkout #place_order,
-.woocommerce-cart .wc-proceed-to-checkout a.checkout-button,
-.woocommerce .return-to-shop a.button,
-.woocommerce a.added_to_cart {
-  background-color: #000 !important;
-  color: #fff !important;
-  border: none !important;
-  padding: 12px 30px !important;
-  font-family: "gillsansnova_book", sans-serif !important;
-  font-size: 1.125rem !important;
-  font-weight: 500 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.05em !important;
-  cursor: pointer !important;
-  transition: all 0.3s ease !important;
-  display: inline-block !important;
-  text-align: center !important;
-  text-decoration: none !important;
-  border-radius: 0 !important;
-  line-height: 1.5 !important;
-  box-shadow: none !important;
+.wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button, .wc-block-components-checkout-return-to-cart-button{
+	background-color: #000;
+    border-radius: 0;
+    color: #fff;
+    font-size: 1.40625rem;
+    font-weight: 500;
+    height: 50px;
+	font-size: 1.125rem;
+	letter-spacing: .04em;
+    min-height: 50px;
+    text-transform: uppercase;
 }
 
-/* Hover state - Green background */
-.woocommerce a.button:hover,
-.woocommerce button.button:hover,
-.woocommerce input.button:hover,
-.woocommerce #respond input#submit:hover,
-.woocommerce .button.alt:hover,
-.woocommerce button.single_add_to_cart_button:hover,
-.woocommerce .woocommerce-cart-form button[name="update_cart"]:hover,
-.woocommerce .cart .button:hover,
-.woocommerce .cart input.button:hover,
-.woocommerce-page .button:hover,
-.woocommerce a.product_type_simple:hover,
-.woocommerce .checkout-button:hover,
-.woocommerce-checkout button[name="woocommerce_checkout_place_order"]:hover,
-.woocommerce-checkout #place_order:hover,
-.woocommerce-cart .wc-proceed-to-checkout a.checkout-button:hover,
-.woocommerce .return-to-shop a.button:hover,
-.woocommerce a.added_to_cart:hover {
-  background-color: green !important;
-  color: #fff !important;
-  text-decoration: none !important;
-}
-
-/* Disabled state */
-.woocommerce button.button:disabled,
-.woocommerce button.button.disabled,
-.woocommerce input.button:disabled,
-.woocommerce input.button.disabled,
-.woocommerce-checkout #place_order:disabled {
-  background-color: #ccc !important;
-  cursor: not-allowed !important;
-  opacity: 0.6 !important;
-}
-
-.woocommerce button.button:disabled:hover,
-.woocommerce button.button.disabled:hover,
-.woocommerce input.button:disabled:hover,
-.woocommerce input.button.disabled:hover,
-.woocommerce-checkout #place_order:disabled:hover {
-  background-color: #ccc !important;
+.wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button:hover , .wc-block-components-checkout-return-to-cart-button:hover {
+	background-color: green !important;
 }
