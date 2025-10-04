@@ -686,7 +686,7 @@ jQuery(document).ready(function($) {
                         </a>
                     </li>
                     <li class="menu-item font-weight-bold d-block w-100   ">
-                        <a href="https://arboline.com/" class="text-uppercase py-1 d-block w-100">
+                        <a href="https://arboline.com/catalogue/" class="text-uppercase py-1 d-block w-100">
                             Product Catalogue
                         </a>
                     </li>
