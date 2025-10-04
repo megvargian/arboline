@@ -50,7 +50,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 
 			<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 				<label for="recaptcha_login"><?php esc_html_e( 'Captcha', 'woocommerce' ); ?>&nbsp;<span class="required">*</span></label>
-				<div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
+				<div class="g-recaptcha" data-sitekey="6LfWbt4rAAAAABOVtrOrf8-ZYXyI1n1eKeBQs85v"></div>
 			</p>
 
 			<?php do_action( 'woocommerce_login_form' ); ?>
@@ -118,7 +118,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 
 			<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 				<label for="recaptcha_register"><?php esc_html_e( 'Captcha', 'woocommerce' ); ?>&nbsp;<span class="required">*</span></label>
-				<div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
+				<div class="g-recaptcha" data-sitekey="6LfWbt4rAAAAABOVtrOrf8-ZYXyI1n1eKeBQs85v"></div>
 			</p>
 
 			<?php do_action( 'woocommerce_register_form' ); ?>
