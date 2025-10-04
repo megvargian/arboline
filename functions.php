@@ -1957,7 +1957,7 @@ add_action('wp_ajax_nopriv_filter_products_by_tint', 'filter_products_by_tint');
 function filter_products_by_tint() {
     $search_term = isset($_POST['search_term']) ? sanitize_text_field($_POST['search_term']) : '';
 
-    // Query products in category 27
+    // Query products in category 21
     $args = array(
         'post_type' => 'product',
         'posts_per_page' => -1,
@@ -1986,8 +1986,17 @@ function filter_products_by_tint() {
 
             $product = wc_get_product($product_id);
 
+            // Skip if product doesn't exist
+            if (!$product) {
+                continue;
+            }
+
             // Get product attributes
             $attributes = $product->get_attributes();
+
+            if (empty($attributes)) {
+                continue;
+            }
 
             $product_matched = false;
 
@@ -2000,7 +2009,11 @@ function filter_products_by_tint() {
                 // Check if this is a tint attribute (case-insensitive)
                 if (stripos($attribute_name, 'tint') !== false) {
                     $options = $attribute->get_options();
-                    echo '<!-- Checking Product ID ' . $product_id . ' with tint options: ' . implode(', ', $options) . ' -->'; // Debug output
+
+                    if (empty($options)) {
+                        continue;
+                    }
+
                     // Search through tint options
                     foreach ($options as $option) {
                         $term = get_term($option);
@@ -2011,7 +2024,6 @@ function filter_products_by_tint() {
                             // This will match "B" in "Black", "Brown", "Blue", etc.
                             if (stripos($tint_name, $search_term) !== false) {
                                 $matched_products[] = $product_id;
-                                echo '<!-- Matched Product ID ' . $product_id . ' with tint: ' . $tint_name . ' -->'; // Debug output
                                 $product_matched = true;
                                 break; // Break out of tint options loop
                             }
@@ -2022,7 +2034,7 @@ function filter_products_by_tint() {
         }
         wp_reset_postdata();
     }
-    echo '<!-- Matched Products: ' . implode(', ', $matched_products) . ' -->'; // Debug output
+
     // Remove duplicates
     $matched_products = array_unique($matched_products);
 
@@ -2038,7 +2050,9 @@ function filter_products_by_tint() {
     foreach ($matched_products as $product_id) {
         $product = wc_get_product($product_id);
 
-        if (!$product) continue;
+        if (!$product) {
+            continue;
+        }
 
         ?>
         <div class="col-md-3 col-6 mb-4">
