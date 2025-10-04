@@ -2023,7 +2023,9 @@ function filter_products_by_tint() {
                             // Check if tint name contains the search term (case-insensitive)
                             // This will match "B" in "Black", "Brown", "Blue", etc.
                             if (stripos($tint_name, $search_term) !== false) {
+                                echo '<!-- Matched Product ID ' . $product_id . ' with tint: ' . $tint_name . ' -->'; // Debug output
                                 $matched_products[] = $product_id;
+                                echo 'Matched Products: ' . implode(', ', $matched_products); // Debug output
                                 $product_matched = true;
                                 break; // Break out of tint options loop
                             }
@@ -2037,7 +2039,6 @@ function filter_products_by_tint() {
 
     // Remove duplicates
     $matched_products = array_unique($matched_products);
-    echo 'Matched Products: ' . implode(', ', $matched_products); // Debug output
 
     if (empty($matched_products)) {
         wp_send_json_error(array('message' => 'No products found'));
