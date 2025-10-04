@@ -1,0 +1,191 @@
+/* My Account Page - Login & Register Forms */
+.account-page-header {
+  text-align: center;
+  padding: 3rem 0 2rem;
+  border-bottom: 2px solid #000;
+  margin-bottom: 3rem;
+}
+
+.account-page-title {
+  font-family: "gillsansnova_book", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.woocommerce-account .u-columns.col2-set {
+  display: flex;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.woocommerce-account .u-column1,
+.woocommerce-account .u-column2 {
+  flex: 1;
+  max-width: 600px;
+}
+
+.woocommerce-account .u-column1 h2,
+.woocommerce-account .u-column2 h2 {
+  font-family: "gillsansnova_book", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2rem;
+  color: #000;
+}
+
+.woocommerce-account .woocommerce-form-row {
+  margin-bottom: 1.5rem;
+}
+
+.woocommerce-account .woocommerce-form-row label {
+  font-family: "gillsansnova_book", sans-serif;
+  font-size: 0.95rem;
+  color: #000;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.woocommerce-account .woocommerce-form-row label .required {
+  color: #e74c3c;
+}
+
+.woocommerce-account input[type="text"],
+.woocommerce-account input[type="email"],
+.woocommerce-account input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  background-color: #f0f4f8;
+  font-family: "gillsansnova_book", sans-serif;
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.woocommerce-account input[type="text"]:focus,
+.woocommerce-account input[type="email"]:focus,
+.woocommerce-account input[type="password"]:focus {
+  outline: none;
+  border-color: #000;
+  background-color: #fff;
+}
+
+.woocommerce-account .password-input-wrapper {
+  position: relative;
+  display: block;
+}
+
+.woocommerce-account .show-password-input {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+}
+
+.woocommerce-account .show-password-input:hover {
+  color: #000;
+}
+
+.woocommerce-account .g-recaptcha {
+  margin-top: 0.5rem;
+}
+
+.woocommerce-account .woocommerce-form__label-for-checkbox {
+  display: flex;
+  align-items: center;
+  font-family: "gillsansnova_book", sans-serif;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.woocommerce-account .woocommerce-form__input-checkbox {
+  margin-right: 0.5rem;
+  width: auto;
+}
+
+.woocommerce-account .woocommerce-button.button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  font-family: "gillsansnova_book", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 0;
+  width: auto;
+  display: inline-block;
+}
+
+.woocommerce-account .woocommerce-button.button:hover {
+  background-color: green;
+}
+
+.woocommerce-account .lost_password {
+  margin-top: 1rem;
+  font-family: "gillsansnova_book", sans-serif;
+  font-size: 0.95rem;
+}
+
+.woocommerce-account .lost_password a {
+  color: #000;
+  text-decoration: underline;
+}
+
+.woocommerce-account .lost_password a:hover {
+  color: green;
+}
+
+.woocommerce-account .register-password-info {
+  font-family: "gillsansnova_book", sans-serif;
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.woocommerce-account .register-privacy-policy {
+  font-family: "gillsansnova_book", sans-serif;
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.woocommerce-account .register-privacy-policy a {
+  color: #000;
+  text-decoration: underline;
+}
+
+.woocommerce-account .register-privacy-policy a:hover {
+  color: green;
+}
+
+@media (max-width: 768px) {
+  .woocommerce-account .u-columns.col2-set {
+    flex-direction: column;
+    gap: 3rem;
+    padding: 0 1rem;
+  }
+
+  .account-page-title {
+    font-size: 2rem;
+  }
+
+  .woocommerce-account .u-column1,
+  .woocommerce-account .u-column2 {
+    max-width: 100%;
+  }
+}

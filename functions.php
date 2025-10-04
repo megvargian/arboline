@@ -138,6 +138,7 @@ function wp_bootstrap_starter_scripts()
     wp_enqueue_style('custom_style', get_template_directory_uri() . '/inc/assets/css/custom_style.css', array(), '1.40');
     wp_enqueue_style('custom_style_sec', get_template_directory_uri() . '/inc/assets/css/sec-style.css', array(), '1.40');
     wp_enqueue_style('custom_style_third', get_template_directory_uri() . '/inc/assets/css/third-style.min.css', array(), '1.40');
+    wp_enqueue_style('account_page_style', get_template_directory_uri() . '/inc/assets/css/account-page.css', array(), '1.0');
     wp_enqueue_style('responsive_style', get_template_directory_uri() . '/inc/assets/css/responsive.css', array(), '1.40');
 
     wp_enqueue_script('jquery');
@@ -2053,4 +2054,41 @@ function filter_products_by_tint() {
         'html' => $html,
         'count' => $count
     ));
+}
+
+// Add password toggle functionality to My Account page
+add_action('wp_footer', 'add_account_page_scripts');
+function add_account_page_scripts() {
+    if (is_account_page()) {
+        ?>
+        <script>
+        jQuery(document).ready(function($) {
+            // Password visibility toggle
+            $('.show-password-input').on('click', function() {
+                var $this = $(this);
+                var $input = $this.siblings('input');
+                var toggle = $this.attr('data-toggle');
+
+                if (toggle === '0') {
+                    $input.attr('type', 'text');
+                    $this.attr('data-toggle', '1');
+                    $this.find('.dashicons').removeClass('dashicons-visibility').addClass('dashicons-hidden');
+                } else {
+                    $input.attr('type', 'password');
+                    $this.attr('data-toggle', '0');
+                    $this.find('.dashicons').removeClass('dashicons-hidden').addClass('dashicons-visibility');
+                }
+            });
+        });
+        </script>
+        <?php
+    }
+}
+
+// Load Google reCAPTCHA on account page
+add_action('wp_enqueue_scripts', 'enqueue_recaptcha_script');
+function enqueue_recaptcha_script() {
+    if (is_account_page()) {
+        wp_enqueue_script('google-recaptcha', 'https://www.google.com/recaptcha/api.js', array(), null, true);
+    }
 }
