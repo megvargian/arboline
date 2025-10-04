@@ -1956,11 +1956,6 @@ add_action('wp_ajax_nopriv_filter_products_by_tint', 'filter_products_by_tint');
 function filter_products_by_tint() {
     $search_term = isset($_POST['search_term']) ? sanitize_text_field($_POST['search_term']) : '';
 
-    if (empty($search_term)) {
-        wp_send_json_error(array('message' => 'No search term provided'));
-        return;
-    }
-
     // Query products in category 27
     $args = array(
         'post_type' => 'product',
@@ -1969,7 +1964,7 @@ function filter_products_by_tint() {
             array(
                 'taxonomy' => 'product_cat',
                 'field' => 'term_id',
-                'terms' => 27,
+                'terms' => 21,
             ),
         ),
     );
@@ -1981,6 +1976,13 @@ function filter_products_by_tint() {
         while ($products->have_posts()) {
             $products->the_post();
             $product_id = get_the_ID();
+
+            // If no search term, include all products
+            if (empty($search_term)) {
+                $matched_products[] = $product_id;
+                continue;
+            }
+
             $product = wc_get_product($product_id);
 
             // Get product attributes

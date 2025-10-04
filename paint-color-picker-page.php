@@ -61,7 +61,6 @@ get_header();
                 <h2 class="filter-section-title">Find Products by Color</h2>
                 <div class="color-search-wrapper">
                     <input type="text" id="colorSearchInput" class="color-search-input" placeholder="Search by color name (e.g., Real Red, SW 6868)...">
-                    <button id="clearFilterBtn" class="clear-filter-btn" style="display: none;">Clear Filter</button>
                 </div>
             </div>
         </div>
@@ -629,19 +628,13 @@ get_header();
         // Product Filter AJAX
         let searchTimeout;
         const $searchInput = $('#colorSearchInput');
-        const $clearBtn = $('#clearFilterBtn');
         const $productsContainer = $('#filteredProductsContainer');
         const $noProductsMsg = $('#noProductsMessage');
         const $loadingSpinner = $('#loadingSpinner');
 
         function searchProducts(searchTerm) {
-            if (searchTerm.length < 2 && searchTerm.length > 0) {
-                return; // Wait for at least 2 characters
-            }
-
             $loadingSpinner.show();
             $noProductsMsg.hide();
-            $productsContainer.empty();
 
             $.ajax({
                 url: '<?php echo admin_url('admin-ajax.php'); ?>',
@@ -655,42 +648,30 @@ get_header();
 
                     if (response.success && response.data.html) {
                         $productsContainer.html(response.data.html);
-                        $clearBtn.show();
                     } else {
+                        $productsContainer.empty();
                         $noProductsMsg.show();
-                        if (searchTerm.length > 0) {
-                            $clearBtn.show();
-                        }
                     }
                 },
                 error: function() {
                     $loadingSpinner.hide();
+                    $productsContainer.empty();
                     $noProductsMsg.show();
                 }
             });
         }
 
-        $searchInput.on('input', function() {
+        // Load all products on page load
+        searchProducts('');
+
+        // Filter on keyup event
+        $searchInput.on('keyup', function() {
             clearTimeout(searchTimeout);
             const searchTerm = $(this).val().trim();
 
-            if (searchTerm.length === 0) {
-                $productsContainer.empty();
-                $noProductsMsg.hide();
-                $clearBtn.hide();
-                return;
-            }
-
             searchTimeout = setTimeout(function() {
                 searchProducts(searchTerm);
-            }, 500); // Debounce 500ms
-        });
-
-        $clearBtn.on('click', function() {
-            $searchInput.val('');
-            $productsContainer.empty();
-            $noProductsMsg.hide();
-            $clearBtn.hide();
+            }, 300); // Debounce 300ms for faster response on keyup
         });
 
     });
@@ -1079,24 +1060,6 @@ get_header();
     .color-search-input:focus {
         outline: none;
         border-color: #000;
-    }
-
-    .clear-filter-btn {
-        padding: 12px 24px;
-        background-color: #000;
-        color: #fff;
-        border: none;
-        border-radius: 8px;
-        font-family: "gillsansnova_book", sans-serif;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-    }
-
-    .clear-filter-btn:hover {
-        background-color: green;
     }
 
     #filteredProductsContainer {
