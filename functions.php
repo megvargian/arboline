@@ -2039,7 +2039,7 @@ function filter_products_by_tint() {
 
     // Remove duplicates
     $matched_products = array_unique($matched_products);
-
+    echo 'Matched Products: ' . implode(', ', $matched_products); // Debug output
     if (empty($matched_products)) {
         wp_send_json_error(array('message' => 'No products found'));
         return;
