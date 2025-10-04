@@ -710,6 +710,7 @@ get_header();
     .header {
         text-align: center;
         padding: 64px 24px 24px;
+        background-color: #fff;
     }
 
     .header h1 {
@@ -728,7 +729,6 @@ get_header();
         padding: 24px;
         background-color: #fff;
         border-bottom: 1px solid var(--border-color);
-        position: sticky;
         top: 0;
         z-index: 100;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
