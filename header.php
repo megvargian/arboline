@@ -24,10 +24,6 @@ $sub_menu = $header['sub_menus'];
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tailwind CSS CDN for this page only -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Alpine.js CDN for modal interactivity -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <?php wp_head(); ?>
 </head>
 

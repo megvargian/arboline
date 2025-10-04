@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Paint Example Page
+ * Template Name: Paint Color Picker Page
  */
 get_header();
 ?>
