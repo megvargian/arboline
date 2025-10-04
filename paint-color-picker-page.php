@@ -684,7 +684,7 @@ get_header();
     }
 
     :root {
-        --primary-color: #0051a5;
+        --primary-color: #000;
         --text-dark: #333;
         --text-light: #666;
         --border-color: #e0e0e0;
@@ -709,9 +709,7 @@ get_header();
 
     .header {
         text-align: center;
-        padding: 48px 24px 24px;
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        border-bottom: 2px solid var(--border-color);
+        padding: 64px 24px 24px;
     }
 
     .header h1 {
