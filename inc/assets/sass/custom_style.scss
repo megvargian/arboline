@@ -265,3 +265,13 @@ $grid-breakpoints: (
 .wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button:hover , .wc-block-components-checkout-return-to-cart-button:hover , .wc-block-components-button.wp-element-button.wc-block-cart__submit-button:hover{
 	background-color: green !important;
 }
+
+.wc-block-components-checkout-return-to-cart-button{
+	justify-content: center !important;
+	display: flex !important;
+	align-items: center !important;
+	height: 3.7rem;
+    width: 40%;
+    color: white;
+    padding-left: 1rem;
+}
