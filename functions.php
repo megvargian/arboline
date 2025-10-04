@@ -2044,7 +2044,7 @@ function filter_products_by_tint() {
     }
 
     // Generate HTML for matched products (4 per row like related products)
-    ob_start();
+    // ob_start();
 
     $count = 0;
     foreach ($matched_products as $product_id) {
@@ -2069,7 +2069,7 @@ function filter_products_by_tint() {
         $count++;
     }
 
-    $html = ob_get_clean();
+    // $html = ob_get_clean();
 
     wp_send_json_success(array(
         'html' => $html,
