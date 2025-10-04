@@ -1948,3 +1948,107 @@ add_action('save_post_product', function($post_id) {
         update_post_meta($post_id, '_product_density', floatval($_POST['product_density']));
     }
 });
+
+// AJAX handler for filtering products by tint color in category 27
+add_action('wp_ajax_filter_products_by_tint', 'filter_products_by_tint');
+add_action('wp_ajax_nopriv_filter_products_by_tint', 'filter_products_by_tint');
+
+function filter_products_by_tint() {
+    $search_term = isset($_POST['search_term']) ? sanitize_text_field($_POST['search_term']) : '';
+
+    if (empty($search_term)) {
+        wp_send_json_error(array('message' => 'No search term provided'));
+        return;
+    }
+
+    // Query products in category 27
+    $args = array(
+        'post_type' => 'product',
+        'posts_per_page' => -1,
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'product_cat',
+                'field' => 'term_id',
+                'terms' => 27,
+            ),
+        ),
+    );
+
+    $products = new WP_Query($args);
+    $matched_products = array();
+
+    if ($products->have_posts()) {
+        while ($products->have_posts()) {
+            $products->the_post();
+            $product_id = get_the_ID();
+            $product = wc_get_product($product_id);
+
+            // Get product attributes
+            $attributes = $product->get_attributes();
+
+            // Look for tint attribute
+            foreach ($attributes as $attribute) {
+                $attribute_name = $attribute->get_name();
+
+                // Check if this is a tint attribute (case-insensitive)
+                if (stripos($attribute_name, 'tint') !== false) {
+                    $options = $attribute->get_options();
+
+                    // Search through tint options
+                    foreach ($options as $option) {
+                        $term = get_term($option);
+                        if ($term && !is_wp_error($term)) {
+                            $tint_name = $term->name;
+
+                            // Check if search term matches tint name (case-insensitive)
+                            if (stripos($tint_name, $search_term) !== false) {
+                                $matched_products[] = $product_id;
+                                break 2; // Break out of both loops once matched
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        wp_reset_postdata();
+    }
+
+    // Remove duplicates
+    $matched_products = array_unique($matched_products);
+
+    if (empty($matched_products)) {
+        wp_send_json_error(array('message' => 'No products found'));
+        return;
+    }
+
+    // Generate HTML for matched products (4 per row like related products)
+    ob_start();
+
+    $count = 0;
+    foreach ($matched_products as $product_id) {
+        $product = wc_get_product($product_id);
+
+        if (!$product) continue;
+
+        ?>
+        <div class="col-md-3 col-6 mb-4">
+            <div class="product">
+                <a href="<?php echo esc_url(get_permalink($product_id)); ?>" class="woocommerce-loop-product__link">
+                    <?php echo $product->get_image('woocommerce_thumbnail'); ?>
+                    <h2 class="woocommerce-loop-product__title"><?php echo esc_html($product->get_name()); ?></h2>
+                    <span class="price"><?php echo $product->get_price_html(); ?></span>
+                </a>
+            </div>
+        </div>
+        <?php
+
+        $count++;
+    }
+
+    $html = ob_get_clean();
+
+    wp_send_json_success(array(
+        'html' => $html,
+        'count' => $count
+    ));
+}

@@ -53,6 +53,30 @@ get_header();
             </div>
         </div>
     </div>
+
+    <!-- Product Filter Section -->
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="filter-section-title">Find Products by Color</h2>
+                <div class="color-search-wrapper">
+                    <input type="text" id="colorSearchInput" class="color-search-input" placeholder="Search by color name (e.g., Real Red, SW 6868)...">
+                    <button id="clearFilterBtn" class="clear-filter-btn" style="display: none;">Clear Filter</button>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4" id="filteredProductsContainer">
+            <!-- Products will be loaded here via AJAX -->
+        </div>
+        <div id="noProductsMessage" style="display: none;" class="col-12 text-center py-5">
+            <p class="no-products-text">No products found matching your search.</p>
+        </div>
+        <div id="loadingSpinner" style="display: none;" class="col-12 text-center py-5">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </div>
 </section>
 <script>
     jQuery(document).ready(function($) {
@@ -602,6 +626,73 @@ get_header();
             })
         })
 
+        // Product Filter AJAX
+        let searchTimeout;
+        const $searchInput = $('#colorSearchInput');
+        const $clearBtn = $('#clearFilterBtn');
+        const $productsContainer = $('#filteredProductsContainer');
+        const $noProductsMsg = $('#noProductsMessage');
+        const $loadingSpinner = $('#loadingSpinner');
+
+        function searchProducts(searchTerm) {
+            if (searchTerm.length < 2 && searchTerm.length > 0) {
+                return; // Wait for at least 2 characters
+            }
+
+            $loadingSpinner.show();
+            $noProductsMsg.hide();
+            $productsContainer.empty();
+
+            $.ajax({
+                url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                type: 'POST',
+                data: {
+                    action: 'filter_products_by_tint',
+                    search_term: searchTerm
+                },
+                success: function(response) {
+                    $loadingSpinner.hide();
+
+                    if (response.success && response.data.html) {
+                        $productsContainer.html(response.data.html);
+                        $clearBtn.show();
+                    } else {
+                        $noProductsMsg.show();
+                        if (searchTerm.length > 0) {
+                            $clearBtn.show();
+                        }
+                    }
+                },
+                error: function() {
+                    $loadingSpinner.hide();
+                    $noProductsMsg.show();
+                }
+            });
+        }
+
+        $searchInput.on('input', function() {
+            clearTimeout(searchTimeout);
+            const searchTerm = $(this).val().trim();
+
+            if (searchTerm.length === 0) {
+                $productsContainer.empty();
+                $noProductsMsg.hide();
+                $clearBtn.hide();
+                return;
+            }
+
+            searchTimeout = setTimeout(function() {
+                searchProducts(searchTerm);
+            }, 500); // Debounce 500ms
+        });
+
+        $clearBtn.on('click', function() {
+            $searchInput.val('');
+            $productsContainer.empty();
+            $noProductsMsg.hide();
+            $clearBtn.hide();
+        });
+
     });
 </script>
 <style>
@@ -953,6 +1044,141 @@ get_header();
 
         .header {
             padding: 32px 16px 16px;
+        }
+    }
+
+    /* Product Filter Section Styles */
+    .filter-section-title {
+        font-family: "gillsansnova_book", sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    .color-search-wrapper {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+
+    .color-search-input {
+        flex: 1;
+        max-width: 600px;
+        padding: 12px 20px;
+        font-size: 1rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-family: "gillsansnova_book", sans-serif;
+        transition: border-color 0.3s ease;
+    }
+
+    .color-search-input:focus {
+        outline: none;
+        border-color: #000;
+    }
+
+    .clear-filter-btn {
+        padding: 12px 24px;
+        background-color: #000;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-family: "gillsansnova_book", sans-serif;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .clear-filter-btn:hover {
+        background-color: green;
+    }
+
+    #filteredProductsContainer {
+        min-height: 200px;
+    }
+
+    /* Product Card Styles - Match Related Products */
+    #filteredProductsContainer .col-md-3 {
+        margin-bottom: 2rem;
+    }
+
+    #filteredProductsContainer .product {
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    #filteredProductsContainer .product:hover {
+        transform: translateY(-5px);
+    }
+
+    #filteredProductsContainer .woocommerce-loop-product__link {
+        text-decoration: none;
+        display: block;
+    }
+
+    #filteredProductsContainer .woocommerce-loop-product__title {
+        font-family: "gillsansnova_book", sans-serif;
+        font-size: 1.125rem;
+        color: var(--text-dark);
+        margin: 1rem 0 0.5rem;
+        font-weight: 600;
+    }
+
+    #filteredProductsContainer .price {
+        font-family: "gillsansnova_book", sans-serif;
+        font-size: 1rem;
+        color: #666;
+        margin-bottom: 1rem;
+    }
+
+    #filteredProductsContainer img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .no-products-text {
+        font-family: "gillsansnova_book", sans-serif;
+        font-size: 1.25rem;
+        color: #666;
+    }
+
+    .spinner-border {
+        width: 3rem;
+        height: 3rem;
+        border: 0.25em solid currentColor;
+        border-right-color: transparent;
+        border-radius: 50%;
+        animation: spinner-border 0.75s linear infinite;
+    }
+
+    @keyframes spinner-border {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .filter-section-title {
+            font-size: 1.5rem;
+        }
+
+        .color-search-wrapper {
+            flex-direction: column;
+        }
+
+        .color-search-input {
+            max-width: 100%;
+        }
+
+        #filteredProductsContainer .col-md-3 {
+            margin-bottom: 1.5rem;
         }
     }
 </style>
