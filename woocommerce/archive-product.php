@@ -69,36 +69,71 @@ global $wp_query;
 					</h1>
 				</header>
 				<div class="woocommerce-notices-wrapper"></div>
+				<?php
+				// Get current orderby parameter
+				$orderby = isset($_GET['orderby']) ? sanitize_text_field($_GET['orderby']) : 'menu_order';
+
+				// Query products in this category
+				$cat_id = get_queried_object_id();
+				$args = array(
+					'post_type' => 'product',
+					'posts_per_page' => -1,
+					'tax_query' => array(
+						array(
+							'taxonomy' => 'product_cat',
+							'field' => 'term_id',
+							'terms' => $cat_id,
+						),
+					),
+				);
+
+				// Add sorting parameters
+				switch ($orderby) {
+					case 'popularity':
+						$args['meta_key'] = 'total_sales';
+						$args['orderby'] = 'meta_value_num';
+						$args['order'] = 'DESC';
+						break;
+					case 'date':
+						$args['orderby'] = 'date';
+						$args['order'] = 'DESC';
+						break;
+					case 'price':
+						$args['meta_key'] = '_price';
+						$args['orderby'] = 'meta_value_num';
+						$args['order'] = 'ASC';
+						break;
+					case 'price-desc':
+						$args['meta_key'] = '_price';
+						$args['orderby'] = 'meta_value_num';
+						$args['order'] = 'DESC';
+						break;
+					default:
+						$args['orderby'] = 'menu_order';
+						$args['order'] = 'ASC';
+						break;
+				}
+
+				$products = get_posts($args);
+				$product_count = count($products);
+				?>
 				<p class="woocommerce-result-count">
-					Showing all 7 results</p>
+					Showing all <?php echo $product_count; ?> result<?php echo $product_count !== 1 ? 's' : ''; ?>
+				</p>
 				<form class="woocommerce-ordering" method="get">
 					<select name="orderby" class="orderby" aria-label="Shop order">
-						<option value="menu_order" selected="selected">Default sorting</option>
-						<option value="popularity">Sort by popularity</option>
-						<option value="date">Sort by latest</option>
-						<option value="price">Sort by price: low to high</option>
-						<option value="price-desc">Sort by price: high to low</option>
+						<option value="menu_order" <?php selected($orderby, 'menu_order'); ?>>Default sorting</option>
+						<option value="popularity" <?php selected($orderby, 'popularity'); ?>>Sort by popularity</option>
+						<option value="date" <?php selected($orderby, 'date'); ?>>Sort by latest</option>
+						<option value="price" <?php selected($orderby, 'price'); ?>>Sort by price: low to high</option>
+						<option value="price-desc" <?php selected($orderby, 'price-desc'); ?>>Sort by price: high to low</option>
 					</select>
 					<input type="hidden" name="paged" value="1">
 				</form>
 				<ul class="products columns-6">
-					<div class="mb-4">
+					<div class="mb-4" id="product-listing">
 						<?php
-						// Query products in this category
-						if (is_product_category()) {
-							$cat_id = get_queried_object_id();
-							$args = array(
-								'post_type' => 'product',
-								'posts_per_page' => -1,
-								'tax_query' => array(
-									array(
-										'taxonomy' => 'product_cat',
-										'field' => 'term_id',
-										'terms' => $cat_id,
-									),
-								),
-							);
-							$products = get_posts($args);
+						if (is_product_category() && !empty($products)) {
 							foreach ($products as $prod) {
 								$link = get_permalink($prod->ID);
 								$title = get_the_title($prod->ID);
@@ -116,6 +151,49 @@ global $wp_query;
 		</div>
 	</div>
 </div>
+
+<script>
+jQuery(document).ready(function($) {
+    // Handle orderby dropdown change
+    $('.woocommerce-ordering select.orderby').on('change', function() {
+        var orderby = $(this).val();
+        var currentUrl = window.location.href.split('?')[0];
+        var newUrl = currentUrl + '?orderby=' + orderby;
+
+        // Update URL without page reload
+        window.history.pushState({path: newUrl}, '', newUrl);
+
+        // Perform AJAX request
+        $.ajax({
+            url: window.location.href,
+            type: 'GET',
+            data: {
+                orderby: orderby,
+                ajax_load: 1
+            },
+            beforeSend: function() {
+                $('#product-listing').css('opacity', '0.5');
+            },
+            success: function(response) {
+                // Extract the product listing from response
+                var $response = $(response);
+                var newProductListing = $response.find('#product-listing').html();
+                var newResultCount = $response.find('.woocommerce-result-count').html();
+
+                // Update the product listing
+                $('#product-listing').html(newProductListing);
+                $('.woocommerce-result-count').html(newResultCount);
+                $('#product-listing').css('opacity', '1');
+            },
+            error: function() {
+                // Fallback to page reload if AJAX fails
+                window.location.href = newUrl;
+            }
+        });
+    });
+});
+</script>
+
 <?php
 /**
  * Hook: woocommerce_after_main_content.
