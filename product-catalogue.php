@@ -159,6 +159,14 @@ get_header();
   height: auto;
 }
 
+.custom-product-item:hover img{
+    transform: scale(1.2);
+}
+
+.custom-product-item img{
+    transition: all .2s ease-in-out;
+}
+
 .custom-product-link {
   text-decoration: none;
   color: inherit;
