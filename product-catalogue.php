@@ -163,6 +163,10 @@ get_header();
     transform: scale(1.2);
 }
 
+.custom-product-image{
+    overflow: hidden;
+}
+
 .custom-product-item img{
     transition: all .2s ease-in-out;
 }
