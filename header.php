@@ -53,57 +53,6 @@ $sub_menu = $header['sub_menus'];
                             </form>
                             <div class="autocomplete-suggestions"
                                 style="display: none;"></div>
-<script>
-jQuery(document).ready(function($) {
-    var $input = $('#yith-s');
-    var $dropdown = $('#search-dropdown');
-    var timer = null;
-    function doSearch(query) {
-        if (query.length < 2) {
-            $dropdown.hide();
-            return;
-        }
-        $.ajax({
-            url: '/wp-admin/admin-ajax.php',
-            method: 'POST',
-            dataType: 'json',
-            data: {
-                action: 'arboline_search_suggestions',
-                q: query
-            },
-            success: function(res) {
-                if (res && res.length) {
-                    var html = '';
-                    res.forEach(function(item) {
-                        html += '<div class="autocomplete-suggestion px-3 py-2 border-bottom">'
-                            + '<a href="' + item.url + '" class="d-block text-dark">' + item.label + '</a>'
-                            + '</div>';
-                    });
-                    $dropdown.html(html).show();
-                } else {
-                    $dropdown.html('<div class="px-3 py-2 text-muted">No results found</div>').show();
-                }
-            },
-            error: function() {
-                $dropdown.hide();
-            }
-        });
-    }
-    $input.on('keyup keydown', function(e) {
-        clearTimeout(timer);
-        var val = $(this).val();
-        timer = setTimeout(function() {
-            doSearch(val);
-        }, 200);
-    });
-    // Hide dropdown on click outside
-    $(document).on('click', function(e) {
-        if (!$(e.target).closest('#yith-s, #search-dropdown').length) {
-            $dropdown.hide();
-        }
-    });
-});
-</script>
                         </div>
                     </div>
                 </div>
@@ -116,18 +65,22 @@ jQuery(document).ready(function($) {
                     <div class="d-flex justify-content-between align-items-center row mx-0">
                         <div class="col-3">
                             <ul id="secondaryNav" class="nav">
-                                <li class="menu-item">
-                                    <a href="<?php echo $left_side['first_button_url']; ?>" class="text-uppercase">
-                                        <?php echo $left_side['first_button_text']; ?>
-                                    </a>
-                                    <span class="menu-border"></span>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="<?php echo $left_side['second_button_url']; ?>" class="text-uppercase">
-                                        <?php echo $left_side['second_button_text']; ?>
-                                    </a>
-                                    <span class="menu-border"></span>
-                                </li>
+                                <?php if($left_side['first_button_text']): ?>
+                                    <li class="menu-item">
+                                        <a href="<?php echo $left_side['first_button_url']; ?>" class="text-uppercase">
+                                            <?php echo $left_side['first_button_text']; ?>
+                                        </a>
+                                        <span class="menu-border"></span>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if($left_side['second_button_text']): ?>
+                                    <li class="menu-item">
+                                        <a href="<?php echo $left_side['second_button_url']; ?>" class="text-uppercase">
+                                            <?php echo $left_side['second_button_text']; ?>
+                                        </a>
+                                        <span class="menu-border"></span>
+                                    </li>
+                                <?php endif; ?>
                             </ul>
                         </div>
                         <a class="brand my-4 p-lg-0 mx-auto d-block text-center col-6"
@@ -409,272 +362,6 @@ jQuery(document).ready(function($) {
                             </div>
                         <?php  } ?>
                     <?php  } ?>
-                    <!-- <div class="accordion-item border-0">
-                        <p class="accordion-header border-0" id="heading-floor-worktop-finishes">
-                            <a class="text-uppercase accordion-button border-bottom collapsed px-0 has-children"
-                                type="button" data-bs-toggle="collapse" data-bs-target="#floor-worktop-finishes"
-                                aria-expanded="" aria-controls="floor-worktop-finishes">
-                                Floor &amp; Worktop Finishes
-                            </a>
-                        </p>
-                        <div id="floor-worktop-finishes" class="accordion-collapse collapse"
-                            aria-labelledby="heading-floor-worktop-finishes" data-bs-parent="#mobileNavAcordion">
-                            <div class="accordion-body bg-gray-100 p-0">
-                                <ul class="list-unstyled m-0 py-2 px-2">
-                                    <li class="child-menu-item  menu-item-object-product ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product/hard-wax-oil/">
-                                            Hard Wax Oil
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product/hard-wax-oil/#fiddes-ultra-raw-hard-wax-oil">
-                                            ULTRA RAW HARD WAX OIL
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-object-product ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product/premier-wood-varnish/">
-                                            Premier Wood Varnish
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-object-product ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product/floor-reviving-kit/">
-                                            Floor Reviving Kit
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-object-product ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product/liquid-floor-wax/">
-                                            Floor Wax
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-object-product ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product/floor-surface-cleaner/">
-                                            Floor Cleaner
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-object-product ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product/wood-surface-cleaner/">
-                                            Wood Surface Cleaner
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-object-product ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product/barrier-seal/">
-                                            Barrier Seal
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-object-product ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product/clear-glaze/">
-                                            Clear Glaze
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item border-0">
-                        <p class="accordion-header border-0" id="heading-interior-wood-finishes">
-                            <a class="text-uppercase accordion-button border-bottom collapsed px-0 has-children"
-                                type="button" data-bs-toggle="collapse" data-bs-target="#interior-wood-finishes"
-                                aria-expanded="" aria-controls="interior-wood-finishes">
-                                Interior Wood Finishes
-                            </a>
-                        </p>
-                        <div id="interior-wood-finishes" class="accordion-collapse collapse"
-                            aria-labelledby="heading-interior-wood-finishes" data-bs-parent="#mobileNavAcordion">
-                            <div class="accordion-body bg-gray-100 p-0">
-                                <ul class="list-unstyled m-0 py-2 px-2">
-                                    <li class="child-menu-item  menu-item-type-taxonomy menu-item-object-product_cat ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product-category/wood-finishes/oils/">
-                                            Oils
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-type-taxonomy menu-item-object-product_cat ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product-category/wood-finishes/shellac-polish/">
-                                            Shellac
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-type-taxonomy menu-item-object-product_cat ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product-category/wood-finishes/wax/">
-                                            Wax
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-type-taxonomy menu-item-object-product_cat ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product-category/wood-finishes/stains/">
-                                            Stains
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-type-taxonomy menu-item-object-product_cat ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product-category/wood-finishes/thinners/">
-                                            Thinners
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-object-product ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product/light-fast-water-concentrates/">
-                                            Concentrates
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-object-product ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product/spirit-oil-soluble-base-tints/">
-                                            Base Tints
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-object-product ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product/spirit-soluble-dry-pigment-powders/">
-                                            Pigment Powder
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item border-0">
-                        <p class="accordion-header border-0" id="heading-exterior-wood-finishes">
-                            <a class="text-uppercase accordion-button border-bottom collapsed px-0 has-children"
-                                type="button" data-bs-toggle="collapse" data-bs-target="#exterior-wood-finishes"
-                                aria-expanded="" aria-controls="exterior-wood-finishes">
-                                Exterior Wood Finishes
-                            </a>
-                        </p>
-                        <div id="exterior-wood-finishes" class="accordion-collapse collapse"
-                            aria-labelledby="heading-exterior-wood-finishes" data-bs-parent="#mobileNavAcordion">
-                            <div class="accordion-body bg-gray-100 p-0">
-                                <ul class="list-unstyled m-0 py-2 px-2">
-                                    <li class="child-menu-item  menu-item-object-product ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product/exterior-high-build-wood-oil/">
-                                            Exterior High Build Wood Oil
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-object-product ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product/exterior-wood-protector/">
-                                            Exterior Wood Protector
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-object-product ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product/decking-oil/">
-                                            Universal Decking Oil
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-object-product ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product/fiddes-deck-cleaner/">
-                                            FIDDES Deck Cleaner
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-object-product ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product/wood-reviver-gel/">
-                                            WOOD REVIVER GEL
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item border-0">
-                        <p class="accordion-header border-0" id="heading-accessories">
-                            <a class="text-uppercase accordion-button border-bottom collapsed px-0 has-children"
-                                type="button" data-bs-toggle="collapse" data-bs-target="#accessories" aria-expanded=""
-                                aria-controls="accessories">
-                                Accessories
-                            </a>
-                        </p>
-                        <div id="accessories" class="accordion-collapse collapse" aria-labelledby="heading-accessories"
-                            data-bs-parent="#mobileNavAcordion">
-                            <div class="accordion-body bg-gray-100 p-0">
-                                <ul class="list-unstyled m-0 py-2 px-2">
-                                    <li class="child-menu-item  menu-item-type-taxonomy menu-item-object-product_cat ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product-category/accessories/abrasives/">
-                                            Abrasives
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-type-taxonomy menu-item-object-product_cat ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product-category/accessories/adhesives/">
-                                            Adhesives
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-type-taxonomy menu-item-object-product_cat ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product-category/accessories/brushes/">
-                                            Brushes
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-type-taxonomy menu-item-object-product_cat ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product-category/accessories/chemicals-solvents/">
-                                            Chemicals &amp; Solvents
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-type-taxonomy menu-item-object-product_cat ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product-category/accessories/sundries/">
-                                            Sundries
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-type-taxonomy menu-item-object-product_cat ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product-category/accessories/wood-fillers/">
-                                            Wood Fillers
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item border-0 ">
-                        <a class="accordion-button border-bottom collapsed px-0 menu-link text-uppercase"
-                            href="https://arboline.com/spray-finishes/">
-                            Industrial Spray Finishes
-                        </a>
-                    </div>
-                    <div class="accordion-item border-0">
-                        <p class="accordion-header border-0" id="heading-stain-block">
-                            <a class="text-uppercase accordion-button border-bottom collapsed px-0 has-children"
-                                type="button" data-bs-toggle="collapse" data-bs-target="#stain-block" aria-expanded=""
-                                aria-controls="stain-block">
-                                Stain Block
-                            </a>
-                        </p>
-                        <div id="stain-block" class="accordion-collapse collapse" aria-labelledby="heading-stain-block"
-                            data-bs-parent="#mobileNavAcordion">
-                            <div class="accordion-body bg-gray-100 p-0">
-                                <ul class="list-unstyled m-0 py-2 px-2">
-                                    <li class="child-menu-item  menu-item-object-product ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product/full-stop-stain-block/">
-                                            FIDDES Full Stop Stain Block
-                                        </a>
-                                    </li>
-                                    <li class="child-menu-item  menu-item-object-product ">
-                                        <a class="p-2 w-100 d-block text-uppercase"
-                                            href="https://arboline.com/product/fiddes-full-stop-h20-stain-block-1/">
-                                            FIDDES Full Stop H20
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
 
                 <p class="h2 mb-0">FIDDES</p>
@@ -767,68 +454,119 @@ jQuery(document).ready(function($) {
             </div>
         </div>
         <script>
-        jQuery(document).ready(function($) {
-            <?php if(is_product_category() || is_product() || is_checkout() || is_account_page() || is_cart() || is_page(13) || is_page(1055) || is_page(1760) || is_page(1762)){ ?>
-                $("header").addClass("active");
-                $('.banner--menu-row').css({
-                    'border-top-width': '0px',
-                    'border-color': 'rgb(204, 204, 204)',
-                });
-                $('.banner--menu-row').addClass("hide-bg");
-                $('.banner--logo-menu').css({
-                    'opacity': '1',
-                });
-                $('.banner--menu-row.account-nav').css({
-                    'opacity': '1',
-                });
-                $('.banner--top').css({
-                    opacity: 0,
-                    height: '0px'
-                });
-            <?php } else { ?>
-                $(window).scroll(function() {
-                    var currentScreenPosition = $(document).scrollTop();
-                    if (currentScreenPosition > 250) {
-                        $("header").addClass("active");
-                        $('.banner--menu-row').css({
-                            'border-top-width': '0px',
-                            'border-color': 'rgb(204, 204, 204)',
-                        });
-                        $('.banner--menu-row').addClass("hide-bg");
-                        $('.banner--logo-menu').css({
-                            'opacity': '1',
-                        });
-                        $('.banner--menu-row.account-nav').css({
-                            'opacity': '1',
-                        });
-                        $('.banner--top').css({
-                            opacity: 0,
-                            height: '0px'
-                        });
-                    }
-                    if (currentScreenPosition < 125) {
-                        $("header").removeClass("active");
-                        $('.banner--top').css({
-                            opacity: 1,
-                            height: '78px'
-                        });
-                        $('.banner--menu-row').css({
-                            'border-top': '1px solid #dee2e6',
-                            'border-top-color': 'rgb(222, 226, 230) rgb(0, 0, 0) rgb(0, 0, 0)',
-                        });
-                        $('.banner--logo-menu').css({
-                            'opacity': '0',
-                        });
-                        $('.banner--menu-row.account-nav').css({
-                            'opacity': '0',
-                        });
-                        $('.banner--menu-row').removeClass("hide-bg");
-                    }
-                    $('.wp-block-cover__inner-container').css({
-                        'margin-top': '0px',
+            jQuery(document).ready(function($) {
+                <?php if(is_product_category() || is_product() || is_checkout() || is_account_page() || is_cart() || is_page(13) || is_page(1055) || is_page(1760) || is_page(1762)){ ?>
+                    $("header").addClass("active");
+                    $('.banner--menu-row').css({
+                        'border-top-width': '0px',
+                        'border-color': 'rgb(204, 204, 204)',
                     });
+                    $('.banner--menu-row').addClass("hide-bg");
+                    $('.banner--logo-menu').css({
+                        'opacity': '1',
+                    });
+                    $('.banner--menu-row.account-nav').css({
+                        'opacity': '1',
+                    });
+                    $('.banner--top').css({
+                        opacity: 0,
+                        height: '0px'
+                    });
+                <?php } else { ?>
+                    $(window).scroll(function() {
+                        var currentScreenPosition = $(document).scrollTop();
+                        if (currentScreenPosition > 250) {
+                            $("header").addClass("active");
+                            $('.banner--menu-row').css({
+                                'border-top-width': '0px',
+                                'border-color': 'rgb(204, 204, 204)',
+                            });
+                            $('.banner--menu-row').addClass("hide-bg");
+                            $('.banner--logo-menu').css({
+                                'opacity': '1',
+                            });
+                            $('.banner--menu-row.account-nav').css({
+                                'opacity': '1',
+                            });
+                            $('.banner--top').css({
+                                opacity: 0,
+                                height: '0px'
+                            });
+                        }
+                        if (currentScreenPosition < 125) {
+                            $("header").removeClass("active");
+                            $('.banner--top').css({
+                                opacity: 1,
+                                height: '78px'
+                            });
+                            $('.banner--menu-row').css({
+                                'border-top': '1px solid #dee2e6',
+                                'border-top-color': 'rgb(222, 226, 230) rgb(0, 0, 0) rgb(0, 0, 0)',
+                            });
+                            $('.banner--logo-menu').css({
+                                'opacity': '0',
+                            });
+                            $('.banner--menu-row.account-nav').css({
+                                'opacity': '0',
+                            });
+                            $('.banner--menu-row').removeClass("hide-bg");
+                        }
+                        $('.wp-block-cover__inner-container').css({
+                            'margin-top': '0px',
+                        });
+                    });
+                <?php } ?>
+            });
+        </script>
+        <script>
+            jQuery(document).ready(function($) {
+                var $input = $('#yith-s');
+                var $dropdown = $('#search-dropdown');
+                var timer = null;
+                function doSearch(query) {
+                    if (query.length < 2) {
+                        $dropdown.hide();
+                        return;
+                    }
+                    $.ajax({
+                        url: '/wp-admin/admin-ajax.php',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: {
+                            action: 'arboline_search_suggestions',
+                            q: query
+                        },
+                        success: function(res) {
+                            if (res && res.length) {
+                                var html = '';
+                                res.forEach(function(item) {
+                                    html += '<div class="autocomplete-suggestion px-3 py-2 border-bottom">'
+                                        + '<a href="' + item.url + '" class="d-block text-dark">' + item.label + '</a>'
+                                        + '</div>';
+                                });
+                                $dropdown.html(html).show();
+                            } else {
+                                $dropdown.html('<div class="px-3 py-2 text-muted">No results found</div>').show();
+                            }
+                        },
+                        error: function() {
+                            $dropdown.hide();
+                        }
+                    });
+                }
+                $input.on('keyup keydown', function(e) {
+                    clearTimeout(timer);
+                    var val = $(this).val();
+                    timer = setTimeout(function() {
+                        doSearch(val);
+                    }, 200);
                 });
-            <?php } ?>
-        });
+                // Hide dropdown on click outside
+                $(document).on('click', function(e) {
+                    if (!$(e.target).closest('#yith-s, #search-dropdown').length) {
+                        $dropdown.hide();
+                    }
+                });
+            });
         </script>
         <div id="content" class="site-content">
