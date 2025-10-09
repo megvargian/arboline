@@ -418,7 +418,7 @@ $sub_menu = $header['sub_menus'];
                                 <img src="<?php echo $right_side['image_flag']; ?>" alt="Arboline Logo"
                                     class="img-fluid union-jack-logo m-0">
                                 <p class="text-center text-uppercase mt-n1 py-0 mb-0">
-                                    <small><?php echo $right_side['made_in_text']; ?></small>
+                                    <small style="color: #000 !important;"><?php echo $right_side['made_in_text']; ?></small>
                                 </p>
                             </li>
                         <?php endif; ?>
