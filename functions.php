@@ -335,6 +335,79 @@ function register_paint_color_picker_fields() {
     }
 }
 
+/**
+ * Register ACF Options Page for Technical Data Sheets
+ */
+if (function_exists('acf_add_options_page')) {
+    acf_add_options_page(array(
+        'page_title'  => 'Technical Data Sheets',
+        'menu_title'  => 'Data Sheets',
+        'menu_slug'   => 'technical-data-sheets',
+        'capability'  => 'edit_posts',
+        'icon_url'    => 'dashicons-media-document',
+        'position'    => 25,
+        'redirect'    => false
+    ));
+}
+
+/**
+ * Register Technical Data Sheets ACF Fields
+ */
+function register_technical_data_sheets_fields() {
+    if (function_exists('acf_add_local_field_group')) {
+        acf_add_local_field_group(array(
+            'key' => 'group_technical_data_sheets',
+            'title' => 'Technical Data Sheets',
+            'fields' => array(
+                array(
+                    'key' => 'field_data_sheets',
+                    'label' => 'Data Sheets',
+                    'name' => 'data_sheets',
+                    'type' => 'repeater',
+                    'instructions' => 'Add technical data sheets here.',
+                    'required' => 0,
+                    'layout' => 'table',
+                    'button_label' => 'Add Data Sheet',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_data_sheet_name',
+                            'label' => 'Document Name',
+                            'name' => 'document_name',
+                            'type' => 'text',
+                            'instructions' => 'Enter the name of the document',
+                            'required' => 1,
+                            'wrapper' => array(
+                                'width' => '50',
+                            ),
+                        ),
+                        array(
+                            'key' => 'field_data_sheet_url',
+                            'label' => 'Document URL',
+                            'name' => 'document_url',
+                            'type' => 'url',
+                            'instructions' => 'Enter the URL to the PDF or document',
+                            'required' => 1,
+                            'wrapper' => array(
+                                'width' => '50',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'options_page',
+                        'operator' => '==',
+                        'value' => 'technical-data-sheets',
+                    ),
+                ),
+            ),
+        ));
+    }
+}
+add_action('acf/init', 'register_technical_data_sheets_fields');
+
 add_image_size('main_homepage_img', 1903, 690, true);
 add_image_size('main_img_company_services', 1903, 300, true);
 add_image_size('services_img', 656, 580, true);

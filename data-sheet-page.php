@@ -13,49 +13,57 @@ get_header();
 $per_page = isset($_GET['per_page']) ? intval($_GET['per_page']) : 10;
 $current_page = isset($_GET['paged']) ? intval($_GET['paged']) : 1;
 $search = isset($_GET['search']) ? sanitize_text_field($_GET['search']) : '';
-$orderby = isset($_GET['orderby']) ? sanitize_text_field($_GET['orderby']) : 'title';
+$orderby = isset($_GET['orderby']) ? sanitize_text_field($_GET['orderby']) : 'name';
 $order = isset($_GET['order']) ? sanitize_text_field($_GET['order']) : 'ASC';
 
-// Query all products with data sheets
-$args = array(
-    'post_type' => 'product',
-    'posts_per_page' => -1,
-    'post_status' => 'publish',
-    'meta_query' => array(
-        array(
-            'key' => '_product_data_sheet_url',
-            'compare' => 'EXISTS'
-        )
-    )
-);
+// Get all data sheets from ACF
+$all_data_sheets = array();
+if (function_exists('get_field')) {
+    $acf_data_sheets = get_field('data_sheets', 'option');
 
-// Add search if provided
-if (!empty($search)) {
-    $args['s'] = $search;
+    if ($acf_data_sheets && is_array($acf_data_sheets)) {
+        foreach ($acf_data_sheets as $index => $sheet) {
+            if (!empty($sheet['document_name']) && !empty($sheet['document_url'])) {
+                $all_data_sheets[] = array(
+                    'id' => $index + 1,
+                    'name' => $sheet['document_name'],
+                    'url' => $sheet['document_url']
+                );
+            }
+        }
+    }
 }
 
-$all_products = get_posts($args);
-$total_products = count($all_products);
+// Apply search filter
+if (!empty($search)) {
+    $all_data_sheets = array_filter($all_data_sheets, function($sheet) use ($search) {
+        return stripos($sheet['name'], $search) !== false;
+    });
+    // Re-index array after filtering
+    $all_data_sheets = array_values($all_data_sheets);
+}
 
-// Manual sorting
-if ($orderby === 'title') {
-    usort($all_products, function($a, $b) use ($order) {
-        $result = strcmp($a->post_title, $b->post_title);
+$total_sheets = count($all_data_sheets);
+
+// Apply sorting
+if ($orderby === 'name') {
+    usort($all_data_sheets, function($a, $b) use ($order) {
+        $result = strcmp($a['name'], $b['name']);
         return $order === 'DESC' ? -$result : $result;
     });
 } elseif ($orderby === 'id') {
-    usort($all_products, function($a, $b) use ($order) {
-        $result = $a->ID - $b->ID;
+    usort($all_data_sheets, function($a, $b) use ($order) {
+        $result = $a['id'] - $b['id'];
         return $order === 'DESC' ? -$result : $result;
     });
 }
 
 // Pagination
 $offset = ($current_page - 1) * $per_page;
-$products = array_slice($all_products, $offset, $per_page);
-$total_pages = ceil($total_products / $per_page);
-$showing_from = $total_products > 0 ? $offset + 1 : 0;
-$showing_to = min($offset + $per_page, $total_products);
+$data_sheets = array_slice($all_data_sheets, $offset, $per_page);
+$total_pages = ceil($total_sheets / $per_page);
+$showing_from = $total_sheets > 0 ? $offset + 1 : 0;
+$showing_to = min($offset + $per_page, $total_sheets);
 ?>
 
 <section>
@@ -88,47 +96,37 @@ $showing_to = min($offset + $per_page, $total_products);
                                 data-column="id" data-order="<?php echo ($orderby === 'id' && $order === 'ASC') ? 'DESC' : 'ASC'; ?>"
                                 tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
                                 style="width: 172.323px; cursor: pointer;">#</th>
-                            <th class="sorting <?php echo ($orderby === 'title') ? 'sorting_' . strtolower($order) : ''; ?>"
-                                data-column="title" data-order="<?php echo ($orderby === 'title' && $order === 'ASC') ? 'DESC' : 'ASC'; ?>"
+                            <th class="sorting <?php echo ($orderby === 'name') ? 'sorting_' . strtolower($order) : ''; ?>"
+                                data-column="name" data-order="<?php echo ($orderby === 'name' && $order === 'ASC') ? 'DESC' : 'ASC'; ?>"
                                 tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                                style="width: 1091.68px; cursor: pointer;">Title
+                                style="width: 1091.68px; cursor: pointer;">Document Name
                             </th>
                         </tr>
                     </thead>
                     <tbody id="data-sheet-tbody">
                         <?php
                         $row_class = 'odd';
-                        foreach ($products as $product) :
-                            $data_sheet_url = get_post_meta($product->ID, '_product_data_sheet_url', true);
-                            $data_sheet_name = get_post_meta($product->ID, '_product_data_sheet_name', true);
-
-                            // Use product title if no custom name
-                            if (empty($data_sheet_name)) {
-                                $data_sheet_name = $product->post_title;
-                            }
-
-                            if (!empty($data_sheet_url)) :
+                        foreach ($data_sheets as $sheet) :
                         ?>
                         <tr class="<?php echo $row_class; ?>">
                             <td class="py-0 sorting_1">
                                 <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="<?php echo esc_url($data_sheet_url); ?>">
-                                    <?php echo $product->ID; ?>
+                                    href="<?php echo esc_url($sheet['url']); ?>">
+                                    <?php echo $sheet['id']; ?>
                                 </a>
                             </td>
                             <td class="py-0">
                                 <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="<?php echo esc_url($data_sheet_url); ?>">
-                                    <?php echo esc_html($data_sheet_name); ?> <i class="bi bi-cloud-arrow-down"></i>
+                                    href="<?php echo esc_url($sheet['url']); ?>">
+                                    <?php echo esc_html($sheet['name']); ?> <i class="bi bi-cloud-arrow-down"></i>
                                 </a>
                             </td>
                         </tr>
                         <?php
                             $row_class = ($row_class === 'odd') ? 'even' : 'odd';
-                            endif;
                         endforeach;
 
-                        if (empty($products)) :
+                        if (empty($data_sheets)) :
                         ?>
                         <tr>
                             <td colspan="2" class="text-center py-4">No data sheets found.</td>
@@ -138,9 +136,9 @@ $showing_to = min($offset + $per_page, $total_products);
                 </table>
                 <div class="d-flex justify-content-between align-items-center pb-4">
                     <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
-                        Showing <?php echo $showing_from; ?> to <?php echo $showing_to; ?> of <?php echo $total_products; ?> entries
+                        Showing <?php echo $showing_from; ?> to <?php echo $showing_to; ?> of <?php echo $total_sheets; ?> entries
                         <?php if (!empty($search)) : ?>
-                            (filtered from <?php echo count($all_products); ?> total entries)
+                            (filtered from search)
                         <?php endif; ?>
                     </div>
                     <div class="dataTables_paginate paging_simple_numbers mb-0" id="DataTables_Table_0_paginate">
@@ -186,7 +184,7 @@ jQuery(document).ready(function($) {
         return {
             per_page: urlParams.get('per_page') || '10',
             search: urlParams.get('search') || '',
-            orderby: urlParams.get('orderby') || 'title',
+            orderby: urlParams.get('orderby') || 'name',
             order: urlParams.get('order') || 'ASC',
             paged: urlParams.get('paged') || '1'
         };
