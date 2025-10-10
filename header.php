@@ -298,7 +298,7 @@ $sub_menu = $header['sub_menus'];
                                         All</a>
                                 </p>
                                 <a class="text-uppercase" href="https://arboline.com/catalogue/">
-                                    <img class="w-100 img-fluid" alt="FIDDES Product Catalogue"
+                                    <img class="w-100 img-fluid" alt="arboline Product Catalogue"
                                         src="<?php echo $header['catalogue_image']; ?>">
                                 </a>
                             </div>
