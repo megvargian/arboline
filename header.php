@@ -428,24 +428,7 @@ $sub_menu = $header['sub_menus'];
         </div>
         <script>
             jQuery(document).ready(function($) {
-                <?php if(is_product_category() || is_product() || is_checkout() || is_account_page() || is_cart() || is_page(13) || is_page(1055) || is_page(1760) || is_page(1762) || is_page(1873)){ ?>
-                    $("header").addClass("active");
-                    $('.banner--menu-row').css({
-                        'border-top-width': '0px',
-                        'border-color': 'rgb(204, 204, 204)',
-                    });
-                    $('.banner--menu-row').addClass("hide-bg");
-                    $('.banner--logo-menu').css({
-                        'opacity': '1',
-                    });
-                    $('.banner--menu-row.account-nav').css({
-                        'opacity': '1',
-                    });
-                    $('.banner--top').css({
-                        opacity: 0,
-                        height: '0px'
-                    });
-                <?php } else { ?>
+                <?php if(is_front_page() || is_page(22)){ ?>
                     $(window).scroll(function() {
                         var currentScreenPosition = $(document).scrollTop();
                         if (currentScreenPosition > 250) {
@@ -487,6 +470,23 @@ $sub_menu = $header['sub_menus'];
                         $('.wp-block-cover__inner-container').css({
                             'margin-top': '0px',
                         });
+                    });
+                <?php } else { ?>
+                    $("header").addClass("active");
+                    $('.banner--menu-row').css({
+                        'border-top-width': '0px',
+                        'border-color': 'rgb(204, 204, 204)',
+                    });
+                    $('.banner--menu-row').addClass("hide-bg");
+                    $('.banner--logo-menu').css({
+                        'opacity': '1',
+                    });
+                    $('.banner--menu-row.account-nav').css({
+                        'opacity': '1',
+                    });
+                    $('.banner--top').css({
+                        opacity: 0,
+                        height: '0px'
                     });
                 <?php } ?>
             });
