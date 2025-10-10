@@ -2322,12 +2322,15 @@ function enqueue_recaptcha_script() {
  * AJAX Handler for Data Sheets Table
  */
 function ajax_load_data_sheets() {
-    // Get parameters
-    $per_page = isset($_GET['per_page']) ? intval($_GET['per_page']) : 10;
-    $current_page = isset($_GET['paged']) ? intval($_GET['paged']) : 1;
-    $search = isset($_GET['search']) ? sanitize_text_field($_GET['search']) : '';
-    $orderby = isset($_GET['orderby']) ? sanitize_text_field($_GET['orderby']) : 'name';
-    $order = isset($_GET['order']) ? sanitize_text_field($_GET['order']) : 'ASC';
+    // Get parameters from REQUEST (works for both GET and POST)
+    $per_page = isset($_REQUEST['per_page']) ? intval($_REQUEST['per_page']) : 10;
+    $current_page = isset($_REQUEST['paged']) ? intval($_REQUEST['paged']) : 1;
+    $search = isset($_REQUEST['search']) ? sanitize_text_field($_REQUEST['search']) : '';
+    $orderby = isset($_REQUEST['orderby']) ? sanitize_text_field($_REQUEST['orderby']) : 'name';
+    $order = isset($_REQUEST['order']) ? sanitize_text_field($_REQUEST['order']) : 'ASC';
+
+    // Debug logging
+    error_log('Data Sheets AJAX - Received params: per_page=' . $per_page . ', paged=' . $current_page . ', search=' . $search . ', orderby=' . $orderby . ', order=' . $order);
 
     // Get all data sheets from ACF
     $all_data_sheets = array();
