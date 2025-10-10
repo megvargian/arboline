@@ -2317,3 +2317,176 @@ function enqueue_recaptcha_script() {
         wp_enqueue_script('google-recaptcha', 'https://www.google.com/recaptcha/api.js', array(), null, true);
     }
 }
+
+/**
+ * AJAX Handler for Data Sheets Table
+ */
+function ajax_load_data_sheets() {
+    // Get parameters
+    $per_page = isset($_GET['per_page']) ? intval($_GET['per_page']) : 10;
+    $current_page = isset($_GET['paged']) ? intval($_GET['paged']) : 1;
+    $search = isset($_GET['search']) ? sanitize_text_field($_GET['search']) : '';
+    $orderby = isset($_GET['orderby']) ? sanitize_text_field($_GET['orderby']) : 'name';
+    $order = isset($_GET['order']) ? sanitize_text_field($_GET['order']) : 'ASC';
+
+    // Get all data sheets from ACF
+    $all_data_sheets = array();
+    if (function_exists('get_field')) {
+        $acf_data_sheets = get_field('data_sheets', 'option');
+
+        if ($acf_data_sheets && is_array($acf_data_sheets)) {
+            foreach ($acf_data_sheets as $index => $sheet) {
+                if (!empty($sheet['document_name']) && !empty($sheet['document_url'])) {
+                    $all_data_sheets[] = array(
+                        'id' => $index + 1,
+                        'name' => $sheet['document_name'],
+                        'url' => $sheet['document_url']
+                    );
+                }
+            }
+        }
+    }
+
+    // Apply search filter
+    if (!empty($search)) {
+        $all_data_sheets = array_filter($all_data_sheets, function($sheet) use ($search) {
+            return stripos($sheet['name'], $search) !== false;
+        });
+        // Re-index array after filtering
+        $all_data_sheets = array_values($all_data_sheets);
+    }
+
+    $total_sheets = count($all_data_sheets);
+
+    // Apply sorting
+    if ($orderby === 'name') {
+        usort($all_data_sheets, function($a, $b) use ($order) {
+            $result = strcmp($a['name'], $b['name']);
+            return $order === 'DESC' ? -$result : $result;
+        });
+    } elseif ($orderby === 'id') {
+        usort($all_data_sheets, function($a, $b) use ($order) {
+            $result = $a['id'] - $b['id'];
+            return $order === 'DESC' ? -$result : $result;
+        });
+    }
+
+    // Pagination
+    $offset = ($current_page - 1) * $per_page;
+    $data_sheets = array_slice($all_data_sheets, $offset, $per_page);
+    $total_pages = ceil($total_sheets / $per_page);
+    $showing_from = $total_sheets > 0 ? $offset + 1 : 0;
+    $showing_to = min($offset + $per_page, $total_sheets);
+
+    // Build response HTML
+    ob_start();
+    ?>
+    <div class="ajax-response-wrapper">
+        <!-- Table Body -->
+        <tbody id="data-sheet-tbody">
+            <?php
+            $row_class = 'odd';
+            foreach ($data_sheets as $sheet) :
+            ?>
+            <tr class="<?php echo $row_class; ?>">
+                <td class="py-0 sorting_1">
+                    <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
+                        href="<?php echo esc_url($sheet['url']); ?>">
+                        <?php echo $sheet['id']; ?>
+                    </a>
+                </td>
+                <td class="py-0">
+                    <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
+                        href="<?php echo esc_url($sheet['url']); ?>">
+                        <?php echo esc_html($sheet['name']); ?> <i class="bi bi-cloud-arrow-down"></i>
+                    </a>
+                </td>
+            </tr>
+            <?php
+                $row_class = ($row_class === 'odd') ? 'even' : 'odd';
+            endforeach;
+
+            if (empty($data_sheets)) :
+            ?>
+            <tr>
+                <td colspan="2" class="text-center py-4">No data sheets found.</td>
+            </tr>
+            <?php endif; ?>
+        </tbody>
+
+        <!-- Info -->
+        <div class="dataTables_info" id="DataTables_Table_0_info">
+            Showing <?php echo $showing_from; ?> to <?php echo $showing_to; ?> of <?php echo $total_sheets; ?> entries
+            <?php if (!empty($search)) : ?>
+                (filtered from search)
+            <?php endif; ?>
+        </div>
+
+        <!-- Pagination -->
+        <div class="dataTables_paginate paging_simple_numbers mb-0" id="DataTables_Table_0_paginate">
+            <a class="paginate_button previous <?php echo ($current_page <= 1) ? 'disabled' : ''; ?>"
+            aria-controls="DataTables_Table_0"
+            data-page="<?php echo max(1, $current_page - 1); ?>"
+            tabindex="<?php echo ($current_page <= 1) ? '-1' : '0'; ?>"
+            id="DataTables_Table_0_previous">Previous</a>
+            <span>
+                <?php
+                // Show max 5 page numbers
+                $start_page = max(1, $current_page - 2);
+                $end_page = min($total_pages, $start_page + 4);
+                $start_page = max(1, $end_page - 4);
+
+                for ($i = $start_page; $i <= $end_page; $i++) :
+                ?>
+                <a class="paginate_button <?php echo ($i === $current_page) ? 'current' : ''; ?>"
+                aria-controls="DataTables_Table_0"
+                data-page="<?php echo $i; ?>"
+                tabindex="0"><?php echo $i; ?></a>
+                <?php endfor; ?>
+            </span>
+            <a class="paginate_button next <?php echo ($current_page >= $total_pages) ? 'disabled' : ''; ?>"
+            aria-controls="DataTables_Table_0"
+            data-page="<?php echo min($total_pages, $current_page + 1); ?>"
+            tabindex="<?php echo ($current_page >= $total_pages) ? '-1' : '0'; ?>"
+            id="DataTables_Table_0_next">Next</a>
+        </div>
+
+        <!-- Table Headers -->
+        <thead>
+            <tr>
+                <th scope="row" class="sorting <?php echo ($orderby === 'id') ? 'sorting_' . strtolower($order) : ''; ?>"
+                    data-column="id" data-order="<?php echo ($orderby === 'id' && $order === 'ASC') ? 'DESC' : 'ASC'; ?>"
+                    tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                    style="width: 172.323px; cursor: pointer;">#</th>
+                <th class="sorting <?php echo ($orderby === 'name') ? 'sorting_' . strtolower($order) : ''; ?>"
+                    data-column="name" data-order="<?php echo ($orderby === 'name' && $order === 'ASC') ? 'DESC' : 'ASC'; ?>"
+                    tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                    style="width: 1091.68px; cursor: pointer;">Document Name
+                </th>
+            </tr>
+        </thead>
+
+        <!-- Per Page Select -->
+        <select class="per-page-select-value" style="display:none;">
+            <option value="<?php echo $per_page; ?>" selected><?php echo $per_page; ?></option>
+        </select>
+
+        <!-- Search Value -->
+        <input type="hidden" class="search-value" value="<?php echo esc_attr($search); ?>">
+    </div>
+    <?php
+    $html = ob_get_clean();
+
+    wp_send_json_success(array(
+        'html' => $html,
+        'params' => array(
+            'per_page' => $per_page,
+            'paged' => $current_page,
+            'search' => $search,
+            'orderby' => $orderby,
+            'order' => $order
+        )
+    ));
+}
+add_action('wp_ajax_load_data_sheets', 'ajax_load_data_sheets');
+add_action('wp_ajax_nopriv_load_data_sheets', 'ajax_load_data_sheets');

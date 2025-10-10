@@ -197,7 +197,7 @@ jQuery(document).ready(function($) {
         // Merge current params with new params
         var params = $.extend({}, currentParams, newParams);
 
-        // Build new URL
+        // Build new URL for browser history
         var baseUrl = window.location.origin + window.location.pathname;
         var queryString = $.param(params);
         var newUrl = baseUrl + '?' + queryString;
@@ -208,52 +208,70 @@ jQuery(document).ready(function($) {
         // Update browser URL without reload
         window.history.pushState({}, '', newUrl);
 
-        // AJAX reload
+        // AJAX reload using WordPress AJAX
         $.ajax({
-            url: newUrl,
+            url: '<?php echo admin_url('admin-ajax.php'); ?>',
             type: 'GET',
+            data: {
+                action: 'load_data_sheets',
+                per_page: params.per_page,
+                paged: params.paged,
+                search: params.search,
+                orderby: params.orderby,
+                order: params.order
+            },
             beforeSend: function() {
                 $('#data-sheet-tbody').css('opacity', '0.5');
             },
             success: function(response) {
-                var $response = $(response);
+                if (response.success && response.data.html) {
+                    var $response = $(response.data.html);
 
-                // Update table body
-                var newTbody = $response.find('#data-sheet-tbody');
-                if (newTbody.length) {
-                    $('#data-sheet-tbody').html(newTbody.html());
+                    // Update table body
+                    var newTbody = $response.find('#data-sheet-tbody');
+                    if (newTbody.length) {
+                        $('#data-sheet-tbody').html(newTbody.html());
+                    }
+
+                    // Update info
+                    var newInfo = $response.find('#DataTables_Table_0_info');
+                    if (newInfo.length) {
+                        $('#DataTables_Table_0_info').html(newInfo.html());
+                    }
+
+                    // Update pagination
+                    var newPagination = $response.find('#DataTables_Table_0_paginate');
+                    if (newPagination.length) {
+                        $('#DataTables_Table_0_paginate').html(newPagination.html());
+                    }
+
+                    // Update table headers
+                    var newHeaders = $response.find('thead tr');
+                    if (newHeaders.length) {
+                        $('thead tr').html(newHeaders.html());
+                    }
+
+                    // Update per-page select value
+                    var selectValue = $response.find('.per-page-select-value').val();
+                    if (selectValue) {
+                        $('.per-page-select').val(selectValue);
+                    }
+
+                    // Update search input value
+                    var searchValue = $response.find('.search-value').val();
+                    $('.search-input').val(searchValue || '');
+
+                    $('#data-sheet-tbody').css('opacity', '1');
+
+                    console.log('Table updated successfully');
+                    console.log('Response params:', response.data.params);
+                } else {
+                    console.error('Invalid response:', response);
                 }
-
-                // Update info
-                var newInfo = $response.find('#DataTables_Table_0_info');
-                if (newInfo.length) {
-                    $('#DataTables_Table_0_info').html(newInfo.html());
-                }
-
-                // Update pagination
-                var newPagination = $response.find('#DataTables_Table_0_paginate');
-                if (newPagination.length) {
-                    $('#DataTables_Table_0_paginate').html(newPagination.html());
-                }
-
-                // Update table headers
-                var newHeaders = $response.find('thead tr');
-                if (newHeaders.length) {
-                    $('thead tr').html(newHeaders.html());
-                }
-
-                // Update per-page select
-                var newSelect = $response.find('.per-page-select');
-                if (newSelect.length) {
-                    $('.per-page-select').html(newSelect.html());
-                }
-
-                $('#data-sheet-tbody').css('opacity', '1');
-
-                console.log('Table updated successfully');
             },
             error: function(xhr, status, error) {
                 console.error('AJAX error:', status, error);
+                console.error('Response:', xhr.responseText);
                 // Fallback to page reload
                 window.location.href = newUrl;
             }
@@ -273,7 +291,14 @@ jQuery(document).ready(function($) {
     // Search input with debounce
     $(document).on('keyup', '.search-input', function() {
         var searchTerm = $(this).val();
-        console.log('Search term:', searchTerm);
+        var currentSearch = getCurrentParams().search;
+
+        // Only update if search term has changed
+        if (searchTerm === currentSearch) {
+            return;
+        }
+
+        console.log('Search term changed from:', currentSearch, 'to:', searchTerm);
 
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(function() {
@@ -301,12 +326,25 @@ jQuery(document).ready(function($) {
     $(document).on('click', '.paginate_button:not(.disabled):not(.current)', function(e) {
         e.preventDefault();
         var page = $(this).data('page');
-        console.log('Page clicked:', page);
+        var currentPage = getCurrentParams().paged;
 
-        if (page) {
+        console.log('Pagination clicked');
+        console.log('Current page:', currentPage);
+        console.log('Target page:', page);
+        console.log('Button clicked:', $(this).text());
+
+        if (page && page.toString() !== currentPage) {
+            console.log('Updating to page:', page);
             updateTable({
                 paged: page.toString()
             });
+
+            // Scroll to top of table
+            $('html, body').animate({
+                scrollTop: $('#DataTables_Table_0_wrapper').offset().top - 100
+            }, 300);
+        } else {
+            console.log('Same page or invalid page number');
         }
     });
 });
