@@ -76,7 +76,7 @@ $showing_to = min($offset + $per_page, $total_products);
                     </div>
                     <div id="DataTables_Table_0_filter" class="dataTables_filter">
                         <label>Search:
-                            <input type="search" class="search-input" placeholder="" aria-controls="DataTables_Table_0" value="<?php echo esc_attr($search); ?>">
+                            <input type="search" class="search-input mb-0" placeholder="" aria-controls="DataTables_Table_0" value="<?php echo esc_attr($search); ?>">
                         </label>
                     </div>
                 </div>
@@ -136,14 +136,14 @@ $showing_to = min($offset + $per_page, $total_products);
                         <?php endif; ?>
                     </tbody>
                 </table>
-                <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between align-items-center pb-4">
                     <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
                         Showing <?php echo $showing_from; ?> to <?php echo $showing_to; ?> of <?php echo $total_products; ?> entries
                         <?php if (!empty($search)) : ?>
                             (filtered from <?php echo count($all_products); ?> total entries)
                         <?php endif; ?>
                     </div>
-                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                    <div class="dataTables_paginate paging_simple_numbers mb-0" id="DataTables_Table_0_paginate">
                         <a class="paginate_button previous <?php echo ($current_page <= 1) ? 'disabled' : ''; ?>"
                         aria-controls="DataTables_Table_0"
                         data-page="<?php echo max(1, $current_page - 1); ?>"
