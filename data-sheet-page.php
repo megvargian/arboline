@@ -13,7 +13,7 @@ get_header();
 $per_page = isset($_GET['per_page']) ? intval($_GET['per_page']) : 10;
 $current_page = isset($_GET['paged']) ? intval($_GET['paged']) : 1;
 $search = isset($_GET['search']) ? sanitize_text_field($_GET['search']) : '';
-$orderby = isset($_GET['orderby']) ? sanitize_text_field($_GET['orderby']) : 'name';
+$orderby = isset($_GET['orderby']) ? sanitize_text_field($_GET['orderby']) : 'id';
 $order = isset($_GET['order']) ? sanitize_text_field($_GET['order']) : 'ASC';
 
 // Get all data sheets from ACF
@@ -45,13 +45,8 @@ if (!empty($search)) {
 
 $total_sheets = count($all_data_sheets);
 
-// Apply sorting
-if ($orderby === 'name') {
-    usort($all_data_sheets, function($a, $b) use ($order) {
-        $result = strcmp($a['name'], $b['name']);
-        return $order === 'DESC' ? -$result : $result;
-    });
-} elseif ($orderby === 'id') {
+// Apply sorting (only by ID)
+if ($orderby === 'id') {
     usort($all_data_sheets, function($a, $b) use ($order) {
         $result = $a['id'] - $b['id'];
         return $order === 'DESC' ? -$result : $result;
@@ -184,7 +179,7 @@ jQuery(document).ready(function($) {
         return {
             per_page: urlParams.get('per_page') || '10',
             search: urlParams.get('search') || '',
-            orderby: urlParams.get('orderby') || 'name',
+            orderby: urlParams.get('orderby') || 'id',
             order: urlParams.get('order') || 'ASC',
             paged: urlParams.get('paged') || '1'
         };

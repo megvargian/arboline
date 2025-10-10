@@ -2326,7 +2326,7 @@ function ajax_load_data_sheets() {
     $per_page = isset($_REQUEST['per_page']) ? intval($_REQUEST['per_page']) : 10;
     $current_page = isset($_REQUEST['paged']) ? intval($_REQUEST['paged']) : 1;
     $search = isset($_REQUEST['search']) ? sanitize_text_field($_REQUEST['search']) : '';
-    $orderby = isset($_REQUEST['orderby']) ? sanitize_text_field($_REQUEST['orderby']) : 'name';
+    $orderby = isset($_REQUEST['orderby']) ? sanitize_text_field($_REQUEST['orderby']) : 'id';
     $order = isset($_REQUEST['order']) ? sanitize_text_field($_REQUEST['order']) : 'ASC';
 
     // Debug logging
