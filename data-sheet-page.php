@@ -96,7 +96,6 @@ $showing_to = min($offset + $per_page, $total_products);
                         </tr>
                     </thead>
                     <tbody id="data-sheet-tbody">
-                    <tbody id="data-sheet-tbody">
                         <?php
                         $row_class = 'odd';
                         foreach ($products as $product) :
@@ -195,28 +194,25 @@ jQuery(document).ready(function($) {
 
     // Function to update URL and reload data
     function updateTable(newParams) {
-        var url = new URL(window.location.href);
         var currentParams = getCurrentParams();
 
         // Merge current params with new params
-        var params = Object.assign({}, currentParams, newParams);
+        var params = $.extend({}, currentParams, newParams);
 
-        // Clear all existing params
-        url.search = '';
+        // Build new URL
+        var baseUrl = window.location.origin + window.location.pathname;
+        var queryString = $.param(params);
+        var newUrl = baseUrl + '?' + queryString;
 
-        // Update URL parameters
-        Object.keys(params).forEach(function(key) {
-            if (params[key] && params[key] !== '') {
-                url.searchParams.set(key, params[key]);
-            }
-        });
+        console.log('Updating table with params:', params);
+        console.log('New URL:', newUrl);
 
         // Update browser URL without reload
-        window.history.pushState({}, '', url);
+        window.history.pushState({}, '', newUrl);
 
         // AJAX reload
         $.ajax({
-            url: url.toString(),
+            url: newUrl,
             type: 'GET',
             beforeSend: function() {
                 $('#data-sheet-tbody').css('opacity', '0.5');
@@ -225,33 +221,51 @@ jQuery(document).ready(function($) {
                 var $response = $(response);
 
                 // Update table body
-                var newTbody = $response.find('#data-sheet-tbody').html();
-                $('#data-sheet-tbody').html(newTbody);
+                var newTbody = $response.find('#data-sheet-tbody');
+                if (newTbody.length) {
+                    $('#data-sheet-tbody').html(newTbody.html());
+                }
 
                 // Update info
-                var newInfo = $response.find('#DataTables_Table_0_info').html();
-                $('#DataTables_Table_0_info').html(newInfo);
+                var newInfo = $response.find('#DataTables_Table_0_info');
+                if (newInfo.length) {
+                    $('#DataTables_Table_0_info').html(newInfo.html());
+                }
 
                 // Update pagination
-                var newPagination = $response.find('#DataTables_Table_0_paginate').html();
-                $('#DataTables_Table_0_paginate').html(newPagination);
+                var newPagination = $response.find('#DataTables_Table_0_paginate');
+                if (newPagination.length) {
+                    $('#DataTables_Table_0_paginate').html(newPagination.html());
+                }
 
                 // Update table headers
-                var newHeaders = $response.find('thead tr').html();
-                $('thead tr').html(newHeaders);
+                var newHeaders = $response.find('thead tr');
+                if (newHeaders.length) {
+                    $('thead tr').html(newHeaders.html());
+                }
+
+                // Update per-page select
+                var newSelect = $response.find('.per-page-select');
+                if (newSelect.length) {
+                    $('.per-page-select').html(newSelect.html());
+                }
 
                 $('#data-sheet-tbody').css('opacity', '1');
+
+                console.log('Table updated successfully');
             },
-            error: function() {
+            error: function(xhr, status, error) {
+                console.error('AJAX error:', status, error);
                 // Fallback to page reload
-                window.location.href = url.toString();
+                window.location.href = newUrl;
             }
         });
     }
 
     // Per page change
-    $('.per-page-select').on('change', function() {
+    $(document).on('change', '.per-page-select', function() {
         var perPage = $(this).val();
+        console.log('Per page changed to:', perPage);
         updateTable({
             per_page: perPage,
             paged: '1'
@@ -259,8 +273,9 @@ jQuery(document).ready(function($) {
     });
 
     // Search input with debounce
-    $('.search-input').on('keyup', function() {
+    $(document).on('keyup', '.search-input', function() {
         var searchTerm = $(this).val();
+        console.log('Search term:', searchTerm);
 
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(function() {
@@ -275,6 +290,7 @@ jQuery(document).ready(function($) {
     $(document).on('click', 'th.sorting, th.sorting_asc, th.sorting_desc', function() {
         var column = $(this).data('column');
         var order = $(this).data('order');
+        console.log('Sorting by:', column, order);
 
         updateTable({
             orderby: column,
@@ -287,6 +303,7 @@ jQuery(document).ready(function($) {
     $(document).on('click', '.paginate_button:not(.disabled):not(.current)', function(e) {
         e.preventDefault();
         var page = $(this).data('page');
+        console.log('Page clicked:', page);
 
         if (page) {
             updateTable({
