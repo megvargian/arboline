@@ -2093,13 +2093,6 @@ function filter_products_by_tint() {
     $args = array(
         'post_type' => 'product',
         'posts_per_page' => -1,
-        'tax_query' => array(
-            array(
-                'taxonomy' => 'product_cat',
-                'field' => 'term_id',
-                'terms' => 21,
-            ),
-        ),
     );
 
     $products = new WP_Query($args);
@@ -2138,8 +2131,8 @@ function filter_products_by_tint() {
 
                 $attribute_name = $attribute->get_name();
 
-                // Check if this is a tint attribute (case-insensitive)
-                if (stripos($attribute_name, 'tint') !== false) {
+                // Check if this is a tint or color attribute (case-insensitive)
+                if (stripos($attribute_name, 'tint') !== false || stripos($attribute_name, 'color') !== false) {
                     $options = $attribute->get_options();
 
                     if (empty($options)) {

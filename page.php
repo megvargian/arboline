@@ -16,11 +16,13 @@ get_header(); ?>
 	<div class="container">
 		<div class="row text-center">
 			<div class="col-12 pt-5 mt-5">
-				<h1><?php the_title(); ?></h1>
+				<h1 class="has-text-align-center underline">
+					<?php the_title(); ?>
+				</h1>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-12 pt-5 mt-5">
+			<div class="col-12 mt-5">
 				<?php
 				while ( have_posts() ) : the_post();
 					the_content();
