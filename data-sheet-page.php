@@ -63,20 +63,22 @@ $showing_to = min($offset + $per_page, $total_products);
         <h2>Technical Sheets</h2>
         <div class="wp-block-document-list">
             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
-                <div class="dataTables_length" id="DataTables_Table_0_length">
-                    <label>Show
-                        <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="per-page-select">
-                            <option value="10" <?php selected($per_page, 10); ?>>10</option>
-                            <option value="25" <?php selected($per_page, 25); ?>>25</option>
-                            <option value="50" <?php selected($per_page, 50); ?>>50</option>
-                            <option value="100" <?php selected($per_page, 100); ?>>100</option>
-                        </select> entries
-                    </label>
-                </div>
-                <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                    <label>Search:
-                        <input type="search" class="search-input" placeholder="" aria-controls="DataTables_Table_0" value="<?php echo esc_attr($search); ?>">
-                    </label>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="dataTables_length" id="DataTables_Table_0_length">
+                        <label>Show
+                            <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="per-page-select">
+                                <option value="10" <?php selected($per_page, 10); ?>>10</option>
+                                <option value="25" <?php selected($per_page, 25); ?>>25</option>
+                                <option value="50" <?php selected($per_page, 50); ?>>50</option>
+                                <option value="100" <?php selected($per_page, 100); ?>>100</option>
+                            </select> entries
+                        </label>
+                    </div>
+                    <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                        <label>Search:
+                            <input type="search" class="search-input" placeholder="" aria-controls="DataTables_Table_0" value="<?php echo esc_attr($search); ?>">
+                        </label>
+                    </div>
                 </div>
                 <table class="table technical-sheet-table table-responsive table-hover dataTable no-footer"
                     id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
@@ -135,38 +137,40 @@ $showing_to = min($offset + $per_page, $total_products);
                         <?php endif; ?>
                     </tbody>
                 </table>
-                <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
-                    Showing <?php echo $showing_from; ?> to <?php echo $showing_to; ?> of <?php echo $total_products; ?> entries
-                    <?php if (!empty($search)) : ?>
-                        (filtered from <?php echo count($all_products); ?> total entries)
-                    <?php endif; ?>
-                </div>
-                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-                    <a class="paginate_button previous <?php echo ($current_page <= 1) ? 'disabled' : ''; ?>"
-                       aria-controls="DataTables_Table_0"
-                       data-page="<?php echo max(1, $current_page - 1); ?>"
-                       tabindex="<?php echo ($current_page <= 1) ? '-1' : '0'; ?>"
-                       id="DataTables_Table_0_previous">Previous</a>
-                    <span>
-                        <?php
-                        // Show max 5 page numbers
-                        $start_page = max(1, $current_page - 2);
-                        $end_page = min($total_pages, $start_page + 4);
-                        $start_page = max(1, $end_page - 4);
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
+                        Showing <?php echo $showing_from; ?> to <?php echo $showing_to; ?> of <?php echo $total_products; ?> entries
+                        <?php if (!empty($search)) : ?>
+                            (filtered from <?php echo count($all_products); ?> total entries)
+                        <?php endif; ?>
+                    </div>
+                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                        <a class="paginate_button previous <?php echo ($current_page <= 1) ? 'disabled' : ''; ?>"
+                        aria-controls="DataTables_Table_0"
+                        data-page="<?php echo max(1, $current_page - 1); ?>"
+                        tabindex="<?php echo ($current_page <= 1) ? '-1' : '0'; ?>"
+                        id="DataTables_Table_0_previous">Previous</a>
+                        <span>
+                            <?php
+                            // Show max 5 page numbers
+                            $start_page = max(1, $current_page - 2);
+                            $end_page = min($total_pages, $start_page + 4);
+                            $start_page = max(1, $end_page - 4);
 
-                        for ($i = $start_page; $i <= $end_page; $i++) :
-                        ?>
-                        <a class="paginate_button <?php echo ($i === $current_page) ? 'current' : ''; ?>"
-                           aria-controls="DataTables_Table_0"
-                           data-page="<?php echo $i; ?>"
-                           tabindex="0"><?php echo $i; ?></a>
-                        <?php endfor; ?>
-                    </span>
-                    <a class="paginate_button next <?php echo ($current_page >= $total_pages) ? 'disabled' : ''; ?>"
-                       aria-controls="DataTables_Table_0"
-                       data-page="<?php echo min($total_pages, $current_page + 1); ?>"
-                       tabindex="<?php echo ($current_page >= $total_pages) ? '-1' : '0'; ?>"
-                       id="DataTables_Table_0_next">Next</a>
+                            for ($i = $start_page; $i <= $end_page; $i++) :
+                            ?>
+                            <a class="paginate_button <?php echo ($i === $current_page) ? 'current' : ''; ?>"
+                            aria-controls="DataTables_Table_0"
+                            data-page="<?php echo $i; ?>"
+                            tabindex="0"><?php echo $i; ?></a>
+                            <?php endfor; ?>
+                        </span>
+                        <a class="paginate_button next <?php echo ($current_page >= $total_pages) ? 'disabled' : ''; ?>"
+                        aria-controls="DataTables_Table_0"
+                        data-page="<?php echo min($total_pages, $current_page + 1); ?>"
+                        tabindex="<?php echo ($current_page >= $total_pages) ? '-1' : '0'; ?>"
+                        id="DataTables_Table_0_next">Next</a>
+                    </div>
                 </div>
             </div>
         </div>
