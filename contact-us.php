@@ -25,12 +25,14 @@ $get_all_fields = get_fields();
             </div>
         </div>
     </div>
-    <div class="ratio ratio-16x9">
-        <iframe
-            src="<?php echo $get_all_fields['google_maps_url']; ?>"
-            width="600" height="500" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
+    <?php if($get_all_fields['google_maps_url']) : ?>
+        <div class="ratio ratio-16x9">
+            <iframe
+                src="<?php echo $get_all_fields['google_maps_url']; ?>"
+                width="600" height="500" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    <?php endif; ?>
     <div style="height:30px" aria-hidden="true" class="wp-block-spacer"></div>
     <div class="is-layout-flex wp-container-3 wp-block-columns">
         <div class="is-layout-flow wp-block-column has-gray-100-background-color has-background"
