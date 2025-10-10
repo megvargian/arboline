@@ -299,7 +299,7 @@ $sub_menu = $header['sub_menus'];
                                 </p>
                                 <a class="text-uppercase" href="https://arboline.com/catalogue/">
                                     <img class="w-100 img-fluid" alt="FIDDES Product Catalogue"
-                                        src="<?php echo get_template_directory_uri(); ?>/inc/assets/images/catalogue-image.png">
+                                        src="<?php echo $header['catalogue_image']; ?>">
                                 </a>
                             </div>
                         </div>
