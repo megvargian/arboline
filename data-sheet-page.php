@@ -227,30 +227,15 @@ jQuery(document).ready(function($) {
                 if (response.success && response.data.html) {
                     var $response = $(response.data.html);
 
-                    // Log debug info
-                    var debugInfo = $response.find('.debug-info');
-                    if (debugInfo.length) {
-                        console.log('Debug Info from Response:');
-                        console.log('  Current Page:', debugInfo.data('current-page'));
-                        console.log('  Per Page:', debugInfo.data('per-page'));
-                        console.log('  Total Sheets:', debugInfo.data('total-sheets'));
-                        console.log('  Offset:', debugInfo.data('offset'));
-                        console.log('  Showing:', debugInfo.data('showing'));
-                    }
-
                     // Update table body
                     var newTbody = $response.find('#data-sheet-tbody');
                     if (newTbody.length) {
-                        console.log('Updating tbody with', newTbody.find('tr').length, 'rows');
                         $('#data-sheet-tbody').html(newTbody.html());
-                    } else {
-                        console.error('No tbody found in response');
                     }
 
                     // Update info
                     var newInfo = $response.find('#DataTables_Table_0_info');
                     if (newInfo.length) {
-                        console.log('Info text:', newInfo.text().trim());
                         $('#DataTables_Table_0_info').html(newInfo.html());
                     }
 

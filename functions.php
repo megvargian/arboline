@@ -2329,10 +2329,6 @@ function ajax_load_data_sheets() {
     $orderby = isset($_GET['orderby']) ? sanitize_text_field($_GET['orderby']) : 'name';
     $order = isset($_GET['order']) ? sanitize_text_field($_GET['order']) : 'ASC';
 
-    // Debug logging
-    error_log('AJAX Data Sheets - Received params: ' . print_r($_GET, true));
-    error_log('AJAX Data Sheets - per_page: ' . $per_page . ', current_page: ' . $current_page . ', search: ' . $search . ', orderby: ' . $orderby . ', order: ' . $order);
-
     // Get all data sheets from ACF
     $all_data_sheets = array();
     if (function_exists('get_field')) {
@@ -2382,23 +2378,10 @@ function ajax_load_data_sheets() {
     $showing_from = $total_sheets > 0 ? $offset + 1 : 0;
     $showing_to = min($offset + $per_page, $total_sheets);
 
-    // Debug logging for pagination
-    error_log('AJAX Data Sheets - Pagination: offset=' . $offset . ', total_sheets=' . $total_sheets . ', total_pages=' . $total_pages . ', showing=' . $showing_from . '-' . $showing_to);
-    error_log('AJAX Data Sheets - Data sheets count: ' . count($data_sheets));
-
     // Build response HTML
     ob_start();
     ?>
     <div class="ajax-response-wrapper">
-        <!-- Debug Info (will be hidden) -->
-        <div class="debug-info" style="display:none;"
-             data-current-page="<?php echo $current_page; ?>"
-             data-per-page="<?php echo $per_page; ?>"
-             data-total-sheets="<?php echo $total_sheets; ?>"
-             data-offset="<?php echo $offset; ?>"
-             data-showing="<?php echo $showing_from; ?>-<?php echo $showing_to; ?>">
-        </div>
-
         <!-- Table Body -->
         <tbody id="data-sheet-tbody">
             <?php
