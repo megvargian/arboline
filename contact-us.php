@@ -7,7 +7,7 @@ $get_all_fields = get_fields();
 ?>
 <div class="container custom-container-padding">
     <div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
-    <h1 class="has-text-align-center underline"><span style="text-decoration: underline;">CONTACT</span></h1>
+    <h1 class="has-text-align-center underline"><span style="text-decoration: underline;"><?php the_title(); ?></span></h1>
     <div class="wp-block-cover alignfull is-light intro d-none" style="min-height: 900px;"><span aria-hidden="true"
             class="wp-block-cover__background has-secondary-background-color has-background-dim-10 has-background-dim"></span><img
             decoding="async" width="1024" height="476" class="wp-block-cover__image-background wp-image-1576" alt=""
