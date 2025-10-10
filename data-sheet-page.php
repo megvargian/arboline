@@ -181,16 +181,33 @@ $showing_to = min($offset + $per_page, $total_products);
 jQuery(document).ready(function($) {
     var debounceTimer;
 
+    // Get current URL parameters
+    function getCurrentParams() {
+        var urlParams = new URLSearchParams(window.location.search);
+        return {
+            per_page: urlParams.get('per_page') || '10',
+            search: urlParams.get('search') || '',
+            orderby: urlParams.get('orderby') || 'title',
+            order: urlParams.get('order') || 'ASC',
+            paged: urlParams.get('paged') || '1'
+        };
+    }
+
     // Function to update URL and reload data
-    function updateTable(params) {
+    function updateTable(newParams) {
         var url = new URL(window.location.href);
+        var currentParams = getCurrentParams();
+
+        // Merge current params with new params
+        var params = Object.assign({}, currentParams, newParams);
+
+        // Clear all existing params
+        url.search = '';
 
         // Update URL parameters
         Object.keys(params).forEach(function(key) {
-            if (params[key]) {
+            if (params[key] && params[key] !== '') {
                 url.searchParams.set(key, params[key]);
-            } else {
-                url.searchParams.delete(key);
             }
         });
 
@@ -237,7 +254,7 @@ jQuery(document).ready(function($) {
         var perPage = $(this).val();
         updateTable({
             per_page: perPage,
-            paged: 1
+            paged: '1'
         });
     });
 
@@ -249,7 +266,7 @@ jQuery(document).ready(function($) {
         debounceTimer = setTimeout(function() {
             updateTable({
                 search: searchTerm,
-                paged: 1
+                paged: '1'
             });
         }, 500);
     });
@@ -262,23 +279,18 @@ jQuery(document).ready(function($) {
         updateTable({
             orderby: column,
             order: order,
-            paged: 1
+            paged: '1'
         });
     });
 
     // Pagination clicks
-    $(document).on('click', '.paginate_button:not(.disabled)', function(e) {
+    $(document).on('click', '.paginate_button:not(.disabled):not(.current)', function(e) {
         e.preventDefault();
         var page = $(this).data('page');
 
-        if (page && !$(this).hasClass('current')) {
-            var urlParams = new URLSearchParams(window.location.search);
+        if (page) {
             updateTable({
-                paged: page,
-                per_page: urlParams.get('per_page') || 10,
-                search: urlParams.get('search') || '',
-                orderby: urlParams.get('orderby') || 'title',
-                order: urlParams.get('order') || 'ASC'
+                paged: page.toString()
             });
         }
     });
