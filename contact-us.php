@@ -3,6 +3,7 @@
  * Template Name: Contact Us Page
  */
 get_header();
+$get_all_fields = get_fields();
 ?>
 <div class="container custom-container-padding">
     <div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
@@ -34,30 +35,17 @@ get_header();
     <div class="is-layout-flex wp-container-3 wp-block-columns">
         <div class="is-layout-flow wp-block-column has-gray-100-background-color has-background"
             style="padding-top:2em;padding-right:2em;padding-bottom:2em;padding-left:2em">
-            <h3 class="has-text-align-center underline"><span style="text-decoration: underline;">FIDDES &amp; SONS
-                    LTD</span></h3>
-            <p>Florence Works,<br>Brindley Road,<br>Cardiff,<br>United Kingdom<br>CF11 8TX</p>
-            <p>Tel:&nbsp;<a href="tel:#">+44 (0) 29 2034 0323</a><br>Email:&nbsp;<a
-                    href="mailto:#">finishes@fiddes.co.uk</a>&nbsp;or&nbsp;<a
-                    href="mailto:#">sales@fiddes.co.uk</a></p>
+            <h3 class="has-text-align-center underline"><span style="text-decoration: underline;">
+                <?php echo $get_all_fields['left_box']['title']; ?>
+            </span></h3>
+            <?php echo $get_all_fields['left_box']['description']; ?>
         </div>
         <div class="is-layout-flow wp-block-column has-gray-100-background-color has-background"
             style="padding-top:2em;padding-right:2em;padding-bottom:2em;padding-left:2em">
-            <h3 class="has-text-align-center underline"><span style="text-decoration: underline;">OPENING TIMES &amp;
-                    GENERAL INFO&nbsp;</span></h3>
+            <h3 class="has-text-align-center underline"><span style="text-decoration: underline;">
+                <?php echo $get_all_fields['right_box']['title']; ?></span></h3>
             <p class="has-danger-color has-text-color"></p>
-            <p><strong>General sales enquiries and customer services:</strong>&nbsp;<br><br> 9am-5pm Monday –
-                Thursday.<br> 9am-2:30pm Friday.<br><br><strong>Technical Support:<br></strong>Please email<span
-                    style="color: #3366ff;"> <a style="color: #3366ff;"
-                        href="mailto:support@fiddes.co.uk">support@fiddes.co.uk</a></span></p>
-            <p><strong>Fiddes Cardiff Showroom</strong>: <br><br>8am-1pm Monday – Friday (Currently closed for
-                maintenance)<br><strong><br></strong>Our full product range is available at our Cardiff showroom, and
-                our products also remain available to order online and through our network of appointed Distributors.
-            </p>
-            <p>e: <a href="mailto:sales@fiddes.co.uk"><span
-                        style="color: #3366ff;">sales@fiddes.co.uk&nbsp;</span></a>t: <a href="tel:02920 340323">02920
-                    340323</a></p>
-            <p>Alternatively, please complete the form below and we will contact you directly.</p>
+            <?php echo $get_all_fields['right_box']['description']; ?>
         </div>
     </div>
     <div class="is-layout-flow wp-block-group p-4 mb-4 has-gray-100-background-color has-background">
