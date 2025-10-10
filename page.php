@@ -17,7 +17,7 @@ get_header(); ?>
 		<div class="row text-center">
 			<div class="col-12 pt-5 mt-5">
 				<h1 class="has-text-align-center underline">
-					<?php the_title(); ?>
+					<span style="text-decoration: underline;"><?php the_title(); ?></span>
 				</h1>
 			</div>
 		</div>
