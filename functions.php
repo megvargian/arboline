@@ -2326,11 +2326,9 @@ function ajax_load_data_sheets() {
     $per_page = isset($_REQUEST['per_page']) ? intval($_REQUEST['per_page']) : 10;
     $current_page = isset($_REQUEST['paged']) ? intval($_REQUEST['paged']) : 1;
     $search = isset($_REQUEST['search']) ? sanitize_text_field($_REQUEST['search']) : '';
-    $orderby = isset($_REQUEST['orderby']) ? sanitize_text_field($_REQUEST['orderby']) : 'id';
-    $order = isset($_REQUEST['order']) ? sanitize_text_field($_REQUEST['order']) : 'ASC';
 
     // Debug logging
-    error_log('Data Sheets AJAX - Received params: per_page=' . $per_page . ', paged=' . $current_page . ', search=' . $search . ', orderby=' . $orderby . ', order=' . $order);
+    error_log('Data Sheets AJAX - Received params: per_page=' . $per_page . ', paged=' . $current_page . ', search=' . $search);
 
     // Get all data sheets from ACF
     $all_data_sheets = array();
@@ -2360,14 +2358,6 @@ function ajax_load_data_sheets() {
     }
 
     $total_sheets = count($all_data_sheets);
-
-    // Apply sorting (only by ID)
-    if ($orderby === 'id') {
-        usort($all_data_sheets, function($a, $b) use ($order) {
-            $result = $a['id'] - $b['id'];
-            return $order === 'DESC' ? -$result : $result;
-        });
-    }
 
     // Pagination
     $offset = ($current_page - 1) * $per_page;
@@ -2452,11 +2442,9 @@ function ajax_load_data_sheets() {
         <!-- Table Headers -->
         <thead>
             <tr>
-                <th scope="row" class="sorting <?php echo ($orderby === 'id') ? 'sorting_' . strtolower($order) : ''; ?>"
-                    data-column="id" data-order="<?php echo ($orderby === 'id' && $order === 'ASC') ? 'DESC' : 'ASC'; ?>"
-                    tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                    style="width: 172.323px; cursor: pointer;">#</th>
-                <th class="" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                <th scope="row" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                    style="width: 172.323px;">#</th>
+                <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
                     style="width: 1091.68px;">Document Name
                 </th>
             </tr>
@@ -2478,9 +2466,7 @@ function ajax_load_data_sheets() {
         'params' => array(
             'per_page' => $per_page,
             'paged' => $current_page,
-            'search' => $search,
-            'orderby' => $orderby,
-            'order' => $order
+            'search' => $search
         )
     ));
 }

@@ -13,8 +13,6 @@ get_header();
 $per_page = isset($_GET['per_page']) ? intval($_GET['per_page']) : 10;
 $current_page = isset($_GET['paged']) ? intval($_GET['paged']) : 1;
 $search = isset($_GET['search']) ? sanitize_text_field($_GET['search']) : '';
-$orderby = isset($_GET['orderby']) ? sanitize_text_field($_GET['orderby']) : 'id';
-$order = isset($_GET['order']) ? sanitize_text_field($_GET['order']) : 'ASC';
 
 // Get all data sheets from ACF
 $all_data_sheets = array();
@@ -44,14 +42,6 @@ if (!empty($search)) {
 }
 
 $total_sheets = count($all_data_sheets);
-
-// Apply sorting (only by ID)
-if ($orderby === 'id') {
-    usort($all_data_sheets, function($a, $b) use ($order) {
-        $result = $a['id'] - $b['id'];
-        return $order === 'DESC' ? -$result : $result;
-    });
-}
 
 // Pagination
 $offset = ($current_page - 1) * $per_page;
@@ -87,14 +77,10 @@ $showing_to = min($offset + $per_page, $total_sheets);
                     id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
                     <thead>
                         <tr>
-                            <th scope="row" class="sorting <?php echo ($orderby === 'id') ? 'sorting_' . strtolower($order) : ''; ?>"
-                                data-column="id" data-order="<?php echo ($orderby === 'id' && $order === 'ASC') ? 'DESC' : 'ASC'; ?>"
-                                tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                                style="width: 172.323px; cursor: pointer;">#</th>
-                            <th class="sorting <?php echo ($orderby === 'name') ? 'sorting_' . strtolower($order) : ''; ?>"
-                                data-column="name" data-order="<?php echo ($orderby === 'name' && $order === 'ASC') ? 'DESC' : 'ASC'; ?>"
-                                tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                                style="width: 1091.68px; cursor: pointer;">Document Name
+                            <th scope="row" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                                style="width: 172.323px;">#</th>
+                            <th tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                                style="width: 1091.68px;">Document Name
                             </th>
                         </tr>
                     </thead>
@@ -176,13 +162,13 @@ jQuery(document).ready(function($) {
     // Get current URL parameters
     function getCurrentParams() {
         var urlParams = new URLSearchParams(window.location.search);
-        return {
+        var params = {
             per_page: urlParams.get('per_page') || '10',
             search: urlParams.get('search') || '',
-            orderby: urlParams.get('orderby') || 'id',
-            order: urlParams.get('order') || 'ASC',
             paged: urlParams.get('paged') || '1'
         };
+        console.log('getCurrentParams:', params);
+        return params;
     }
 
     // Function to update URL and reload data
@@ -203,18 +189,20 @@ jQuery(document).ready(function($) {
         // Update browser URL without reload
         window.history.pushState({}, '', newUrl);
 
+        // Prepare AJAX data
+        var ajaxData = {
+            action: 'load_data_sheets',
+            per_page: params.per_page,
+            paged: params.paged,
+            search: params.search
+        };
+        console.log('AJAX data being sent:', ajaxData);
+
         // AJAX reload using WordPress AJAX
         $.ajax({
             url: '<?php echo admin_url('admin-ajax.php'); ?>',
             type: 'GET',
-            data: {
-                action: 'load_data_sheets',
-                per_page: params.per_page,
-                paged: params.paged,
-                search: params.search,
-                orderby: params.orderby,
-                order: params.order
-            },
+            data: ajaxData,
             beforeSend: function() {
                 $('#data-sheet-tbody').css('opacity', '0.5');
             },
@@ -302,19 +290,6 @@ jQuery(document).ready(function($) {
                 paged: '1'
             });
         }, 500);
-    });
-
-    // Column sorting (only for ID column)
-    $(document).on('click', 'th.sorting[data-column="id"], th.sorting_asc[data-column="id"], th.sorting_desc[data-column="id"]', function() {
-        var column = $(this).data('column');
-        var order = $(this).data('order');
-        console.log('Sorting by:', column, order);
-
-        updateTable({
-            orderby: column,
-            order: order,
-            paged: '1'
-        });
     });
 
     // Pagination clicks
