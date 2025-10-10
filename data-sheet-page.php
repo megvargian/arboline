@@ -60,7 +60,7 @@ $showing_to = min($offset + $per_page, $total_products);
 
 <section>
     <div class="container">
-        <h2>Technical Sheets</h2>
+        <h2><?php the_title(); ?></h2>
         <div class="wp-block-document-list">
             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
                 <div class="d-flex justify-content-between align-items-center">
