@@ -27,7 +27,7 @@ $get_all_fields = get_fields();
     </div>
     <div class="ratio ratio-16x9">
         <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2485.921429058549!2d-3.200545!3d51.459599!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x6fdc3ec30adc930c!2sFiddes%20%26%20Son%20Ltd!5e0!3m2!1sen!2suk!4v1663854224580!5m2!1sen!2suk"
+            src="<?php echo $get_all_fields['google_maps_url']; ?>"
             width="600" height="500" style="border:0;" allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
