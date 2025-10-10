@@ -8,6 +8,54 @@
  */
 
 get_header();
+
+// Get parameters
+$per_page = isset($_GET['per_page']) ? intval($_GET['per_page']) : 10;
+$current_page = isset($_GET['paged']) ? intval($_GET['paged']) : 1;
+$search = isset($_GET['search']) ? sanitize_text_field($_GET['search']) : '';
+$orderby = isset($_GET['orderby']) ? sanitize_text_field($_GET['orderby']) : 'title';
+$order = isset($_GET['order']) ? sanitize_text_field($_GET['order']) : 'ASC';
+
+// Query all products with data sheets
+$args = array(
+    'post_type' => 'product',
+    'posts_per_page' => -1,
+    'post_status' => 'publish',
+    'meta_query' => array(
+        array(
+            'key' => '_product_data_sheet_url',
+            'compare' => 'EXISTS'
+        )
+    )
+);
+
+// Add search if provided
+if (!empty($search)) {
+    $args['s'] = $search;
+}
+
+$all_products = get_posts($args);
+$total_products = count($all_products);
+
+// Manual sorting
+if ($orderby === 'title') {
+    usort($all_products, function($a, $b) use ($order) {
+        $result = strcmp($a->post_title, $b->post_title);
+        return $order === 'DESC' ? -$result : $result;
+    });
+} elseif ($orderby === 'id') {
+    usort($all_products, function($a, $b) use ($order) {
+        $result = $a->ID - $b->ID;
+        return $order === 'DESC' ? -$result : $result;
+    });
+}
+
+// Pagination
+$offset = ($current_page - 1) * $per_page;
+$products = array_slice($all_products, $offset, $per_page);
+$total_pages = ceil($total_products / $per_page);
+$showing_from = $total_products > 0 ? $offset + 1 : 0;
+$showing_to = min($offset + $per_page, $total_products);
 ?>
 
 <section>
@@ -15,449 +63,223 @@ get_header();
         <h2>Technical Sheets</h2>
         <div class="wp-block-document-list">
             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
-                <div class="dataTables_length" id="DataTables_Table_0_length"><label>Show <select
-                            name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="">
-                            <option value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select> entries</label></div>
-                <div id="DataTables_Table_0_filter" class="dataTables_filter"><label>Search:<input type="search"
-                            class="" placeholder="" aria-controls="DataTables_Table_0"></label></div>
+                <div class="dataTables_length" id="DataTables_Table_0_length">
+                    <label>Show
+                        <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="per-page-select">
+                            <option value="10" <?php selected($per_page, 10); ?>>10</option>
+                            <option value="25" <?php selected($per_page, 25); ?>>25</option>
+                            <option value="50" <?php selected($per_page, 50); ?>>50</option>
+                            <option value="100" <?php selected($per_page, 100); ?>>100</option>
+                        </select> entries
+                    </label>
+                </div>
+                <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                    <label>Search:
+                        <input type="search" class="search-input" placeholder="" aria-controls="DataTables_Table_0" value="<?php echo esc_attr($search); ?>">
+                    </label>
+                </div>
                 <table class="table technical-sheet-table table-responsive table-hover dataTable no-footer"
                     id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
                     <thead>
                         <tr>
-                            <th scope="row" class="sorting sorting_asc" tabindex="0" aria-controls="DataTables_Table_0"
-                                rowspan="1" colspan="1" aria-sort="ascending"
-                                aria-label="#: activate to sort column descending" style="width: 172.323px;">#</th>
-                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                                aria-label="Title: activate to sort column ascending" style="width: 1091.68px;">Title
+                            <th scope="row" class="sorting <?php echo ($orderby === 'id') ? 'sorting_' . strtolower($order) : ''; ?>"
+                                data-column="id" data-order="<?php echo ($orderby === 'id' && $order === 'ASC') ? 'DESC' : 'ASC'; ?>"
+                                tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                                style="width: 172.323px; cursor: pointer;">#</th>
+                            <th class="sorting <?php echo ($orderby === 'title') ? 'sorting_' . strtolower($order) : ''; ?>"
+                                data-column="title" data-order="<?php echo ($orderby === 'title' && $order === 'ASC') ? 'DESC' : 'ASC'; ?>"
+                                tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                                style="width: 1091.68px; cursor: pointer;">Title
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr class="odd">
+                    <tbody id="data-sheet-tbody">
+                    <tbody id="data-sheet-tbody">
+                        <?php
+                        $row_class = 'odd';
+                        foreach ($products as $product) :
+                            $data_sheet_url = get_post_meta($product->ID, '_product_data_sheet_url', true);
+                            $data_sheet_name = get_post_meta($product->ID, '_product_data_sheet_name', true);
+
+                            // Use product title if no custom name
+                            if (empty($data_sheet_name)) {
+                                $data_sheet_name = $product->post_title;
+                            }
+
+                            if (!empty($data_sheet_url)) :
+                        ?>
+                        <tr class="<?php echo $row_class; ?>">
                             <td class="py-0 sorting_1">
                                 <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Bonda-Wood-Filler-MSDS-2-1.pdf">
-                                    512
-                                </a><a>
+                                    href="<?php echo esc_url($data_sheet_url); ?>">
+                                    <?php echo $product->ID; ?>
                                 </a>
                             </td>
                             <td class="py-0">
                                 <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Bonda-Wood-Filler-MSDS-2-1.pdf">
-                                    Bonda Wood Filler <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
+                                    href="<?php echo esc_url($data_sheet_url); ?>">
+                                    <?php echo esc_html($data_sheet_name); ?> <i class="bi bi-cloud-arrow-down"></i>
                                 </a>
                             </td>
                         </tr>
-                        <tr class="even">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Bonda-Wood-Filler-Super-Soft-MSDS-1-1.pdf">
-                                    515
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Bonda-Wood-Filler-Super-Soft-MSDS-1-1.pdf">
-                                    Bonda Wood Filler Super Soft <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
+                        <?php
+                            $row_class = ($row_class === 'odd') ? 'even' : 'odd';
+                            endif;
+                        endforeach;
+
+                        if (empty($products)) :
+                        ?>
+                        <tr>
+                            <td colspan="2" class="text-center py-4">No data sheets found.</td>
                         </tr>
-                        <tr class="odd">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Bonda-Wood-Stop-MSDS-1-1.pdf">
-                                    518
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Bonda-Wood-Stop-MSDS-1-1.pdf">
-                                    Bonda Wood Stop <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="even">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Brummer-Yellow-Label-MSDS-1-1.pdf">
-                                    521
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Brummer-Yellow-Label-MSDS-1-1.pdf">
-                                    Brummer Yellow Label <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="odd">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Cascamite-MSDS-1-1.pdf">
-                                    524
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Cascamite-MSDS-1-1.pdf">
-                                    Cascamite <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="even">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-030-White-Primer-MSDS-1.pdf">
-                                    527
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-030-White-Primer-MSDS-1.pdf">
-                                    Fiddes 030 Primer White <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="odd">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-A-Bleach-MSDS-1.pdf">
-                                    530
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-A-Bleach-MSDS-1.pdf">
-                                    Fiddes A Bleach <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="even">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-AC-Clear-Lacquer-MSDS-44-4544-1.pdf">
-                                    533
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-AC-Clear-Lacquer-MSDS-44-4544-1.pdf">
-                                    Fiddes AC Laqcquer <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="odd">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-AC-Pigmented-Lacquer-MSDS-1.pdf">
-                                    536
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-AC-Pigmented-Lacquer-MSDS-1.pdf">
-                                    Fiddes AC Pigmented Lacquer <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="even">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-AC-Primer-Catalyst-MSDS-1.pdf">
-                                    539
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-AC-Primer-Catalyst-MSDS-1.pdf">
-                                    Fiddes AC Primer Catalyst <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="odd">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-AC-Primer-White-MSDS-1.pdf">
-                                    542
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-AC-Primer-White-MSDS-1.pdf">
-                                    Fiddes AC Primer White <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="even">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-AC-thinners-MSDS-1.pdf">
-                                    545
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-AC-thinners-MSDS-1.pdf">
-                                    Fiddes AC Thinners <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="odd">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-AC-Sealer-MSDS-1.pdf">
-                                    548
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-AC-Sealer-MSDS-1.pdf">
-                                    Fiddes AC sealer <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="even">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-Acetic-Acid-MSDS-1.pdf">
-                                    551
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-Acetic-Acid-MSDS-1.pdf">
-                                    Fiddes Acetic Acid <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="odd">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-Acetone-Thinners-MSDS-1.pdf">
-                                    554
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-Acetone-Thinners-MSDS-1.pdf">
-                                    Fiddes Acetone Thinners <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="even">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-Acid-Catalyst-MSDS-2.pdf">
-                                    557
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-Acid-Catalyst-MSDS-2.pdf">
-                                    Fiddes Acid Catalyst <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="odd">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-Anti-Bloom-Thinners-1.pdf">
-                                    560
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-Anti-Bloom-Thinners-1.pdf">
-                                    Fiddes Anti Bloom Thinners <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="even">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-Anti-Silicone-Wash-MSDS-1.pdf">
-                                    563
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-Anti-Silicone-Wash-MSDS-1.pdf">
-                                    Fiddes Anti Silicone Wash <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="odd">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-Antique-Pine-Water-Stain-MSDS-1.pdf">
-                                    566
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-Antique-Pine-Water-Stain-MSDS-1.pdf">
-                                    Fiddes Antique Pine Water Stain <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="even">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-B-Bleach-MSDS-1.pdf">
-                                    569
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-B-Bleach-MSDS-1.pdf">
-                                    Fiddes B Bleach <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="odd">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-Barrier-Seal-MSDS-1.pdf">
-                                    572
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-Barrier-Seal-MSDS-1.pdf">
-                                    Fiddes Barrier Seal <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="even">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-Boiled-Linseed-Oil-MSDS-1.pdf">
-                                    575
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-Boiled-Linseed-Oil-MSDS-1.pdf">
-                                    Fiddes Boiled Linseed Oil <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="odd">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-Bone-Hard-Lacquer-MSDS-1-1.pdf">
-                                    578
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-Bone-Hard-Lacquer-MSDS-1-1.pdf">
-                                    Fiddes Bone Hard Lacquer <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="even">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-Bone-Hard-Lacquer-MSDS-2.pdf">
-                                    581
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-Bone-Hard-Lacquer-MSDS-2.pdf">
-                                    Fiddes Bone Hard Nitro Cellulose Lacquer <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="odd">
-                            <td class="py-0 sorting_1">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-Burnishing-Cream-MSDS-1.pdf">
-                                    584
-                                </a><a>
-                                </a>
-                            </td>
-                            <td class="py-0">
-                                <a class="d-flex justify-content-between align-items-center w-100 py-3" target="_blank"
-                                    href="https://fiddes.co.uk/app/uploads/2022/08/Fiddes-Burnishing-Cream-MSDS-1.pdf">
-                                    Fiddes Burnishing Cream <i class="bi bi-cloud-arrow-down"></i>
-                                </a><a>
-                                </a>
-                            </td>
-                        </tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
-                <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to
-                    25
-                    of 119 entries</div>
-                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><a
-                        class="paginate_button previous disabled" aria-controls="DataTables_Table_0" data-dt-idx="0"
-                        tabindex="-1" id="DataTables_Table_0_previous">Previous</a><span><a
-                            class="paginate_button current" aria-controls="DataTables_Table_0" data-dt-idx="1"
-                            tabindex="0">1</a><a class="paginate_button " aria-controls="DataTables_Table_0"
-                            data-dt-idx="2" tabindex="0">2</a><a class="paginate_button "
-                            aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0">3</a><a
-                            class="paginate_button " aria-controls="DataTables_Table_0" data-dt-idx="4"
-                            tabindex="0">4</a><a class="paginate_button " aria-controls="DataTables_Table_0"
-                            data-dt-idx="5" tabindex="0">5</a></span><a class="paginate_button next"
-                        aria-controls="DataTables_Table_0" data-dt-idx="6" tabindex="0"
-                        id="DataTables_Table_0_next">Next</a></div>
+                <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
+                    Showing <?php echo $showing_from; ?> to <?php echo $showing_to; ?> of <?php echo $total_products; ?> entries
+                    <?php if (!empty($search)) : ?>
+                        (filtered from <?php echo count($all_products); ?> total entries)
+                    <?php endif; ?>
+                </div>
+                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                    <a class="paginate_button previous <?php echo ($current_page <= 1) ? 'disabled' : ''; ?>"
+                       aria-controls="DataTables_Table_0"
+                       data-page="<?php echo max(1, $current_page - 1); ?>"
+                       tabindex="<?php echo ($current_page <= 1) ? '-1' : '0'; ?>"
+                       id="DataTables_Table_0_previous">Previous</a>
+                    <span>
+                        <?php
+                        // Show max 5 page numbers
+                        $start_page = max(1, $current_page - 2);
+                        $end_page = min($total_pages, $start_page + 4);
+                        $start_page = max(1, $end_page - 4);
+
+                        for ($i = $start_page; $i <= $end_page; $i++) :
+                        ?>
+                        <a class="paginate_button <?php echo ($i === $current_page) ? 'current' : ''; ?>"
+                           aria-controls="DataTables_Table_0"
+                           data-page="<?php echo $i; ?>"
+                           tabindex="0"><?php echo $i; ?></a>
+                        <?php endfor; ?>
+                    </span>
+                    <a class="paginate_button next <?php echo ($current_page >= $total_pages) ? 'disabled' : ''; ?>"
+                       aria-controls="DataTables_Table_0"
+                       data-page="<?php echo min($total_pages, $current_page + 1); ?>"
+                       tabindex="<?php echo ($current_page >= $total_pages) ? '-1' : '0'; ?>"
+                       id="DataTables_Table_0_next">Next</a>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+jQuery(document).ready(function($) {
+    var debounceTimer;
+
+    // Function to update URL and reload data
+    function updateTable(params) {
+        var url = new URL(window.location.href);
+
+        // Update URL parameters
+        Object.keys(params).forEach(function(key) {
+            if (params[key]) {
+                url.searchParams.set(key, params[key]);
+            } else {
+                url.searchParams.delete(key);
+            }
+        });
+
+        // Update browser URL without reload
+        window.history.pushState({}, '', url);
+
+        // AJAX reload
+        $.ajax({
+            url: url.toString(),
+            type: 'GET',
+            beforeSend: function() {
+                $('#data-sheet-tbody').css('opacity', '0.5');
+            },
+            success: function(response) {
+                var $response = $(response);
+
+                // Update table body
+                var newTbody = $response.find('#data-sheet-tbody').html();
+                $('#data-sheet-tbody').html(newTbody);
+
+                // Update info
+                var newInfo = $response.find('#DataTables_Table_0_info').html();
+                $('#DataTables_Table_0_info').html(newInfo);
+
+                // Update pagination
+                var newPagination = $response.find('#DataTables_Table_0_paginate').html();
+                $('#DataTables_Table_0_paginate').html(newPagination);
+
+                // Update table headers
+                var newHeaders = $response.find('thead tr').html();
+                $('thead tr').html(newHeaders);
+
+                $('#data-sheet-tbody').css('opacity', '1');
+            },
+            error: function() {
+                // Fallback to page reload
+                window.location.href = url.toString();
+            }
+        });
+    }
+
+    // Per page change
+    $('.per-page-select').on('change', function() {
+        var perPage = $(this).val();
+        updateTable({
+            per_page: perPage,
+            paged: 1
+        });
+    });
+
+    // Search input with debounce
+    $('.search-input').on('keyup', function() {
+        var searchTerm = $(this).val();
+
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function() {
+            updateTable({
+                search: searchTerm,
+                paged: 1
+            });
+        }, 500);
+    });
+
+    // Column sorting
+    $(document).on('click', 'th.sorting, th.sorting_asc, th.sorting_desc', function() {
+        var column = $(this).data('column');
+        var order = $(this).data('order');
+
+        updateTable({
+            orderby: column,
+            order: order,
+            paged: 1
+        });
+    });
+
+    // Pagination clicks
+    $(document).on('click', '.paginate_button:not(.disabled)', function(e) {
+        e.preventDefault();
+        var page = $(this).data('page');
+
+        if (page && !$(this).hasClass('current')) {
+            var urlParams = new URLSearchParams(window.location.search);
+            updateTable({
+                paged: page,
+                per_page: urlParams.get('per_page') || 10,
+                search: urlParams.get('search') || '',
+                orderby: urlParams.get('orderby') || 'title',
+                order: urlParams.get('order') || 'ASC'
+            });
+        }
+    });
+});
+</script>
 
 <?php
 get_footer();
