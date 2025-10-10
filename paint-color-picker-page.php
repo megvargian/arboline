@@ -7,7 +7,7 @@ get_header();
 <section>
     <div>
         <header class="header">
-            <h1>Color Wall Explorer</h1>
+            <h1><?php the_title(); ?></h1>
             <p class="subtitle">Explore and discover your perfect color</p>
         </header>
 
