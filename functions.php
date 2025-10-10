@@ -2361,13 +2361,8 @@ function ajax_load_data_sheets() {
 
     $total_sheets = count($all_data_sheets);
 
-    // Apply sorting
-    if ($orderby === 'name') {
-        usort($all_data_sheets, function($a, $b) use ($order) {
-            $result = strcmp($a['name'], $b['name']);
-            return $order === 'DESC' ? -$result : $result;
-        });
-    } elseif ($orderby === 'id') {
+    // Apply sorting (only by ID)
+    if ($orderby === 'id') {
         usort($all_data_sheets, function($a, $b) use ($order) {
             $result = $a['id'] - $b['id'];
             return $order === 'DESC' ? -$result : $result;
@@ -2461,10 +2456,8 @@ function ajax_load_data_sheets() {
                     data-column="id" data-order="<?php echo ($orderby === 'id' && $order === 'ASC') ? 'DESC' : 'ASC'; ?>"
                     tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
                     style="width: 172.323px; cursor: pointer;">#</th>
-                <th class="sorting <?php echo ($orderby === 'name') ? 'sorting_' . strtolower($order) : ''; ?>"
-                    data-column="name" data-order="<?php echo ($orderby === 'name' && $order === 'ASC') ? 'DESC' : 'ASC'; ?>"
-                    tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                    style="width: 1091.68px; cursor: pointer;">Document Name
+                <th class="" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                    style="width: 1091.68px;">Document Name
                 </th>
             </tr>
         </thead>

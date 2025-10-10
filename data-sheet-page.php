@@ -309,8 +309,8 @@ jQuery(document).ready(function($) {
         }, 500);
     });
 
-    // Column sorting
-    $(document).on('click', 'th.sorting, th.sorting_asc, th.sorting_desc', function() {
+    // Column sorting (only for ID column)
+    $(document).on('click', 'th.sorting[data-column="id"], th.sorting_asc[data-column="id"], th.sorting_desc[data-column="id"]', function() {
         var column = $(this).data('column');
         var order = $(this).data('order');
         console.log('Sorting by:', column, order);
