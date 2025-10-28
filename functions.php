@@ -2472,24 +2472,3 @@ function ajax_load_data_sheets() {
 }
 add_action('wp_ajax_load_data_sheets', 'ajax_load_data_sheets');
 add_action('wp_ajax_nopriv_load_data_sheets', 'ajax_load_data_sheets');
-
-/**
- * Remove default WooCommerce page title on My Account pages and hide theme titles
- *
- * This allows the template `woocommerce/myaccount/form-login.php` to render a
- * custom title (for example the `account-page-header` H1) without the theme or
- * WooCommerce printing the default page title above it.
- */
-add_filter('woocommerce_show_page_title', function($show) {
-    if ( function_exists('is_account_page') && is_account_page() ) {
-        return false;
-    }
-    return $show;
-});
-
-// Also add a small inline CSS fallback to hide common theme page title selectors
-add_action('wp_head', function() {
-    if ( function_exists('is_account_page') && is_account_page() ) {
-        echo "<style>body.woocommerce-account .page-title, body.woocommerce-account .entry-title, body.woocommerce-account h1.page-title {display:none !important;}</style>";
-    }
-});

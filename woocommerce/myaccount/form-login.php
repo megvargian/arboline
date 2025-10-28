@@ -19,11 +19,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-// do_action( 'woocommerce_before_customer_login_form' ); ?>
-
+do_action( 'woocommerce_before_customer_login_form' ); ?>
+<!--
 <div class="account-page-header">
 	<h1 class="product_title entry-title">YOUR ACCOUNT</h1>
-</div>
+</div> -->
 
 <div class="u-columns col2-set" id="customer_login">
 
