@@ -22,7 +22,7 @@ get_header(); ?>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-12 mt-5">
+			<div class="col-12 mt-md-5 mt-2">
 				<?php
 				while ( have_posts() ) : the_post();
 					the_content();
