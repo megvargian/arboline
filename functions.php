@@ -339,6 +339,45 @@ function register_paint_color_picker_fields() {
                             ),
                         ),
                         array(
+                            'key' => 'field_related_colors',
+                            'label' => 'Related Colors (RGB Values Display)',
+                            'name' => 'related_colors',
+                            'type' => 'repeater',
+                            'instructions' => 'Add related colors to display as color swatches below Color Family',
+                            'required' => 0,
+                            'layout' => 'table',
+                            'button_label' => 'Add Related Color',
+                            'min' => 0,
+                            'max' => 10,
+                            'wrapper' => array(
+                                'width' => '100',
+                            ),
+                            'sub_fields' => array(
+                                array(
+                                    'key' => 'field_related_hex_color',
+                                    'label' => 'Hex Color',
+                                    'name' => 'hex_color',
+                                    'type' => 'color_picker',
+                                    'required' => 1,
+                                    'default_value' => '#000000',
+                                    'wrapper' => array(
+                                        'width' => '50',
+                                    ),
+                                ),
+                                array(
+                                    'key' => 'field_related_color_code',
+                                    'label' => 'Color Code',
+                                    'name' => 'color_code',
+                                    'type' => 'text',
+                                    'required' => 0,
+                                    'placeholder' => 'e.g., SW 6993',
+                                    'wrapper' => array(
+                                        'width' => '50',
+                                    ),
+                                ),
+                            ),
+                        ),
+                        array(
                             'key' => 'field_color_images',
                             'label' => 'Color Images',
                             'name' => 'color_images',

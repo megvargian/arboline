@@ -53,6 +53,12 @@ get_header();
                             <h3>COLOR FAMILY</h3>
                             <p id="modalColorFamily"></p>
                         </div>
+                        <div class="color-info rgb-values-section">
+                            <h3>RGB VALUES</h3>
+                            <div class="rgb-swatches" id="modalRGBSwatches">
+                                <!-- Related color swatches will be added here -->
+                            </div>
+                        </div>
                         <div class="coordinates">
                             <div class="coordinate-item">
                                 <span class="label">LRV</span>
@@ -111,6 +117,17 @@ get_header();
                     }
                 }
 
+                // Process related colors
+                $related_colors = array();
+                if (!empty($color['related_colors']) && is_array($color['related_colors'])) {
+                    foreach ($color['related_colors'] as $related) {
+                        $related_colors[] = array(
+                            'hex' => !empty($related['hex_color']) ? $related['hex_color'] : '#000000',
+                            'code' => !empty($related['color_code']) ? $related['color_code'] : '',
+                        );
+                    }
+                }
+
                 $color_data_array[] = array(
                     'name' => !empty($color['color_name']) ? $color['color_name'] : '',
                     'code' => !empty($color['color_code']) ? $color['color_code'] : '',
@@ -119,6 +136,7 @@ get_header();
                     'color_group' => !empty($color['color_group']) ? $color['color_group'] : '',
                     'lrv' => !empty($color['lrv_value']) ? intval($color['lrv_value']) : 0,
                     'images' => $color_images,
+                    'related_colors' => $related_colors,
                 );
             }
         } else {
@@ -415,6 +433,20 @@ get_header();
             }
             $('#modalColorFamily').text(familyText)
             $('#modalColorLRV').text(colorData.lrv)
+
+            // Display related colors (RGB Values)
+            const $rgbSwatches = $('#modalRGBSwatches');
+            $rgbSwatches.empty();
+            if (colorData.related_colors && colorData.related_colors.length > 0) {
+                colorData.related_colors.forEach(function(relatedColor) {
+                    $rgbSwatches.append(`
+                        <div class="rgb-swatch" style="background-color: ${relatedColor.hex}" title="${relatedColor.code}"></div>
+                    `);
+                });
+                $('.rgb-values-section').show();
+            } else {
+                $('.rgb-values-section').hide();
+            }
 
             $modal.addClass('active')
 
@@ -865,6 +897,32 @@ get_header();
         font-size: 1.1rem;
         color: var(--text-dark);
         font-weight: 500;
+    }
+
+    .rgb-values-section {
+        margin-top: 24px;
+    }
+
+    .rgb-swatches {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 12px;
+    }
+
+    .rgb-swatch {
+        width: 50px;
+        height: 50px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .rgb-swatch:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     }
 
     .coordinates {
