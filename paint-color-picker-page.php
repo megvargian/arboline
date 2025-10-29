@@ -54,7 +54,7 @@ get_header();
                             <p id="modalColorFamily"></p>
                         </div>
                         <div class="color-info rgb-values-section">
-                            <h3>RGB VALUES</h3>
+                            <h3>Related Colors</h3>
                             <div class="rgb-swatches" id="modalRGBSwatches">
                                 <!-- Related color swatches will be added here -->
                             </div>
