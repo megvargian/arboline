@@ -404,8 +404,15 @@ get_header();
             const $imagesWrapper = $('#modalColorImagesWrapper');
             $imagesWrapper.empty();
 
+            // Always add the main color as the first slide
+            $imagesWrapper.append(`
+                <div class="swiper-slide">
+                    <div class="color-preview-default" style="background-color: ${colorData.hex}"></div>
+                </div>
+            `);
+
+            // Add additional images if available
             if (colorData.images && colorData.images.length > 0) {
-                // Has images - create image slides
                 colorData.images.forEach(function(image) {
                     $imagesWrapper.append(`
                         <div class="swiper-slide">
@@ -413,13 +420,6 @@ get_header();
                         </div>
                     `);
                 });
-            } else {
-                // No images - show color preview
-                $imagesWrapper.append(`
-                    <div class="swiper-slide">
-                        <div class="color-preview-default" style="background-color: ${colorData.hex}"></div>
-                    </div>
-                `);
             }
 
             // Set color details
@@ -452,10 +452,11 @@ get_header();
 
             // Initialize Swiper after modal is visible
             setTimeout(function() {
+                const totalSlides = 1 + (colorData.images ? colorData.images.length : 0);
                 window.colorSwiper = new Swiper('.colorImageSwiper', {
                     slidesPerView: 1,
                     spaceBetween: 0,
-                    loop: colorData.images && colorData.images.length > 1,
+                    loop: totalSlides > 1,
                     navigation: {
                         nextEl: '.swiper-button-next',
                         prevEl: '.swiper-button-prev',
