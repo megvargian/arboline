@@ -30,17 +30,28 @@ get_header();
             <div class="modal-content">
                 <button class="close-btn" id="closeModal">&times;</button>
                 <div class="modal-body">
-                    <div class="color-preview" id="modalColorPreview"></div>
+                    <div class="color-preview-section">
+                        <!-- Swiper Slider for Images -->
+                        <div class="swiper colorImageSwiper">
+                            <div class="swiper-wrapper" id="modalColorImagesWrapper">
+                                <!-- Default color preview if no images -->
+                                <div class="swiper-slide">
+                                    <div class="color-preview-default" id="modalColorPreview"></div>
+                                </div>
+                            </div>
+                            <!-- Navigation arrows -->
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <!-- Pagination -->
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
                     <div class="color-details">
                         <h2 id="modalColorName"></h2>
                         <p class="color-code" id="modalColorCode"></p>
                         <div class="color-info">
-                            <h3>Color Family</h3>
+                            <h3>COLOR FAMILY</h3>
                             <p id="modalColorFamily"></p>
-                        </div>
-                        <div class="color-info">
-                            <h3>RGB Values</h3>
-                            <p id="modalColorRGB"></p>
                         </div>
                         <div class="coordinates">
                             <div class="coordinate-item">
@@ -87,12 +98,16 @@ get_header();
         if ($acf_colors && is_array($acf_colors) && !empty($acf_colors)) {
             // Use ACF colors if available
             foreach ($acf_colors as $color) {
-                // Parse RGB values from string
-                $rgb_values = array(0, 0, 0);
-                if (!empty($color['rgb_values'])) {
-                    $rgb_parts = array_map('trim', explode(',', $color['rgb_values']));
-                    if (count($rgb_parts) === 3) {
-                        $rgb_values = array_map('intval', $rgb_parts);
+                $color_images = array();
+                if (!empty($color['color_images']) && is_array($color['color_images'])) {
+                    foreach ($color['color_images'] as $image) {
+                        if (is_array($image) && isset($image['url'])) {
+                            $color_images[] = array(
+                                'url' => $image['url'],
+                                'alt' => isset($image['alt']) ? $image['alt'] : $color['color_name'],
+                                'title' => isset($image['title']) ? $image['title'] : '',
+                            );
+                        }
                     }
                 }
 
@@ -101,8 +116,9 @@ get_header();
                     'code' => !empty($color['color_code']) ? $color['color_code'] : '',
                     'hex' => !empty($color['hex_color']) ? $color['hex_color'] : '#ffffff',
                     'family' => !empty($color['color_family']) ? $color['color_family'] : 'neutrals',
-                    'rgb' => $rgb_values,
+                    'color_group' => !empty($color['color_group']) ? $color['color_group'] : '',
                     'lrv' => !empty($color['lrv_value']) ? intval($color['lrv_value']) : 0,
+                    'images' => $color_images,
                 );
             }
         } else {
@@ -337,15 +353,6 @@ get_header();
 
         let currentFilter = 'all'
 
-        function hexToRgb(hex) {
-            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-            return result ? {
-                r: parseInt(result[1], 16),
-                g: parseInt(result[2], 16),
-                b: parseInt(result[3], 16)
-            } : null
-        }
-
         function renderColorWall(filter = 'all') {
             const $colorWall = $('#colorWall')
             $colorWall.empty()
@@ -369,16 +376,65 @@ get_header();
 
         function showModal(colorData) {
             const $modal = $('#colorModal')
-            const rgb = hexToRgb(colorData.hex)
 
-            $('#modalColorPreview').css('background-color', colorData.hex)
+            // Clear existing swiper if it exists
+            if (window.colorSwiper) {
+                window.colorSwiper.destroy(true, true);
+            }
+
+            // Build slider content
+            const $imagesWrapper = $('#modalColorImagesWrapper');
+            $imagesWrapper.empty();
+
+            if (colorData.images && colorData.images.length > 0) {
+                // Has images - create image slides
+                colorData.images.forEach(function(image) {
+                    $imagesWrapper.append(`
+                        <div class="swiper-slide">
+                            <img src="${image.url}" alt="${image.alt}" class="color-modal-image" />
+                        </div>
+                    `);
+                });
+            } else {
+                // No images - show color preview
+                $imagesWrapper.append(`
+                    <div class="swiper-slide">
+                        <div class="color-preview-default" style="background-color: ${colorData.hex}"></div>
+                    </div>
+                `);
+            }
+
+            // Set color details
             $('#modalColorName').text(colorData.name)
             $('#modalColorCode').text(colorData.code)
-            $('#modalColorFamily').text(colorData.family.charAt(0).toUpperCase() + colorData.family.slice(1))
-            $('#modalColorRGB').text(`R: ${rgb.r}, G: ${rgb.g}, B: ${rgb.b}`)
+
+            // Display color family/group
+            let familyText = colorData.family.charAt(0).toUpperCase() + colorData.family.slice(1);
+            if (colorData.color_group) {
+                familyText = colorData.color_group;
+            }
+            $('#modalColorFamily').text(familyText)
             $('#modalColorLRV').text(colorData.lrv)
 
             $modal.addClass('active')
+
+            // Initialize Swiper after modal is visible
+            setTimeout(function() {
+                window.colorSwiper = new Swiper('.colorImageSwiper', {
+                    slidesPerView: 1,
+                    spaceBetween: 0,
+                    loop: colorData.images && colorData.images.length > 1,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                        dynamicBullets: true,
+                    },
+                });
+            }, 100);
         }
 
         function hideModal() {
@@ -704,9 +760,71 @@ get_header();
         gap: 0;
     }
 
-    .color-preview {
+    .color-preview-section {
+        position: relative;
         min-height: 400px;
         border-radius: 16px 0 0 16px;
+        overflow: hidden;
+        background-color: #f5f5f5;
+    }
+
+    /* Swiper Styles */
+    .colorImageSwiper {
+        width: 100%;
+        height: 100%;
+        min-height: 400px;
+    }
+
+    .colorImageSwiper .swiper-slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f5f5f5;
+    }
+
+    .color-modal-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .color-preview-default {
+        width: 100%;
+        height: 100%;
+        min-height: 400px;
+    }
+
+    .colorImageSwiper .swiper-button-next,
+    .colorImageSwiper .swiper-button-prev {
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.5);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+
+    .colorImageSwiper .swiper-button-next:after,
+    .colorImageSwiper .swiper-button-prev:after {
+        font-size: 18px;
+    }
+
+    .colorImageSwiper .swiper-button-next:hover,
+    .colorImageSwiper .swiper-button-prev:hover {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .colorImageSwiper .swiper-pagination {
+        bottom: 16px;
+    }
+
+    .colorImageSwiper .swiper-pagination-bullet {
+        background-color: #fff;
+        opacity: 0.7;
+    }
+
+    .colorImageSwiper .swiper-pagination-bullet-active {
+        opacity: 1;
+        background-color: #fff;
     }
 
     .color-details {
