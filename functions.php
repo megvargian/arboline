@@ -230,7 +230,7 @@ function register_paint_color_picker_fields() {
                     'type' => 'repeater',
                     'instructions' => 'Add paint colors that will appear in the color picker page. Each color can be assigned to a color family for filtering.',
                     'required' => 0,
-                    'layout' => 'table',
+                    'layout' => 'block',
                     'button_label' => 'Add Color',
                     'sub_fields' => array(
                         array(
@@ -241,7 +241,7 @@ function register_paint_color_picker_fields() {
                             'required' => 1,
                             'placeholder' => 'e.g., Real Red',
                             'wrapper' => array(
-                                'width' => '20',
+                                'width' => '50',
                             ),
                         ),
                         array(
@@ -252,7 +252,7 @@ function register_paint_color_picker_fields() {
                             'required' => 1,
                             'placeholder' => 'e.g., SW 6868',
                             'wrapper' => array(
-                                'width' => '15',
+                                'width' => '50',
                             ),
                         ),
                         array(
@@ -263,7 +263,7 @@ function register_paint_color_picker_fields() {
                             'required' => 1,
                             'default_value' => '#ffffff',
                             'wrapper' => array(
-                                'width' => '15',
+                                'width' => '33.33',
                             ),
                         ),
                         array(
@@ -285,19 +285,7 @@ function register_paint_color_picker_fields() {
                             ),
                             'default_value' => 'neutrals',
                             'wrapper' => array(
-                                'width' => '20',
-                            ),
-                        ),
-                        array(
-                            'key' => 'field_color_group',
-                            'label' => 'Color Group',
-                            'name' => 'color_group',
-                            'type' => 'text',
-                            'instructions' => 'Optional specific color group (e.g., Warm Neutrals, Cool Blues, etc.)',
-                            'required' => 0,
-                            'placeholder' => 'e.g., Warm Neutrals',
-                            'wrapper' => array(
-                                'width' => '25',
+                                'width' => '33.33',
                             ),
                         ),
                         array(
@@ -311,7 +299,43 @@ function register_paint_color_picker_fields() {
                             'max' => 100,
                             'step' => 1,
                             'wrapper' => array(
-                                'width' => '15',
+                                'width' => '33.33',
+                            ),
+                        ),
+                        array(
+                            'key' => 'field_color_group_select',
+                            'label' => 'Color Group Category',
+                            'name' => 'color_group_category',
+                            'type' => 'select',
+                            'instructions' => 'Select a color group category for additional filtering',
+                            'required' => 0,
+                            'choices' => array(
+                                'warm' => 'Warm',
+                                'cool' => 'Cool',
+                                'deep' => 'Deep',
+                                'light' => 'Light',
+                                'bold' => 'Bold',
+                                'soft' => 'Soft',
+                                'earthy' => 'Earthy',
+                                'modern' => 'Modern',
+                                'classic' => 'Classic',
+                            ),
+                            'allow_null' => 1,
+                            'default_value' => '',
+                            'wrapper' => array(
+                                'width' => '50',
+                            ),
+                        ),
+                        array(
+                            'key' => 'field_color_group',
+                            'label' => 'Custom Color Group Name',
+                            'name' => 'color_group',
+                            'type' => 'text',
+                            'instructions' => 'Optional custom display name for color group (overrides category if set)',
+                            'required' => 0,
+                            'placeholder' => 'e.g., Warm Neutrals, Cool Blues',
+                            'wrapper' => array(
+                                'width' => '50',
                             ),
                         ),
                         array(
@@ -328,7 +352,7 @@ function register_paint_color_picker_fields() {
                             'min' => 0,
                             'max' => '',
                             'wrapper' => array(
-                                'width' => '40',
+                                'width' => '100',
                             ),
                         ),
                     ),
