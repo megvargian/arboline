@@ -107,7 +107,7 @@ $sub_menu = $header['sub_menus'];
                                         <i class="bi bi-cart"></i>
                                     </a>
                                 </li>
-                                <?php if($right_side['image_flag']): ?>
+                                <?php if($right_side['image_flag'] != ''): ?>
                                     <li class="manufacturing-info-header text-center">
                                         <img src="<?php echo $right_side['image_flag']; ?>" alt="Union Jack Logo"
                                             class="img-fluid union-jack-logo m-0">

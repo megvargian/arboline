@@ -316,3 +316,7 @@ body.hide_scroll {
 #mobMenu .account-nav__link, #mobMenu .manufacturing-info-header {
   color: #000 !important;
 }
+
+.banner--menu-row:before {
+  background-color: #61BAD8 !important;
+}
