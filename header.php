@@ -197,47 +197,49 @@ $sub_menu = $header['sub_menus'];
                                         <i class="bi bi-cart"></i>
                                     </a>
                                 </li>
-                                <li class="manufacturing-info-header text-center">
-                                    <svg alt="Union Jack Logo" class="img-fluid union-jack-logo m-0"
-                                        xmlns="http://www.w3.org/2000/svg" width="558.385" height="332.335"
-                                        viewBox="0 0 558.385 332.335">
-                                        <g id="union-jack" transform="translate(2)">
-                                            <rect id="Rectangle_420" data-name="Rectangle 420" width="557.985"
-                                                height="332.335" transform="translate(-1.681)" fill="#282e6e"></rect>
-                                            <path id="Path_330" data-name="Path 330"
-                                                d="M496.908,0h61.077V34.812L62.608,332.335H0V298.767Z"
-                                                transform="translate(-1.681)" fill="#fff"></path>
-                                            <path id="Path_331" data-name="Path 331"
-                                                d="M496.908,332.335h61.077V297.523L62.608,0H0V33.568Z"
-                                                transform="translate(-1.681)" fill="#fff"></path>
-                                            <rect id="Rectangle_421" data-name="Rectangle 421" width="78.443"
-                                                height="332.335" transform="translate(239.087)" fill="#fff"></rect>
-                                            <rect id="Rectangle_422" data-name="Rectangle 422" width="557.985"
-                                                height="83.227" transform="translate(-1.681 123.781)" fill="#fff">
-                                            </rect>
-                                            <rect id="Rectangle_423" data-name="Rectangle 423" width="557.985"
-                                                height="52.609" transform="translate(-1.681 139.472)" fill="#e31318">
-                                            </rect>
-                                            <rect id="Rectangle_424" data-name="Rectangle 424" width="46.868"
-                                                height="332.335" transform="translate(254.874)" fill="#e31318"></rect>
-                                            <path id="Path_332" data-name="Path 332"
-                                                d="M239.087,1298.1H201.324L-2,1423.427H35.778Z"
-                                                transform="translate(0 -1091.092)" fill="#e31318"></path>
-                                            <path id="Path_333" data-name="Path 333"
-                                                d="M2216.6,1300.5h31.575l173.009,103.528-.08,21.417Z"
-                                                transform="translate(-1864.8 -1093.109)" fill="#e31318"></path>
-                                            <path id="Path_334" data-name="Path 334"
-                                                d="M2010.1,123.781h36.12L2247.535,0h-36.423Z"
-                                                transform="translate(-1691.231)" fill="#e31318"></path>
-                                            <path id="Path_335" data-name="Path 335"
-                                                d="M0,0,210.086,123.781H177.235L0,19.392Z" transform="translate(-1.681)"
-                                                fill="#e31318"></path>
-                                        </g>
-                                    </svg>
-                                    <p class="text-center text-uppercase mt-n1 py-0 mb-0">
-                                        <small>Made in Britain</small>
-                                    </p>
-                                </li>
+                                <?php if($right_side['image_flag'] != ''): ?>
+                                    <li class="manufacturing-info-header text-center">
+                                        <svg alt="Union Jack Logo" class="img-fluid union-jack-logo m-0"
+                                            xmlns="http://www.w3.org/2000/svg" width="558.385" height="332.335"
+                                            viewBox="0 0 558.385 332.335">
+                                            <g id="union-jack" transform="translate(2)">
+                                                <rect id="Rectangle_420" data-name="Rectangle 420" width="557.985"
+                                                    height="332.335" transform="translate(-1.681)" fill="#282e6e"></rect>
+                                                <path id="Path_330" data-name="Path 330"
+                                                    d="M496.908,0h61.077V34.812L62.608,332.335H0V298.767Z"
+                                                    transform="translate(-1.681)" fill="#fff"></path>
+                                                <path id="Path_331" data-name="Path 331"
+                                                    d="M496.908,332.335h61.077V297.523L62.608,0H0V33.568Z"
+                                                    transform="translate(-1.681)" fill="#fff"></path>
+                                                <rect id="Rectangle_421" data-name="Rectangle 421" width="78.443"
+                                                    height="332.335" transform="translate(239.087)" fill="#fff"></rect>
+                                                <rect id="Rectangle_422" data-name="Rectangle 422" width="557.985"
+                                                    height="83.227" transform="translate(-1.681 123.781)" fill="#fff">
+                                                </rect>
+                                                <rect id="Rectangle_423" data-name="Rectangle 423" width="557.985"
+                                                    height="52.609" transform="translate(-1.681 139.472)" fill="#e31318">
+                                                </rect>
+                                                <rect id="Rectangle_424" data-name="Rectangle 424" width="46.868"
+                                                    height="332.335" transform="translate(254.874)" fill="#e31318"></rect>
+                                                <path id="Path_332" data-name="Path 332"
+                                                    d="M239.087,1298.1H201.324L-2,1423.427H35.778Z"
+                                                    transform="translate(0 -1091.092)" fill="#e31318"></path>
+                                                <path id="Path_333" data-name="Path 333"
+                                                    d="M2216.6,1300.5h31.575l173.009,103.528-.08,21.417Z"
+                                                    transform="translate(-1864.8 -1093.109)" fill="#e31318"></path>
+                                                <path id="Path_334" data-name="Path 334"
+                                                    d="M2010.1,123.781h36.12L2247.535,0h-36.423Z"
+                                                    transform="translate(-1691.231)" fill="#e31318"></path>
+                                                <path id="Path_335" data-name="Path 335"
+                                                    d="M0,0,210.086,123.781H177.235L0,19.392Z" transform="translate(-1.681)"
+                                                    fill="#e31318"></path>
+                                            </g>
+                                        </svg>
+                                        <p class="text-center text-uppercase mt-n1 py-0 mb-0">
+                                            <small>Made in Britain</small>
+                                        </p>
+                                    </li>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </div>
