@@ -25,6 +25,9 @@
   .custom-container-padding {
     padding-top: 50px;
   }
+  #form_contact .dynamic-width {
+    width: 100%;
+  }
 }
 @media (min-width: 1390px) {
   /* change this, by default 1140px */
